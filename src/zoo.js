@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
   receivedIds.forEach((id) => {
     animals.find((specie) => {
       if (id === specie.id) {
-        animalsArray.push(specie);
+        return animalsArray.push(specie);
       }
     });
   });
@@ -26,7 +26,9 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const specieName = animals.find((specie) => specie.name === animal);
+  const animalsValidadeAge = specieName.residents.every((animal) => animal.age >= age);
+  return animalsValidadeAge;
 }
 
 function employeeByName(employeeName) {
