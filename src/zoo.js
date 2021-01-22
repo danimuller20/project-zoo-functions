@@ -15,7 +15,7 @@ const { animals } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
-  return animals.filter((value, index) => animals.id === ids[index]);
+  return animals.filter((value, index) => value.id === ids[index]);
 }
 
 function animalsOlderThan(animal, age) {
