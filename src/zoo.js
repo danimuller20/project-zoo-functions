@@ -38,20 +38,19 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return objEmpty;
   }
-  return data.employees.find((person) => {
-    return person.firstName === employeeName || person.lastName === employeeName;
-  });
+  return data.employees.find(person => 
+    (person.firstName === employeeName || person.lastName === employeeName));
 }
 
 function createEmployee(personalInfo, associatedWith) {
   const { id, firstName, lastName } = personalInfo;
   return {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
+    id,
+    firstName,
+    lastName,
     managers: associatedWith.managers,
     responsibleFor: associatedWith.responsibleFor,
-  }
+  };
 }
 
 function isManager(id) {
