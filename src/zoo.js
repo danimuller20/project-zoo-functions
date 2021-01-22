@@ -91,7 +91,7 @@ function increasePrices(percentage) {
   Object.keys(prices).forEach(obj => (
     prices[obj] = Math.round(prices[obj] * add * 100) / 100
   ));
-  };
+}
 
 function employeeCoverage(idOrName) {
   // seu código aqui
