@@ -65,11 +65,13 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   let entryTotal = 0;
-  if (entrants) Object.keys(prices).forEach((age) => {
-    if (entrants[age]) {
-      entryTotal += prices[age] * entrants[age];
-    }
-  });
+  if (entrants) {
+    Object.keys(prices).forEach((age) => {
+      if (entrants[age]) {
+        entryTotal += prices[age] * entrants[age];
+      }
+    });
+  }
   return entryTotal;
 }
 
