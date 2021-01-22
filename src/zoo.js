@@ -20,7 +20,6 @@ function animalsByIds(...ids) {
   return animalsFind;
 }
 
-
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
