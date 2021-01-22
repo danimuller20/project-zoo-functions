@@ -23,19 +23,30 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   return animals.some(species => species.name === animal &&
-  species.residents.every(residents => residents.age > age));
+    species.residents.every(residents => residents.age > age));
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
   if (!employeeName) return {};
   return employees.find(person => person.firstName === employeeName ||
-  person.lastName === employeeName);
+    person.lastName === employeeName);
 }
 
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  const { id, firstName, lastName } = personalInfo;
+
+  const { managers, responsibleFor } = associatedWith;
+
+  return {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
 }
 
 function isManager(id) {
