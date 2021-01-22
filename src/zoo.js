@@ -24,23 +24,20 @@ function animalsByIds(...ids) {
 // (index) para utilizarmos na comparação com o o índice do parâmetro ids;
 
 function animalsOlderThan(animal, age) {
-  const animalsToCheckAge = animals.find((iteratedAnimal) => {
-    return iteratedAnimal.name === animal.residents;
-  });
+  const animalsToCheckAge = animals.find((iteratedAnimal) => (
+    iteratedAnimal.name === animal.residents;
+  ));
   return animalsToCheckAge.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
   return employees.find((person) => (
     person.firstName === employeeName || person.lastName === employeeName
   ))
 }
 
-console.log(employeeByName("Nelson"));
-
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  
 }
 
 function isManager(id) {
