@@ -22,10 +22,10 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return animals.filter(animalO => (animalO.name === animal)).every(item => item.residents.every(animalF => animalF.age > age));
+  return animals.some(({ name, residents }) => name === animal && residents.every(resident => resident.age > age));
 }
 
-console.log(animalsOlderThan('penguins', 10));
+console.log(animalsOlderThan('otters', 7));
 
 function employeeByName(employeeName) {
   // seu código aqui
