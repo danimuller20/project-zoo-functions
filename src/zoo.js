@@ -34,7 +34,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const employee = employees.find( employee => employee.id === id)
+  const managersIds = employees.map((employee) =>employee.managers);
+  return managersIds.some((array) => array.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
