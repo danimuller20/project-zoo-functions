@@ -37,14 +37,14 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  let returValue = false
-  employees.forEach(arrayEmployees => {
-    if (arrayEmployees.managers.some(manager => manager === id)){
+  let returValue = false;
+  employees.forEach((arrayEmployees) => {
+    if (arrayEmployees.managers.some((manager) => manager === id)) {
       returValue = true;
     }
   });
   return returValue;
- }
+}
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
