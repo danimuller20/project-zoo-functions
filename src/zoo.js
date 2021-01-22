@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const filteredAnimals = animals.filter(animalFiltered => animalFiltered.name === animal);
+  const filteredAnimals = animals.filter(animalFiltered => animalFiltered.name === animal); 
   const [filteredSpecie] = filteredAnimals;
   return filteredSpecie.residents.every(filteredAnimal => filteredAnimal.age >= age);
 }
@@ -26,7 +26,7 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   if (!employeeName) return {};
   const filteredEmployee = employees.filter((employee) => {
-    employee.firstName === employeeName || employee.lastName === employeeName
+    return employee.firstName === employeeName || employee.lastName === employeeName;
   });
   const [employeeFound] = filteredEmployee;
   return employeeFound;
