@@ -29,11 +29,11 @@ function employeeByName(employeeName) {
     return {};
   }
   const funcionarios = data.employees.find((employee) => {
-  const primeiroNome = employee.firstName;
-  const ultimoNome= employee.lastName;
-  return primeiroNome === employeeName || ultimoNome === employeeName;
-});
-return funcionarios;
+    const primeiroNome = employee.firstName;
+    const ultimoNome = employee.lastName;
+    return primeiroNome === employeeName || ultimoNome === employeeName;
+  });
+  return funcionarios;
 }
 console.log(employeeByName());
 
