@@ -31,8 +31,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  return employees.find(element => {
-    return element.firstName === employeeName || element.lastName === employeeName
+  return employees.find((element) => {
+    return element.firstName === employeeName || element.lastName === employeeName;
   });
 }
 
