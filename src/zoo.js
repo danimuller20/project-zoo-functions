@@ -15,12 +15,12 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  let achou = [];
+  const achou = [];
   if (!ids) {
     return [];
   }
   if (ids.length === 1) {
-    achou.push(data.animals.find((animal) => animal.id === ids[0])) ;
+    achou.push(data.animals.find(animal => animal.id === ids[0]));
   }
   if (ids.length > 1) {
     // for (let index = 0; index < ids.length; index++) {
@@ -28,7 +28,7 @@ function animalsByIds(...ids) {
     //   achou.push(data.animals.find((animal) => animal.id === element));
     // }
     ids.forEach((codigo) => {
-      achou.push(data.animals.find((animal) => animal.id === codigo));
+      achou.push(animals.find(animal => animal.id === codigo));
     });
   }
 return achou;
