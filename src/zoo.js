@@ -42,7 +42,7 @@ function isManager(id) {
 
   // - Testa se o id passado é de um gerente
 
-  return data.employees.some(key => key.managers.find(isManager => isManager === id));
+  return data.employees.some(key => key.managers.find(itIs => itIs === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
