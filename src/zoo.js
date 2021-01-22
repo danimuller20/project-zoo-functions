@@ -22,9 +22,9 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   let result;
-  data.animals.forEach(specie => {
+  data.animals.forEach((specie) => {
     if (specie.name === animal) {
-      result = specie.residents.every(resident => resident.age >= age); 
+      result = specie.residents.every(resident => resident.age >= age);
     }
   });
   return result;
@@ -36,7 +36,8 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     result = {};
   } else {
-  result = data.employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+    result = data.employees.find(
+      employee => employee.firstName === employeeName || employee.lastName === employeeName);
   }
   return result;
 }
