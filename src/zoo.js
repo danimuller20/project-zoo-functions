@@ -28,7 +28,8 @@ function employeeByName(employeeName) {
   if (!employeeName){
     return {};
   }
-  let funcionarios = data.employees.find((func) => func.firstName === employeeName || func.lastName === employeeName);
+  let funcionarios = data.employees.find((func) => {
+    func.firstName === employeeName || func.lastName === employeeName});
   return funcionarios;
 }
 console.log(employeeByName());
