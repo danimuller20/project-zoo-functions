@@ -69,13 +69,13 @@ function animalCount(specie) {
 
 function entryCalculator(entrants = 0) {
   let result = 0;
-  const getPrices =  Object.entries(prices);
+  const getPrices = Object.entries(prices);
   const getEntrances = Object.entries(entrants);
   getEntrances.forEach((typeEntry) => {
     getPrices.forEach((price) => {
       if (typeEntry[0] === price[0]) {
         result += (typeEntry[1] * price[1]);
-      };
+      }
     });
   });
   return result;
