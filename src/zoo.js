@@ -18,19 +18,19 @@ function animalsByIds(id, ...rest) {
     return ids;
   }
   ids.push(id, ...rest);
-  const animals = [];
+  const animalsList = [];
   ids.forEach((elementId) => {
-    const animal = data.animals.find(element => element.id === elementId);
+    const animal = animals.find(element => element.id === elementId);
     if (animal !== undefined) {
-      animals.push(animal);
+      animalsList.push(animal);
     }
   });
-  return animals;
+  return animalsList;
 }
 
 function animalsOlderThan(animalSpecies, age) {
-  const animal = data.animals.find(elementAnimal => elementAnimal.name === animalSpecies);
-  const everyoneIsOfMinimumAge = animal.residents.every(elementResident => elementResident.age >= age);
+  const animal = animals.find(animal => animal.name === animalSpecies);
+  const everyoneIsOfMinimumAge = animal.residents.every(resident => resident.age >= age);
   return everyoneIsOfMinimumAge;
 }
 
