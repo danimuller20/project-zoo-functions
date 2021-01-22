@@ -97,9 +97,27 @@ function addEmployee(
   employees.push(newEmployee);
 }
 
+function showSpeciesNumberOfResidents() {
+  const objectOfAnimals = {};
+
+  animals.forEach((animal) => {
+    objectOfAnimals[animal.name] = animal.residents.length;
+  });
+
+  return objectOfAnimals;
+}
+
 function animalCount(species) {
   // seu código aqui
+
+  if (species === undefined) {
+    return showSpeciesNumberOfResidents();
+  }
+
+  return animals.find((animal) => animal.name === species).residents.length;
 }
+
+console.log(animalCount())
 
 function entryCalculator(entrants) {
   // seu código aqui
