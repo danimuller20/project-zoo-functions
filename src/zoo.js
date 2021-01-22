@@ -20,7 +20,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  let selectedAnimal = animals.find(value => value.name === animal).residents;
+  const selectedAnimal = animals.find(value => value.name === animal).residents;
   return selectedAnimal.every(value => value.age >= age);
 }
 
@@ -28,13 +28,13 @@ function employeeByName(employeeName) {
   // seu código aqui
   let result;
   if (employeeName === undefined) {
-    result = {}
+    result = {};
   } else {
-    result = employees.find(value => value.firstName === employeeName || value.lastName === employeeName);
+    result = employees.find((value) => {
+    return value.firstName === employeeName || value.lastName === employeeName});
   }
   return result;
 }
-console.log(employeeByName('Emery'))
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
