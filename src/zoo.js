@@ -95,11 +95,11 @@ function animalMap(options = '') {
   // seu código aqui
 }
 
-//10
+// 10
 function newSchedule() {
   const object = {};
   const getHoursEntries = Object.entries(hours);
-  getHoursEntries.forEach(day => {
+  getHoursEntries.forEach((day) => {
     if (day[1].open === 0) {
       object[day[0]] = 'CLOSED';
     } else {
@@ -117,8 +117,8 @@ function scheduleOfDay(day, object) {
   return newObject;
 }
 
-function schedule(dayName = 0) {
-  return (dayName === 0) ? newSchedule() : scheduleOfDay(dayName, newSchedule());
+function schedule(dayName) {
+  return (dayName === undefined) ? newSchedule() : scheduleOfDay(dayName, newSchedule());
 }
 
 //
