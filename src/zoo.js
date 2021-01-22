@@ -15,17 +15,23 @@ const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   const animalsFound = [];
-  ids.forEach((idSearched) => animalsFound.push(...animals.filter((animal) => animal.id === idSearched)));
+  ids.forEach((idSearched) => {
+    animalsFound.push(...animals.filter((animal) => animal.id === idSearched))
+  });
   return animalsFound;
 }
 
 function animalsOlderThan(animalName, age) {
-  const [ animalFound ] = animals.filter((animal) => animal.name === animalName);
+  const animalFound = animals.find(animal => animal.name === animalName);
   return animalFound.residents.every((animalResident) => animalResident.age > age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  let employeeFound = employees.find((employee) => {
+    return (employee.firstName == employeeName || employee.lastName == employeeName)
+  });
+  const employeeObj = {...employeeFound};
+  return employeeObj;
 }
 
 function createEmployee(personalInfo, associatedWith) {
