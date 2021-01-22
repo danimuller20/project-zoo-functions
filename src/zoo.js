@@ -41,8 +41,8 @@ function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   const { managers, responsibleFor } = associatedWith;
   const newEmployee = personalInfo;
-  newEmployee['managers'] = managers;
-  newEmployee['responsibleFor'] = responsibleFor;
+  newEmployee.managers = managers;
+  newEmployee.responsibleFor = responsibleFor;
   return newEmployee;
 }
 
