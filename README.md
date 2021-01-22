@@ -1,4 +1,5 @@
 Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
+Alteração para commit.
 
 # Boas vindas ao repositório do projeto de ES6 e Higher Order Functions!
 
