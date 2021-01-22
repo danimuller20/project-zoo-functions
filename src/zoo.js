@@ -27,11 +27,11 @@ function animalsOlderThan(animal, age) {
   // seu código aqui
 
   const isEveryResidentOlder = data.animals
-  .find((animalOfAnimals) => animalOfAnimals.name === animal).residents // Find the animal and accesse the residents
-  .every((resident) => resident.age >= age) // Verify if every resident has the minimum age
+    .find(animalOfAnimals => animalOfAnimals.name === animal) // Find the animal
+    .residents //  Vccess the residents
+    .every(resident => resident.age >= age); // Verify if every resident has the minimum age
 
-
-  return isEveryResidentOlder
+  return isEveryResidentOlder;
 }
 
 function employeeByName(employeeName) {
