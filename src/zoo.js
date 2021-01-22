@@ -34,13 +34,12 @@ function animalsOlderThan(animalSpecies, age) {
   return everyoneIsOfMinimumAge;
 }
 
-function employeeByName(employeeName) {
-  if (employeeName === undefined) {
+function employeeByName(name) {
+  if (name === undefined) {
     return {};
   }
-  const employeeFound = employees.find((employee) => {
-    return employee.firstName === employeeName || employee.lastName === employeeName;
-  })
+  const isEmployee = employee => employee.firstName === name || employee.lastName === name;
+  const employeeFound = employees.find(isEmployee);
   return employeeFound;
 }
 
