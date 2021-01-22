@@ -64,8 +64,12 @@ function isManager(id = 0) {
   return managersArray.indexOf(id) !== -1;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  // funcao add nova pessoa colaboradora no array employees;
+  // add no fim da lista;
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
+  return employees;
 }
 
 function animalCount(species) {
