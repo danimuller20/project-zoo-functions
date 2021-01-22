@@ -24,10 +24,10 @@ function animalsOlderThan(animal, age) {
 function employeeByName(name) {
   // seu código aqui
   let employee = data.employees.find(emp => emp.firstName === name || emp.lastName === name);
-  if (!employeeName) employee = {};
+  if (!name) employee = {};
   return employee;
 }
-//https://www.digitalocean.com/community/tutorials/js-array-find-method
+// https://www.digitalocean.com/community/tutorials/js-array-find-method
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
