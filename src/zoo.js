@@ -8,7 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -75,7 +75,23 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  // ispirado no codigo do Marcos Abreu turma 8;
+  const dias = Object.keys(data.hours);
+  const diaAberto = {};
+
+  dias.forEach((dia) => {
+    if (dia === 'Monday') {
+      diaAberto[dia] = 'CLOSED';
+    } else {
+      const aberto = hours[dia].open;
+      const fechado = hours[dia].close - 12;
+      diaAberto[dia] = `Open from ${aberto}am until ${fechado}pm`;
+    }
+  });
+  if (!dayName){
+    return diaAberto;
+  } 
+  return { [dayName]: diaAberto[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
