@@ -10,9 +10,14 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { animals, employees, hours, prices } = data;
+console.log(prices)
 
-function animalsByIds(ids) {
+function animalsByIds(...ids) {
   // seu código aqui
+  return ids.map((value) => {
+    return animals.find((element) => element.id === value);
+  });
 }
 
 function animalsOlderThan(animal, age) {
