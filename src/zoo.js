@@ -25,6 +25,7 @@ function animalsOlderThan(especie, idade) {
 }
 
 function employeeByName(employeeName) {
+  // algumas correcoes baseadas no codigo da Amanda Souza, turma 8.
   if (!employeeName) {
     return {};
   }
@@ -47,15 +48,8 @@ function isManager(id) {
   return gerente;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const newFunc = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  };
-  return data.employees.push(newFunc);
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
