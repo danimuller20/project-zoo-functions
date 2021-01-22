@@ -16,7 +16,7 @@ function animalsByIds(...ids) {
   if (ids.length === 0) {
     return [];
   }
-  return ids.map((arrayIds) => animals.find((arrayAnimals) => (arrayAnimals.id === arrayIds)));
+  return ids.map((arrayIds) => (animals.find((arrayAnimals) => (arrayAnimals.id === arrayIds))));
 }
 
 function animalsOlderThan(animal, age) {
