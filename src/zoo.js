@@ -25,12 +25,15 @@ function animalsOlderThan(especie, idade) {
 }
 
 function employeeByName(employeeName) {
-  if (!employeeName){
+  if (!employeeName) {
     return {};
   }
-  let funcionarios = data.employees.find((func) => {
-    func.firstName === employeeName || func.lastName === employeeName});
-  return funcionarios;
+  const funcionarios = data.employees.find((employee) => {
+  const primeiroNome = employee.firstName;
+  const ultimoNome= employee.lastName;
+  return primeiroNome === employeeName || ultimoNome === employeeName;
+});
+return funcionarios;
 }
 console.log(employeeByName());
 
