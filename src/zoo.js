@@ -31,7 +31,7 @@ function employeeByName(employeeName) {
     const matchLastName = employeeName === lastName;
     return matchFirstName || matchLastName;
   });
-  if (employee === undefined) { employee = {} };
+  if (employee === undefined) employee = {};
   return employee;
 }
 
