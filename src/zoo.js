@@ -21,7 +21,10 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+  return data.employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -30,23 +33,17 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // ### 5. IMPLEMENTE A FUNÇÃO isManager
-
-  // Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
-
-  // **Observações técnicas**
-
-  // - Deve retornar um valor booleano
-
-  // **O que será avaliado**
-
-  // - Testa se o id passado é de um gerente
-
   return data.employees.some(key => key.managers.find(itIs => itIs === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  });
 }
 
 function animalCount(species) {
