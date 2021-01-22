@@ -24,7 +24,7 @@ function animalsByIds(...ids) {
 // (index) para utilizarmos na comparação com o o índice do parâmetro ids;
 
 function animalsOlderThan(animal, age) {
-  const animalsToCheckAge = animals.find((iteratedAnimal) => (
+  const animalsToCheckAge = animals.find(iteratedAnimal => (
     iteratedAnimal.name === animal.residents
   ));
   return animalsToCheckAge.every(resident => resident.age > age);
@@ -33,9 +33,9 @@ function animalsOlderThan(animal, age) {
 function employeeByName(string) {
   if (!string) return {};
 
-  return employees.find((person) => (
+  return employees.find( person => (
     person.firstName === string || person.lastName === string
-  ))
+  ));
 }
 
 function createEmployee(personalInfo, associatedWith) {
