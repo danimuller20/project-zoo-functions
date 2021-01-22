@@ -17,12 +17,12 @@ function animalsByIds(...ids) {
 
   // Referencia: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/contains
 
-  return animals.filter((animal) => ids.includes(animal.id));
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return animals.filter((animalO) => (animalO.name === animal)).every((item) => item.residents.every((animalF) => animalF.age > age));
+  return animals.filter(animalO => (animalO.name === animal)).every(item => item.residents.every(animalF => animalF.age > age));
 }
 
 console.log(animalsOlderThan('penguins', 10));
