@@ -88,9 +88,9 @@ function schedule(dayName) {
       diaAberto[dia] = `Open from ${aberto}am until ${fechado}pm`;
     }
   });
-  if (!dayName){
+  if (!dayName) {
     return diaAberto;
-  } 
+} 
   return { [dayName]: diaAberto[dayName] };
 }
 
