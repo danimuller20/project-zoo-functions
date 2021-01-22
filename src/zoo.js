@@ -53,14 +53,13 @@ function entryCalculator(entrants) {
   let entryTotalFee = 0;
   if (entrants === undefined || entrants === {}) {
     return entryTotalFee;
-  } else {
-    Object.keys(prices).forEach((age) => {
-      if (entrants[age]) {
-        entryTotalFee += prices[age] * entrants[age];
-      }
-    });
-    return entryTotalFee;
   }
+  Object.keys(prices).forEach((age) => {
+    if (entrants[age]) {
+      entryTotalFee += prices[age] * entrants[age];
+    }
+  });
+  return entryTotalFee;
 }
 
 function animalMap(options) {
