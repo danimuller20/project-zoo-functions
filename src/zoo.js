@@ -25,10 +25,10 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   const animalsToCheckAge = animals.find(iteratedAnimal => (
-    iteratedAnimal.name === animal.residents
-  ));
-  return animalsToCheckAge.every(resident => resident.age > age);
+    iteratedAnimal.name === animal));
+    return animalsToCheckAge.residents.every(resident => resident.age > age);
 }
+
 
 function employeeByName(string) {
   if (!string) return {};
@@ -42,11 +42,10 @@ function createEmployee(personalInfo, associatedWith) {
   return {
     ...personalInfo,
     ...associatedWith,
-  }
+  };
 }
 
 function isManager(id) {
-  // seu código aqui
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
