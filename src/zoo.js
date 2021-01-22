@@ -24,16 +24,19 @@ function animalsOlderThan(especie, idade) {
   return false;
 }
 
-console.log(animalsOlderThan('lions', 53));
-
 function employeeByName(employeeName) {
+  if (!employeeName){
+    return {};
+  }
+  let funcionarios = data.employees.find((func) => func.firstName === employeeName || func.lastName === employeeName);
+  return funcionarios;
 }
+console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   const novoFuncionario = { ...personalInfo, ...associatedWith };
   return novoFuncionario;
 }
-console.log(createEmployee());
 
 function isManager(id) {
   const gerente = employees.some(elemento => elemento.managers.includes(id));
@@ -79,7 +82,6 @@ function oldestFromFirstSpecies(id) {
   const { name, sex, age } = sortAnimal[0];
   return [name, sex, age];
 }
-console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function increasePrices(percentage) {
 }
