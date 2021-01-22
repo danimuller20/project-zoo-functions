@@ -26,18 +26,20 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const specieName = animals.find((specie) => specie.name === animal);
-  const animalsValidadeAge = specieName.residents.every((animal) => animal.age >= age);
+  const specieName = animals.find(specie => specie.name === animal);
+  const animalsValidadeAge = specieName.residents.every(item => item.age >= age);
   return animalsValidadeAge;
 }
 
 function employeeByName(name = {}) {
-  const search = employees.find((employee) => employee.firstName === name || employee.lastName === name);
+  const search = employees.find(employee =>
+  employee.firstName === name || employee.lastName === name);
   return search === undefined ? {} : search;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newEmployee = Object.assign({}, personalInfo, associatedWith);
+  return newEmployee;
 }
 
 function isManager(id) {
