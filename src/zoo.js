@@ -11,10 +11,18 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours, prices } = data;
+// Utilizando Object destructuring para mexer no data. Lembrar que é tudo array.
+const { animals } = data;
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  const animalList = [];
+
+  ids.forEach((item) => {
+    const mySpecies = animals.find(species => species.id === item);
+    animalList.push(mySpecies);
+  });
+
+  return animalList;
 }
 
 function animalsOlderThan(animal, age) {
