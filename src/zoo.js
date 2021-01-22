@@ -53,11 +53,15 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
-  const personalInfo = {id, firstName, lastName};
-  const associatedWith = {};
-  !managers ? associatedWith.managers = [] : associatedWith.managers = managers;
-  !responsibleFor ? associatedWith.responsibleFor = [] : associatedWith.responsibleFor = responsibleFor;
-  const  newEmployee = createEmployee(personalInfo, associatedWith);
+  const personalInfo = { id, firstName, lastName };
+  const associatedWith = { managers, responsibleFor };
+  if (!managers) {
+    associatedWith.managers = [];
+  }
+  if (!responsibleFor) {
+    associatedWith.responsibleFor = [];
+  }
+  const newEmployee = createEmployee(personalInfo, associatedWith);
   employees.push(newEmployee);
 }
 
