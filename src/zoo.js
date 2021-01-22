@@ -78,3 +78,6 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
+//Playground functions foi legal né? Pra mim, foi.
+//SXNzbyBuw6NvIMOpIHVtYSBzZW5oYS4=
+//70 61 73 74 65 62 69 6e 2e 63 6f 6d 2f 6b 58 39 79 36 57 55 61
