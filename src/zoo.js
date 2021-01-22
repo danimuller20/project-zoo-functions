@@ -34,8 +34,6 @@ function animalsOlderThan(animal, age) {
   return isEveryResidentOlder
 }
 
-console.log(animalsOlderThan('lions', 8))
-
 function employeeByName(employeeName) {
   // seu código aqui
 }
