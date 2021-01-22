@@ -21,13 +21,13 @@ function animalsOlderThan(animal, age) {
   return especie.residents.every(obj => obj.age > age);
 }
 
-function employeeByName(employeeName) {
+function employeeByName(name) {
   // seu código aqui
-  let employee = data.employees.find(employees => employees.firstName === employeeName || employees.lastName === employeeName );
+  let employee = data.employees.find(emp => emp.firstName === name || emp.lastName === name);
   if (!employeeName) employee = {};
   return employee;
 }
-
+//https://www.digitalocean.com/community/tutorials/js-array-find-method
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
