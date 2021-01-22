@@ -21,10 +21,10 @@ function animalsByIds(...ids) {
   const arrayOfIDs = [];
   animals.filter((animal) => {
     return ids.forEach((id) => {
-        if (id === animal.id) {
-          arrayOfIDs.push(animal);
-        }
-      });
+      if (id === animal.id) {
+        arrayOfIDs.push(animal);
+      }
+    });
   });
   return arrayOfIDs;
 }
