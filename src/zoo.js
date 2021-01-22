@@ -40,7 +40,12 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  isManagerFound = false;
+  employees.forEach((employee) => {
+    let isManagerKey = employee.managers.some((managersIdList) => managersIdList === id)
+    if (isManagerKey) { isManagerFound = true };
+  });
+  return isManagerFound;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
