@@ -11,12 +11,13 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
+function animalsByIds(...ids) {
   return data.animals.filter(species => ids.includes(species.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const names = data.animals.find(found => animal === found.name).residents;
+  return names.every(value => value.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -29,7 +30,19 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  // ### 5. IMPLEMENTE A FUNÇÃO isManager
+
+  // Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
+
+  // **Observações técnicas**
+
+  // - Deve retornar um valor booleano
+
+  // **O que será avaliado**
+
+  // - Testa se o id passado é de um gerente
+
+  return data.employees.some(key => key.managers.find(isManager => isManager === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
