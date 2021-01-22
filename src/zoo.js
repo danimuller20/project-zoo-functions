@@ -10,12 +10,13 @@ eslint no-unused-vars: [
 */
 // LET'S DO THIS!
 const data = require('./data');
+
 const { animals } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
   if (ids.length === 0) return [];
-  // return animals.filter((animal, index) => animal.id === ids[index]);
+  return animals.filter((animal, index) => animal.id === ids[index]);
 }
 
 // a função filter recebe até três parâmetros, assim podemos utilizar o segundo parâmetro
@@ -23,12 +24,15 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const animalsToCheckAge = animals.find(iteratedAnimal => iteratedAnimal.name === animal).residents;
+  const animalsToCheckAge = animals.find((iteratedAnimal) => {
+    iteratedAnimal.name === animal.residents
+  });
   return animalsToCheckAge.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
+
 }
 
 function createEmployee(personalInfo, associatedWith) {
