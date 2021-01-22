@@ -40,7 +40,7 @@ function createEmployee(personalInfo, associatedWith) {
     lastName: personalInfo.lastName,
     managers: associatedWith.managers,
     responsibleFor: associatedWith.responsibleFor,
-  }
+  };
 }
 
 function isManager(id) {
