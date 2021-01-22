@@ -14,13 +14,18 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
+
+  // Referencia: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/contains
+
   return animals.filter((animal) => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-
+  return animals.filter((animalO) => (animalO.name === animal)).every((item) => item.residents.every((animalF) => animalF.age > age));
 }
+
+console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   // seu código aqui
