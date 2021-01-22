@@ -29,7 +29,7 @@ function employeeByName(employeeName) {
   // seu código aqui
   const { employee } = data;
   let object = {};
-  if (employee) {
+  if (employeeName) {
     object = employee.filter(objectEmployer =>
       objectEmployer.firstName === employeeName ||
       objectEmployer.lastName === employeeName,
