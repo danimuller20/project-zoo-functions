@@ -19,14 +19,14 @@ function animalsByIds(id, ...rest) {
   ids.push(id, ...rest);
   const animals = [];
   ids.forEach((elementId) => {
-    const animal = data.animals.find(element => element.elementId === elementId);
+    const animal = data.animals.find(element => element.id === elementId);
     if (animal !== undefined) {
       animals.push(animal);
     }
   });
   return animals;
 }
-
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'))
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
