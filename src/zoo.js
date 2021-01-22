@@ -15,7 +15,7 @@ const { animals } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
-  return ids.map( value => animals.find( element => element.id === value));
+  return ids.map(value => animals.find(element => element.id === value));
 }
 
 function animalsOlderThan(animal, age) {
