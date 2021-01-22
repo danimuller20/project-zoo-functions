@@ -35,7 +35,7 @@ function employeeByName(employeeName) {
   // passado o último nome do func. retorna o obj do func. ;
   if (!employeeName) return {};
   return employees.filter(({ firstName, lastName }) => {
-    firstName === employeeName || lastName === employeeName;
+    if (employeeName === firstName || employeeName === lastName) return employeeName;
   })[0];
 }
 
