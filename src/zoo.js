@@ -43,12 +43,20 @@ function isManager(idEmployee) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return employees.push({id, firstName, lastName, managers, responsibleFor});
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    return animals.reduce((acc, current) => {
+      acc[current.name] = current.popularity;
+      return acc;
+    }, { });
+  }
+  return animals.find(({ name }) => name === species).popularity;
 }
+
+console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
