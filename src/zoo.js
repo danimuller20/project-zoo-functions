@@ -54,8 +54,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const objPerson = data.employees.find((person) => 
-  (person.managers.find((arrayManagers) => arrayManagers === id)));
+  const objPerson = data.employees.find(person =>
+  (person.managers.find(arrayManagers => arrayManagers === id)));
   if (typeof (objPerson) === 'object') {
     return true;
   }
