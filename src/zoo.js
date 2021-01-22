@@ -61,13 +61,13 @@ function animalCount(species) {
 
   // - Sem parâmetros, retorna animais e suas quantidades
   // - Com o nome de uma espécie de animal, retorna somente a quantidade
-  if (species === undefined){
+  if (species === undefined) {
     return data.animals.reduce((accumulator, currentValue) => {
       accumulator[currentValue.name] = currentValue.residents.length;
       return accumulator;
-    }, {})
+    }, {});
   }
-  return data.animals.find( animal => animal.name === species).residents.length;
+  return data.animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
