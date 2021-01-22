@@ -32,7 +32,12 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
+  return employees.map(employee =>
+    employee.managers.some(maneger =>
+      maneger === id)).some(employee => employee);
 }
+
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
@@ -53,7 +58,6 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
