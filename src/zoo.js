@@ -55,9 +55,17 @@ function employeeByName(employeeName) {
   return findEmployeeByName(employeeName);
 }
 
-function createEmployee(personalInfo, associatedWith) {
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
   // seu código aqui
-}
+
+  return {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+};
 
 function isManager(id) {
   // seu código aqui
