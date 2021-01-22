@@ -114,10 +114,8 @@ function animalCount(species) {
     return showSpeciesNumberOfResidents();
   }
 
-  return animals.find((animal) => animal.name === species).residents.length;
+  return animals.find(animal => animal.name === species).residents.length;
 }
-
-console.log(animalCount())
 
 function entryCalculator(entrants) {
   // seu código aqui
