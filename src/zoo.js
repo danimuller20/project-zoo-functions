@@ -53,9 +53,8 @@ function isManager(id = 0) {
   // seu código aqui
   // Testa se o ID passado é um gerente;
   // Retorna um boolean;
-  const managersArray = employees.map(({ managers }) => {
-    return managers;
-  }).reduce((prev, curr) => {
+  const managersArray = employees.map(({ managers }) => 
+  managers).reduce((prev, curr) => {
     curr.forEach(element => prev.push(element));
     return prev;
   }, []);
