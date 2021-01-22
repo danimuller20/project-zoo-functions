@@ -16,8 +16,6 @@ function animalsByIds(...ids) {
   return animals.filter((animalId, param) => animalId.id === ids[param]);
 }
 
-console.log(animalsByIds())
-
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
