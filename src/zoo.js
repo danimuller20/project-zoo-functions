@@ -14,7 +14,7 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  return ids.map((id) => animals.find((animal) => animal.id === id));
+  return ids.map(id => animals.find(animal => animal.id === id));
 }
 
 
