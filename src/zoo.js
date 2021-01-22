@@ -27,9 +27,8 @@ function animalsOlderThan(animalName, age) {
 }
 
 function employeeByName(employeeName) {
-  const employeeFound = employees.find((employee) => {
-    return employee.firstName === employeeName || employee.lastName === employeeName;
-  });
+  const employeeFound = employees.find(
+    (employee) => employee.firstName === employeeName || employee.lastName === employeeName);
   const employeeObj = { ...employeeFound };
   return employeeObj;
 }
@@ -42,7 +41,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   let isManagerFound = false;
   employees.forEach((employee) => {
-    let isManagerKey = employee.managers.some(managersIdList => managersIdList === id);
+    const isManagerKey = employee.managers.some(managersIdList => managersIdList === id);
     if (isManagerKey) { isManagerFound = true; }
   });
   return isManagerFound;
