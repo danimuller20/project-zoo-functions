@@ -30,9 +30,8 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const byName = employees.find(people => 
-(people.firstName === employeeName || people.lastName === employeeName));
-  return byName;
+  const id = employees.find(ppl => (ppl.firstName === employeeName || ppl.lastName === employeeName));
+  return id;
 }
 
 function createEmployee(personalInfo, associatedWith) {
