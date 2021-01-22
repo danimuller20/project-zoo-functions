@@ -74,6 +74,19 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+  // conta o total de animais;
+  // sem parametros retorna objeto com chave: nome & valor: quantidade;
+  // nome de uma especie retorna numero total dessa especie;
+  if (species) {
+    const speciesDefined = animals.find(({ name }) =>
+    species === name).residents.length;
+    return speciesDefined;
+  }
+  const speciesUndefined = {};
+  animals.forEach(animal =>
+  speciesUndefined[animal.name] = animal.residents.length);
+
+  return species ? speciesDefined : speciesUndefined;
 }
 
 function entryCalculator(entrants) {
