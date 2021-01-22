@@ -20,11 +20,11 @@ function animalsByIds(...ids) {
   }
   const arrayOfIDs = [];
   animals.filter((animal) => {
-  return ids.forEach((id) => {
-      if (id === animal.id) {
-        arrayOfIDs.push(animal);
-      }
-    });
+    return ids.forEach((id) => {
+        if (id === animal.id) {
+          arrayOfIDs.push(animal);
+        }
+      });
   });
   return arrayOfIDs;
 }
@@ -78,17 +78,17 @@ function animalsByIds(...ids) {
 // }
 
 module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
+  // entryCalculator,
+  // schedule,
+  // animalCount,
+  // animalMap,
   animalsByIds,
-  employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
+  // employeeByName,
+  // employeeCoverage,
+  // addEmployee,
+  // isManager,
+  // animalsOlderThan,
+  // oldestFromFirstSpecies,
+  // increasePrices,
+  // createEmployee,
 };
