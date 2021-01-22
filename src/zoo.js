@@ -80,7 +80,7 @@ function animalCount(species) {
       return objSpecies;
     }, {});
   } else {
-    data.animals.forEach(specie => {
+    data.animals.forEach((specie) => {
       if (species === specie.name) {
         result = specie.residents.length;
       }
