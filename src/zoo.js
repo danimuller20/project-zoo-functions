@@ -13,7 +13,7 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  let answer = [];
+  const answer = [];
   ids.forEach(id => answer.push(data.animals.find(animal => animal.id === id)));
   return answer;
 }
