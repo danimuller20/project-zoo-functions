@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 // Utilizando Object destructuring para mexer no data. Lembrar que é tudo array.
-const { animals } = data;
+const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   const animalList = [];
@@ -27,15 +27,17 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const ageVerifier = animals
+  return animals
     .find(species => species.name === animal).residents
     .every(individual => individual.age >= age);
-
-  return ageVerifier;
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) {
+    return {};
+  }
+  return employees
+    .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
