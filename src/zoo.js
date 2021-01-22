@@ -53,7 +53,7 @@ function isManager(id = 0) {
   // seu código aqui
   // Testa se o ID passado é um gerente;
   // Retorna um boolean;
-  const managers = employees.map(({ managers }) => {
+  const managersArray = employees.map(({ managers }) => {
     return managers;
   }).reduce((prev, curr) => {
     curr.forEach(element => prev.push(element));
@@ -62,7 +62,7 @@ function isManager(id = 0) {
 
   // SOLUÇÃO ALTERNATIVA
   // const managers = employees.map(({ managers }) => managers).flat();
-  return managers.indexOf(id) === -1 ? false : true;
+  return managersArray.indexOf(id) !== -1;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
