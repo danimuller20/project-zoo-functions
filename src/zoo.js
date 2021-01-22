@@ -29,9 +29,7 @@ function employeeByName(employeeName) {
   }
 
   return employees.find(
-    ({ firstName, lastName }) =>
-      firstName === employeeName || lastName === employeeName
-  );
+    ({ firstName, lastName }) => firstName === employeeName || lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -39,7 +37,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some(({ managers }) => managers.find((managerId) => managerId === id));
+  return employees.some(({ managers }) => managers.find(managerId => managerId === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
