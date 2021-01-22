@@ -17,11 +17,11 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(especie, idade) {
-   const animaisFiltrados = data.animals.find(bicho => bicho.name === especie);
-   if (animaisFiltrados.residents.every((animal) => animal.age > idade)) {
-    return true;
-  }
-    return false;
+  const animaisFiltrados = data.animals.find(bicho => bicho.name === especie);
+  if (animaisFiltrados.residents.every(animal => animal.age > idade)) {
+     return true;
+   }
+  return false;
 }
 
 console.log(animalsOlderThan('lions', 53));
@@ -30,8 +30,7 @@ function employeeByName(employeeName) {
   if (employeeName === null) {
     return {};
   }
-  const funcionarios = data.employees.find(func => 
-  func.firstName === employeeName || func.lastName === employeeName);
+  const funcionarios = data.employees.find(func => func.firstName === employeeName || func.lastName === employeeName);
   return funcionarios;
 }
 console.log(employeeByName('Ola'));
@@ -70,13 +69,13 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (typeof (entrants) !== 'object') { return 0; }
-   entrants = {
-   Adult: 0,
-   Child: 0,
-   Senior: 0,
-  };
-   const valor = (prices.Adult * Adult) + (prices.Child * Child) + (prices.Senior * Senior);
-   return valor;
+    entrants = {
+    Adult: 0,
+    Child: 0,
+    Senior: 0,
+   };
+  const valor = (prices.Adult * Adult) + (prices.Child * Child) + (prices.Senior * Senior);
+  return valor;
 }
 
 function animalMap(options) {
@@ -88,11 +87,11 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const findFunc = data.employees.find((funcionario) => (funcionario.id === id));
+  const findFunc = data.employees.find(funcionario => (funcionario.id === id));
   const findAnimal = data.animals.find(animal => animal.id === findFunc.responsibleFor[0]);
   const sortAnimal = findAnimal.residents.sort((a, b) => b.age - a.age);
-  const { name,sex,age } = sortAnimal[0];
-  return [name,sex,age];
+  const { name, sex, age } = sortAnimal[0];
+  return [name, sex, age];
 }
 console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
