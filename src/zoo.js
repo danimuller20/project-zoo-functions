@@ -27,7 +27,7 @@ function employeeByName(employeeName) {
   }
 
   return employees.find(({ firstName, lastName }) =>
-  firstName === employeeName || lastName === employeeNam);
+  firstName === employeeName || lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
