@@ -67,16 +67,12 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
   };
 }
 
-function isThisManager(id) {
-
-}
-
 function isManager(id) {
   // seu código aqui
 
   const listOfManagers = employees
     .map(({ managers }) => managers)
-    .some((managerArray) => managerArray.some((manager) => manager === id));
+    .some(managerArray => managerArray.some(manager => manager === id));
 
   return listOfManagers;
 }
