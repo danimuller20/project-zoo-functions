@@ -14,10 +14,14 @@ const data = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
 
-  
-}
+  const animals = ids.map((idOfIds) => {
+    const findById = data.animals.find(({ id }) => id === idOfIds)
 
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'))
+    return findById
+  })
+
+  return animals
+}
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
