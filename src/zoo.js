@@ -28,8 +28,7 @@ function employeeByName(employeeName) {
   if (!employeeName) return {};
   return employees.find(
     ({ firstName, lastName }) =>
-      firstName === employeeName || lastName === employeeName,
-  );
+      firstName === employeeName || lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -38,8 +37,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(idEmployee) {
   return employees.some(
-    ({ managers }, index) => managers[index] === idEmployee,
-  );
+    ({ managers }, index) => managers[index] === idEmployee);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -49,14 +47,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (!species) {
     return animals.reduce((acc, current) => {
-      acc[current.name] = current.popularity;
+      acc[current.name] = current.residents.length;
       return acc;
     }, { });
   }
-  return animals.find(({ name }) => name === species).popularity;
+  return animals.find(({ name }) => name === species).residents.length;
 }
-
-console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
