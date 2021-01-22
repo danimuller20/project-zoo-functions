@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(ids) {
+  alert('inicio do projeto');
   // seu código aqui
 }
 
