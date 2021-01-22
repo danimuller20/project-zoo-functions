@@ -55,12 +55,12 @@ function animalCount(species) {
   if (!species) {
     const newObject = {};
     animals.forEach(element => {
-      newObject[element.name] = element.residents.length;
+      newObject[element.name] = element.residents.length
     });
     return newObject;
   }
-  const animal = animals.find(animal => animal.name === species);
-  return animal.residents.length;
+  const specie = animals.find(animal => animal.name === species);
+  return specie.residents.length;
 }
 
 function entryCalculator(entrants) {
