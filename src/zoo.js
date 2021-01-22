@@ -43,8 +43,10 @@ function createEmployee(personalInfo, associatedWith) {
   // funcao cria um obj semelhante a de uma pessoa colaboradora e retorna-o;
   // personalInfo: obj com as propriedades id, firstName e lastName;
   // associatedWith: recebe obj contendo dois arrays: managers e responsiblefor;
-  // funcao: cria um novo colaborador a partir de obj contendo personalInfo, managers e responsiblefor;
-  return {...personalInfo, ...associatedWith};
+  /* funcao: cria um novo colaborador a partir de obj contendo:
+  personalInfo, managers e responsiblefor; */
+
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
