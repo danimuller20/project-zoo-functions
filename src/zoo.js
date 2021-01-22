@@ -64,13 +64,11 @@ function animalCount(species) {
 console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
-    if (typeof (entrants) !== 'object') { return 0; }
-    const { Child = 0, Adult = 0, Senior = 0 } = entrants;
-    const valor = (prices.Adult * entrants.Adult) + (prices.Child * entrants.Child) + (prices.Senior * entrants.Senior);
-   return valor;
-  }
-
-  console.log(entryCalculator({'Adult': 2, 'Child': 3, 'Senior': 1}));
+  if (typeof (entrants) !== 'object') { return 0; }
+  const { Child = 0, Adult = 0, Senior = 0 } = entrants;
+  const valor = (prices.Adult * Adult) + (prices.Child * Child) + (prices.Senior * Senior);
+  return valor;
+}
 
 function animalMap(options) {
   // seu código aqui
