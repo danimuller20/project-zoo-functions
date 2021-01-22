@@ -30,9 +30,11 @@ function animalsOlderThan(animal, age) {
   return animalsToCheckAge.every(resident => resident.age > age);
 }
 
-function employeeByName(employeeName) {
+function employeeByName(string) {
+  if (!string) return {};
+
   return employees.find((person) => (
-    person.firstName === employeeName || person.lastName === employeeName
+    person.firstName === string || person.lastName === string
   ))
 }
 
