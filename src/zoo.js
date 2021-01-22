@@ -87,11 +87,17 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+// seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const myAnimals = animals
+  .find(animal => animal.id === employees
+    .find(employee => employee.id === id).responsibleFor[0]).residents
+    .sort((a, b) => b.age - a.age);
+
+  const oldest = Object.values(myAnimals[0]);
+  return oldest;
 }
 
 function increasePrices(percentage) {
