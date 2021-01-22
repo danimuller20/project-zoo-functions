@@ -7,10 +7,11 @@ eslint no-unused-vars: [
     "varsIgnorePattern": "data"
   }
 ]
-// Tiago Yoneda
 */
 
 const data = require('./data');
+
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(ids) {
   // seu código aqui
