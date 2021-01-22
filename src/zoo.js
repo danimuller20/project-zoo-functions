@@ -20,7 +20,7 @@ function animalsByIds(...ids) {
   }
   for (let index = 0; index < ids.length; index += 1) {
     data.animals.forEach((animal) => {
-      if (animal.id === ids[index]){
+      if (animal.id === ids[index]) {
         resposta.push(animal);
       }
     });
