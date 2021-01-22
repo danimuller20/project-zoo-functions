@@ -10,12 +10,13 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, hours, prices } = data;
+
+const { animals } = data;
 
 function animalsByIds(...ids) {
   const newArr = [];
   ids.forEach((id) => {
-    const animalsIds = animals.find((animal) => id === animal.id);
+    const animalsIds = animals.find(animal => id === animal.id);
     newArr.push(animalsIds);
   });
   return newArr;
