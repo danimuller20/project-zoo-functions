@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 const { animals } = data;
+const { employees } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -23,17 +24,20 @@ function animalsByIds(...ids) {
 // (index) para utilizarmos na comparação com o o índice do parâmetro ids;
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
   const animalsToCheckAge = animals.find((iteratedAnimal) => {
-    iteratedAnimal.name === animal.residents
+    return iteratedAnimal.name === animal.residents;
   });
   return animalsToCheckAge.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
-
+  return employees.find(employeeParam => {
+    employeeParam.firstName === employeeName || employeeParam.lastName === employeeName
+  })
 }
+
+console.log(employeeByName('Nelson'))
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
