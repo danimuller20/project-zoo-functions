@@ -54,14 +54,12 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const objPerson = data.employees.find((person) => {
-    return person.managers.find((arrayManagers) => arrayManagers === id);
-  });
-  if (typeof(objPerson) === 'object') {
+  const objPerson = data.employees.find((person) => 
+  (person.managers.find((arrayManagers) => arrayManagers === id)));
+  if (typeof (objPerson) === 'object') {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
