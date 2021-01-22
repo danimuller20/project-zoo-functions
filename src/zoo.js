@@ -34,7 +34,9 @@ function employeeByName(employeeName) {
   // passado o primeiro nome do func. retorna o obj do func. ;
   // passado o último nome do func. retorna o obj do func. ;
   if (!employeeName) return {};
-  return employees.filter(({ firstName, lastName }) => firstName === employeeName || lastName === employeeName)[0];
+  return employees.filter(({ firstName, lastName }) => {
+    firstName === employeeName || lastName === employeeName;
+  })[0];
 }
 
 function createEmployee(personalInfo, associatedWith) {
