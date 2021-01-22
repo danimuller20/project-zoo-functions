@@ -38,12 +38,16 @@ function isManager(id) {
   return managersIds.some((array) => array.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push(createEmployee({ id, firstName, lastName }, { managers, responsibleFor }))
 }
 
 function animalCount(species) {
-  // seu código aqui
+  animalCounter = animals.map((animal) => {
+    return {
+      name:residents.length,
+    }
+  })
 }
 
 function entryCalculator(entrants) {
