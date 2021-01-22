@@ -16,7 +16,7 @@ const { animals, employees, hours, prices } = data;
 function animalsByIds(...ids) {
   const animalsFound = [];
   ids.forEach((idSearched) => {
-    animalsFound.push(...animals.filter(animal => animal.id === idSearched))
+    animalsFound.push(...animals.filter(animal => animal.id === idSearched));
   });
   return animalsFound;
 }
@@ -27,15 +27,16 @@ function animalsOlderThan(animalName, age) {
 }
 
 function employeeByName(employeeName) {
-  const employeeFound = employees.find(employee => {
-    return (employee.firstName === employeeName || employee.lastName === employeeName);
+  const employeeFound = employees.find((employee) => {
+    return employee.firstName === employeeName || employee.lastName === employeeName;
   });
-  const employeeObj = {...employeeFound};
+  const employeeObj = { ...employeeFound };
   return employeeObj;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newEmployee = { ...personalInfo, ...associatedWith };
+  return newEmployee;
 }
 
 function isManager(id) {
