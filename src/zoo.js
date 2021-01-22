@@ -26,8 +26,8 @@ function employeeByName(employeeName) {
   firstName === employeeName || lastName === employeeName) : {};
 }
 
-function createEmployee( { id, firstName, lastName }, { managers, responsibleFor }) {
-  return {id, firstName, lastName, managers, responsibleFor,};
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
+  return { id, firstName, lastName, managers, responsibleFor, };
 }
 
 function isManager(id) {
