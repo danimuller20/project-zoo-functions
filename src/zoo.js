@@ -14,7 +14,7 @@ const data = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
   return ids.reduce((species, currentValue) => {
-    species.push(data.animals.find((animal) => animal.id === currentValue));
+    species.push(data.animals.find(animal => animal.id === currentValue));
     return species;
   }, []);
 }
