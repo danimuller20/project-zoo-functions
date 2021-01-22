@@ -36,8 +36,10 @@ function createEmployee(personalInfo, associatedWith) {
   return Object.assign(personalInfo, associatedWith);
 }
 
-function isManager(id) {
-  // seu código aqui
+function isManager(idEmployee) {
+  return employees.some(
+    ({ managers }, index) => managers[index] === idEmployee
+  );
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
