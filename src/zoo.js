@@ -25,10 +25,9 @@ function animalsOlderThan(animal, age) {
   return animals.some(({ name, residents }) => name === animal && residents.every(resident => resident.age > age));
 }
 
-console.log(animalsOlderThan('otters', 7));
-
 function employeeByName(employeeName) {
   // seu código aqui
+
 }
 
 function createEmployee(personalInfo, associatedWith) {
