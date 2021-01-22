@@ -40,10 +40,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  isManagerFound = false;
+  let isManagerFound = false;
   employees.forEach((employee) => {
-    let isManagerKey = employee.managers.some((managersIdList) => managersIdList === id)
-    if (isManagerKey) { isManagerFound = true };
+    let isManagerKey = employee.managers.some(managersIdList => managersIdList === id);
+    if (isManagerKey) { isManagerFound = true; }
   });
   return isManagerFound;
 }
