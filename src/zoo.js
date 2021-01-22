@@ -18,7 +18,8 @@ function animalsByIds(...ids) {
   const animalList = [];
 
   ids.forEach((item) => {
-    const mySpecies = animals.find(species => species.id === item);
+    const mySpecies = animals
+      .find(species => species.id === item);
     animalList.push(mySpecies);
   });
 
@@ -26,7 +27,11 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const ageVerifier = animals
+    .find(species => species.name === animal).residents
+    .every(individual => individual.age >= age);
+
+  return ageVerifier;
 }
 
 function employeeByName(employeeName) {
