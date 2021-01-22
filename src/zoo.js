@@ -13,21 +13,20 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  let resposta = [];
+  const resposta = [];
 
-  if (ids.length === 0){
-    return ids
+  if (ids.length === 0) {
+    return ids;
   }
-  for (let index = 0; index < ids.length; index += 1){
-    data.animals.forEach((animal)=> {
+  for (let index = 0; index < ids.length; index += 1) {
+    data.animals.forEach((animal) => {
       if (animal.id === ids[index]){
-        resposta.push(animal)
+        resposta.push(animal);
       }
-    })
+    });
   }
-  return resposta
+  return resposta;
 }
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
