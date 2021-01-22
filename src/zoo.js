@@ -15,7 +15,7 @@ const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   const animalsIds = [...ids];
-  return animals.filter( animal => animalsIds.includes(animal.id));
+  return animals.filter(animal => animalsIds.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -24,7 +24,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if(employeeName === undefined) return {};
+  if (employeeName === undefined) return {};
   return employees.find(employee => 
     (employeeName === employee.firstName || employeeName === employee.lastName));
 }
