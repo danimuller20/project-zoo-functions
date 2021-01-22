@@ -65,7 +65,7 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
     managers,
     responsibleFor,
   };
-};
+}
 
 function isManager(id) {
   // seu código aqui
