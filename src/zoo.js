@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 // Utilizando Object destructuring para mexer no data. Lembrar que é tudo array.
-const { animals, employees } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   const animalList = [];
@@ -67,8 +67,19 @@ function animalCount(species) {
   return answer;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(...entrants) {
+  if (entrants.length === 0) {
+    return 0;
+  }
+  let income = 0;
+  const myKeys = Object.keys(entrants[0]);
+  const myValues = Object.values(entrants[0]);
+  myKeys.forEach((key, index) => {
+    income += prices[key] * myValues[index];
+  });
+
+
+  return income;
 }
 
 function animalMap(options) {
