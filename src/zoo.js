@@ -48,7 +48,7 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   employees.push(
-    { id: id, firstName: firstName, lastName: lastName, managers: managers, responsibleFor: responsibleFor }
+    { id, firstName, lastName, managers, responsibleFor }
   );
 }
 
