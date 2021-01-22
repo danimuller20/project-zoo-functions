@@ -57,11 +57,11 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   const person = {
-   id,
-   firstName,
-   lastName,
-   managers,
-   responsibleFor,
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   };
 
   return data.employees.push(person);
@@ -69,6 +69,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+
 }
 
 function entryCalculator(entrants) {
