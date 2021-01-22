@@ -74,7 +74,7 @@ function animalCount(specie) {
     });
     return animalMob;
   }
-  return animals.find(animal => animal.name === specie).residents.length;
+  return animals.find((animal) => animal.name === specie).residents.length;
 }
 
 function entryCalculator(entrants) {
