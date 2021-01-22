@@ -32,12 +32,12 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  return employees.find(employeeParam => {
-    employeeParam.firstName === employeeName || employeeParam.lastName === employeeName
-  })
+  return employees.find((person) => (
+    person.firstName === employeeName || person.lastName === employeeName
+  ))
 }
 
-console.log(employeeByName('Nelson'))
+console.log(employeeByName("Nelson"));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
