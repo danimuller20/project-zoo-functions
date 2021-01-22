@@ -26,8 +26,8 @@ function animalsOlderThan(animal, age) {
   return findAnimals(animal).residents.every(ages => ages.age > age);
 }
 
-const employerName = (first) => employees.find(firstName => firstName.firstName === first);
-const employerLastName = (last) => employees.find(lastName => lastName.lastName === last);
+const employerName = first => employees.find(firstName => firstName.firstName === first);
+const employerLastName = last => employees.find(lastName => lastName.lastName === last);
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
