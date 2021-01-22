@@ -56,6 +56,15 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  let resultTemp;
+  let manager = false;
+  data.employees.forEach((employee) => {
+    resultTemp = employee.managers.some(manager => manager === id);
+    if (resultTemp === true) {
+      manager = true;
+    }
+  });
+  return manager;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
