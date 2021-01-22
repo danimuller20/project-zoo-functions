@@ -9,11 +9,32 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals } = require('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
+
+function animalsByIds(...ids) {
   // seu código aqui
+  let achou = [];
+  if (!ids) {
+    return [];
+  }
+  if (ids.length === 1) {
+    achou.push(data.animals.find((animal) => animal.id === ids[0])) ;
+  }
+  if (ids.length > 1) {
+    // for (let index = 0; index < ids.length; index++) {
+    //   const element = ids[index];
+    //   achou.push(data.animals.find((animal) => animal.id === element));
+    // }
+    ids.forEach((codigo) => {
+      achou.push(data.animals.find((animal) => animal.id === codigo));
+    });
+  }
+return achou;
 }
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
