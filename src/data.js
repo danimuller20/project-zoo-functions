@@ -1,3 +1,4 @@
+// Mais um projeto de Frederico Canoeira
 module.exports = {
   animals: [
     {
