@@ -39,7 +39,10 @@ function employeeByName(string) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  }
 }
 
 function isManager(id) {
