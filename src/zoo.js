@@ -16,19 +16,19 @@ const { animals, employees, hours, prices } = data;
 function animalsByIds(...ids) {
   const animalsFound = [];
   ids.forEach((idSearched) => {
-    animalsFound.push(...animals.filter((animal) => animal.id === idSearched))
+    animalsFound.push(...animals.filter(animal => animal.id === idSearched))
   });
   return animalsFound;
 }
 
 function animalsOlderThan(animalName, age) {
   const animalFound = animals.find(animal => animal.name === animalName);
-  return animalFound.residents.every((animalResident) => animalResident.age > age);
+  return animalFound.residents.every(animalResident => animalResident.age > age);
 }
 
 function employeeByName(employeeName) {
-  let employeeFound = employees.find((employee) => {
-    return (employee.firstName == employeeName || employee.lastName == employeeName)
+  const employeeFound = employees.find(employee => {
+    return (employee.firstName === employeeName || employee.lastName === employeeName);
   });
   const employeeObj = {...employeeFound};
   return employeeObj;
