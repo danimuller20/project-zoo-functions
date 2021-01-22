@@ -90,7 +90,7 @@ function schedule(dayName) {
   });
   if (!dayName) {
     return diaAberto;
-} 
+  }
   return { [dayName]: diaAberto[dayName] };
 }
 
