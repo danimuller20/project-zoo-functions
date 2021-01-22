@@ -49,8 +49,20 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-function isManager(id) {
+function isManager(id = 0) {
   // seu código aqui
+  // Testa se o ID passado é um gerente;
+  // Retorna um boolean;
+  const managers = employees.map(({ managers }) => {
+    return managers;
+  }).reduce((prev, curr) => {
+    curr.forEach(element => prev.push(element));
+    return prev;
+  }, []);
+
+  // SOLUÇÃO ALTERNATIVA
+  // const managers = employees.map(({ managers }) => managers).flat();
+  return managers.indexOf(id) === -1 ? false : true;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
