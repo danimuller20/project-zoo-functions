@@ -21,10 +21,18 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  let result;
+  data.animals.forEach((specie) => {
+    if (specie.name === animal) {
+      result = specie.residents.every((value) => value.age >= age); 
+    }
+  });
+  return result;
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
+  
 }
 
 function createEmployee(personalInfo, associatedWith) {
