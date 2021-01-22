@@ -16,7 +16,7 @@ function animalsByIds(...ids) {
   const receivedIds = [...ids];
   const animalsArray = [];
   receivedIds.forEach((id) => {
-    animals.find((specie) => {
+    animals.forEach((specie) => {
       if (id === specie.id) {
         animalsArray.push(specie);
       }
@@ -43,8 +43,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers
+    .some(managerId => managerId === id));
 }
+// isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83');
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
