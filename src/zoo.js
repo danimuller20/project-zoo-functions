@@ -43,15 +43,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  animalCounter = animals.map((animal) => {
-    return {
-      name:residents.length,
-    }
-  })
+  // seu código aqui
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = {}) {
+  const { Adult = 0, Child = 0, Senior = 0} = entrants;
+  return ((Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior)); 
 }
 
 function animalMap(options) {
