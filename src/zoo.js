@@ -17,7 +17,7 @@ const data = require('./data');
 // Ao receber mais de um id, retorna um array com as espécies referentes aos ids;
 function animalsByIds(...ids) {
   if (!ids.length) return [];
-  return animals.filter((animal) => ids.includes(animal.id));
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
