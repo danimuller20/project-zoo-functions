@@ -84,13 +84,13 @@ function animalCount(species) {
   }
   const speciesUndefined = {};
   animals.forEach(animal =>
-  speciesUndefined[animal.name] = animal.residents.length);
-
-  return species ? speciesDefined : speciesUndefined;
+  (speciesUndefined[animal.name] = animal.residents.length));
+  return speciesUndefined;
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
+  
 }
 
 function animalMap(options) {
