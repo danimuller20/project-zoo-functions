@@ -19,12 +19,12 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const animalObject = animals.find( species => species.name === animal);
-  return animalObject.residents.every( resident => resident.age > age);
+  const animalObject = animals.find(species => species.name === animal);
+  return animalObject.residents.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
-  return employees.find((employee) => employeeName === employee.firstName || employeeName === employee.lastName);
+  return employees.find(employee => employeeName === employee.firstName || employeeName === employee.lastName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -34,12 +34,12 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const managersIds = employees.map((employee) =>employee.managers);
-  return managersIds.some((array) => array.includes(id));
+  const managersIds = employees.map(employee => employee.managers);
+  return managersIds.some(array => array.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  employees.push(createEmployee({ id, firstName, lastName }, { managers, responsibleFor }))
+  employees.push(createEmployee({ id, firstName, lastName }, { managers, responsibleFor }));
 }
 
 function animalCount(species) {
@@ -47,8 +47,8 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants = {}) {
-  const { Adult = 0, Child = 0, Senior = 0} = entrants;
-  return ((Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior)); 
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  return ((Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior));
 }
 
 function animalMap(options) {
