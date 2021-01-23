@@ -121,19 +121,17 @@ function schedule(dayName) {
   return { [dayName]: showDay(dayName) };
 }
 
-const findOlderAnimal = (older, newest) => {
-  if (older.age > newest.age) {
-    return older;
-  } else {
-    return newest;
-  }
-}
-
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const collaborator = employees.find(colaborador => id === colaborador.id);
   const species = animals.find(animal => animal.id === collaborator.responsibleFor[0]);
-  const animalOlder = species.residents.reduce(findOlderAnimal);
+  const animalOlder = species.residents.reduce((older, newest) => {
+    if (older.age > newest.age) {
+      return older;
+    } else {
+      return newest;
+    }
+  });
 
   return Object.values(animalOlder);
 }
