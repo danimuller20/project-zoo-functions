@@ -95,11 +95,30 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const searchAnimal = animals.find(animal =>
+     animal.id === employees.find(employee =>
+       employee.id === id).responsibleFor[0])
+       .residents.sort((a, b) => b.age - a.age);
+
+  const olderAnimal = Object.values(searchAnimal[0]);
+  return olderAnimal;
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const visits = Object.keys(prices);
+  const cost = Object.values(prices);
+
+  visits.forEach((value, index) => {
+    cost[index] = Math.round((
+      cost[index] * (1 + (percentage / 100))
+    ) * 100) / 100;
+  });
+
+  visits.forEach((value, index) => {
+    prices[value] = cost[index];
+  });
+
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
