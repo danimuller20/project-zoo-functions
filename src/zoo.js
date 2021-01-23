@@ -41,9 +41,9 @@ function employeeByName(employeeName) {
 
   return firstName || lastName;
 }
-console.log(employeeByName('Emery'));
+
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
