@@ -121,7 +121,13 @@ function schedule(dayName) {
   return { [dayName]: showDay(dayName) };
 }
 
-const findOlderAnimal = (older, newest) => older.age > newest.age ? older : newest;
+const findOlderAnimal = (older, newest) => {
+  if (older.age > newest.age) {
+    return older;
+  } else {
+    return newest;
+  }
+}
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
