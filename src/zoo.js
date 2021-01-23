@@ -90,11 +90,12 @@ function animalMap(options) {
     return newObj;
   }
 }
-//console.log(animalMap())
+// console.log(animalMap())
 
 function daysOpen() {
+  // baseado na resolução do Daniel Frasano
   const newObj = {};
-  Object.entries(hours).forEach(obj => {
+  Object.entries(hours).forEach((obj) => {
     if (obj[1].open === 0) {
       newObj[obj[0]] = 'CLOSED';
     } else {
@@ -109,8 +110,10 @@ function schedule(dayName) {
 
   const daysObj = daysOpen();
   const objAnsw = {};
-  Object.entries(daysObj).find(value => {
-    if (value[0] === dayName) return objAnsw[value[0]] = value[1]
+  Object.entries(daysObj).forEach((value) => {
+    if (value[0] === dayName) {
+      objAnsw[value[0]] = value[1];
+    }
   });
   return objAnsw;
 }
