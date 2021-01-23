@@ -24,7 +24,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if (employeeName === undefined) {
+  if (!employeeName) {
     return {};
   }
 
@@ -48,12 +48,13 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (species === undefined) {
-    const allAnimalsCount = {};
-    animals.forEach(({name, residents}) => allAnimalsCount[name] = residents.length);
-    return allAnimalsCount;
-  } 
-  return animals.find(({name}) => name === species).residents.length;
+  if (!species) {
+    return animals.reduce((animalCountList, { name, residents }) => {
+      animalCountList[name] = residents.length;
+      return animalCountList;
+    }, {});
+  }
+  return animals.find(({ name }) => name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
