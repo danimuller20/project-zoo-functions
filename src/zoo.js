@@ -95,14 +95,14 @@ const weeklySchedule = {
   'Friday': 'Open from 10am until 8pm',
   'Saturday': 'Open from 8am until 10pm',
   'Sunday': 'Open from 8am until 8pm',
-  'Monday': 'CLOSED'
-}
+  'Monday': 'CLOSED',
+};
 function schedule(dayName) {
   if (!dayName) {
     return weeklySchedule;
   } else if (dayName === 'Monday') {
     return { [dayName]: 'CLOSED' };
-  } 
+  }
   return {
     [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
   };
