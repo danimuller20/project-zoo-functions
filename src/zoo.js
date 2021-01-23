@@ -83,7 +83,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   let accumulator = 0;
-  Object.keys(entrants).forEach((index) => { 
+  Object.keys(entrants).forEach((index) => {
     accumulator += (prices[index] * entrants[index]);
   });
   return accumulator;
