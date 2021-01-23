@@ -48,7 +48,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  let managersArray = [];
+  const managersArray = [];
   employees.forEach(elementArray => managersArray.push(elementArray.managers));
   return managersArray.some(element => element.includes(id));
 }
