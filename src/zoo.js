@@ -80,6 +80,14 @@ function animalCount(species) {
   return animalsCount;
 }
 
+const sumIfNotUndefined = (adult, child, senior) => {
+  const adultSum = adult ? adult * prices.Adult : 0;
+  const childSum = child ? child * prices.Child : 0;
+  const seniorSum = senior ? senior * prices.Senior : 0;
+  const sum = adultSum + childSum + seniorSum;
+  return sum;
+};
+
 function entryCalculator(entrants) {
   // seu código aqui
   if (!entrants || (typeof entrants === 'object' && Object.keys(entrants).length === 0)) {
@@ -87,14 +95,6 @@ function entryCalculator(entrants) {
   }
   const { Adult: adult, Child: child, Senior: senior } = entrants;
   return sumIfNotUndefined(adult, child, senior);
-}
-
-const sumIfNotUndefined = (adult, child, senior) => {
-  const adultSum = adult ? adult * prices.Adult: 0;
-  const childSum = child ? child * prices.Child: 0;
-  const seniorSum = senior ? senior * prices.Senior: 0;
-  const sum = adultSum + childSum + seniorSum;
-  return sum;
 }
 
 function animalMap(options) {
