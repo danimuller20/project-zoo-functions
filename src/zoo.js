@@ -177,18 +177,6 @@ function returnCompleteList() {
   return result;
 }
 
-function findEmployeeToReturn(idOrName) {
-  let result = {};
-  if (idOrName.length === 36) {
-    result = employees.find(employee => employee.id === idOrName);
-  } else {
-    result = employees
-    .find(employee =>
-      employee.firstName === idOrName || employee.lastName === idOrName);
-  }
-  return returnListOfAnimals(result);
-}
-
 function returnListOfAnimals(employee) {
   const completeName = `${employee.firstName} ${employee.lastName}`;
   const result = {};
@@ -199,6 +187,18 @@ function returnListOfAnimals(employee) {
   });
   console.log(result);
   return result;
+}
+
+function findEmployeeToReturn(idOrName) {
+  let result = {};
+  if (idOrName.length === 36) {
+    result = employees.find(employee => employee.id === idOrName);
+  } else {
+    result = employees
+    .find(employee =>
+      employee.firstName === idOrName || employee.lastName === idOrName);
+  }
+  return returnListOfAnimals(result);
 }
 
 function employeeCoverage(idOrName) {
