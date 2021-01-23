@@ -17,7 +17,6 @@ function animalsByIds(id, ids) {
   return animals.filter(animal => animal.id === id || animal.id === ids);
 }
 
-
 function animalsOlderThan(animal, age) {
   const residents = animals.find(animalIterated => animalIterated.name === animal).residents;
   return residents.every(resident => resident.age > age);
@@ -29,8 +28,7 @@ function employeeByName(employeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const ployee = { ...personalInfo, ...associatedWith };
-  return ployee;
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -58,7 +56,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  
 }
 
 function animalMap(options) {
