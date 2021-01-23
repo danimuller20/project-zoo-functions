@@ -61,6 +61,8 @@ function entryCalculator(entrants) {
   return (!arrEnt ? arrEnt : arrEnt.reduce((acc, [type, qnty]) => acc + (qnty * prices[type]), 0));
 }
 
+/*
+
 const animalsByLocation = animals.reduce(function (acc, { name, location }) {
   return {...acc, [location]: (!acc[location] ? [name] : [...acc[location],name])}
 }, {});
@@ -69,23 +71,29 @@ const animalsByName = animals.reduce(function (acc, { name, residents }) {
   return {...acc, [name]: residentsList }
 }, {});
 
+*/
+
 function animalMap(options) {
-  if (!options) {
-    return animalsByLocation;
-  } else if (options.includeNames) {
-    return animalsByName;
-  }
+  // if (!options) {
+  //   return animalsByLocation;
+  // } else if (options.includeNames) {
+  //   return animalsByName;
+  // }
 }
 
 function schedule(dayName) {
-  const formatedSchedule = Object.entries(hours).reduce((acc, [day, { open, close }]) => {
-    return { ...acc, [day]: (!open ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`)};
-  } , {});
-  return (!dayName ? formatedSchedule : {[dayName]: formatedSchedule[dayName]});
+  const formatedSchedule = Object.entries(hours).reduce((acc, [day, { open, close }]) => ({
+    ...acc,
+    [day]: (!open ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`)
+  }), {});
+  return (!dayName ? formatedSchedule : { [dayName]: formatedSchedule[dayName] });
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animal = employees.find(({ id: empID }) => id === empID).responsibleFor[0];
+  const residents = animals.find(({ id }) => id === animal).residents;
+  const { name, sex, age } = residents.reduce((acc, currAnimal) => (currAnimal.age > acc.age ? currAnimal : acc));
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
