@@ -17,6 +17,8 @@ const { employees } = data;
 
 const { prices } = data;
 
+const { hours } = data;
+
 function animalsByIds(...ids) {
   // seu código aqui
   return animals.filter(value => ids.some(id => id === value.id));
@@ -100,10 +102,25 @@ function animalMap() {
   // seu código aqui
 }
 
+
 function schedule(dayName) {
   // seu código aqui
+  if (!dayName) {
+    return Object.keys(hours).reduce((operation, day) => {
+      operation[day] = showDay(day);
+      return operation;
+    }, {});
+  }
+  return { [dayName]: showDay(dayName) };
 }
 
+const showDay = (day) => {
+  const { open, close } = hours[day];
+  if (open === 0) {
+    return 'CLOSED';
+  }
+  return `Open from ${open}am until ${close - 12}pm`;
+}
 
 function oldestFromFirstSpecies() {
   // seu código aqui
