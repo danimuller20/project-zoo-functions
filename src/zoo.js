@@ -89,7 +89,7 @@ function schedule(dayName) {
   if (dayName === 'Monday') {
     return { Monday: 'CLOSED' };
   }
-  
+
   const openStatus = hours[`${dayName}`];
   return { [dayName]: `Open from ${openStatus.open}am until ${openStatus.close - 12}pm` };
 }
