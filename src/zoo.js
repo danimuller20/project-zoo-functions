@@ -54,8 +54,26 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   console.log(newEmployee);
 }
 
+function getResidentNumber(animalName) {
+  let numbersOfResidents = 0;
+  const animalData = data.animals.find(animalDatas => animalName === animalDatas.name);
+  numbersOfResidents = animalData.residents.length;
+  console.log(numbersOfResidents);
+  return numbersOfResidents;
+}
+
+function getNumbersOfEachAnimal() {
+  const residentNumbersOfEachAnimal = {};
+  data.animals.forEach((animalData) => {
+    const numberOfResidents = animalData.residents.length;
+    residentNumbersOfEachAnimal[animalData.name] = numberOfResidents;
+  });
+  console.log(residentNumbersOfEachAnimal);
+  return residentNumbersOfEachAnimal;
+}
+
 function animalCount(species) {
-  // seu código aqui
+  return species ? getResidentNumber(species) : getNumbersOfEachAnimal();
 }
 
 function entryCalculator(entrants) {
