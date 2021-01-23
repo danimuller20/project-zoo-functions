@@ -93,12 +93,10 @@ function entryCalculator(entrants) {
   }
   const childEntryPrice = entrants.Child * prices.Child;
   const adultEntryPrice = entrants.Adult * prices.Adult;
-  const seniorEntryPrice = entrants.Senior * prices.Senior
+  const seniorEntryPrice = entrants.Senior * prices.Senior;
   const totalEntryPrice = childEntryPrice + adultEntryPrice + seniorEntryPrice;
-  return totalEntryPrice; 
+  return totalEntryPrice;
 }
-
-console.log(entryCalculator({ 'Adult': 1 }))
 
 function animalMap(options) {
   // seu código aqui
