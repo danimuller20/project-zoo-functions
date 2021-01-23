@@ -85,11 +85,12 @@ function entryCalculator(entrants) {
   if (!entrants || (typeof entrants === 'object' && Object.keys(entrants).length === 0)) {
     return 0;
   }
-  const { adult, child, senior } = entrants;
-  const adultSum = [Object.values(adult) * prices.Adult];
-  const childSum = [Object.values(child) * prices.Child];
-  const seniorSum = [Object.values(senior) * prices.Senior];
-  return adultSum + childSum + seniorSum;
+  const { Adult:adult, Child:child, Senior:senior } = entrants;
+  const adultSum = adult? adult * prices.Adult: 0;
+  const childSum = child? child * prices.Child: 0;
+  const seniorSum = senior? senior * prices.Senior: 0;
+  const sum = adultSum + childSum + seniorSum;
+  return sum;
 }
 
 function animalMap(options) {
