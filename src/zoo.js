@@ -31,7 +31,7 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  return employees.some(({ managers }) => managers.some((managerid) => managerid === id))
+  return employees.some(({ managers }) => managers.some(managerid => managerid === id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
