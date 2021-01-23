@@ -18,9 +18,10 @@ function animalsByIds(ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  for(let i = 0; animals.name[i] === animal && animals.residents.age[i] === age; i +=1){
-      return (animals.name, animals.residents.age);
+  for (let i = 0; animals.name[i] === animal  &&  animals.residents.age[i] === age; i +=1) {
+      return animals.name, animals.residents.age;
   }
+  
 }
 
 function employeeByName(employeeName) {
