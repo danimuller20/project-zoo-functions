@@ -32,13 +32,15 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   const newEmployee = { ...personalInfo, ...associatedWith };
   return newEmployee;
 }
 
 function isManager(id) {
-  // seu código aqui
+  function isManegerHere(employe, compareID) {
+    return employe.managers.some(manegerId => manegerId === compareID);
+  }
+  return employees.some(employe => isManegerHere(employe, id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
