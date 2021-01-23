@@ -126,7 +126,8 @@ function schedule(dayName) {
   return (dayName === undefined) ? newSchedule() : scheduleOfDay(dayName, newSchedule());
 }
 
-//
+// 11
+
 function findEmployee(receivedId) {
   const filteredEmployee = employees.find(employee => employee.id === receivedId);
   return filteredEmployee;
@@ -146,9 +147,18 @@ function oldestFromFirstSpecies(id) {
   return Object.values(getOlder);
 }
 
+// 12
+// Esse tipo de arredondamento de casa decimal usado na linha 156 foi encontrado no stackoverflow, no link 'https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary'
+
 function increasePrices(percentage) {
-  // seu código aqui
+  const convertPercentage = 1 + (percentage / 100);
+  const result = Object.keys(prices).forEach((item) => {
+    prices[item] = (Math.round((prices[item] * convertPercentage) * 100)) / 100;
+  })
+  return result;
 }
+
+//
 
 function employeeCoverage(idOrName) {
   // seu código aqui
