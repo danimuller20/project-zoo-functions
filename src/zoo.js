@@ -26,11 +26,9 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  const answer = {};
   const employee = data.employees
     .find(person => person.firstName === employeeName || person.lastName === employeeName);
-  Object.assign(answer, employee);
-  return answer;
+  return Object.assign({}, employee);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -40,6 +38,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  return data.employees.some(person => person.managers.find(tag => tag === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
