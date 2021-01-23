@@ -30,6 +30,9 @@ function employeeByName(name) {
 // https://www.digitalocean.com/community/tutorials/js-array-find-method
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  return { id, firstName, lastName, managers, responsibleFor };
 }
 
 function isManager(id) {
