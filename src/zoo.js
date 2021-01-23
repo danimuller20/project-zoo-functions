@@ -33,7 +33,7 @@ function createEmployee(personalInfo, associatedWith) {
   const employee = {
     ...personalInfo,
     ...associatedWith,
-  }
+  };
   return employee;
 }
 
