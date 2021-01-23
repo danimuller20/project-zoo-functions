@@ -69,9 +69,9 @@ function entryCalculator(entrants) {
   return entryTotal;
 }
 function emptyAnimalMap(myAnimalMap, animal) {
-  myAnimalMap.hasOwnProperty(animal.location)
-  ? myAnimalMap[animal.location].push(animal.name)
-  : myAnimalMap[animal.location] = [animal.name];
+  !myAnimalMap[animal.location]
+  ? myAnimalMap[animal.location] = [animal.name]
+  : myAnimalMap[animal.location].push(animal.name);
   return myAnimalMap;
 }
 
@@ -79,7 +79,7 @@ function getResidentsBySpecies(species, genre = false) {
   return species.residents.reduce((namesBySpeacies, animalName) => {
     if (genre) {
       if (animalName.sex === genre) {
-      namesBySpeacies[species.name].push(animalName.name);
+        namesBySpeacies[species.name].push(animalName.name);
       }
     } else {
       namesBySpeacies[species.name].push(animalName.name);
@@ -90,10 +90,10 @@ function getResidentsBySpecies(species, genre = false) {
 
 function namesAnimalMap(genre) {
   return animals.reduce((myAnimalMap, animal) => {
-  myAnimalMap.hasOwnProperty(animal.location)
-  ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal, genre))
-  : myAnimalMap[animal.location] = [getResidentsBySpecies(animal, genre)];
-  return myAnimalMap;
+    myAnimalMap.hasOwnProperty(animal.location)
+    ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal, genre))
+    : myAnimalMap[animal.location] = [getResidentsBySpecies(animal, genre)];
+    return myAnimalMap;
   }, {});
 }
 
