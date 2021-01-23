@@ -131,9 +131,9 @@ function increasePrices(percentage) {
   const { Adult, Senior, Child } = data.prices;
 
   const increase = {
-    'Adult': Math.round((Adult * (1 + (percentage / 100))) * 100) / 100,
-    'Senior': Math.round((Senior * (1 + (percentage / 100))) * 100) / 100,
-    'Child': Math.round((Child * (1 + (percentage / 100))) * 100) / 100,
+    Adult: Math.round((Adult * (1 + (percentage / 100))) * 100) / 100,
+    Senior: Math.round((Senior * (1 + (percentage / 100))) * 100) / 100,
+    Child: Math.round((Child * (1 + (percentage / 100))) * 100) / 100,
   };
 
   data.prices = increase;
