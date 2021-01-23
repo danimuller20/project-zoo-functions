@@ -84,14 +84,15 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui 
-  if(!entrants) return 0;
+  // seu código aqui
+  if (!entrants) return 0;
 
-  let result = 0
+  let result = 0;
   Object.keys(prices).forEach((pay) => {
-    if(entrants[pay]) {
-    result += entrants[pay] * prices[pay];
-  }});
+    if (entrants[pay]) {
+      result += entrants[pay] * prices[pay];
+    }
+  });
   return result;
 }
 
@@ -100,7 +101,7 @@ function animalMap() {
 }
 
 function schedule(dayName) {
-    // seu código aqui
+  // seu código aqui
 }
 
 
