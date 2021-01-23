@@ -44,11 +44,11 @@ function createEmployee(personalInfo, associatedWith) {
   return employees.find(person => person.id === personalInfo.id);
 }
 
-const isManager = id => {
+const isManager = (id) => {
   let check = false;
   employees
     .map(ids => ids.managers)
-    .forEach(numbers => {
+    .forEach((numbers) => {
       if (numbers.some(man => man === id)) {
         check = true;
       }
