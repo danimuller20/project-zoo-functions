@@ -11,11 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const {
-  animals,
-  employees,
-  prices
-} = data;
+const { animals, employees, price } = data;
 
 function animalsByIds(...ids) {
   const newArr = [];
@@ -42,10 +38,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {
-    ...personalInfo,
-    ...associatedWith
-  };
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -54,13 +47,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  employees.push({
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor
-  });
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
@@ -77,9 +64,8 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
 
   // baseado na resolução do Thiago Carreira Vallim
-  return Object.keys(entrants).reduce((acumulator, values) => {
-    return acumulator + (entrants[values] * prices[values]);
-  }, 0);
+  return Object.keys(entrants).reduce((acumulator, values) => acumulator + 
+  (entrants[values] * prices[values]), 0);
 }
 
 function animalMap(options) {
