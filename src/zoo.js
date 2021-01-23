@@ -77,7 +77,7 @@ function animalCount(species) {
     return specieArray.residents.length;
   }
   const animalsCount = {};
-  animals.forEach(animal => animalsCount[animal.name] = animal.residents.length);
+  animals.forEach(animal => (animalsCount[animal.name] = animal.residents.length));
   return animalsCount;
 }
 
