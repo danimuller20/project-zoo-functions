@@ -58,10 +58,13 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (!entrants){
+  if (!entrants) {
     return 0;
   }
-  return Object.keys(entrants).reduce((accumulator, currentKey) => accumulator += entrants[currentKey] * prices[currentKey], 0);
+  return Object.keys(entrants).reduce((accumulator, currentKey) => {
+    accumulator += entrants[currentKey] * prices[currentKey];
+    return accumulator;
+  }, 0);
 }
 
 function animalMap(options) {
