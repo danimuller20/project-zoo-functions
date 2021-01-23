@@ -154,7 +154,7 @@ function increasePrices(percentage) {
   const convertPercentage = 1 + (percentage / 100);
   const result = Object.keys(prices).forEach((item) => {
     prices[item] = (Math.round((prices[item] * convertPercentage) * 100)) / 100;
-  })
+  });
   return result;
 }
 
