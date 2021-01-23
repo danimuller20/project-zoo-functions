@@ -155,7 +155,7 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
   const employs = data.employees.find(employ => employ.id === id);
   const especie = data.animals.find(animal => animal.id === employs.responsibleFor[0]);
-  const older = residents(especie.residents)
+  const older = residents(especie.residents);
   return Object.values(older);
 }
 
