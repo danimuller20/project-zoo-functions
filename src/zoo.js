@@ -120,17 +120,26 @@ function schedule(dayName) {
   }
   return { [dayName]: showDay(dayName) };
 }
+function find(resident) {
+  return resident.reduce((older, newest) => {
+    if (older.age > newest.age) {
+      return older;
+    } else {
+      return newest;
+    }
+  });
+}
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const collaborator = employees.find(colaborador => id === colaborador.id);
   const species = animals.find(animal => animal.id === collaborator.responsibleFor[0]);
-  const animalOlder = species.residents.reduce((older, newest) => {
-    return (older.age > newest.age) ? older : newest
-  });
+  const animalOlder = find(species.residents)
 
   return Object.values(animalOlder);
 }
+
+
 
 function increasePrices(percentage) {
   // seu código aqui
