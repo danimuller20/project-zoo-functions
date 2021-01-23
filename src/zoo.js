@@ -69,7 +69,8 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
   const entrantsKey = Object.keys(entrants).map(key => prices[key]);
   const entrantsValue = Object.values(entrants)
-    .reduce((accumulator, currentValue, index) => accumulator + (entrantsKey[index] * currentValue), 0);
+    .reduce((accumulator, currentValue, index) =>
+      accumulator + (entrantsKey[index] * currentValue), 0);
   return entrantsValue;
 }
 
