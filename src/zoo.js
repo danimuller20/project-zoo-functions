@@ -42,7 +42,7 @@ function isManager(id) {
 }
 
 function addEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
-  employees.id 
+  return { id, firstName, lastName, managers, responsibleFor };
 }
 
 function animalCount(species) {
