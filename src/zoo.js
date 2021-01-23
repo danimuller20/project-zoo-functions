@@ -20,10 +20,11 @@ function animalsOlderThan(animal, age) {
   // seu código aqui
   for (let i = 0; animals.name === animal; i += 1) {
      if (animals.residents.age === age) {
-      return animals.name, animals.residents.age;
+       literal = `${animal.name}, ${animal.residents.age}`
+        return literal;
      }
-  };
-}
+  }
+};
 
 function employeeByName(employeeName) {
   // seu código aqui
