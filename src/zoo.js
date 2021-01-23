@@ -11,7 +11,11 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const {
+  animals,
+  employees,
+  prices
+} = data;
 
 function animalsByIds(...ids) {
   const newArr = [];
@@ -38,7 +42,10 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return { ...personalInfo, ...associatedWith };
+  return {
+    ...personalInfo,
+    ...associatedWith
+  };
 }
 
 function isManager(id) {
@@ -47,7 +54,13 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  employees.push({ id, firstName, lastName, managers, responsibleFor });
+  employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  });
 }
 
 function animalCount(species) {
@@ -55,8 +68,8 @@ function animalCount(species) {
 
   // baseado na resolução do Tiago Yoneda
   const newObj = {};
-  animals.forEach(animal =>  (newObj[animal.name] = animal.residents.length));
- 
+  animals.forEach(animal => (newObj[animal.name] = animal.residents.length));
+
   return newObj;
 }
 
@@ -65,10 +78,9 @@ function entryCalculator(entrants) {
 
   // baseado na resolução do Thiago Carreira Vallim
   return Object.keys(entrants).reduce((acumulator, values) => {
-    return acumulator + entrants[values] * prices[values];
-  },0);
+    return acumulator + (entrants[values] * prices[values]);
+  }, 0);
 }
-console.log(entryCalculator({ 'Child': 3, 'Senior': 1, 'Adult': 2 }));
 
 function animalMap(options) {
   // seu código aqui
