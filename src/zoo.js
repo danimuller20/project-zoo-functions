@@ -27,7 +27,8 @@ function employeeByName(employeeName = {}) {
   if (!employeeName.length) return employeeName;
   return employees.find(
     employee =>
-      employee.firstName === employeeName || employee.lastName === employeeName);
+      employee.firstName === employeeName || employee.lastName === employeeName
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -44,7 +45,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const listId = employees.map(ids => ids.managers);
+  for (index of listId) {
+    if (index.some(numbers => numbers === id)) return true;
+    return false;
+  }
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
