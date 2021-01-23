@@ -167,7 +167,7 @@ function increasePrices(percentage) {
 function returnCompleteList() {
   const result = {};
   employees.forEach((employee) => {
-    result[`${employee.firstName} ${employee.lastName}`] = []
+    result[`${employee.firstName} ${employee.lastName}`] = [];
     employee.responsibleFor.forEach((idResp) => {
       const getAnimals = animals.find(animal => animal.id === idResp);
       result[`${employee.firstName} ${employee.lastName}`]
@@ -180,11 +180,11 @@ function returnCompleteList() {
 // Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
 function returnListById(id) {
   const result = {};
-  const findEmployee = employees.find(employee => employee.id === id);
-  result[`${findEmployee.firstName} ${findEmployee.lastName}`] = [];
-  findEmployee.responsibleFor.forEach((idResp) => {
+  const search = employees.find(employee => employee.id === id);
+  result[`${search.firstName} ${search.lastName}`] = [];
+  search.responsibleFor.forEach((idResp) => {
     const getAnimals = animals.find(animal => animal.id === idResp);
-    result[`${findEmployee.firstName} ${findEmployee.lastName}`]
+    result[`${search.firstName} ${search.lastName}`]
     .push(getAnimals.name);
   });
   return result;
@@ -193,29 +193,16 @@ function returnListById(id) {
 // Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 function returnListByName(name) {
   const result = {};
-  const findEmployee = employees
+  const getEmployee = employees
   .find(employee => employee.firstName === name || employee.lastName === name);
-  result[`${findEmployee.firstName} ${findEmployee.lastName}`] = [];
-  findEmployee.responsibleFor.forEach((idResp) => {
+  result[`${getEmployee.firstName} ${getEmployee.lastName}`] = [];
+  getEmployee.responsibleFor.forEach((idResp) => {
     const getAnimals = animals.find(animal => animal.id === idResp);
-    result[`${findEmployee.firstName} ${findEmployee.lastName}`]
+    result[`${getEmployee.firstName} ${getEmployee.lastName}`]
     .push(getAnimals.name);
   });
   return result;
 }
-
-// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-// function returnListByLastName(lastName) {
-//   const result = {};
-//   const findEmployee = employees.find(employee => employee.firstName === lastName);
-//   result[`${findEmployee.firstName} ${findEmployee.lastName}`] = [];
-//   findEmployee.responsibleFor.forEach((idResp) => {
-//     const getAnimals = animals.find(animal => animal.id === idResp);
-//     result[`${findEmployee.firstName} ${findEmployee.lastName}`]
-//     .push(getAnimals.name);
-//   });
-//   return result;
-// }
 
 function employeeCoverage(idOrName) {
   if (!idOrName) return returnCompleteList();
