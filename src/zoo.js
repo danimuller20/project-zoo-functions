@@ -109,16 +109,20 @@ function animalMap(options) {
   })
 
   // Popula o array animalLocation (Usar caso chamada sem parâmetro)
-  locations.forEach(location => {
-    const animalTemp = animals.filter(animal => animal.location === location);
-    for (let animal of animalTemp) {
-      animalLocation[location].push(animal.name);
-    }
-  })
+  const withOutParameters = () => {
+    locations.forEach(location => {
+      const animalTemp = animals.filter(animal => animal.location === location);
+      for (let animal of animalTemp) {
+        animalLocation[location].push(animal.name);
+      }
+    })
+  }
 
   if (!options) {
-    return animalLocation;
+    return withOutParameters();
   }
+
+
 }
 
 function schedule(dayName) {
