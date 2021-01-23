@@ -83,12 +83,12 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  if (!options) {
+  /* if (!options) {
     const newObj = {};
     animals.forEach(animal => (newObj[animal.location] = animals.filter(animalArr =>
       animalArr.location === animal.location)));
     return newObj;
-  }
+  } */
 }
 // console.log(animalMap())
 
