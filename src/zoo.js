@@ -21,8 +21,16 @@ function animalsByIds(...ids) {
 
 /* animalsOlderThan */
 
+function checkAge(ageArray, age) {
+  return ageArray.every(value => value.age >= age);
+}
+
+function checkAnimal(animalValue, animal) {
+  return animalValue === animal;
+}
+
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals.some(value => checkAnimal(value.name, animal) && checkAge(value.residents, age));
 }
 
 function employeeByName(employeeName) {
