@@ -61,7 +61,7 @@ function entryCalculator(entrants) {
   }
   const totalBoxOfficeQuantities = Object.entries(entrants);
   return totalBoxOfficeQuantities.reduce((prev, currentValue) => {
-    return prev + prices[currentValue[0]] * currentValue[1]
+    return prev + prices[currentValue[0]] * currentValue[1];
   }, 0);
 }
 
