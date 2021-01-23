@@ -57,10 +57,10 @@ function animalCount(species) {
   return species ?
     animals.find(specimen => specimen.name === species)
     .residents.length : animals.reduce(
-      (acc, { name, residents 
+      (acc, { name, residents,
       }) => Object.assign(
         acc, ({ [name]: residents.length }
-          )), {}
+          )), {},
     );
 }
 
