@@ -92,7 +92,7 @@ function getResidentsBySpecies(species, genre = false) {
 
 function namesAnimalMap(genre) {
   return animals.reduce((myAnimalMap, animal) => {
-    if (!myAnimalMap.hasOwnProperty(animal.location)) {
+    if (!myAnimalMap[animal.location]) {
       myAnimalMap[animal.location] = [getResidentsBySpecies(animal, genre)];
     } else {
       myAnimalMap[animal.location].push(getResidentsBySpecies(animal, genre));
