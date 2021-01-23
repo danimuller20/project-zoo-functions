@@ -41,13 +41,12 @@ function isManager(id) {
   return arrayManagers.some(value => value === id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   let newEmployeer = employees.push({ id, firstName, lastName, managers, responsibleFor });
-  if (id === undefined) {
-    newEmployeer = [];
-  }
+  console.log(employees);
   return newEmployeer;
 }
+
 
 function animalCount(species) {
   // seu código aqui
