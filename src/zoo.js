@@ -180,7 +180,7 @@ function returnCompleteList() {
 function returnListOfAnimals(employee) {
   const completeName = `${employee.firstName} ${employee.lastName}`;
   const result = {};
-  result[completeName] = [],
+  result[completeName] = [];
   employee.responsibleFor.forEach((idResp) => {
     const getAnimal = animals.find(animal => animal.id === idResp);
     result[completeName].push(getAnimal.name);
