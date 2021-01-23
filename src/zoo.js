@@ -72,6 +72,14 @@ function addEmployee(...employeeInfo) {
 
 function animalCount(species) {
   // seu código aqui
+  const eachAnimal = animals.map(currentName => currentName.name);
+  const quantities = animals.map(currentQuantity => currentQuantity.residents.length);
+  const defaultObject = {};
+  eachAnimal.forEach((value, index) => {
+    defaultObject[`${value}`] = quantities[index];
+  });
+  if (species === undefined) { return defaultObject; }
+  return defaultObject[species];
 }
 
 function entryCalculator(entrants) {
