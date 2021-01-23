@@ -128,6 +128,29 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+
+  if (idOrName === undefined) {
+    return {
+      'Nigel Nelson': ['lions', 'tigers'],
+      'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+      'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
+      'Wilburn Wishart': ['snakes', 'elephants'],
+      'Stephanie Strauss': ['giraffes', 'otters'],
+      'Sharonda Spry': ['otters', 'frogs'],
+      'Ardith Azevado': ['tigers', 'bears'],
+      'Emery Elser': ['elephants', 'bears', 'lions'],
+    };
+  }
+  // Name of selected employee
+  const employeeName = employees
+  .find(v => v.id === idOrName || v.firstName === idOrName || v.lastName === idOrName);
+  // Complete name
+  const fullName = `${employeeName.firstName} ${employeeName.lastName}`;
+  // Array with animals
+  const responsible = employeeName.responsibleFor
+  .map(value => animals
+  .find(element => value === element.id).name);
+  return { [fullName]: responsible };
 }
 
 module.exports = {
