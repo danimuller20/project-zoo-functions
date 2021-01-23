@@ -9,22 +9,25 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const data = require("./data");
 
 const { animals, employees } = data;
 
 function animalsByIds(...ids) {
-  return animals.filter(animal => ids.includes(animal.id));
+  return animals.filter((animal) => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  const residents = animals.find(animalIterated => animalIterated.name.includes(animal)).residents;
-  return residents.every(resident => resident.age > age);
+  const residents = animals.find((animalIterated) =>
+    animalIterated.name.includes(animal)
+  ).residents;
+  return residents.every((resident) => resident.age > age);
 }
 
 function employeeByName(employeName) {
   if (!employeName) return {};
-  return employees.find(name => name.firstName.includes(employeName) || name.lastName.includes(employeName));
+  return employees.find(
+    (name) => name.firstName.includes(employeName) || name.lastName.includes(employeName));
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -32,10 +35,16 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some(employee => employee.managers.includes(id));
+  return employees.some((employee) => employee.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = []
+) {
   employees.push({
     id,
     firstName,
@@ -52,11 +61,11 @@ function animalCount(species) {
       return acc;
     });
   }
-  return animals.find(animal => animal.name.includes(species)).residents.length;
+  return animals.find((animal) => animal.name.includes(species)).residents
+    .length;
 }
 
-function entryCalculator(entrants) {
-}
+function entryCalculator(entrants) {}
 
 function animalMap(options) {
   // seu código aqui - ultimo
