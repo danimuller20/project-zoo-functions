@@ -93,7 +93,7 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function makeTextSchedule (open, close) {
+function makeTextSchedule(open, close) {
   if (open === 0 && close === 0) {
     return 'CLOSED';
   }
@@ -105,10 +105,10 @@ function makeTextSchedule (open, close) {
 
 function schedule(dayName) {
   const objectSchedule = {};
-  if(dayName === undefined) {
+  if (dayName === undefined) {
     Object.keys(hours).forEach((day) => {
       (objectSchedule[day] = makeTextSchedule(hours[day].open, hours[day].close));
-    }); 
+    });
     return objectSchedule;
   }
   objectSchedule[dayName] = makeTextSchedule(hours[dayName].open, hours[dayName].close);
