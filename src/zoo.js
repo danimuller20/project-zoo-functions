@@ -66,13 +66,13 @@ function animalCount(species) {
   if (species) {
     const animalFound = animals.find(animalElement => animalElement.name === species);
     return animalFound.residents.length;
-  } else {
-      const amountOfAnimals = {};
-      animals.forEach(animal => amountOfAnimals[animal.name] = animal.residents.length);
-      return amountOfAnimals;
   }
+  const amountOfAnimals = {};
+  animals.forEach(animal => amountOfAnimals[animal.name] = animal.residents.length);
+  return amountOfAnimals;
 }
 
+console.log(animalCount());
 function entryCalculator(entrants) {
   // seu código aqui
 }
