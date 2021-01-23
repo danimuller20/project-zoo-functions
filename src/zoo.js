@@ -28,14 +28,13 @@ function employeeByName(name) {
     if (firstName === name || lastName === name) {
       return firstName;
     }
+    return lastName;
   });
   if (employ === undefined) {
     employ = {};
   }
   return employ;
 }
-
-console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
