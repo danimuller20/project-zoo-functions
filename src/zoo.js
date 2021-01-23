@@ -48,7 +48,6 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   employees.push(createEmployee({ id, firstName, lastName }, { managers, responsibleFor }));
-
 }
 
 //   const id = '7ed1c9bb-8570-44f6-b718-06669999573a';
@@ -72,12 +71,11 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (species === undefined) {
-    let objectAnimals = {};
+    const objectAnimals = {};
     animals.forEach((animal) => (objectAnimals[animal.name] = animal.residents.length ));
     return objectAnimals;
-  } else {
-      return animals.find((animal) => animal.name === species).residents.length;
-    }
+  } 
+  return animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
