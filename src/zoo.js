@@ -15,6 +15,8 @@ const { animals } = data;
 
 const { employees } = data;
 
+const { prices } = data;
+
 function animalsByIds(...ids) {
   // seu código aqui
   return animals.filter(value => ids.some(id => id === value.id));
@@ -82,26 +84,35 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  // seu código aqui 
+  if(!entrants) return 0;
+
+  let result = 0
+  Object.keys(prices).forEach((pay) => {
+    if(entrants[pay]) {
+    result += entrants[pay] * prices[pay];
+  }});
+  return result;
 }
 
-function animalMap(options) {
+function animalMap() {
   // seu código aqui
 }
 
 function schedule(dayName) {
+    // seu código aqui
+}
+
+
+function oldestFromFirstSpecies() {
   // seu código aqui
 }
 
-function oldestFromFirstSpecies(id) {
+function increasePrices() {
   // seu código aqui
 }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
-
-function employeeCoverage(idOrName) {
+function employeeCoverage() {
   // seu código aqui
 }
 
