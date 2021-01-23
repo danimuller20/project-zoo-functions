@@ -95,7 +95,7 @@ function entryCalculator(entrants) {
   // retorna 0 se nenhum arg. for passado;
   // retorna 0 se {};
   // retorna o preço total a ser cobrado;
-  if(!entrants) return 0;
+  if (!entrants) return 0;
   return Object.keys(entrants).map(element =>
   entrants[element] * prices[element]).reduce((acc, cur) => acc + cur, 0);
 }
