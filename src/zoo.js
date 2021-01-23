@@ -84,20 +84,23 @@ function animalMap(options) {
 function schedule(dayName) {
   const formatedSchedule = Object.entries(hours).reduce((acc, [day, { open, close }]) => ({
     ...acc,
-    [day]: (!open ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`)
+    [day]: (!open ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`),
   }), {});
   return (!dayName ? formatedSchedule : { [dayName]: formatedSchedule[dayName] });
 }
 
 function oldestFromFirstSpecies(id) {
   const animal = employees.find(({ id: empID }) => id === empID).responsibleFor[0];
-  const residents = animals.find(({ id }) => id === animal).residents;
-  const { name, sex, age } = residents.reduce((acc, currAnimal) => (currAnimal.age > acc.age ? currAnimal : acc));
+  const residents = animals.find(({ id: animalID }) => animalID === animal).residents;
+  const { name, sex, age } = residents.reduce((acc, curr) => (curr.age > acc.age ? curr : acc));
   return [name, sex, age];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(data.prices).forEach(type => {
+    newValue = Math.round((data.prices[type] * (1 + (percentage/100))) * 100) / 100;
+    data.prices[type] = newValue;
+  });
 }
 
 function employeeCoverage(idOrName) {
