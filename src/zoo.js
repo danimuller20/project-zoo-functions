@@ -15,6 +15,7 @@ const {
   animals,
   employees,
   prices,
+  hours,
 } = data;
 
 function animalsByIds(...ids) {
@@ -77,16 +78,41 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
 
   // baseado na resolução do Thiago Carreira Vallim
-  return Object.keys(entrants).reduce((acumulator, values) => acumulator +
-    (entrants[values] * prices[values]), 0);
+  return Object.keys(entrants).reduce((acumulator, people) => acumulator +
+    (entrants[people] * prices[people]), 0);
 }
 
 function animalMap(options) {
-  // seu código aqui
+  if (!options) {
+    const newObj = {};
+    animals.forEach(animal => (newObj[animal.location] = animals.filter(animalArr =>
+      animalArr.location === animal.location)));
+    return newObj;
+  }
+}
+//console.log(animalMap())
+
+function daysOpen() {
+  const newObj = {};
+  Object.entries(hours).forEach(obj => {
+    if (obj[1].open === 0) {
+      newObj[obj[0]] = 'CLOSED';
+    } else {
+      newObj[obj[0]] = `Open from ${obj[1].open}am until ${obj[1].close - 12}pm`;
+    }
+  });
+  return newObj;
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  if (!dayName) return daysOpen();
+
+  const daysObj = daysOpen();
+  const objAnsw = {};
+  Object.entries(daysObj).find(value => {
+    if (value[0] === dayName) return objAnsw[value[0]] = value[1]
+  });
+  return objAnsw;
 }
 
 function oldestFromFirstSpecies(id) {
