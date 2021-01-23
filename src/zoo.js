@@ -17,7 +17,14 @@ function animalsByIds(ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-}
+  function scanAnimalAge(animal, age){
+    if (animals.residents.name === animal){
+      if (animals.residents.age === age){
+        return (animals.residents.name, animals.residents.age)
+      }
+    }
+    return false;
+  };
 
 function employeeByName(employeeName) {
   // seu código aqui
@@ -61,7 +68,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-}
+};
 
 module.exports = {
   entryCalculator,
