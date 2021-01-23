@@ -22,11 +22,12 @@ function animalsOlderThan(animal, age2) {
   return teste2.every(({age}) => age >= age2);
 }
 
-animalsOlderThan('lions', 12);
-
 function employeeByName(employeeName) {
-  // seu código aqui
+  const employ = data.employees.filter(({ firstName, lastName }) => firstName === employeeName || lastName ===employeeName);
+  return employ;
 }
+
+console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
