@@ -57,7 +57,6 @@ function animalCount(species) {
   animals.forEach(animal => (newObj[animal.name] = animal.residents.length));
   return newObj;
 }
-console.log(animalCount())
 
 function entryCalculator(entrants) {
   // seu código aqui
