@@ -100,14 +100,25 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   // seu código aqui
   let locations = [];
-  let animalLocation = [];
+  let animalLocation = {};
   animals.forEach(animal => {
     if (!locations.includes(animal.location)) {
       locations.push(animal.location);
+      animalLocation[animal.location] = [];
     }
-
   })
-  console.log(locations)
+
+  // Popula o array animalLocation (Usar caso chamada sem parâmetro)
+  locations.forEach(location => {
+    const animalTemp = animals.filter(animal => animal.location === location);
+    for (let animal of animalTemp) {
+      animalLocation[location].push(animal.name);
+    }
+  })
+
+  if (!options) {
+    return animalLocation;
+  }
 }
 
 function schedule(dayName) {
