@@ -8,20 +8,22 @@ eslint no-unused-vars: [
   }
 ]
 */
-/*
-Esta função é responsável pela busca das espécies de animais por id. Ela retorna um array contendo as espécies referentes aos ids passados como parâmetro, podendo receber um ou mais ids.
-*/
+
 // assign to a const the required data in data.js
 const data = require('./data');
+
 // get animals key in data object
 const { animals } = data;
-// animalsByIds grabs the required ids as spread array
 
+// animalsByIds grabs the required ids as spread array
+// animals array is then filtered by :
 function animalsByIds(...ids) {
-  return animals.filter(animal => ids.find(element => element === animal.id))
+  return animals.filter(animal => ids.find(element => element === animal.id));
 }
 
 function animalsOlderThan(animal, age) {
+  const foundAnimal = animals.find(animalIndex => animalIndex.name === animal);
+  return !foundAnimal.residents.some(residentsIndex => residentsIndex.age < age);
 }
 
 function employeeByName(employeeName) {
