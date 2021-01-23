@@ -82,17 +82,22 @@ function entryCalculator(entrants = 0) {
 }
 
 // 9
+// function filterAnimalsByLocation(local) {
+//   const result = animals.filter(animal => animal.location === local);
+//   return result.name;
+// }
 
 // function returnAnimalsByLocation() {
 //   const locations = ['NE', 'NW', 'SE', 'SW'];
-//   const object = locations.map((local, index) => ({
-//     local[index]: animals.filter(animal => animal.location === local),
+//   const object = {};
+//   locations.map(((location, index)) => ({
+//     location: filter(AnimalsByLocation(location)),
 //   }))
 //   return object;
 // }
 
 function animalMap(options = '') {
-  // seu código aqui
+  // seu codigo aqui
 }
 
 // 10
@@ -122,9 +127,23 @@ function schedule(dayName) {
 }
 
 //
+function findEmployee(receivedId) {
+  const employee = employees.find(employee => employee.id === receivedId);
+  return employee;
+}
+
+function findSpecie(employee) {
+  const specie = employee.responsibleFor
+  .map((idResp) => animals
+  .find(animal => animal.id === idResp));
+  return specie;
+}
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const receivedSpecie = findSpecie(findEmployee(id));
+  const getOlder = receivedSpecie[0].residents
+  .reduce((older, current) => older.age > current.age ? older : current);
+  return Object.values(getOlder);
 }
 
 function increasePrices(percentage) {
