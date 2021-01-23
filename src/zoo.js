@@ -97,6 +97,36 @@ function entryCalculator(entrants) {
   return sumIfNotUndefined(adult, child, senior);
 }
 
+// Popula o array animalLocation (Usar caso chamada sem parâmetro)
+const withOutParameters = (locations, animalLocation) => {
+  locations.forEach(location => {
+    const animalTemp = animals.filter(animal => animal.location === location);
+    for (let animal of animalTemp) {
+      animalLocation[location].push(animal.name);
+    }
+  })
+  return animalLocation;
+}
+
+const includeNamesTrue = (locations, animalLocation) => {
+  locations.forEach(location => {
+    const animalTemp = animals.filter(animal => animal.location === location);
+    let animalsResidentTemp = [];
+    console.log(animalTemp)
+
+    for (let animal of animalTemp) {
+      for (let resident of animal.residents) {
+        animalsResidentTemp.push(resident.name);
+      }
+    }
+    console.log(animalsResidentTemp)
+
+
+  animalLocation[location].push(Object.values(animalsResidentTemp));
+  })
+  return animalLocation;
+}
+
 function animalMap(options) {
   // seu código aqui
   let locations = [];
@@ -108,20 +138,8 @@ function animalMap(options) {
     }
   })
 
-  // Popula o array animalLocation (Usar caso chamada sem parâmetro)
-  const withOutParameters = () => {
-    locations.forEach(location => {
-      const animalTemp = animals.filter(animal => animal.location === location);
-      for (let animal of animalTemp) {
-        animalLocation[location].push(animal.name);
-      }
-    })
-  }
-
-  if (!options) {
-    return withOutParameters();
-  }
-
+  if (!options) { return withOutParameters(locations, animalLocation); };
+  if ({ includeNames: true }) { return includeNamesTrue(locations, animalLocation); };
 
 }
 
