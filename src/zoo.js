@@ -33,11 +33,11 @@ function employeeByName(name) {
 
 function createEmployee(personalInfo, associatedWith) {
   const object = {
-      id: personalInfo.id,
-      firstName: personalInfo.firstName,
-      lastName: personalInfo.lastName,
-      managers: associatedWith.managers,
-      responsibleFor: associatedWith.responsibleFor };
+   id: personalInfo.id,
+   firstName: personalInfo.firstName,
+   lastName: personalInfo.lastName,
+   managers: associatedWith.managers,
+   responsibleFor: associatedWith.responsibleFor };
   return object;
 }
 
