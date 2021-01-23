@@ -48,7 +48,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  return species ? 
+  return species ?
     data.animals.find(creature => creature.name === species).residents.length :
     data.animals.reduce((acc, { name, residents }) =>
     Object.assign(acc, ({ [name]: residents.length })), {});
