@@ -47,11 +47,37 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  employees.push(createEmployee({ id, firstName, lastName }, { managers, responsibleFor }));
+
 }
 
+//   const id = '7ed1c9bb-8570-44f6-b718-06669999573a';
+//   const firstName = 'teste';
+//   const lastName = 'testado';
+
+
+// const  teste2 = [
+//     'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
+//     '9e7d4524-363c-416a-8759-8aa7e50c0992'
+//   ];
+
+// const teste3 = [
+//     '0938aa23-f153-4937-9f88-4858b24d6bce',
+//     '89be95b3-47e4-4c5b-b687-1fabf2afa274',
+//     'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5'
+//   ];
+
+// addEmployee(id, firstName, lastName, teste2, teste3);
+// console.log(employees);
+
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    let objectAnimals = {};
+    animals.forEach((animal) => (objectAnimals[animal.name] = animal.residents.length ));
+    return objectAnimals;
+  } else {
+      return animals.find((animal) => animal.name === species).residents.length;
+    }
 }
 
 function entryCalculator(entrants) {
