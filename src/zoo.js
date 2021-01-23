@@ -40,17 +40,16 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return (
-    employees.push({ ...employees[0] = { id, firstName, lastName, managers, responsibleFor } })
-  );
+  const newEmployee = { ...employees[0] = { id, firstName, lastName, managers, responsibleFor } };
+  return employees.push(newEmployee);
 }
 
 function animalCount(species) {
   const objAnimals = {};
   if (!species) {
     for (let index = 0; index < animals.length; index += 1) {
-      let name = animals[index].name;
-      let qnt = animals[index].residents.length;
+      const name = animals[index].name;
+      const qnt = animals[index].residents.length;
       objAnimals[name] = qnt;
     }
     return objAnimals;
