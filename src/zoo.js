@@ -114,7 +114,7 @@ function animalMap(options = {}) {
     SW: filterAnimals(filterLocals('SW')),
   };
   if (options.includeNames === true) {
-    Object.keys(map).forEach(function(loc) {
+    Object.keys(map).forEach(function (loc) {
       map[loc] = filterNames(filterLocals(loc, options), options);
     });
   }
