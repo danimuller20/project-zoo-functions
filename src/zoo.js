@@ -39,8 +39,13 @@ function isManager(id) {
   return employees.filter(person => person.managers.includes(id)).length > 0;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = Object.assign(employees[0]);
+  let newValues = { id, firstName, lastName, managers, responsibleFor };
+  for (let index in newEmployee) {
+    newEmployee[index] = newValues[index];
+  }
+  return employees.push(newEmployee);
 }
 
 function animalCount(species) {
