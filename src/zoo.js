@@ -142,7 +142,7 @@ function findSpecie(employee) {
 function oldestFromFirstSpecies(id) {
   const receivedSpecie = findSpecie(findEmployee(id));
   const getOlder = receivedSpecie[0].residents
-  .reduce((older, current) => (older.age > current.age) ? older : current);
+  .reduce((older, current) => (older.age > current.age ? older : current));
   return Object.values(getOlder);
 }
 
