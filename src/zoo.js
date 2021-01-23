@@ -52,6 +52,9 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  const searchManagers = employees.reduce((acc, value) =>
+  acc.concat(value.managers), []);
+  return searchManagers.some((value => value === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
