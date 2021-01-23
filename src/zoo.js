@@ -69,9 +69,11 @@ function entryCalculator(entrants) {
   return entryTotal;
 }
 function emptyAnimalMap(myAnimalMap, animal) {
-  !myAnimalMap[animal.location]
-  ? myAnimalMap[animal.location] = [animal.name]
-  : myAnimalMap[animal.location].push(animal.name);
+  if (!myAnimalMap[animal.location]) {
+    myAnimalMap[animal.location] = [animal.name];
+  } else {
+    myAnimalMap[animal.location].push(animal.name);
+  }
   return myAnimalMap;
 }
 
