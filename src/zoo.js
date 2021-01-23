@@ -177,37 +177,33 @@ function returnCompleteList() {
   return result;
 }
 
-// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
-function returnListById(id) {
-  const result = {};
-  const search = employees.find(employee => employee.id === id);
-  result[`${search.firstName} ${search.lastName}`] = [];
-  search.responsibleFor.forEach((idResp) => {
-    const getAnimals = animals.find(animal => animal.id === idResp);
-    result[`${search.firstName} ${search.lastName}`]
-    .push(getAnimals.name);
-  });
-  return result;
+function findEmployeeToReturn(idOrName) {
+  let result = {};
+  if (idOrName.length === 36) {
+    result = employees.find(employee => employee.id === idOrName);
+  } else {
+    result = employees
+    .find(employee =>
+      employee.firstName === idOrName || employee.lastName === idOrName);
+  }
+  return returnListOfAnimals(result);
 }
 
-// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-function returnListByName(name) {
+function returnListOfAnimals(employee) {
+  const completeName = `${employee.firstName} ${employee.lastName}`;
   const result = {};
-  const getEmployee = employees
-  .find(employee => employee.firstName === name || employee.lastName === name);
-  result[`${getEmployee.firstName} ${getEmployee.lastName}`] = [];
-  getEmployee.responsibleFor.forEach((idResp) => {
-    const getAnimals = animals.find(animal => animal.id === idResp);
-    result[`${getEmployee.firstName} ${getEmployee.lastName}`]
-    .push(getAnimals.name);
+  result[completeName] = [],
+  employee.responsibleFor.forEach((idResp) => {
+    const getAnimal = animals.find(animal => animal.id === idResp);
+    result[completeName].push(getAnimal.name);
   });
+  console.log(result);
   return result;
 }
 
 function employeeCoverage(idOrName) {
   if (!idOrName) return returnCompleteList();
-  if (idOrName.length === 36) return returnListById(idOrName);
-  return returnListByName(idOrName);
+  return findEmployeeToReturn(idOrName);
 }
 
 //
