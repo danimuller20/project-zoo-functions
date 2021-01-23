@@ -16,7 +16,7 @@ function animalsByIds(ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  // seu código aqui - feito
   function scanAnimalAge(animal, age){
     if (animals.residents.name === animal){
       if (animals.residents.age === age){
