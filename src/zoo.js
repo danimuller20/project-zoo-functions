@@ -36,13 +36,13 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  let arrayManagers = [];
-  employees.forEach(({managers }) => arrayManagers.push(...managers));
-  return teste.some(value => value === id);
+  const arrayManagers = [];
+  employees.forEach(({ managers }) => arrayManagers.push(...managers));
+  return arrayManagers.some(value => value === id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
+  employees.id 
 }
 
 function animalCount(species) {
