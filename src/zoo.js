@@ -102,6 +102,13 @@ function animalMap() {
   // seu código aqui
 }
 
+const showDay = (day) => {
+  const { open, close } = hours[day];
+  if (open === 0) {
+    return 'CLOSED';
+  }
+  return `Open from ${open}am until ${close - 12}pm`;
+};
 
 function schedule(dayName) {
   // seu código aqui
@@ -114,13 +121,6 @@ function schedule(dayName) {
   return { [dayName]: showDay(dayName) };
 }
 
-const showDay = (day) => {
-  const { open, close } = hours[day];
-  if (open === 0) {
-    return 'CLOSED';
-  }
-  return `Open from ${open}am until ${close - 12}pm`;
-}
 
 function oldestFromFirstSpecies() {
   // seu código aqui
