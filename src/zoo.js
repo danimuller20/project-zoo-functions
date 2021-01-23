@@ -9,22 +9,22 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(ids) {
-  // seu código aqui -
+  // seu código aqui
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui - feito
-  function scanAnimalAge(animal, age){
-    if (animals.residents.name === animal){
-      if (animals.residents.age === age){
-        return (animals.residents.name, animals.residents.age)
-      }
-    }
-    return false;
-  };
+  // seu código aqui
+  let animalIn = animal;
+  let ageIn = age;
+ 
+  for(let i = 0; animals.name === animalIn && animals.residents.age === ageIn; i +=1){
+      return animals.name, animals.residents.age
+  }
+}
 
 function employeeByName(employeeName) {
   // seu código aqui
@@ -68,7 +68,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-};
+}
 
 module.exports = {
   entryCalculator,
