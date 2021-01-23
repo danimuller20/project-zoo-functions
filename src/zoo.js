@@ -97,8 +97,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  Object.keys(data.prices).forEach(type => {
-    newValue = Math.round((data.prices[type] * (1 + (percentage/100))) * 100) / 100;
+  Object.keys(data.prices).forEach((type) => {
+    const newValue = Math.round((data.prices[type] * (1 + (percentage / 100))) * 100) / 100;
     data.prices[type] = newValue;
   });
 }
