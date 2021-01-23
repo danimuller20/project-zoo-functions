@@ -52,7 +52,8 @@ function isManager(id) {
   employees.forEach(element => {
     for (manager of element.managers) {managersStatus.push(manager); }
   });
-  return managersStatus.find((managerId) => managerId === id)? true : false;
+  return managersStatus.some(managerId => managerId === id);
+
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
