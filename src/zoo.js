@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
+const { hours } = data;
 
 function animalsByIds(...ids) {
   const filteredAnimals = [];
@@ -60,12 +61,27 @@ function entryCalculator(entrants) {
   return (!arrEnt ? arrEnt : arrEnt.reduce((acc, [type, qnty]) => acc + (qnty * prices[type]), 0));
 }
 
+const animalsByLocation = animals.reduce(function (acc, { name, location }) {
+  return {...acc, [location]: (!acc[location] ? [name] : [...acc[location],name])}
+}, {});
+const animalsByName = animals.reduce(function (acc, { name, residents }) {
+  residentsList = residents.map(({ name }) => name);
+  return {...acc, [name]: residentsList }
+}, {});
+
 function animalMap(options) {
-  // seu código aqui
+  if (!options) {
+    return animalsByLocation;
+  } else if (options.includeNames) {
+    return animalsByName;
+  }
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const formatedSchedule = Object.entries(hours).reduce((acc, [day, { open, close }]) => {
+    return { ...acc, [day]: (!open ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`)};
+  } , {});
+  return (!dayName ? formatedSchedule : {[dayName]: formatedSchedule[dayName]});
 }
 
 function oldestFromFirstSpecies(id) {
