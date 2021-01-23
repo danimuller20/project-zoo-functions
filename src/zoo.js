@@ -82,17 +82,18 @@ function entryCalculator(entrants = 0) {
 }
 
 // 9
-// function filterAnimalsByLocation(local) {
-//   const result = animals.filter(animal => animal.location === local);
-//   return result.name;
-// }
-
 // function returnAnimalsByLocation() {
-//   const locations = ['NE', 'NW', 'SE', 'SW'];
-//   const object = {};
-//   locations.map(((location, index)) => ({
-//     location: filter(AnimalsByLocation(location)),
-//   }))
+//   const object = {
+//     NE: [],
+//     NW: [],
+//     SE: [],
+//     SW: [],
+//   };
+//   Object.keys(object).forEach((key) => {
+//     object[key] = animals
+//     .filter(item => item.location === key)
+//     .map(specie => specie.name);
+//   });
 //   return object;
 // }
 
@@ -158,11 +159,71 @@ function increasePrices(percentage) {
   return result;
 }
 
-//
+// 13
+// Recebe id ou firsName ou lastName do employee como parametro
+// Retorna um objeto { nomeDoColaborador: ['specie1', 'specie2',...]}
+
+// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis.
+function returnCompleteList() {
+  const result = {};
+  employees.forEach((employee) => {
+    result[`${employee.firstName} ${employee.lastName}`] = []
+    employee.responsibleFor.forEach((idResp) => {
+      const getAnimals = animals.find(animal => animal.id === idResp);
+      result[`${employee.firstName} ${employee.lastName}`]
+      .push(getAnimals.name);
+    });
+  });
+  return result;
+}
+
+// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+function returnListById(id) {
+  const result = {};
+  const findEmployee = employees.find(employee => employee.id === id);
+  result[`${findEmployee.firstName} ${findEmployee.lastName}`] = [];
+  findEmployee.responsibleFor.forEach((idResp) => {
+    const getAnimals = animals.find(animal => animal.id === idResp);
+    result[`${findEmployee.firstName} ${findEmployee.lastName}`]
+    .push(getAnimals.name);
+  });
+  return result;
+}
+
+// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+function returnListByName(name) {
+  const result = {};
+  const findEmployee = employees
+  .find(employee => employee.firstName === name || employee.lastName === name);
+  result[`${findEmployee.firstName} ${findEmployee.lastName}`] = [];
+  findEmployee.responsibleFor.forEach((idResp) => {
+    const getAnimals = animals.find(animal => animal.id === idResp);
+    result[`${findEmployee.firstName} ${findEmployee.lastName}`]
+    .push(getAnimals.name);
+  });
+  return result;
+}
+
+// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// function returnListByLastName(lastName) {
+//   const result = {};
+//   const findEmployee = employees.find(employee => employee.firstName === lastName);
+//   result[`${findEmployee.firstName} ${findEmployee.lastName}`] = [];
+//   findEmployee.responsibleFor.forEach((idResp) => {
+//     const getAnimals = animals.find(animal => animal.id === idResp);
+//     result[`${findEmployee.firstName} ${findEmployee.lastName}`]
+//     .push(getAnimals.name);
+//   });
+//   return result;
+// }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) return returnCompleteList();
+  if (idOrName.length === 36) return returnListById(idOrName);
+  return returnListByName(idOrName);
 }
+
+//
 
 module.exports = {
   entryCalculator,
