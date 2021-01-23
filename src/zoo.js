@@ -115,11 +115,6 @@ function schedule(dayName) {
   return objectSchedule;
 }
 
-// makeTextSchedule(hours[day].open, hours[day].close)
-// (objectAnimals[animal.name] = animal.residents.length));
-
-//console.log(schedule('Wednesday'));
-
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
