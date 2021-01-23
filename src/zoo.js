@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -71,9 +72,55 @@ function entryCalculator(entrants = {}) {
   }, 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
+function filterLocals(local) {
+  return data.animals.filter(animal => animal.location === local);
 }
+
+function filterAnimals(local) {
+  return local.map(animal => animal.name);
+}
+
+function sexAnimals(specie, options = { sex: undefined }) {
+  return specie.residents.reduce((acc, animal) => {
+    if(animal.sex === options.sex) acc.push(animal.name);
+    return acc;
+  }, []);
+}
+
+function listAnimals(specie, options = { sex: undefined, sorted: false}) {
+  let arr = [];
+  arr = sexAnimals(specie, options);
+  if (options.sex === undefined) {
+    arr = specie.residents.map(animal =>  animal.name);
+  }
+  if (options.sorted === true) arr.sort();
+  return arr;
+}
+
+function filterNames(local, options) {
+  return local.reduce((acc, specie) => {
+    acc.push({
+      [specie.name]: listAnimals(specie, options)
+    });
+    return acc
+  }, []);
+}
+
+function animalMap(options = {}) {
+  // seu código aqui
+  const map = {
+    NE: filterAnimals(filterLocals('NE')),
+    NW: filterAnimals(filterLocals('NW')),
+    SE: filterAnimals(filterLocals('SE')),
+    SW: filterAnimals(filterLocals('SW'))
+  }
+  if (options.includeNames === true) {
+    Object.keys(map).forEach(local => map[local] = filterNames(filterLocals(local, options), options));
+  }
+  return map;
+}
+
+console.log(animalMap({ includeNames: true, sorted: true}));
 
 function schedule(dayName) {
   // seu código aqui
