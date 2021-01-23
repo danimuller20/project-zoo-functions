@@ -99,6 +99,15 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  let locations = [];
+  let animalLocation = [];
+  animals.forEach(animal => {
+    if (!locations.includes(animal.location)) {
+      locations.push(animal.location);
+    }
+
+  })
+  console.log(locations)
 }
 
 function schedule(dayName) {
