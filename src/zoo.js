@@ -120,6 +120,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  const percent = ((100 + percentage) / 100) + 0.000000001;
+  prices.Adult = parseFloat((prices.Adult * percent).toFixed(2));
+  prices.Child = parseFloat((prices.Child * percent).toFixed(2));
+  prices.Senior = parseFloat((prices.Senior * percent).toFixed(2));
 }
 
 function employeeCoverage(idOrName) {
