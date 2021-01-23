@@ -60,9 +60,8 @@ function entryCalculator(entrants) {
     return 0;
   }
   const totalBoxOfficeQuantities = Object.entries(entrants);
-  return totalBoxOfficeQuantities.reduce((prev, currentValue) => {
-    return prev + prices[currentValue[0]] * currentValue[1];
-  }, 0);
+  return totalBoxOfficeQuantities.reduce((prev, currentValue) =>
+    (prev + (prices[currentValue[0]] * currentValue[1])), 0);
 }
 
 function animalMap(options) {
