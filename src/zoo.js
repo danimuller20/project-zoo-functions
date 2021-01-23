@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -85,6 +85,11 @@ function entryCalculator(entrants) {
   if (!entrants || (typeof entrants === 'object' && Object.keys(entrants).length === 0)) {
     return 0;
   }
+  const { adult, child, senior } = entrants;
+  const adultSum = [Object.values(adult) * prices.Adult]
+  const childSum = [Object.values(child) * prices.Child]
+  const seniorSum = [Object.values(senior) * prices.Senior]
+  return adultSum + childSum + seniorSum;
 }
 
 function animalMap(options) {
