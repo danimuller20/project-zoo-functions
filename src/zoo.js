@@ -24,7 +24,9 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(name) {
   // seu código aqui
-  let employee = data.employees.find(e => e.firstName === name || e.lastName === name || e.id === name);
+  let employee = data.employees.find(e => e.firstName === name
+    || e.lastName === name
+    || e.id === name);
   if (!name) employee = {};
   return employee;
 }
@@ -125,30 +127,42 @@ function schedule(dayName = false) {
   // seu código aqui
   let func = {};
   const days = Object.keys(data.hours);
-  days.forEach(day => {
-    func[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`
+  days.forEach((day) => {
+    func[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
   }, {});
   func[days[days.length - 1]] = 'CLOSED';
   if (dayName) {
     func = {
-      [dayName]: func[dayName]
+      [dayName]: func[dayName],
     };
   }
   return func;
 }
 
+function residents(resident) {
+  return resident.reduce((acc, animal) => {
+    let result = '';
+    if (acc.age > animal.age) {
+      result = acc;
+    } else {
+      result = animal;
+    }
+    return result;
+  });
+}
+
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const employ = data.employees.find(employ => employ.id === id);
-  const especie = data.animals.find(animal => animal.id === employ.responsibleFor[0]);
-  const older = especie.residents.reduce((acc, animal) => acc.age > animal.age ? acc : animal);
+  const employs = data.employees.find(employ => employ.id === id);
+  const especie = data.animals.find(animal => animal.id === employs.responsibleFor[0]);
+  const older = residents(especie.residents)
   return Object.values(older);
 }
 
 function increasePrices(percentage) {
   // seu código aqui
   const newPrices = Object.keys(data.prices).reduce((acc, age) => {
-    acc[age] = Math.round((data.prices[age] * (1 + percentage / 100)) * 100) / 100;
+    acc[age] = Math.round((data.prices[age] * (1 + (percentage / 100))) * 100) / 100;
     return acc;
   }, {});
   data.prices = newPrices;
@@ -159,7 +173,7 @@ function listEmployees() {
   return data.employees.reduce((acc, employ) => {
     acc.push(employ.id);
     return acc;
-  }, [])
+  }, []);
 }
 
 function createObject(ids) {
@@ -167,13 +181,13 @@ function createObject(ids) {
   ids.reduce((acc, id) => {
     const employ = employeeByName(id);
     const listEmploy = employ.responsibleFor;
-    const animals = listEmploy.reduce((acc, animal) => {
-      acc.push(animalsByIds(animal)[0].name);
-      return acc
-    }, [])
-    obj[`${employ.firstName} ${employ.lastName}`] = animals
-    return acc
-  }, {})
+    const animals = listEmploy.reduce((arr, animal) => {
+      arr.push(animalsByIds(animal)[0].name);
+      return arr;
+    }, []);
+    obj[`${employ.firstName} ${employ.lastName}`] = animals;
+    return acc;
+  }, {});
   return obj;
 }
 
@@ -185,7 +199,7 @@ function employeeCoverage(idOrName = false) {
   if (idOrName) {
     const employ = employeeByName(idOrName);
     const fullName = `${employ.firstName} ${employ.lastName}`;
-    obj = {[fullName]: obj[fullName]};
+    obj = { [fullName]: obj[fullName] };
   }
   return obj;
 }
