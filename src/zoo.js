@@ -74,7 +74,7 @@ let vazio = {};
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
   const entrantsKey = Object.keys(entrants).map(key => prices[key]);
-  const entrantsValue = Object.values(entrants);
+  const entrantsValue = Object.values(entrants)
     .reduce((accumulator, currentValue, index) => {
       return accumulator + (entrantsKey[index] * currentValue);
     }, 0);
