@@ -30,13 +30,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {
-    id: personalInfo.id,
-    firstName: personalInfo.firstName,
-    lastName: personalInfo.lastName,
-    managers: associatedWith.managers,
-    responsibleFor: associatedWith.responsibleFor,
-  };
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -74,10 +68,53 @@ function entryCalculator(entrants) {
   }
   return entryTotal;
 }
+function emptyAnimalMap(myAnimalMap, animal) {
+  myAnimalMap.hasOwnProperty(animal.location)
+  ? myAnimalMap[animal.location].push(animal.name)
+  : myAnimalMap[animal.location] = [animal.name];
+  return myAnimalMap;
+}
+
+function getResidentsBySpecies(species, genre = false) {
+  return species.residents.reduce((namesBySpeacies, animalName) => {
+    if (genre) {
+      if (animalName.sex === genre) {
+      namesBySpeacies[species.name].push(animalName.name);
+      }
+    } else {
+      namesBySpeacies[species.name].push(animalName.name);
+    }
+    return namesBySpeacies;
+  }, { [species.name]: [] });
+}
+
+function namesAnimalMap(genre) {
+  return animals.reduce((myAnimalMap, animal) => {
+  myAnimalMap.hasOwnProperty(animal.location)
+  ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal, genre))
+  : myAnimalMap[animal.location] = [getResidentsBySpecies(animal, genre)];
+  return myAnimalMap;
+  }, {});
+}
 
 function animalMap(options) {
-  // seu código aqui
+  if (!options || !options.includeNames) {
+    return animals.reduce(emptyAnimalMap, {});
+  }
+  let newAnimalMap = {};
+  if (options.includeNames === true) {
+    newAnimalMap = namesAnimalMap(options.sex);
+  }
+  if (options.sorted === true) {
+    Object.keys(newAnimalMap).forEach((region) => {
+      newAnimalMap[region].forEach((species) => {
+        species[Object.keys(species)[0]].sort();
+      });
+    });
+  }
+  return newAnimalMap;
 }
+console.log(animalMap({ sex: 'female' }));
 
 function schedule(dayName) {
   // seu código aqui
