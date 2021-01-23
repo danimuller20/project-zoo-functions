@@ -13,18 +13,18 @@ const data = require('./data');
 
 const { animals, employees } = data;
 
-function animalsByIds(id, ids) {
-  return animals.filter(animal => animal.id === id || animal.id === ids);
+function animalsByIds(...ids) {
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  const residents = animals.find(animalIterated => animalIterated.name === animal).residents;
+  const residents = animals.find(animalIterated => animalIterated.name.includes(animal)).residents;
   return residents.every(resident => resident.age > age);
 }
 
 function employeeByName(employeName) {
   if (!employeName) return {};
-  return employees.find(name => name.firstName === employeName || name.lastName === employeName);
+  return employees.find(name => name.firstName.includes(employeName) || name.lastName.includes(employeName));
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -52,14 +52,14 @@ function animalCount(species) {
       return acc;
     });
   }
-  return animals.find(animal => animal.name === species).residents.length;
+  return animals.find(animal => animal.name.includes(species)).residents.length;
 }
 
 function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  // seu código aqui - ultimo
 }
 
 function schedule(dayName) {
@@ -75,7 +75,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  // seu código aqui - penultimo
 }
 
 module.exports = {
