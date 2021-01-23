@@ -56,9 +56,9 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     id,
     firstName,
     lastName,
-    managers: managers ? managers : [],
-    responsibleFor: responsibleFor ? responsibleFor : []
-  }
+    managers: managers || [],
+    responsibleFor: responsibleFor || [],
+  };
   employees.push(employee);
 }
 
