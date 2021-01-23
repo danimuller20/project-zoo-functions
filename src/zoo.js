@@ -86,9 +86,9 @@ function entryCalculator(entrants) {
     return 0;
   }
   const { adult, child, senior } = entrants;
-  const adultSum = [Object.values(adult) * prices.Adult]
-  const childSum = [Object.values(child) * prices.Child]
-  const seniorSum = [Object.values(senior) * prices.Senior]
+  const adultSum = [Object.values(adult) * prices.Adult];
+  const childSum = [Object.values(child) * prices.Child];
+  const seniorSum = [Object.values(senior) * prices.Senior];
   return adultSum + childSum + seniorSum;
 }
 
