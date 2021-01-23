@@ -40,13 +40,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const newEmployee = Object.assign(employees[0]);
-  const newValues = { id, firstName, lastName, managers, responsibleFor };
-  for (const key in newEmployee) {
-    if (Object.prototype.hasOwnProperty.call(newEmployee, key)) {
-      newEmployee[key] = newValues[key];
-    }
-  }
+  const newEmployee = { ...employees[0] = { id, firstName, lastName, managers, responsibleFor } };
   return employees.push(newEmployee);
 }
 
