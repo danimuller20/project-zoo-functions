@@ -316,6 +316,6 @@ module.exports = {
   prices: {
     'Adult': 49.99,
     'Senior': 24.99,
-    'Child': 20.99
+    'Child': 20.99,
   }
 };
