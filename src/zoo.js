@@ -122,11 +122,13 @@ function schedule(dayName) {
 }
 function find(resident) {
   return resident.reduce((older, newest) => {
+    let animal = '';
     if (older.age > newest.age) {
-      return older;
+      animal = older;
     } else {
-      return newest;
+      animal = newest;
     }
+    return animal;
   });
 }
 
@@ -134,12 +136,10 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
   const collaborator = employees.find(colaborador => id === colaborador.id);
   const species = animals.find(animal => animal.id === collaborator.responsibleFor[0]);
-  const animalOlder = find(species.residents)
+  const animalOlder = find(species.residents);
 
   return Object.values(animalOlder);
 }
-
-
 
 function increasePrices(percentage) {
   // seu código aqui
