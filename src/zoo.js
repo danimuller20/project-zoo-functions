@@ -128,13 +128,13 @@ function schedule(dayName) {
 
 //
 function findEmployee(receivedId) {
-  const employee = employees.find(employee => employee.id === receivedId);
-  return employee;
+  const filteredEmployee = employees.find(employee => employee.id === receivedId);
+  return filteredEmployee;
 }
 
 function findSpecie(employee) {
   const specie = employee.responsibleFor
-  .map((idResp) => animals
+  .map(idResp => animals
   .find(animal => animal.id === idResp));
   return specie;
 }
@@ -142,7 +142,7 @@ function findSpecie(employee) {
 function oldestFromFirstSpecies(id) {
   const receivedSpecie = findSpecie(findEmployee(id));
   const getOlder = receivedSpecie[0].residents
-  .reduce((older, current) => older.age > current.age ? older : current);
+  .reduce((older, current) => (older.age > current.age) ? older : current);
   return Object.values(getOlder);
 }
 
