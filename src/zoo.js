@@ -48,6 +48,13 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  let managersStatus = [];
+  employees.forEach((element) => {
+    for (manager of element.managers) {
+      managersStatus.push(manager)
+    }
+  })
+  return managersStatus.find((managerId) => managerId === id)? true : false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
