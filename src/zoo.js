@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, _, prices } = data;
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.includes(animal.id));
@@ -46,17 +46,20 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (!species) {
-    return animals.reduce((acc, crr) => {
-      acc[crr.name] = crr.residents.length;
-      return acc;
-    });
-  }
-  return animals.find(animal => animal.name.includes(species)).residents.length;
+  // if (!species) {
+  //   return animals.reduce((acc, crr) => {
+  //     acc[crr.name] = crr.residents.length;
+  //     return acc;
+  //   });
+  // }
+  // return animals.find(animal => animal.name.includes(species)).residents.length;
 }
-
+const { Adult, Senior, Child } = prices;
 function entryCalculator(entrants) {
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
+  return Object.values(prices).reduce((acc, crr) => acc * crr, 0);
 }
+console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
   // seu código aqui - ultimo
