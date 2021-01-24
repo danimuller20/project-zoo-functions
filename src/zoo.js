@@ -130,7 +130,7 @@ const oldestFromFirstSpecies = (id) => {
 };
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return percentage / 100;
 }
 
 function employeeCoverage(idOrName) {
