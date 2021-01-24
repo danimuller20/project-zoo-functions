@@ -158,7 +158,7 @@ function createAnimal(options) {
     frogs.sort();
     snakes.sort();
   }
-  const mapAnimals = { 
+  const mapAnimals = {
     NE: [{ lions }, { giraffes }],
     NW: [{ tigers }, { bears }, { elephants }],
     SE: [{ penguins }, { otters }],
