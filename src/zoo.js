@@ -121,17 +121,17 @@ const oldestFromFirstSpecies = (id) => {
   const [firstSpeciesId] = employee.responsibleFor;
   const { residents } = animalsByIds(firstSpeciesId)[0];
   return residents.reduce(
-    (oldest, current) => {
-      const oldestAge = oldest[2];
-      const { age: currentAge } = current;
-      return currentAge > oldestAge ? Object.values(current) : oldest;
+    (oldestArray, currentObject) => {
+      const oldestAge = oldestArray[2];
+      const { age: currentAge } = currentObject;
+      return currentAge > oldestAge ? Object.values(currentObject) : oldestArray;
     }, ['', '', 0]);
 };
 
 const increasePrices = (percentage) => {
   const increase = 1 + (percentage / 100);
   Object.keys(prices).forEach((key) => {
-    const newValue = parseFloat(prices[key] * increase);
+    const newValue = parseFloat(prices[key] * increase).toPrecision(15);
     // Reference : https://medium.com/swlh/how-to-round-to-a-certain-number-of-decimal-places-in-javascript-ed74c471c1b8
     const roundedPrice = Number(`${Math.round(`${newValue}e2`)}e-2`);
     data.prices[key] = roundedPrice;
