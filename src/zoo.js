@@ -73,15 +73,16 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
+  let amount = 0;
   if (entrants) {
-    let amount = 0;
     for (const entrant in entrants) {
-      if (Object.prototype.hasOwnProperty.call(foo, key)) {
+      if (Object.prototype.hasOwnProperty.call(entrants, entrant)) {
         amount += entrants[entrant] * prices[entrant];
       }
     }
     return amount;
   }
+  return amount;
 }
 
 function animalMap(options) {
