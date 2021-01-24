@@ -47,12 +47,12 @@ function animalCount(species) {
   // seu código aqui
   if (!species) {
     return animals.reduce((acumulador, valorAtual) => {
-      acumulador[valorAtual.name] = valorAtual.residents.length
-      return acumulador
+      acumulador[valorAtual.name] = valorAtual.residents.length;
+      return acumulador;
     }, {});
   }
-  const quantity = animals.find((animal) => animal.name === species);
-  return quantity.residents.length
+  const quantity = animals.find(animal => animal.name === species);
+  return quantity.residents.length;
 }
 console.log(animalCount());
 
