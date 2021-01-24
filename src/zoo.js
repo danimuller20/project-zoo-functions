@@ -105,25 +105,37 @@ const withOutParameters = (locations, animalLocation) => {
       animalLocation[location].push(animal.name);
     }
   })
+  console.log(animalLocation, '  with out parameters')
   return animalLocation;
+}
+
+const ifNotIncludeInclude = (array, enter) => {
+  if (!array.includes(enter)) { array = enter; }
+  return array;
 }
 
 const includeNamesTrue = (locations, animalLocation) => {
   locations.forEach(location => {
     const animalTemp = animals.filter(animal => animal.location === location);
-    let animalsResidentTemp = [];
-    console.log(animalTemp)
-
+    // console.log('AnimalTemp === ',animalTemp)
     for (let animal of animalTemp) {
+      let animalArrayTemp = {};
+      let animalsResidentTemp = [];
       for (let resident of animal.residents) {
         animalsResidentTemp.push(resident.name);
       }
+      animalArrayTemp[animal.name] = animalsResidentTemp;
+      animalLocation[location].push(animalArrayTemp);
     }
-    console.log(animalsResidentTemp)
 
+  // animalLocation[location].push(Object.values(animalsResidentTemp));
+  // console.log(animalTemp, ' teste de passagem')
 
-  animalLocation[location].push(Object.values(animalsResidentTemp));
+    console.log(animalLocation, '  includes Names true')
+    return animalLocation;
   })
+
+
   return animalLocation;
 }
 
