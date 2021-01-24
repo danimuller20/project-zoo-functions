@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -59,7 +60,8 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  const entryCalculator = (entrants = {}) => Object.entries(entrants).reduce(
+  const entryICalculator = (entrants = {}) => Object.entries(entrants);
+  const entryICalculator.reduce(
     (priceAccumulator, currentGroup) => {
       const price = prices[currentGroup[0]];
       const quantity = currentGroup[1];
