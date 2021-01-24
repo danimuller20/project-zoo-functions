@@ -104,20 +104,18 @@ function noOptions() {
   const result = { NE: [], NW: [], SE: [], SW: [] };
   const locations = ['NE', 'NW', 'SE', 'SW'];
   locations.forEach(local =>
-  result[local] = animals.filter(({ location }) => location === local).map(({ name }) => name));
+  (result[local] = animals.filter(({ location }) => location === local).map(({ name }) => name)));
   return result;
 }
 
-
-function addPerRegion( { sorted = false, sex: genre = false }) {
+function addPerRegion({ sorted = false, sex: genre = false }) {
   const result = { NE: [], NW: [], SE: [], SW: [] };
   const speciesAndTheirNames = [];
-  animals.forEach(animal => {
+  animals.forEach((animal) => {
     let specieNames = [];
     if (!genre) {
       specieNames = animal.residents.map(({ name }) => name);
-    }
-    else {
+    } else {
       specieNames = animal.residents.filter(({ sex }) => genre === sex).map(({ name }) => name);
     }
     if (sorted) {
