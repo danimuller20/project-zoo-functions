@@ -72,13 +72,12 @@ function entryCalculator(entrants) {
   if (!entrants || entrants === {}) return 0;
   let total = 0;
   for (const key in entrants) {
-    let range = key
-    console.log(range);
-    if (key === 'Adult') total += entrants[key] * Adult
-    if (key === 'Senior') total += entrants[key] * Senior
-    if (key === 'Child') total += entrants[key] * Child
+    
+    if (key === 'Adult') total += entrants[key] * Adult;
+    if (key === 'Senior') total += entrants[key] * Senior;
+    if (key === 'Child') total += entrants[key] * Child;
   }
-  return parseFloat(total);
+  return parseFloat(total).toPrecision(5);
 }
 
 function animalMap(options) {
