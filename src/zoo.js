@@ -52,8 +52,7 @@ function isManager(id) {
 console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  if (!id || !firstName || !lastName || !managers || !responsibleFor) return [];
+function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
   const newEmployee = {
     id,
     firstName,
