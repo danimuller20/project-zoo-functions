@@ -49,7 +49,7 @@ function isManager(id) {
   // const person = employees.find((number) => number.id === id);
 }
 
-console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'))
+console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -60,8 +60,8 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     lastName,
     managers,
     responsibleFor,
-  }
-  employees.push(newEmployee);
+  };
+  return employees.push(newEmployee);
 }
 
 function animalCount(species) {
