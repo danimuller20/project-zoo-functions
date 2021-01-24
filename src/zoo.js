@@ -151,23 +151,27 @@ function animalMap(options) {
   return animalLocation;
 }
 
+function ifNotMonday(daysOpen) {
+  Object.keys(hours).forEach(key => {
+    if (key === 'Monday') {
+      daysOpen[key] = ('CLOSED');
+    } else {
+      daysOpen[key] = (`Open from ${hours[key].open}am until ${hours[key].close - 12}pm`);
+    }
+  });
+  return daysOpen;
+}
+
 function schedule(dayName) {
   // seu código aqui
-  let daysOpen = {};
+  const daysOpen = {};
   if (!dayName) {
-    Object.keys(hours).forEach(key => {
-      if (key === 'Monday') {
-        daysOpen[key] = ("CLOSED");
-      } else {
-        daysOpen[key] = (`Open from ${hours[key].open}am until ${hours[key].close - 12}pm`);
-      };
-    });
-    return daysOpen;
-  };
+    return ifNotMonday(daysOpen);
+  }
   if (dayName && dayName !== 'Monday') {
-    daysOpen[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`
+    daysOpen[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
   } else {
-    daysOpen[dayName] = ("CLOSED");
+    daysOpen[dayName] = ('CLOSED');
   }
   return daysOpen;
 }
