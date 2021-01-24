@@ -158,7 +158,7 @@ function employeeCoverage(idOrName) {
     const coverageList = employees.reduce(
       (employeeList, { firstName, lastName, responsibleFor }) => {
         employeeList[`${firstName} ${lastName}`] = responsibleFor.map(
-          animalId => animals.find(({ id }) => animalId === id).name
+          animalId => animals.find(({ id }) => animalId === id).name,
         );
         return employeeList;
       },
@@ -169,11 +169,11 @@ function employeeCoverage(idOrName) {
 
   const { firstName, lastName, responsibleFor } = employees.find(
     ({ firstName: employeeFirstName, lastName: employeeLastName, id }) =>
-    employeeFirstName === idOrName || employeeLastName === idOrName || id === idOrName
+      employeeFirstName === idOrName || employeeLastName === idOrName || id === idOrName,
   );
   return {
     [`${firstName} ${lastName}`]: responsibleFor.map(
-      animalId => animals.find(({ id }) => animalId === id).name
+      animalId => animals.find(({ id }) => animalId === id).name,
     ),
   };
 }
