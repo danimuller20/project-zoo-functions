@@ -118,7 +118,7 @@ function animalMap(options) {
 }
 
 // auxiliary function of schedule()
-const convertFormatForPm = hour => {
+const convertHoursFormatForPm = (hour) => {
   if (hour - 12 === 0) {
     return hour;
   }
@@ -128,28 +128,22 @@ const convertFormatForPm = hour => {
 // auxiliary function of schedule()
 const engineScheduleOfHuman = (accumulator, currentValue) => {
   if (hours[currentValue].open === 0 && hours[currentValue].close === 0) {
-    accumulator[currentValue] = `CLOSED`;
+    accumulator[currentValue] = 'CLOSED';
   } else {
     accumulator[currentValue] = `Open from ${
       hours[currentValue].open
-    }am until ${convertFormatForPm(hours[currentValue].close)}pm`;
+    }am until ${convertHoursFormatForPm(hours[currentValue].close)}pm`;
   }
   return accumulator;
-}
+};
 
 function schedule(dayName) {
   const newScheduleHuman = Object.keys(hours);
   const scheduleOfDay = {};
   if (!dayName) {
     return newScheduleHuman.reduce(engineScheduleOfHuman, {});
-  } else if (hours[dayName].open === 0 && hours[dayName].close === 0) {
-    scheduleOfDay[dayName] = `CLOSED`;
-  } else {
-    scheduleOfDay[dayName] = `Open from ${
-      hours[dayName].open
-    }am until ${convertFormatForPm(hours[dayName].close)}pm`;
   }
-  return scheduleOfDay;
+  return engineScheduleOfHuman(scheduleOfDay, dayName);
 }
 
 function oldestFromFirstSpecies(id) {
