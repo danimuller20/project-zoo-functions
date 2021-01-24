@@ -99,18 +99,17 @@ function entryCalculator(entrants) {
 
 // Popula o array animalLocation (Usar caso chamada sem parâmetro)
 const withOutParameters = (locations, animalLocation) => {
-  locations.forEach(location => {
+  locations.forEach(function(location) {
     const animalTemp = animals.filter(animal => animal.location === location);
     for (let animal of animalTemp) {
       animalLocation[location].push(animal.name);
     }
   })
-  console.log(animalLocation, '  with out parameters')
   return animalLocation;
 }
 
 function includeNamesTrue(locations, animalLocation) {
-  locations.forEach(location => {
+  locations.forEach(function(location) {
     const animalTemp = animals.filter(animal => animal.location === location);
     for (let animal of animalTemp) {
       let animalArrayTemp = {};
