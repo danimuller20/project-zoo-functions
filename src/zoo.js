@@ -99,60 +99,50 @@ function entryCalculator(entrants) {
 
 // Popula o array animalLocation (Usar caso chamada sem parâmetro)
 const withOutParameters = (locations, animalLocation) => {
-  locations.forEach(location => {
+  locations.forEach(function(location) {
     const animalTemp = animals.filter(animal => animal.location === location);
     for (let animal of animalTemp) {
       animalLocation[location].push(animal.name);
     }
-  })
-  console.log(animalLocation, '  with out parameters')
+  });
+  console.log(animalLocation, '  with out parameters');
   return animalLocation;
-}
+};
 
-const ifNotIncludeInclude = (array, enter) => {
-  if (!array.includes(enter)) { array = enter; }
-  return array;
-}
+// const ifNotIncludeInclude = (array, enter) => {
+//   if (!array.includes(enter)) { array = enter; }
+//   return array;
+// }
 
-const includeNamesTrue = (locations, animalLocation) => {
+function includeNamesTrue(locations, animalLocation) {
   locations.forEach(location => {
     const animalTemp = animals.filter(animal => animal.location === location);
     // console.log('AnimalTemp === ',animalTemp)
-    for (let animal of animalTemp) {
-      let animalArrayTemp = {};
-      let animalsResidentTemp = [];
-      for (let resident of animal.residents) {
+    for (const animal of animalTemp) {
+      const animalArrayTemp = {};
+      const animalsResidentTemp = [];
+      for (const resident of animal.residents) {
         animalsResidentTemp.push(resident.name);
       }
       animalArrayTemp[animal.name] = animalsResidentTemp;
       animalLocation[location].push(animalArrayTemp);
     }
-
-  // animalLocation[location].push(Object.values(animalsResidentTemp));
-  // console.log(animalTemp, ' teste de passagem')
-
-    console.log(animalLocation, '  includes Names true')
-    return animalLocation;
-  })
-
-
+  });
   return animalLocation;
-}
+};
 
 function animalMap(options) {
   // seu código aqui
-  let locations = [];
-  let animalLocation = {};
+  const locations = [];
+  const animalLocation = {};
   animals.forEach(animal => {
     if (!locations.includes(animal.location)) {
       locations.push(animal.location);
-      animalLocation[animal.location] = [];
-    }
-  })
-
-  if (!options) { return withOutParameters(locations, animalLocation); };
-  if ({ includeNames: true }) { return includeNamesTrue(locations, animalLocation); };
-
+      (animalLocation[animal.location] = []);
+    };
+  });
+  if (!options) { return withOutParameters(locations, animalLocation); }
+  if ({ includeNames: true }) { return includeNamesTrue(locations, animalLocation); }
 }
 
 function schedule(dayName) {
