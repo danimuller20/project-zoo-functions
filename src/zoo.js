@@ -151,13 +151,13 @@ const getEmployeesInfo = (employeeInfo) => {
 
 const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(animal => animal.name);
 
-function employeeCoverage(idOrName) {
+const employeeCoverage = (idOrName) => {
   const employeesQuery = getEmployeesInfo(idOrName);
   return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
     employeesObject[`${firstName} ${lastName}`] = getAnimalsNamesByIds(responsibleFor);
     return employeesObject;
   }, {});
-}
+};
 
 module.exports = {
   entryCalculator,
