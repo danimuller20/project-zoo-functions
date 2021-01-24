@@ -103,15 +103,14 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui 
+  // seu código aqui
 }
 
 function schedule(dayName) {
   // seu código aqui
-  let  result;
   const objHours = data.hours;
   const keys = Object.keys(objHours);
-  const schedule = keys.reduce((objResult, currentValue) => {
+  let result = keys.reduce((objResult, currentValue) => {
     if (objHours[currentValue].open === 0 && objHours[currentValue].close === 0) {
       objResult[currentValue] = 'CLOSED';
     } else {
@@ -119,18 +118,15 @@ function schedule(dayName) {
     }
     return objResult;
   }, {});
-  if (dayName === undefined) {
-    result = schedule;
-  } else {
+  if (dayName !== undefined) {
     keys.forEach((key) => {
       if (key === dayName) {
-        result = { [key]: schedule[key] };
+        result = { [key]: result[key] };
       }
-    })
+    });
   }
   return result;
 }
-console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
