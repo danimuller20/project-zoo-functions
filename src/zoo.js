@@ -103,10 +103,9 @@ const withOutParameters = (locations, animalLocation) => {
     const animalTemp = animals.filter(animal => animal.location === location);
     animalTemp.forEach(animal => animalLocation[location].push(animal.name));
   });
-  return animalLocation;
 };
 
-function includeNamesTrue(locations, animalLocation) {
+function includeNamesTrue(locations, animalLocation, options) {
   locations.forEach(function (location) {
     const animalTemp = animals.filter(animal => (animal.location === location));
     animalTemp.forEach(function (animal) {
@@ -115,11 +114,14 @@ function includeNamesTrue(locations, animalLocation) {
       animal.residents.forEach(function (resident) {
         animalsResidentTemp.push(resident.name);
       });
-      animalArrayTemp[animal.name] = animalsResidentTemp;
+      if (options.sorted) {
+        animalArrayTemp[animal.name] = animalsResidentTemp.sort();
+      } else {
+        animalArrayTemp[animal.name] = animalsResidentTemp;
+      }
       animalLocation[location].push(animalArrayTemp);
     });
   });
-  return animalLocation;
 }
 
 function animalMap(options) {
@@ -132,13 +134,19 @@ function animalMap(options) {
       animalLocation[animal.location] = [];
     }
   });
-  let returnClimate;
-  if (!options) {
-    returnClimate = withOutParameters(locations, animalLocation);
-  } else if (options.includeNames) {
-    returnClimate = includeNamesTrue(locations, animalLocation);
+
+  if (!options || !options.includeNames) {
+    withOutParameters(locations, animalLocation);
   }
-  return returnClimate;
+  if (options && options.includeNames) {
+    includeNamesTrue(locations, animalLocation, options);
+    console.log(animalLocation , ' === includesNamesTrue')
+
+  }
+  // if (options.sorted) {
+  //   animalLocation.
+  // }
+  return animalLocation;
 }
 
 function schedule(dayName) {
