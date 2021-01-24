@@ -50,15 +50,12 @@ function animalCount(species) {
   let listOfAnimals = {};
   if (species === undefined) {
     animals.forEach(({ name, popularity}) => listOfAnimals[name] = popularity);
-    listOfAnimals
   } else {
     const numberPopularity = animals.find(({name}) => name === species);
     listOfAnimals = numberPopularity.residents.length;
-    console.log(listOfAnimals);
   }
+  return listOfAnimals;
 }
-
-animalCount('lions');
 
 function entryCalculator(entrants) {
   // seu código aqui
