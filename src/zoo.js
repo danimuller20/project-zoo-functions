@@ -13,10 +13,13 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const managersList = [];
+employees.forEach(worker => worker.managers.forEach((id) => {
+  managersList.push(id);
+}));
 
 
 function animalsByIds(...ids) {
-  // seu código aqui
   if (ids.length === 0) return [];
   return animals.filter((animal, index) => animal.id === ids[index]);
 }
@@ -46,10 +49,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // const person = employees.find((number) => number.id === id);
+  const person = employees.find((number) => number.id === id);
+  return managersList.some(worker => worker === person.id)
 }
 
-console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 
 function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
