@@ -75,13 +75,12 @@ function schedule(dayName) {
     if (index === array.length - 1) {
       accumulator[key] = 'CLOSED';
       return accumulator;
-    } 
-      accumulator[key] = `Open from ${ value.open }am until ${ value.close -12 }pm`;
-      return accumulator;
+    }
+    accumulator[key] = `Open from ${value.open}am until ${value.close - 12}pm`;
+    return accumulator;
   }, {});
   return !dayName ? days : { [dayName]: days[dayName] };
 }
-console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
