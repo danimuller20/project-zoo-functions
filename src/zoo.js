@@ -63,7 +63,7 @@ function entryCalculator(entrants) {
 
 function animalsByLocation() {
   return animals.reduce(function (acc, { name, location }) {
-    return {...acc, [location]: (!acc[location] ? [name] : [...acc[location],name])}
+    return { ...acc, [location]: (!acc[location] ? [name] : [...acc[location], name]) };
   }, {});
 }
 
@@ -74,9 +74,9 @@ function detailedAnimalsList(gender = undefined) {
     const animList = [];
     anims.forEach((species) => {
       let { residents } = animals.find(({ name }) => name === species);
-      if (gender) { residents = residents.filter(({ sex }) => sex === gender) };
+      if (gender) { residents = residents.filter(({ sex }) => sex === gender); }
       animList.push({
-        [species]: residents.reduce((acc, { name }) => [...acc, name], [])
+        [species]: residents.reduce((acc, { name }) => [...acc, name], []),
       });
     });
     base[region] = animList;
@@ -95,14 +95,18 @@ function sortAnimalsNames(list) {
 function getAnimalsList(gender, sort) {
   const isMale = (gender === 'male');
   const isFemale = (gender === 'female');
-  const animalsFullList = (isMale || isFemale ? detailedAnimalsList(gender) : detailedAnimalsList());
-  if (sort) { sortAnimalsNames(animalsFullList); }
-  return animalsFullList;
+  const animalsList = (isMale || isFemale ? detailedAnimalsList(gender) : detailedAnimalsList());
+  if (sort) { sortAnimalsNames(animalsList); }
+  return animalsList;
 }
 
 function animalMap(options) {
-  try { var { includeNames, sex, sorted } = options; }
-  catch (error) { includeNames = false; }
+  let includeNames, sex, sorted = undefined;
+  if (options) {
+    includeNames = options.includeNames;
+    sex = options.sex;
+    sorted = options.sorted;
+  }
   return (!includeNames ? animalsByLocation() : getAnimalsList(sex, sorted));
 }
 
@@ -135,7 +139,7 @@ function selectEmployByName(askedName, base) {
 
 function selectEmploy(info, base) {
   const { firstName, lastName } = employees.find(({ id, firstName: fn, lastName: ln }) =>
-    id === info || fn === info || ln === info
+    id === info || fn === info || ln === info,
   );
   return selectEmployByName(`${firstName} ${lastName}`, base);
 }
