@@ -36,23 +36,41 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
+  const isManager = (id) => {
+    const managersIds = employees.reduce((acc, current) => [...acc, ...current.managers], []);
+    return managersIds.includes(id);
+  };
 }
 
 function isManager(id) {
   // seu código aqui
+  const isManager = (id) => {
+    const managersIds = employees.reduce((acc, current) => [...acc, ...current.managers], []);
+    return managersIds.includes(id);
+  };
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
+  const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
+    employees.push({ id, firstName, lastName, managers, responsibleFor });
+  };
 }
 
-function animalCount(species) {
+function animalCount(species)
   // seu código aqui
+const animalCount(especies) => {
+  let countReport = animals.reduce((accObject, current) => {
+    accObject[current.name] = current.residents.length;
+    return accObject;
+  }, {});
+  if (Object.keys(countReport).includes(species)){
+    countReport = countReport[species];
+    return countReport;
+  }
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
 
 function animalMap(options) {
   // seu código aqui
