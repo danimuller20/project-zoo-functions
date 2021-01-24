@@ -101,8 +101,6 @@ const animalMap = options => animals.reduce((accumulatorObj, currentSpecies) => 
   return accumulatorObj;
 }, {});
 
-animalMap({ includeNames: true, sex: 'male', sorted: true });
-
 const getReadbleHour = hour => (hour > 12 ? `${hour - 12}pm` : `${hour}am`);
 
 const getInfoFromDay = (day, infoObject) => (day ? { [day]: infoObject[day] } : infoObject);
