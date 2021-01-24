@@ -54,13 +54,14 @@ function animalMap(options) {
   const obj = { NE: [], NW: [], SE: [], SW: [] };
   // const selectOptions = { includeNames, sex, sorted };
   const funcOptions = {
-    showAll: function () {
+    showAll() {
       Object.keys(obj).forEach(locate => (obj[locate] =
     [...animals.filter(animal => animal.location === locate).map(animalName => animalName.name)]));
     },
   };
   switch (options) {
     case undefined: funcOptions.showAll();
+    default: break;
   }
 
   return obj;
