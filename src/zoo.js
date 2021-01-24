@@ -81,8 +81,10 @@ function entryCalculator(entrants = 0) {
   const pricesData = data.prices;
   const pricesCategories = Object.keys(pricesData);
   const totalPrice = pricesCategories.reduce((accumulator, priceCategory) => {
-    const priceToPay = accumulator += (entrants[priceCategory] ?
-      entrants[priceCategory] * pricesData[priceCategory] : 0);
+    const priceToAdd =
+    entrants[priceCategory] ? entrants[priceCategory] * pricesData[priceCategory] : 0;
+
+    const priceToPay = accumulator + priceToAdd;
     return priceToPay;
   }, 0);
   console.log(...pricesCategories);
