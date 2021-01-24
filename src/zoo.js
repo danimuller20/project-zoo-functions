@@ -72,9 +72,9 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const days = Object.entries(hours).reduce((accumulator, [key, value], index, array) => {
-    index === array.length - 1 ? accumulator[key] = 'CLOSED' :
-    accumulator[key] = `Open from ${value.open}am until ${value.close -12}pm`;
-    return accumulator; 
+    return index === array.length - 1 ? accumulator[key] = 'CLOSED' :
+    accumulator[key] = `Open from ${ value.open }am until ${ value.close -12 }pm`;
+  
   }, {});
   return !dayName ? days : { [dayName]: days[dayName] };
 }
