@@ -137,7 +137,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  // seu código aqu
 }
 
 function employeeCoverage(idOrName) {
