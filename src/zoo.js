@@ -58,16 +58,15 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   };
 }
 
-function animalCount(species)
+function animalCount(species) {
   // seu código aqui
-  const animalCount = (species) => {
-    let countReport = animals.reduce((accObject, current) => {
-      accObject[current.name] = current.residents.length;
-      return accObject;
-    }, {});
-    if (Object.keys(countReport).includes(species)) countReport = countReport[species];
-    return countReport;
-  };
+  let countReport = animals.reduce((accObject, current) => {
+    accObject[current.name] = current.residents.length;
+    return accObject;
+  }, {});
+  if (Object.keys(countReport).includes(species)) countReport = countReport[species];
+  return countReport;
+}
 
 
 function animalMap(options) {
