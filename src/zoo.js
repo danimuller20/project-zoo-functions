@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -51,19 +52,13 @@ function animalCount(species) {
     accObject[current.name] = current.residents.length;
     return accObject;
   }, {});
-  countReport = countReport[species];
+  if (Object.keys(countReport).includes(species)){
+    countReport = countReport[species];}
   return countReport;
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
-
-  (entrants = {}) => Object.entries(entrants).reduce(
-  (priceAccumulator, currentGroup) => {
-    const price = prices[currentGroup[0]];
-    const quantity = currentGroup[1];
-    return priceAccumulator + (price * quantity);
-  }, 0);
 }
 
 function animalMap(options) {
