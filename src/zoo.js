@@ -61,24 +61,49 @@ function entryCalculator(entrants) {
   return (!arrEnt ? arrEnt : arrEnt.reduce((acc, [type, qnty]) => acc + (qnty * prices[type]), 0));
 }
 
-/*
+function animalsByLocation() {
+  return animals.reduce(function (acc, { name, location }) {
+    return {...acc, [location]: (!acc[location] ? [name] : [...acc[location],name])}
+  }, {});
+}
 
-const animalsByLocation = animals.reduce(function (acc, { name, location }) {
-  return {...acc, [location]: (!acc[location] ? [name] : [...acc[location],name])}
-}, {});
-const animalsByName = animals.reduce(function (acc, { name, residents }) {
-  residentsList = residents.map(({ name }) => name);
-  return {...acc, [name]: residentsList }
-}, {});
+function detailedAnimalsList(gender = undefined) {
+  const base = animalsByLocation();
+  Object.entries(base).forEach((entry) => {
+    const [region, anims] = entry;
+    const animList = [];
+    anims.forEach((species) => {
+      let { residents } = animals.find(({ name }) => name === species);
+      if (gender) { residents = residents.filter(({ sex }) => sex === gender) };
+      animList.push({
+        [species]: residents.reduce((acc, { name }) => [...acc, name], [])
+      });
+    });
+    base[region] = animList;
+  });
+  return base;
+}
 
-*/
+function sortAnimalsNames(list) {
+  Object.values(list).forEach((group) => {
+    group.forEach((dict) => {
+      Object.entries(dict).forEach(pair => pair[1].sort());
+    });
+  });
+}
+
+function getAnimalsList(gender, sort) {
+  const isMale = (gender === 'male');
+  const isFemale = (gender === 'female');
+  const animalsFullList = (isMale || isFemale ? detailedAnimalsList(gender) : detailedAnimalsList());
+  if (sort) { sortAnimalsNames(animalsFullList); }
+  return animalsFullList;
+}
 
 function animalMap(options) {
-  // if (!options) {
-  //   return animalsByLocation;
-  // } else if (options.includeNames) {
-  //   return animalsByName;
-  // }
+  try { var { includeNames, sex, sorted } = options; }
+  catch (error) { includeNames = false; }
+  return (!includeNames ? animalsByLocation() : getAnimalsList(sex, sorted));
 }
 
 function schedule(dayName) {
@@ -104,14 +129,14 @@ function increasePrices(percentage) {
 }
 
 function selectEmployByName(askedName, base) {
-  const [empName, respAnimals] = Object.entries(base).find((entry) => entry[0].includes(askedName));
+  const [empName, respAnimals] = Object.entries(base).find(entry => entry[0].includes(askedName));
   return { [empName]: respAnimals };
 }
 
 function selectEmploy(info, base) {
-  const { firstName, lastName } = employees.find(({ id, firstName: fn, lastName: ln }) => {
-    return id === info || fn === info || ln === info;
-  });
+  const { firstName, lastName } = employees.find(({ id, firstName: fn, lastName: ln }) =>
+    id === info || fn === info || ln === info
+  );
   return selectEmployByName(`${firstName} ${lastName}`, base);
 }
 
@@ -119,7 +144,7 @@ function employeeCoverage(idOrName) {
   const base = employees.reduce((acc, { firstName, lastName, responsibleFor }) => {
     const empAnimals = [];
     responsibleFor.forEach(animal => empAnimals.push(animals.find(({ id }) => id === animal).name));
-    return {...acc, [`${firstName} ${lastName}`]: empAnimals};
+    return { ...acc, [`${firstName} ${lastName}`]: empAnimals };
   }, {});
   return (!idOrName ? base : selectEmploy(idOrName, base));
 }
