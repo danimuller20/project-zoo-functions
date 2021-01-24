@@ -141,7 +141,9 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
   const firstSpecies = employees.find(employee => employee.id === id).responsibleFor[0];
   return Object.values(animals.find(animal => animal.id === firstSpecies)
-  .residents.reduce((oldest, resident) => { return resident.age > oldest.age ? resident : oldest; }));
+  .residents.reduce(function(oldest, resident) {
+    return resident.age > oldest.age ? resident : oldest;
+  }));
 }
 
 function increasePrices(percentage) {
