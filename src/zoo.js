@@ -26,7 +26,8 @@ function animalsOlderThan(species, age) {
 function employeeByName(employeeName) {
   if (!employeeName) return {};
   return employees.find(
-    employee => employee.firstName === employeeName || employee.lastName === employeeName);
+    employee => employee.firstName === employeeName || employee.lastName === employeeName,
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -50,7 +51,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   const animalsList = {};
-  animals.forEach((animal) => { animalsList[animal.name] = animal.residents.length; });
+  animals.forEach(animal => {
+    animalsList[animal.name] = animal.residents.length;
+  });
   if (!species) {
     return animalsList;
   }
@@ -60,7 +63,7 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   let entryTotal = 0;
   if (entrants) {
-    Object.keys(prices).forEach((age) => {
+    Object.keys(prices).forEach(age => {
       if (entrants[age]) {
         entryTotal += prices[age] * entrants[age];
       }
@@ -79,16 +82,19 @@ function emptyAnimalMap(myAnimalMap, animal) {
 }
 
 function getResidentsBySpecies(species, genre = false) {
-  return species.residents.reduce((namesBySpeacies, animalName) => {
-    if (genre) {
-      if (animalName.sex === genre) {
+  return species.residents.reduce(
+    (namesBySpeacies, animalName) => {
+      if (genre) {
+        if (animalName.sex === genre) {
+          namesBySpeacies[species.name].push(animalName.name);
+        }
+      } else {
         namesBySpeacies[species.name].push(animalName.name);
       }
-    } else {
-      namesBySpeacies[species.name].push(animalName.name);
-    }
-    return namesBySpeacies;
-  }, { [species.name]: [] });
+      return namesBySpeacies;
+    },
+    { [species.name]: [] },
+  );
 }
 
 function namesAnimalMap(genre) {
@@ -111,8 +117,8 @@ function animalMap(options) {
     newAnimalMap = namesAnimalMap(options.sex);
   }
   if (options.sorted === true) {
-    Object.keys(newAnimalMap).forEach((region) => {
-      newAnimalMap[region].forEach((species) => {
+    Object.keys(newAnimalMap).forEach(region => {
+      newAnimalMap[region].forEach(species => {
         species[Object.keys(species)[0]].sort();
       });
     });
@@ -140,16 +146,19 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const firstSpecies = employees.find(employee => employee.id === id).responsibleFor[0];
-  return Object.values(animals.find(animal => animal.id === firstSpecies)
-  .residents.reduce(function (oldest, resident) {
-    return resident.age > oldest.age ? resident : oldest;
-  }));
+  return Object.values(
+    animals
+      .find(animal => animal.id === firstSpecies)
+      .residents.reduce(function (oldest, resident) {
+        return resident.age > oldest.age ? resident : oldest;
+      }),
+  );
 }
 
 function increasePrices(percentage) {
-  Object.keys(prices).forEach((agePrice) => {
+  Object.keys(prices).forEach(agePrice => {
     prices[agePrice] =
-      (Math.round(prices[agePrice] * percentage) + (prices[agePrice] * 100)) / 100;
+      (Math.round(prices[agePrice] * percentage) + prices[agePrice] * 100) / 100;
   });
 }
 
