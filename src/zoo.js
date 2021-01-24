@@ -99,19 +99,18 @@ function entryCalculator(entrants) {
 }
 
 function getLocations() {
-  const locations =[];
-  animals.forEach(animal => {
-    if (!locations || !locations.some(location => location === animal.location)){
-      locations.push(animal.location)}
-    });
+  const locations = [];
+  animals.forEach((animal) => {
+    if (!locations || !locations.some(location => location === animal.location)) {
+      locations.push(animal.location) } });
   return locations;
 }
 
-function getAnimalsByLocation (locations) {
-  animalsLocation = {};
-  locations.forEach(location => {
+function getAnimalsByLocation(locations) {
+  const animalsLocation = {};
+  locations.forEach((location) => {
     const names = [];
-    animals.filter(animal => {
+    animals.filter((animal) => {
       if (animal.location === location) {
         names.push(animal.name);
       }
@@ -124,17 +123,17 @@ function getAnimalsByLocation (locations) {
 function getAnimalsLocationPlusResidentsNames(animalsLocations) {
   const objectKeys = Object.keys(animalsLocations);
   const animalsLocationsWithResidents = {};
-  objectKeys.forEach(key => {
+  objectKeys.forEach((key) => {
     animalsLocationsWithResidents[key] = [];
     const animalsLocated = animals.filter(animal => animal.location === key);
-    animalsLocated.forEach(animalLocated => {
-    const animal = {};
-    let animalResidentsNames = [];
-    animalLocated.residents.forEach(resident => animalResidentsNames.push(resident.name));
-    animal[animalLocated.name] = animalResidentsNames;
-    animalsLocationsWithResidents[key].push(animal);
+    animalsLocated.forEach((animalLocated) => {
+      const animal = {};
+      let animalResidentsNames = [];
+      animalLocated.residents.forEach(resident => animalResidentsNames.push(resident.name));
+      animal[animalLocated.name] = animalResidentsNames;
+      animalsLocationsWithResidents[key].push(animal);
     });
-  })
+  });
   return animalsLocationsWithResidents;
 }
 
@@ -146,10 +145,10 @@ function sortResidentNames(animalsList) {
 
 function getAnimalsLocationBySex(sex, locations) {
   const animalsResidentsBySex = {};
-  locations.forEach(location => {
+  locations.forEach((location) => {
     animalsResidentsBySex[location] = [];
     const animalsAtThisLocation = animals.filter(animal => animal.location === location);
-    animalsAtThisLocation.forEach(animal => { 
+    animalsAtThisLocation.forEach((animal) => {
       const newAnimal = {};
       const residentsBySex = [];
       animal.residents.filter(resident => resident.sex === sex)
@@ -157,7 +156,7 @@ function getAnimalsLocationBySex(sex, locations) {
       newAnimal[animal.name] = residentsBySex;
       animalsResidentsBySex[location].push(newAnimal);
     });
-  })
+  });
   return animalsResidentsBySex;
 }
 
@@ -180,7 +179,6 @@ function animalMap(options) {
   }
   return animalsWithResidentNames;
 }
-console.log(animalMap({ sex: 'female' })['NE'][0]);
 
 function schedule(dayName) {
   // seu código aqui
