@@ -17,7 +17,7 @@ function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
   } else if (ids.length === 1) {
-    idAnimais.push(animals.filter(animal => animal.id === ids[0]));
+    idAnimais.push(animals.find(animal => animal.id === ids[0]));
   } else if (ids.length > 1) {
     ids.forEach((xablau) => {
       idAnimais.push(animals.filter(animal => animal.id === xablau));
