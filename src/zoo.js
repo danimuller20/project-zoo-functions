@@ -49,12 +49,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const person = employees.find((number) => number.id === id);
-  return managersList.some(worker => worker === person.id)
+  const person = employees.find(number => number.id === id);
+  return managersList.some(worker => worker === person.id);
 }
-
-console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-
 
 function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
   const newEmployee = {
