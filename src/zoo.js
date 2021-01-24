@@ -35,8 +35,6 @@ const employeeByName = (employeeName) => {
 
 const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
-// const getEmployeeById = id => employees.find(employee => employee.id === id);
-
 const isManager = (id) => {
   const managersIds = employees.reduce((acc, current) => [...acc, ...current.managers], []);
   return managersIds.includes(id);
