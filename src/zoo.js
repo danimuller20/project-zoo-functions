@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 
+
 function animalsByIds(...ids) {
   // seu código aqui
   if (ids.length === 0) return [];
@@ -28,7 +29,6 @@ function animalsOlderThan(animal, age) {
     iteratedAnimal.name === animal));
   return animalsToCheckAge.residents.every(resident => resident.age > age);
 }
-
 
 function employeeByName(string) {
   if (!string) return {};
@@ -46,10 +46,22 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
+  // const person = employees.find((number) => number.id === id);
 }
 
+console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'))
+
+
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  if (!id || !firstName || !lastName || !managers || !responsibleFor) return [];
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  }
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {
