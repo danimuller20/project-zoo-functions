@@ -15,12 +15,12 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  const achou = [];
+  const zooArray = [];
   if (!ids) {
     return [];
   }
   if (ids.length === 1) {
-    achou.push(data.animals.find(animal => animal.id === ids[0]));
+    zooArray.push(data.animals.find(animal => animal.id === ids[0]));
   }
   if (ids.length > 1) {
     // for (let index = 0; index < ids.length; index++) {
@@ -28,17 +28,31 @@ function animalsByIds(...ids) {
     //   achou.push(data.animals.find((animal) => animal.id === element));
     // }
     ids.forEach((codigo) => {
-      achou.push(animals.find(animal => animal.id === codigo));
+      zooArray.push(animals.find(animal => animal.id === codigo));
     });
   }
-  return achou;
+  return zooArray;
 }
 // console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
+  let returnSearch = false;
   // seu código aqui
+  // animals.forEach((especie) => {
+  //   especie.residents.forEach((resident) => {
+  //     console.log(resident.age);
+  //   });
+  // });
+  animals.find(especie => {
+    if (especie.name === animal) {
+      returnSearch = especie.residents.some(apelido => apelido.age < age);
+    }
+  });
+  return !returnSearch;
 }
+console.log(animalsOlderThan('penguins', 7));
+// console.log(animals[0].residents);
 
 function employeeByName(employeeName) {
   // seu código aqui
