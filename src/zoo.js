@@ -79,8 +79,115 @@ function entryCalculator(entrants = {}) {
   return totalprice;
 }
 
+function createAnimal(options) {
+  let lions = animals.find(animal => animal.name === 'lions').residents.map(value => value.name);
+  let giraffes = animals.find(animal => animal.name === 'giraffes').residents.map(value => value.name);
+  let tigers = animals.find(animal => animal.name === 'tigers').residents.map(value => value.name);
+  let bears = animals.find(animal => animal.name === 'bears').residents.map(value => value.name);
+  let elephants = animals.find(animal => animal.name === 'elephants').residents.map(value => value.name);
+  let penguins = animals.find(animal => animal.name === 'penguins').residents.map(value => value.name);
+  let otters = animals.find(animal => animal.name === 'otters').residents.map(value => value.name);
+  let frogs = animals.find(animal => animal.name === 'frogs').residents.map(value => value.name);
+  let snakes = animals.find(animal => animal.name === 'snakes').residents.map(value => value.name);
+  if (options.sex === 'female') {
+    lions = animals.find(animal => animal.name === 'lions').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+    giraffes = animals.find(animal => animal.name === 'giraffes').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+    tigers = animals.find(animal => animal.name === 'tigers').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+    bears = animals.find(animal => animal.name === 'bears').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+    elephants = animals.find(animal => animal.name === 'elephants').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+    penguins = animals.find(animal => animal.name === 'penguins').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+    otters = animals.find(animal => animal.name === 'otters').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+    frogs = animals.find(animal => animal.name === 'frogs').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+    snakes = animals.find(animal => animal.name === 'snakes').residents
+    .filter(animal => animal.sex === 'female')
+    .map(animal => animal.name);
+  }
+  if (options.sex === 'male') {
+    lions = animals.find(animal => animal.name === 'lions').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+    giraffes = animals.find(animal => animal.name === 'giraffes').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+    tigers = animals.find(animal => animal.name === 'tigers').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+    bears = animals.find(animal => animal.name === 'bears').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+    elephants = animals.find(animal => animal.name === 'elephants').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+    penguins = animals.find(animal => animal.name === 'penguins').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+    otters = animals.find(animal => animal.name === 'otters').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+    frogs = animals.find(animal => animal.name === 'frogs').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+    snakes = animals.find(animal => animal.name === 'snakes').residents
+    .filter(animal => animal.sex === 'male')
+    .map(animal => animal.name);
+  }
+  if (options.sorted === true) {
+    lions.sort();
+    giraffes.sort();
+    tigers.sort();
+    bears.sort();
+    elephants.sort();
+    penguins.sort();
+    otters.sort();
+    frogs.sort();
+    snakes.sort();
+  }
+  const mapAnimals = { 
+    NE: [{ lions }, { giraffes }],
+    NW: [{ tigers }, { bears }, { elephants }],
+    SE: [{ penguins }, { otters }],
+    SW: [{ frogs }, { snakes }] };
+  return mapAnimals;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const neAnimals = animals
+  .filter(animal => animal.location === 'NE')
+  .map(animal => animal.name);
+  const nwAnimals = animals
+  .filter(animal => animal.location === 'NW')
+  .map(animal => animal.name);
+  const seAnimals = animals
+  .filter(animal => animal.location === 'SE')
+  .map(animal => animal.name);
+  const swAnimals = animals
+  .filter(animal => animal.location === 'SW')
+  .map(animal => animal.name);
+  if (options === undefined || options.includeNames === undefined) {
+    return {
+      NE: neAnimals,
+      NW: nwAnimals,
+      SE: seAnimals,
+      SW: swAnimals,
+    };
+  }
+  return createAnimal(options);
 }
 
 function schedule(dayName) {
