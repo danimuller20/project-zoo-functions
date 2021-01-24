@@ -59,15 +59,13 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (!entrants) { return 0; }
   let total = 0;
-  for (let key in prices) {
+  for (const key of Object.keys(prices)) {
     if (entrants[key]) {
       total += prices[key] * entrants[key];
     }
   }
   return total;
 }
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
-
 
 function animalMap(options) {
   // seu código aqui
