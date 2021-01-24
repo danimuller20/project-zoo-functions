@@ -57,10 +57,24 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+
+  (entrants = {}) => Object.entries(entrants).reduce(
+  (priceAccumulator, currentGroup) => {
+    const price = prices[currentGroup[0]];
+    const quantity = currentGroup[1];
+    return priceAccumulator + (price * quantity);
+  }, 0);
 }
 
 function animalMap(options) {
   // seu código aqui
+  options => animals.reduce((mappingObject, currentSpecies) => {
+    const speciesMap = makeMapFrom(currentSpecies);
+    speciesMap.accumulateWith(mappingObject);
+    speciesMap.byOptions(options);
+    mappingObject[speciesMap.location] = [...speciesMap.locationAnimals, speciesMap.map];
+    return mappingObject;
+  }, {});
 }
 
 function schedule(dayName) {
