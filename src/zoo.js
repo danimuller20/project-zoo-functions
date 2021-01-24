@@ -101,45 +101,49 @@ function entryCalculator(entrants) {
 }
 
 function noOptions() {
-	const result = { NE: [], NW: [], SE: [], SW: [] };
-
-	result['NE'] = animals.filter(({ location }) => location === 'NE').map(({ name }) => name);
-	result['NW'] = animals.filter(({ location }) => location === 'NW').map(({ name }) => name);
-	result['SE'] = animals.filter(({ location }) => location === 'SE').map(({ name }) => name);
-	result['SW'] = animals.filter(({ location }) => location === 'SW').map(({ name }) => name);
-
-	return result;
+  const result = { NE: [], NW: [], SE: [], SW: [] };
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  locations.forEach(local =>
+  result[local] = animals.filter(({ location }) => location === local).map(({ name }) => name));
+  return result;
 }
 
+
 function addPerRegion( { sorted = false, sex: genre = false }) {
-	const result = { NE: [], NW: [], SE: [], SW: [] };
-	const speciesAndTheirNames = [];
-	animals.forEach(animal => {
-		let specieNames = [];
-		if (!genre) {
-			specieNames = animal.residents.map(({ name }) => name);
-		}
-		else {
-			specieNames = animal.residents.filter(({ sex }) => genre === sex).map(({ name }) => name);
-		}
-		if (sorted) {
-			specieNames.sort();
-		}
-			const species = {};
-			species[animal.name] = specieNames;
-			speciesAndTheirNames.push(species);
-	});
+  const result = { NE: [], NW: [], SE: [], SW: [] };
+  const speciesAndTheirNames = [];
+  animals.forEach(animal => {
+    let specieNames = [];
+    if (!genre) {
+      specieNames = animal.residents.map(({ name }) => name);
+    }
+    else {
+      specieNames = animal.residents.filter(({ sex }) => genre === sex).map(({ name }) => name);
+    }
+    if (sorted) {
+      specieNames.sort();
+    }
+    const species = {};
+    species[animal.name] = specieNames;
+    speciesAndTheirNames.push(species);
+  });
 
-	animals.filter(({ location }) => location === 'NE').map(({ name }) => name).forEach(specie =>
-	result['NE'].push(speciesAndTheirNames.find(element => element[specie])));
-	animals.filter(({ location }) => location === 'NW').map(({ name }) => name).forEach(specie =>
-	result['NW'].push(speciesAndTheirNames.find(element => element[specie])));
-	animals.filter(({ location }) => location === 'SE').map(({ name }) => name).forEach(specie =>
-	result['SE'].push(speciesAndTheirNames.find(element => element[specie])));
-	animals.filter(({ location }) => location === 'SW').map(({ name }) => name).forEach(specie =>
-	result['SW'].push(speciesAndTheirNames.find(element => element[specie])));
+  const locations = ['NE', 'NW', 'SE', 'SW'];
 
-	return result;
+  locations.forEach(local => animals.filter(({ location }) =>
+  location === local).map(({ name }) => name).forEach(specie =>
+  result[local].push(speciesAndTheirNames.find(element => element[specie]))));
+
+  // animals.filter(({ location }) => location === 'NE').map(({ name }) => name).forEach(specie =>
+  // result['NE'].push(speciesAndTheirNames.find(element => element[specie])));
+  // animals.filter(({ location }) => location === 'NW').map(({ name }) => name).forEach(specie =>
+  // result['NW'].push(speciesAndTheirNames.find(element => element[specie])));
+  // animals.filter(({ location }) => location === 'SE').map(({ name }) => name).forEach(specie =>
+  // result['SE'].push(speciesAndTheirNames.find(element => element[specie])));
+  // animals.filter(({ location }) => location === 'SW').map(({ name }) => name).forEach(specie =>
+  // result['SW'].push(speciesAndTheirNames.find(element => element[specie])));
+
+  return result;
 }
 
 function animalMap(options) {
@@ -149,11 +153,11 @@ function animalMap(options) {
   // sem parametros: retorna animais categorizados por localizacao;
   // includeNames = true, retorna nomes de animais;
   // sorted = true, retorna nomes de animais ordenados alfabeticamente;
-	// sex = female ou sex = male, retorna somente os animais do genero;
-	if (!options || !options.includeNames) {
-		return noOptions();
-	}
-		return addPerRegion(options);
+  // sex = female ou sex = male, retorna somente os animais do genero;
+  if (!options || !options.includeNames) {
+    return noOptions();
+  }
+  return addPerRegion(options);
 }
 
 function schedule(dayName) {
