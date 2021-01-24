@@ -49,8 +49,9 @@ function animalCount(species) {
   // seu código aqui
   let countReport = animals.reduce((accObject, current) => {
     accObject[current.name] = current.residents.length;
-    return accObject;}, {});
-    countReport = countReport[species];
+    return accObject;
+  }, {});
+  countReport = countReport[species];
   return countReport;
 }
 
