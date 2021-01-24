@@ -52,7 +52,8 @@ function animalCount(species) {
     return accObject;
   }, {});
   if (Object.keys(countReport).includes(species)) {
-    countReport = countReport[species]};
+    countReport = countReport[species]
+  };
   return countReport;
 }
 
