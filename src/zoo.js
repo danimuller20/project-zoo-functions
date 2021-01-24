@@ -71,13 +71,15 @@ function entryCalculator(entrants) {
   const { Adult, Child, Senior } = prices;
   if (!entrants || entrants === {}) return 0;
   let total = 0;
-  for (const key in entrants) {
-    
-    if (key === 'Adult') total += entrants[key] * Adult;
-    if (key === 'Senior') total += entrants[key] * Senior;
-    if (key === 'Child') total += entrants[key] * Child;
-  }
-  return parseFloat(total).toPrecision(5);
+  Object.entries(entrants)
+    .map(arrayVisitor => arrayVisitor)
+    .forEach(element => {
+      if (element[0] === 'Adult') total += element[1] * Adult;
+      if (element[0] === 'Senior') total += element[1] * Senior;
+      if (element[0] === 'Child') total += element[1] * Child;
+    });
+
+  return parseFloat(total);
 }
 
 function animalMap(options) {
