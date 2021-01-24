@@ -107,13 +107,13 @@ const getInfoFromDay = (day, infoObject) => (
   );
 
 const schedule = (dayName) => {
-  const outputObject = Object.entries(hours).reduce(
+  const scheduleObject = Object.entries(hours).reduce(
     (daysAccumulator, [currentDayName, { open, close }]) => {
       const info = open === 0 ? 'CLOSED' : `Open from ${getReadbleHour(open)} until ${getReadbleHour(close)}`;
       daysAccumulator[currentDayName] = info;
       return daysAccumulator;
     }, {});
-  return getInfoFromDay(dayName, outputObject);
+  return getInfoFromDay(dayName, scheduleObject);
 };
 
 const oldestFromFirstSpecies = (id) => {
