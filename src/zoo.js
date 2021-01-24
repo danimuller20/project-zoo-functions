@@ -84,7 +84,6 @@ const mapAnimal = ({ location, name, residents }) => ({
     }
   },
   accumulateWith(accumulator) {
-    this.accumulator = accumulator;
     const { [location]: locationAnimals = [] } = accumulator;
     this.locationAnimals = locationAnimals;
     this.map = name;
