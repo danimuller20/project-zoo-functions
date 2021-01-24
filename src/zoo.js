@@ -147,7 +147,7 @@ const getEmployeeByAnyInfo = (employeeArg) => {
   return employeesQuery;
 };
 
-const getAnimalsNamesByIds = (animalsIds) => animalsByIds(...animalsIds).map(animal => animal.name);
+const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(animal => animal.name);
 
 function employeeCoverage(idOrName) {
   const employeesQuery = getEmployeeByAnyInfo(idOrName);
