@@ -13,7 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
-// const { hours } = data;
+const { hours } = data;
 const { prices } = data;
 
 function animalsByIds(...ids) {
@@ -71,7 +71,12 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const days = Object.entries(hours).reduce((accumulator, [key, value], index, array) => {
+    index === array.length - 1 ? accumulator[key] = 'CLOSED' :
+    accumulator[key] = `Open from ${value.open}am until ${value.close -12}pm`;
+    return accumulator; 
+  }, {});
+  return !dayName ? days : { [dayName]: days[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
