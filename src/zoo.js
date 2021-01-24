@@ -28,8 +28,7 @@ const animalsOlderThan = (animal, age) => {
 const employeeById = id => employees.find(employee => employee.id === id);
 
 const employeeByName = (employeeName) => {
-  const foundEmployee = employees.find(
-    employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  const foundEmployee = employees.find(employee => Object.values(employee).includes(employeeName));
   return { ...foundEmployee };
 };
 
@@ -137,10 +136,10 @@ const increasePrices = (percentage) => {
   });
 };
 
-const getEmployeeByAnyInfo = (employeeArg) => {
+const getEmployeesInfo = (employeeInfo) => {
   let employeesQuery;
-  if (employeeArg) {
-    employeesQuery = [employees.find(employee => Object.values(employee).includes(employeeArg))];
+  if (employeeInfo) {
+    employeesQuery = [employeeByName(employeeInfo)];
   } else {
     employeesQuery = employees;
   }
@@ -150,7 +149,7 @@ const getEmployeeByAnyInfo = (employeeArg) => {
 const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(animal => animal.name);
 
 function employeeCoverage(idOrName) {
-  const employeesQuery = getEmployeeByAnyInfo(idOrName);
+  const employeesQuery = getEmployeesInfo(idOrName);
   return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
     employeesObject[`${firstName} ${lastName}`] = getAnimalsNamesByIds(responsibleFor);
     return employeesObject;
