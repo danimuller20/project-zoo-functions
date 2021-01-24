@@ -162,22 +162,6 @@ function getAnimalsLocationBySex(sex, locations) {
   return animalsResidentsBySex;
 }
 
-function verifyEmptyOptions (options, animalList, animalListWithNames) {
-  if (!options || !options.includeNames) {
-    return animalList;
-  }
-  if (options.includeNames && Object.keys(options).length === 1) {
-    return animalListWithNames;
-  }
-  if (options.sex) {
-    animalsWithResidentNames = getAnimalsLocationBySex(options.sex, locations);
-  }
-  if (options.sorted) {
-    sortResidentNames(animalsWithResidentNames);
-  }
-  return animalsWithResidentNames;
-}
-
 function animalMap(options) {
   // seu código aqui
   const locations = getLocations();
@@ -189,18 +173,17 @@ function animalMap(options) {
       return animalsAtEachLocation;
     case (options.includeNames && Object.keys(options).length === 1):
       return animalsWithResidentNames;
-    case (options.sex === 'female' || options.sex === 'male' ):
+    case (options.sex === 'female' || options.sex === 'male'):
       animalsWithResidentNames = getAnimalsLocationBySex(options.sex, locations);
+      break;
     default:
       break;
   }
-  if(options.sorted === true) {
+  if (options.sorted === true) {
     sortResidentNames(animalsWithResidentNames);
   }
   return animalsWithResidentNames;
 }
-
-console.log(animalMap({ includeNames: true, sex: 'female' }))
 
 function schedule(dayName) {
   // seu código aqui
