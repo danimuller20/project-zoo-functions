@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
+const { hours } = data;
 
 const animalsByIds = (...ids) => animals.filter(animal => ids.includes(animal.id));
 
@@ -102,8 +103,18 @@ const animalMap = options => animals.reduce((accumulatorObj, currentSpecies) => 
 
 animalMap({ includeNames: true, sex: 'male', sorted: true });
 
+const getReadbleHour = hour => (hour > 12 ? `${hour - 12}pm` : `${hour}am`);
+
+const getInfoFromDay = (day, infoObject) => (day ? { [day]: infoObject[day] } : infoObject);
+
 function schedule(dayName) {
-  // seu código aqui
+  const outputObject = Object.entries(hours).reduce(
+    (daysAccumulator, [currentDayName, { open, close }]) => {
+      const info = open === 0 ? 'CLOSED' : `Open from ${getReadbleHour(open)} until ${getReadbleHour(close)}`;
+      daysAccumulator[currentDayName] = info;
+      return daysAccumulator;
+    }, {});
+  return getInfoFromDay(dayName, outputObject);
 }
 
 function oldestFromFirstSpecies(id) {
