@@ -102,7 +102,7 @@ function getLocations() {
   const locations = [];
   animals.forEach((animal) => {
     if (!locations || !locations.some(location => location === animal.location)) {
-      locations.push(animal.location) } });
+      locations.push(animal.location); } });
   return locations;
 }
 
@@ -110,7 +110,7 @@ function getAnimalsByLocation(locations) {
   const animalsLocation = {};
   locations.forEach((location) => {
     const names = [];
-    animals.filter((animal) => {
+    animals.forEach((animal) => {
       if (animal.location === location) {
         names.push(animal.name);
       }
@@ -128,7 +128,7 @@ function getAnimalsLocationPlusResidentsNames(animalsLocations) {
     const animalsLocated = animals.filter(animal => animal.location === key);
     animalsLocated.forEach((animalLocated) => {
       const animal = {};
-      let animalResidentsNames = [];
+      const animalResidentsNames = [];
       animalLocated.residents.forEach(resident => animalResidentsNames.push(resident.name));
       animal[animalLocated.name] = animalResidentsNames;
       animalsLocationsWithResidents[key].push(animal);
@@ -171,10 +171,10 @@ function animalMap(options) {
   if (options.includeNames && Object.keys(options).length === 1) {
     return animalsWithResidentNames;
   }
-  if (options.includeNames && options.sex) {
+  if (options.sex) {
     animalsWithResidentNames = getAnimalsLocationBySex(options.sex, locations);
   }
-  if (options.includeNames && options.sorted) {
+  if (options.sorted) {
     sortResidentNames(animalsWithResidentNames);
   }
   return animalsWithResidentNames;
