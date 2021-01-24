@@ -54,13 +54,13 @@ function animalMap(options) {
   const obj = { NE: [], NW: [], SE: [], SW: [] };
   // const selectOptions = { includeNames, sex, sorted };
   const funcOptions = {
-    showAll: Object.keys(obj).forEach(locate => obj[locate] =
-      [...animals.filter(animal => animal.location === locate).map(animalName => animalName.name)]),
-  }
+    showAll: Object.keys(obj).forEach(locate => (obj[locate] =
+      [...animals.filter(animal => animal.location === locate).map(animalName => animalName.name)])),
+  };
   if (!options) {
     funcOptions.showAll;
   }
-  return obj
+  return obj;
 }
 
 function schedule(dayName) {
