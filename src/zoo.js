@@ -101,9 +101,7 @@ function entryCalculator(entrants) {
 const withOutParameters = (locations, animalLocation) => {
   locations.forEach(function (location) {
     const animalTemp = animals.filter(animal => animal.location === location);
-    for (const animal of animalTemp) {
-      animalLocation[location].push(animal.name);
-    }
+    animalTemp.forEach(animal => animalLocation[location].push(animal.name))
   });
   return animalLocation;
 };
@@ -111,15 +109,15 @@ const withOutParameters = (locations, animalLocation) => {
 function includeNamesTrue(locations, animalLocation) {
   locations.forEach(function (location) {
     const animalTemp = animals.filter(animal => (animal.location === location));
-    for (const animal of animalTemp) {
+    animalTemp.forEach((animal => {
       const animalArrayTemp = {};
       const animalsResidentTemp = [];
-      for (const resident of animal.residents) {
+      animal.residents.forEach((resident => {
         animalsResidentTemp.push(resident.name);
-      }
+      }));
       animalArrayTemp[animal.name] = animalsResidentTemp;
       animalLocation[location].push(animalArrayTemp);
-    }
+    }))
   });
   return animalLocation;
 }
@@ -134,10 +132,13 @@ function animalMap(options) {
       animalLocation[animal.location] = [];
     }
   }));
-  let return_;
-  if (!options) { return_ = withOutParameters(locations, animalLocation); }
-  else if (options.includeNames) { return_ = includeNamesTrue(locations, animalLocation); }
-  return return_;
+  let returnClimate;
+  if (!options) {
+    returnClimate = withOutParameters(locations, animalLocation);
+  } else if (options.includeNames) {
+    returnClimate = includeNamesTrue(locations, animalLocation);
+  }
+  return returnClimate;
 }
 
 function schedule(dayName) {
