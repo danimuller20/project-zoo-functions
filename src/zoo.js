@@ -14,7 +14,6 @@ const data = require('./data');
 
 
 function animalsByIds(...ids) {
-  // seu código aqui
   const zooArray = [];
   if (!ids) {
     return [];
@@ -34,20 +33,14 @@ function animalsByIds(...ids) {
   return zooArray;
 }
 // console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
-// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
   let returnSearch = false;
-  // seu código aqui
-  // animals.forEach((especie) => {
-  //   especie.residents.forEach((resident) => {
-  //     console.log(resident.age);
-  //   });
-  // });
-  animals.find(especie => {
+  animals.find((especie) => {
     if (especie.name === animal) {
       returnSearch = especie.residents.some(apelido => apelido.age < age);
     }
+    return returnSearch;
   });
   return !returnSearch;
 }
