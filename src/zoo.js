@@ -117,7 +117,6 @@ const ifNotIncludeInclude = (array, enter) => {
 const includeNamesTrue = (locations, animalLocation) => {
   locations.forEach(location => {
     const animalTemp = animals.filter(animal => animal.location === location);
-    // console.log('AnimalTemp === ',animalTemp)
     for (let animal of animalTemp) {
       let animalArrayTemp = {};
       let animalsResidentTemp = [];
@@ -127,15 +126,7 @@ const includeNamesTrue = (locations, animalLocation) => {
       animalArrayTemp[animal.name] = animalsResidentTemp;
       animalLocation[location].push(animalArrayTemp);
     }
-
-  // animalLocation[location].push(Object.values(animalsResidentTemp));
-  // console.log(animalTemp, ' teste de passagem')
-
-    console.log(animalLocation, '  includes Names true')
-    return animalLocation;
   })
-
-
   return animalLocation;
 }
 
@@ -151,7 +142,7 @@ function animalMap(options) {
   })
 
   if (!options) { return withOutParameters(locations, animalLocation); };
-  if ({ includeNames: true }) { return includeNamesTrue(locations, animalLocation); };
+  if (options.includeNames) { return includeNamesTrue(locations, animalLocation); };
 
 }
 
