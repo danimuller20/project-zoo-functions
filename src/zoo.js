@@ -61,9 +61,9 @@ function schedule(dayName) {
   let day = {};
   if (!dayName) {
     Object.keys(hours).forEach(hour => day[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`);
-    day.Monday= `CLOSED`;
-  } else if (dayName === 'Monday') day = {Monday: 'CLOSED'};
-  else day = {[dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`}
+    day.Monday = 'CLOSED';
+  } else if (dayName === 'Monday') day = { Monday: 'CLOSED' };
+  else day = { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
   return day;
 }
 
