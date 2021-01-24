@@ -9,10 +9,12 @@ eslint no-unused-vars: [
 ]
 */
 // LET'S DO THIS!
+const { prices } = require('./data');
 const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+
 const managersList = [];
 employees.forEach(worker => worker.managers.forEach((id) => {
   managersList.push(id);
@@ -71,7 +73,6 @@ function animalPopulation() {
   });
   return allAnimals;
 }
-console.log(animalPopulation());
 
 function animalCount(species) {
   if (!species) {
@@ -81,11 +82,13 @@ function animalCount(species) {
   return countSpecimens.residents.length;
 }
 
-// console.log(animalCount('lions'));
-// console.log(animals.forEach(kind => console.log(kind.name)));
-
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = {}) {
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  if(entrants === {} || entrants === 0) {
+    return 0;
+  }
+  let total = prices.Adult * Adult + prices.Child * Child + prices.Senior * Senior;
+  return total;
 }
 
 function animalMap(options) {
