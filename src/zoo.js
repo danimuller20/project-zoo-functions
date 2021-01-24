@@ -68,7 +68,9 @@ const getResidentsNames = residents => residents.reduce((array, currentResident)
   return array;
 }, []);
 
-const sortIfEnabled = (sorted, residents) => (sorted ? residents.sort() : residents);
+const sortIfEnabled = (sorted, residents) => (
+  sorted ? residents.sort() : residents
+  );
 
 const mapAnimal = ({ location, name, residents }) => ({
   name,
