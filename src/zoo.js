@@ -99,44 +99,45 @@ function entryCalculator(entrants) {
 
 // Popula o array animalLocation (Usar caso chamada sem parâmetro)
 const withOutParameters = (locations, animalLocation) => {
-  locations.forEach(function(location) {
+  locations.forEach(function (location) {
     const animalTemp = animals.filter(animal => animal.location === location);
-    for (let animal of animalTemp) {
+    for (const animal of animalTemp) {
       animalLocation[location].push(animal.name);
     }
-  })
+  });
   return animalLocation;
-}
+};
 
 function includeNamesTrue(locations, animalLocation) {
-  locations.forEach(function(location) {
-    const animalTemp = animals.filter(animal => animal.location === location);
-    for (let animal of animalTemp) {
-      let animalArrayTemp = {};
-      let animalsResidentTemp = [];
-      for (let resident of animal.residents) {
+  locations.forEach(function (location) {
+    const animalTemp = animals.filter(animal => (animal.location === location));
+    for (const animal of animalTemp) {
+      const animalArrayTemp = {};
+      const animalsResidentTemp = [];
+      for (const resident of animal.residents) {
         animalsResidentTemp.push(resident.name);
       }
       animalArrayTemp[animal.name] = animalsResidentTemp;
       animalLocation[location].push(animalArrayTemp);
     }
-  })
+  });
   return animalLocation;
 }
 
 function animalMap(options) {
   // seu código aqui
-  let locations = [];
-  let animalLocation = {};
-  animals.forEach(animal => {
+  const locations = [];
+  const animalLocation = {};
+  animals.forEach((animal => {
     if (!locations.includes(animal.location)) {
       locations.push(animal.location);
       animalLocation[animal.location] = [];
     }
-  });
-
-  if (!options) { return withOutParameters(locations, animalLocation); };
-  if (options.includeNames) { return includeNamesTrue(locations, animalLocation); };
+  }));
+  let return_;
+  if (!options) { return_ = withOutParameters(locations, animalLocation); }
+  else if (options.includeNames) { return_ = includeNamesTrue(locations, animalLocation); }
+  return return_;
 }
 
 function schedule(dayName) {
