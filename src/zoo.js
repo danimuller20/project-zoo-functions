@@ -112,7 +112,11 @@ function includeNamesTrue(locations, animalLocation, options) {
       const animalArrayTemp = {};
       const animalsResidentTemp = [];
       animal.residents.forEach(function (resident) {
-        animalsResidentTemp.push(resident.name);
+        if ((options.sex) && (resident.sex === options.sex)) {
+          animalsResidentTemp.push(resident.name);
+        } else if (!options.sex) {
+          animalsResidentTemp.push(resident.name);
+        }
       });
       if (options.sorted) {
         animalArrayTemp[animal.name] = animalsResidentTemp.sort();
@@ -140,8 +144,6 @@ function animalMap(options) {
   }
   if (options && options.includeNames) {
     includeNamesTrue(locations, animalLocation, options);
-    console.log(animalLocation , ' === includesNamesTrue')
-
   }
   // if (options.sorted) {
   //   animalLocation.
