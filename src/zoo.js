@@ -13,6 +13,8 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
+const { hours } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -63,10 +65,21 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  options => animals.reduce((mappingObject, currentSpecies) => {
+    const speciesMap = makeMapFrom(currentSpecies);
+    speciesMap.accumulateWith(mappingObject);
+    speciesMap.byOptions(options);
+    mappingObject[speciesMap.location] = [...speciesMap.locationAnimals, speciesMap.map];
+    return mappingObject;
+  }, {});
 }
 
 function schedule(dayName) {
   // seu código aqui
+  let daysAccumulator = 0;
+  let getReadbleHour = hour => (
+    hour > 12 ? `${hour - 12}pm` : `${hour}am`
+    );
   const scheduleObject = Object.entries(hours).reduce(
     (daysAccumulator, [currentDayName, { open, close }]) => {
       const info = open === 0 ? 'CLOSED' : `Open from ${getReadbleHour(open)} until ${getReadbleHour(close)}`;
