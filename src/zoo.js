@@ -55,8 +55,8 @@ function animalMap(options) {
   // const selectOptions = { includeNames, sex, sorted };
   const funcOptions = {
     showAll() {
-      Object.keys(obj).forEach(locate => (obj[locate] =
-        [...animals.filter(animal => animal.location === locate).map(animalName => animalName.name)]));
+      Object.keys(obj).forEach(locate => (obj[locate] = [...animals.filter(animal =>
+        animal.location === locate).map(animalName => animalName.name)]));
     },
   };
   switch (options) {
