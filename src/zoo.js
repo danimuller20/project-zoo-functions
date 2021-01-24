@@ -200,7 +200,7 @@ function oldestFromFirstSpecies(id) {
       oldestAge = resident.age;
       oldestResident = [resident.name, resident.sex, resident.age];
     }
-  })
+  });
   return oldestResident;
 }
 
