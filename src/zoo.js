@@ -56,11 +56,12 @@ function animalMap(options) {
   const funcOptions = {
     showAll() {
       Object.keys(obj).forEach(locate => (obj[locate] =
-    [...animals.filter(animal => animal.location === locate).map(animalName => animalName.name)]));
+        [...animals.filter(animal => animal.location === locate).map(animalName => animalName.name)]));
     },
   };
   switch (options) {
     case undefined: funcOptions.showAll();
+      break;
     default: break;
   }
 
