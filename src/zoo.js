@@ -32,7 +32,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
- return { ...personalInfo, ...associatedWith };
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -48,12 +48,15 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   // seu código aqui
   let countReport = animals.reduce((accObject, current) => {
-  accObject[current.name] = current.residents.length;
-  return accObject; }, {});
-  if (Object.keys(countReport).includes   (species)) countReport = countReport[species];
+    accObject[current.name] = current.residents.length;
+    return accObject;}, {});
+    countReport = countReport[species];
   return countReport;
 }
 
+function entryCalculator(entrants) {
+  // seu código aqui
+}
 
 function animalMap(options) {
   // seu código aqui
