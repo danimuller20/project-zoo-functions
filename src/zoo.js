@@ -68,6 +68,7 @@ function entryCalculator(entrants) {
   }
   return entryTotal;
 }
+
 function emptyAnimalMap(myAnimalMap, animal) {
   if (!myAnimalMap[animal.location]) {
     myAnimalMap[animal.location] = [animal.name];
@@ -154,8 +155,26 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    const coverageList = employees.reduce(
+      (employeeList, { firstName, lastName, responsibleFor }) => {
+        employeeList[`${firstName} ${lastName}`] = responsibleFor.map(animalId => {
+          return animals.find(({ id }) => animalId === id).name;
+        });
+        return employeeList;
+      },
+      {}
+    );
+    return coverageList;
+  }
+
+  const { firstName, lastName, responsibleFor } = employees.find(({ firstName, lastName, id }) => firstName === idOrName || lastName === idOrName || id === idOrName);
+  return { [`${firstName} ${lastName}`]: responsibleFor.map(animalId => {
+    return animals.find(({ id }) => animalId === id).name;
+  }) };
 }
+// console.log(employeeCoverage());
+// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
