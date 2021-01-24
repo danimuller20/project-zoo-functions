@@ -39,7 +39,7 @@ function isManager(id) {
       .some(idManager => idManager === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
