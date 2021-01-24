@@ -61,6 +61,7 @@ function entryCalculator(entrants) {
   return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
 
+// auxiliary function of animalMap()
 const getNamesAnimalsForLocation = (accumulator, currentValue) => {
   accumulator[currentValue.location] = animals
     .filter(({ location }) => location === currentValue.location)
@@ -68,8 +69,10 @@ const getNamesAnimalsForLocation = (accumulator, currentValue) => {
   return accumulator;
 };
 
+// auxiliary function of animalMap()
 const sortedNames = arrayOfNames => arrayOfNames.sort();
 
+// auxiliary function of animalMap()
 const getAnimalForSex = (currentAnimal, sex, sorted) => {
   const animalForSex = currentAnimal.residents
     .filter(resident => resident.sex === sex)
@@ -80,17 +83,14 @@ const getAnimalForSex = (currentAnimal, sex, sorted) => {
   return sortedNames(animalForSex);
 };
 
+// auxiliary function of animalMap()
 const sortedNamesOrGetForSex = (accAnimal, currentAnimal, sex, sorted) => {
   const objAnimal = {};
   const namesOfResidents = currentAnimal.residents.map(resident => resident.name);
-  if (sorted) {
-    if (sex !== '') {
-      objAnimal[currentAnimal.name] = getAnimalForSex(currentAnimal, sex, sorted);
-    } else {
-      objAnimal[currentAnimal.name] = sortedNames(namesOfResidents);
-    }
-  } else if (sex !== '') {
+  if (sex !== '') {
     objAnimal[currentAnimal.name] = getAnimalForSex(currentAnimal, sex, sorted);
+  } else if (sorted) {
+    objAnimal[currentAnimal.name] = sortedNames(namesOfResidents);
   } else {
     objAnimal[currentAnimal.name] = namesOfResidents;
   }
@@ -102,14 +102,15 @@ function animalMap(options) {
   if (!options) {
     return animals.reduce(getNamesAnimalsForLocation, {});
   }
-  const { includeNames = false, sorted = false, sex = ''} = options;
+  const { includeNames = false, sorted = false, sex = '' } = options;
   if (includeNames) {
     return animals.reduce((acc, current) => {
       acc[current.location] = animals
         .filter(({ location }) => location === current.location)
-        .reduce((accAnimal, currentAnimal) => {
-          return sortedNamesOrGetForSex(accAnimal, currentAnimal, sex, sorted);
-        }, []);
+        .reduce(
+          (accAnimal, currentAnimal) =>
+            sortedNamesOrGetForSex(accAnimal, currentAnimal, sex, sorted),
+          []);
       return acc;
     }, {});
   }
