@@ -103,10 +103,10 @@ function schedule(dayName) {
       if (value[0] === dayName && dayName === 'Monday') {
         object[value[0]] = 'CLOSED';
       }
+      return object;
     });
-    return object;
   }
-  return object
+  return object;
 }
 
 console.log(schedule());
