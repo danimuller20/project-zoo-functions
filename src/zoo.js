@@ -61,8 +61,60 @@ function entryCalculator(entrants) {
   return Adult * prices.Adult + Child * prices.Child + Senior * prices.Senior;
 }
 
+const getNamesAnimalsForLocation = (accumulator, currentValue) => {
+  accumulator[currentValue.location] = animals
+    .filter(({ location }) => location === currentValue.location)
+    .map((animal) => animal.name);
+  return accumulator;
+};
+
+const getAnimalForSex = (objAnimal, currentAnimal, sex, sorted) => {
+  const animalForSex = currentAnimal.residents
+    .filter((resident) => resident.sex === sex)
+    .map((resident) => resident.name);
+  if (!sorted) {
+    objAnimal[currentAnimal.name] = animalForSex;
+  } else {
+    objAnimal[currentAnimal.name] = animalForSex.sort();
+  }
+};
+
 function animalMap(options) {
-  // seu código aqui
+  if (!options) {
+    return animals.reduce(getNamesAnimalsForLocation, {});
+  }
+  const { includeNames = false, sorted = false, sex = "" } = options;
+  if (includeNames) {
+    return animals.reduce((acc, current) => {
+      acc[current.location] = animals
+        .filter(({ location }) => location === current.location) // objeto da especie
+        .reduce((accAnimal, currentAnimal) => {
+          const objAnimal = {};
+          if (sorted) {
+            if (sex !== "") {
+              getAnimalForSex(objAnimal, currentAnimal, sex, sorted);
+            } else {
+              const animalForSex = currentAnimal.residents
+                .map((resident) => resident.name)
+                .sort();
+              objAnimal[currentAnimal.name] = animalForSex;
+            }
+          } else {
+            if (sex !== "") {
+              getAnimalForSex(objAnimal, currentAnimal, sex, sorted);
+            } else {
+              objAnimal[currentAnimal.name] = currentAnimal.residents.map(
+                (resident) => resident.name
+              );
+            }
+          }
+          accAnimal.push(objAnimal);
+          return accAnimal;
+        }, []);
+      return acc;
+    }, {});
+  }
+  return animals.reduce(getNamesAnimalsForLocation, {});
 }
 
 function schedule(dayName) {
