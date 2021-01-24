@@ -152,7 +152,6 @@ const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(anima
 function employeeCoverage(idOrName) {
   const employeesQuery = getEmployeeByAnyInfo(idOrName);
   return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
-    console.log(responsibleFor);
     employeesObject[`${firstName} ${lastName}`] = getAnimalsNamesByIds(responsibleFor);
     return employeesObject;
   }, {});
