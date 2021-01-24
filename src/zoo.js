@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return animals.find(({ name }) => name === animal)
-  .residents.every(testAnimal => testAnimal.age >= age);
+  .residents.every(specie => specie.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -45,8 +45,8 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  return entrants ? Object.keys(entrants).reduce((sum, curr) =>
-  (sum += entrants[curr] * prices[curr]), 0) : 0;
+  return entrants ? Object.keys(entrants).reduce((sum, ageGroup) =>
+  (sum += entrants[ageGroup] * prices[ageGroup]), 0) : 0;
 }
 
 function animalMap(options) {
