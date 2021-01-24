@@ -132,7 +132,8 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
   const employee = data.employees.find(value => value.id === id);
   const specie = data.animals.find(value => value.id === employee.responsibleFor[0]);
-  const animalResult = specie.residents.reduce((oldAnimal, currentValue) => (currentValue.age > oldAnimal.age) ? currentValue : oldAnimal);
+  const animalResult = specie.residents.reduce((oldAnimal, currentValue) => 
+    (currentValue.age >= oldAnimal.age) ? currentValue : oldAnimal);
   return Object.values(animalResult);
 }
 
