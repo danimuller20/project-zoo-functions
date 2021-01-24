@@ -51,10 +51,9 @@ function animalCount(species) {
     accObject[current.name] = current.residents.length;
     return accObject;
   }, {});
-  if (Object.keys(countReport).includes(species)){
-    countReport = countReport[species]
-    return countReport;
-  }
+  if (Object.keys(countReport).includes(species)) {
+    countReport = countReport[species]};
+  return countReport;
 }
 
 function entryCalculator(entrants) {
