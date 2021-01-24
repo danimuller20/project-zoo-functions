@@ -52,18 +52,55 @@ const animalCount = (species) => {
   return countReport;
 };
 
-const entryCalculator = (entrants = {}) => {
-  return Object.entries(entrants).reduce(
-    (priceAccumulator, currentGroup) => {
-      const price = prices[currentGroup[0]];
-      const quantity = currentGroup[1];
-      return priceAccumulator + (price * quantity);
-    }, 0);
-}
+const entryCalculator = (entrants = {}) => Object.entries(entrants).reduce(
+  (priceAccumulator, currentGroup) => {
+    const price = prices[currentGroup[0]];
+    const quantity = currentGroup[1];
+    return priceAccumulator + (price * quantity);
+  }, 0);
 
-function animalMap(options) {
-  // seu código aqui
-}
+const filterResidentsBySex = (sex, residents) => {
+  if (sex) {
+    residents = residents.filter(resident => resident.sex === sex);
+  }
+  return residents;
+};
+
+const getResidentsNames = residents => residents.reduce((array, currentResident) => {
+  array.push(currentResident.name);
+  return array;
+}, []);
+
+const sortIfEnabled = (sorted, residents) => (sorted ? residents.sort() : residents);
+
+const mapAnimal = ({ location, name, residents }) => ({
+  name,
+  location,
+  byOptions({ includeNames = false, sex = false, sorted = false } = {}) {
+    if (includeNames) {
+      residents = filterResidentsBySex(sex, residents);
+      residents = getResidentsNames(residents);
+      residents = sortIfEnabled(sorted, residents);
+      this.map = { [this.name]: residents };
+    }
+  },
+  accumulateWith(accumulator) {
+    this.accumulator = accumulator;
+    const { [location]: locationAnimals = [] } = accumulator;
+    this.locationAnimals = locationAnimals;
+    this.map = name;
+  },
+});
+
+const animalMap = options => animals.reduce((accumulatorObj, currentSpecies) => {
+  const speciesMap = mapAnimal(currentSpecies);
+  speciesMap.accumulateWith(accumulatorObj);
+  speciesMap.byOptions(options);
+  accumulatorObj[speciesMap.location] = [...speciesMap.locationAnimals, speciesMap.map];
+  return accumulatorObj;
+}, {});
+
+animalMap({ includeNames: true, sex: 'male', sorted: true });
 
 function schedule(dayName) {
   // seu código aqui
