@@ -13,7 +13,6 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
-const { prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -60,13 +59,6 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  const entryICalculator = (entrants = {}) => Object.entries(entrants);
-  const entryICalculator.reduce(
-    (priceAccumulator, currentGroup) => {
-      const price = prices[currentGroup[0]];
-      const quantity = currentGroup[1];
-      return priceAccumulator + (price * quantity);
-    }, 0);
 }
 
 function animalMap(options) {
@@ -75,6 +67,13 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  const scheduleObject = Object.entries(hours).reduce(
+    (daysAccumulator, [currentDayName, { open, close }]) => {
+      const info = open === 0 ? 'CLOSED' : `Open from ${getReadbleHour(open)} until ${getReadbleHour(close)}`;
+      daysAccumulator[currentDayName] = info;
+      return daysAccumulator;
+    }, {});
+  return getInfoOfTheDay(dayName, scheduleObject);
 }
 
 function oldestFromFirstSpecies(id) {
