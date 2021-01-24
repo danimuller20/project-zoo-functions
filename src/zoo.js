@@ -25,6 +25,8 @@ const animalsOlderThan = (animal, age) => {
   return residents.every(resident => resident.age >= age);
 };
 
+const employeeById = id => employees.find(employee => employee.id === id);
+
 const employeeByName = (employeeName) => {
   const foundEmployee = employees.find(
     employee => employee.firstName === employeeName || employee.lastName === employeeName);
@@ -115,9 +117,17 @@ function schedule(dayName) {
   return getInfoFromDay(dayName, outputObject);
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+const oldestFromFirstSpecies = (id) => {
+  const employee = employeeById(id);
+  const [firstSpeciesId] = employee.responsibleFor;
+  const { residents } = animalsByIds(firstSpeciesId)[0];
+  return residents.reduce(
+    (oldest, current) => {
+      const oldestAge = oldest[2];
+      const { age: currentAge } = current;
+      return currentAge > oldestAge ? Object.values(current) : oldest;
+    }, ['', '', 0]);
+};
 
 function increasePrices(percentage) {
   // seu código aqui
