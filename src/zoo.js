@@ -60,7 +60,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species)
   // seu código aqui
-  animalsCounts(species) => {
+  const animalsCounts(species) => {
   let countReport = animals.reduce((accObject, current) => {
     accObject[current.name] = current.residents.length;
     return accObject;
