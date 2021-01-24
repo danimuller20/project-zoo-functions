@@ -102,7 +102,7 @@ const getReadbleHour = hour => (
   hour > 12 ? `${hour - 12}pm` : `${hour}am`
   );
 
-const getInfoFromDay = (day, infoObject) => (
+const getInfoOfTheDay = (day, infoObject) => (
   day ? { [day]: infoObject[day] } : infoObject
   );
 
@@ -113,7 +113,7 @@ const schedule = (dayName) => {
       daysAccumulator[currentDayName] = info;
       return daysAccumulator;
     }, {});
-  return getInfoFromDay(dayName, scheduleObject);
+  return getInfoOfTheDay(dayName, scheduleObject);
 };
 
 const oldestFromFirstSpecies = (id) => {
