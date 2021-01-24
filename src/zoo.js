@@ -146,9 +146,19 @@ function schedule(dayName) {
   return engineScheduleOfHuman(scheduleOfDay, dayName);
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+function oldestFromFirstSpecies(idEmployee) {
+  const idAnimalResponsable = employees.find(({ id }) => id === idEmployee).responsibleFor[0];
+  const specie = animals.find(({ id }) => id === idAnimalResponsable);
+  const agesOfResidentsOfSpecieFind = specie.residents
+    .map((animal) => animal.age)
+    .sort((a, b) => a - b);
+  const animalOldFind = specie.residents.find(
+    ({ age }) => age ===
+      agesOfResidentsOfSpecieFind[agesOfResidentsOfSpecieFind.length - 1]);
+  return Object.values(animalOldFind);
 }
+
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
