@@ -88,18 +88,18 @@ function animalMap(options) {
   // seu código aqui
 }
 
-const weeklySchedule = {
-  Tuesday: 'Open from 8am until 6pm',
-  Wednesday: 'Open from 8am until 6pm',
-  Thursday: 'Open from 10am until 8pm',
-  Friday: 'Open from 10am until 8pm',
-  Saturday: 'Open from 8am until 10pm',
-  Sunday: 'Open from 8am until 8pm',
-  Monday: 'CLOSED',
-};
 function schedule(dayName) {
   if (!dayName) {
-    return weeklySchedule;
+    // return weeklySchedule;
+    const fullSchedule = {};
+    Object.keys(hours).forEach((key) => {
+      if (key === 'Monday') {
+        fullSchedule[key] = 'CLOSED';
+      } else {
+        fullSchedule[key] = `Open from ${hours[key].open}am until ${hours[key].close - 12}pm`;
+      }
+    });
+    return fullSchedule;
   } else if (dayName === 'Monday') {
     return { [dayName]: 'CLOSED' };
   }
