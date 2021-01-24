@@ -107,7 +107,7 @@ const getReadbleHour = hour => (hour > 12 ? `${hour - 12}pm` : `${hour}am`);
 
 const getInfoFromDay = (day, infoObject) => (day ? { [day]: infoObject[day] } : infoObject);
 
-function schedule(dayName) {
+const schedule = (dayName) => {
   const outputObject = Object.entries(hours).reduce(
     (daysAccumulator, [currentDayName, { open, close }]) => {
       const info = open === 0 ? 'CLOSED' : `Open from ${getReadbleHour(open)} until ${getReadbleHour(close)}`;
