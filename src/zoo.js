@@ -58,32 +58,31 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (!entrants) return 0;
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  return Adult * prices.Adult + Child * prices.Child + Senior * prices.Senior;
+  return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
 
 const getNamesAnimalsForLocation = (accumulator, currentValue) => {
   accumulator[currentValue.location] = animals
     .filter(({ location }) => location === currentValue.location)
-    .map((animal) => animal.name);
+    .map(animal => animal.name);
   return accumulator;
 };
 
-const getAnimalForSex = (objAnimal, currentAnimal, sex, sorted) => {
+const getAnimalForSex = (currentAnimal, sex, sorted) => {
   const animalForSex = currentAnimal.residents
-    .filter((resident) => resident.sex === sex)
-    .map((resident) => resident.name);
+    .filter(resident => resident.sex === sex)
+    .map(resident => resident.name);
   if (!sorted) {
-    objAnimal[currentAnimal.name] = animalForSex;
-  } else {
-    objAnimal[currentAnimal.name] = animalForSex.sort();
+    return animalForSex;
   }
+  return animalForSex.sort();
 };
 
 function animalMap(options) {
   if (!options) {
     return animals.reduce(getNamesAnimalsForLocation, {});
   }
-  const { includeNames = false, sorted = false, sex = "" } = options;
+  const { includeNames = false, sorted = false, sex = '' } = options;
   if (includeNames) {
     return animals.reduce((acc, current) => {
       acc[current.location] = animals
@@ -91,22 +90,19 @@ function animalMap(options) {
         .reduce((accAnimal, currentAnimal) => {
           const objAnimal = {};
           if (sorted) {
-            if (sex !== "") {
-              getAnimalForSex(objAnimal, currentAnimal, sex, sorted);
+            if (sex !== '') {
+              objAnimal[currentAnimal.name] = getAnimalForSex(currentAnimal, sex, sorted);
             } else {
               const animalForSex = currentAnimal.residents
-                .map((resident) => resident.name)
+                .map(resident => resident.name)
                 .sort();
               objAnimal[currentAnimal.name] = animalForSex;
             }
+          } else if (sex !== '') {
+            objAnimal[currentAnimal.name] = getAnimalForSex(currentAnimal, sex, sorted);
           } else {
-            if (sex !== "") {
-              getAnimalForSex(objAnimal, currentAnimal, sex, sorted);
-            } else {
-              objAnimal[currentAnimal.name] = currentAnimal.residents.map(
-                (resident) => resident.name
-              );
-            }
+            objAnimal[currentAnimal.name] = currentAnimal.residents.map(
+              resident => resident.name);
           }
           accAnimal.push(objAnimal);
           return accAnimal;
