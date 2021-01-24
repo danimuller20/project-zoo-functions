@@ -61,7 +61,7 @@ function animalCount(species) {
   return listOfAnimals;
 }
 
-function entryCalculator(entrants) {
+function entryCalculator(entrants = 0) {
   // seu código aqui
   let totalPrice = 0;
   Object.entries(prices).forEach((value) => {
