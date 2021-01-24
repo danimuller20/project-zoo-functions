@@ -16,7 +16,7 @@ const { employees } = data;
 const { prices } = data;
 const { hours } = data;
 
-const animalsByIds = (...ids) => animals.filter(animal => ids.includes(animal.id));
+const animalsByIds = (...ids) => ids.map(id => animals.find(animal => animal.id === id));
 
 const getAnimalByName = animalName => animals.find(animal => animal.name === animalName);
 
@@ -147,31 +147,12 @@ const getEmployeeByAnyInfo = (employeeArg) => {
   return employeesQuery;
 };
 
-const compareArrays = (array1, array2) => array1.every((val, index) => val === array2[index]);
-
-const makeGambiarrasIfNeeded = (array) => {
-  const emeryAnimals = ['lions', 'bears', 'elephants'];
-  const stephanieAnimals = ['otters', 'giraffes'];
-  const isEmeryAnimals = compareArrays(array, emeryAnimals);
-  const isStephanieAnimals = compareArrays(array, stephanieAnimals);
-  if (isEmeryAnimals) {
-    const [first, second, third] = array;
-    array = [third, second, first];
-  }
-  if (isStephanieAnimals) {
-    array = array.sort();
-  }
-  return array;
-};
-
-const getAnimalsNamesByIds = (animalsIds) => {
-  const output = animalsByIds(...animalsIds).map(animal => animal.name);
-  return makeGambiarrasIfNeeded(output);
-};
+const getAnimalsNamesByIds = (animalsIds) => animalsByIds(...animalsIds).map(animal => animal.name);
 
 function employeeCoverage(idOrName) {
   const employeesQuery = getEmployeeByAnyInfo(idOrName);
   return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
+    console.log(responsibleFor);
     employeesObject[`${firstName} ${lastName}`] = getAnimalsNamesByIds(responsibleFor);
     return employeesObject;
   }, {});
