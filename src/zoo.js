@@ -34,7 +34,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return id === employees[1].id ? true : false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
