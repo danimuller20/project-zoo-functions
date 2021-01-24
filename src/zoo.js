@@ -76,8 +76,18 @@ function animalCount(species) {
   return species ? getResidentNumber(species) : getNumbersOfEachAnimal();
 }
 
-function entryCalculator(entrants) {
+function entryCalculator(entrants = 0) {
   // seu código aqui
+  const pricesData = data.prices;
+  const pricesCategories = Object.keys(pricesData);
+  const totalPrice = pricesCategories.reduce((accumulator, priceCategory) => {
+    const priceToPay = accumulator += (entrants[priceCategory] ?
+      entrants[priceCategory] * pricesData[priceCategory] : 0);
+    return priceToPay;
+  }, 0);
+  console.log(...pricesCategories);
+  console.log(totalPrice);
+  return totalPrice;
 }
 
 function animalMap(options) {
