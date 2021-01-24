@@ -115,7 +115,7 @@ const schedule = (dayName) => {
       return daysAccumulator;
     }, {});
   return getInfoFromDay(dayName, outputObject);
-}
+};
 
 const oldestFromFirstSpecies = (id) => {
   const employee = employeeById(id);
@@ -129,9 +129,15 @@ const oldestFromFirstSpecies = (id) => {
     }, ['', '', 0]);
 };
 
-function increasePrices(percentage) {
-  return percentage / 100;
-}
+const increasePrices = (percentage) => {
+  const increase = 1 + (percentage / 100);
+  Object.keys(prices).forEach((key) => {
+    const newValue = parseFloat(prices[key] * increase);
+    // Reference : https://medium.com/swlh/how-to-round-to-a-certain-number-of-decimal-places-in-javascript-ed74c471c1b8
+    const roundedPrice = Number(`${Math.round(`${newValue}e2`)}e-2`);
+    data.prices[key] = roundedPrice;
+  });
+};
 
 function employeeCoverage(idOrName) {
   // seu código aqui
