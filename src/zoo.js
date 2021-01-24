@@ -109,12 +109,7 @@ const withOutParameters = (locations, animalLocation) => {
   return animalLocation;
 }
 
-const ifNotIncludeInclude = (array, enter) => {
-  if (!array.includes(enter)) { array = enter; }
-  return array;
-}
-
-const includeNamesTrue = (locations, animalLocation) => {
+function includeNamesTrue(locations, animalLocation) {
   locations.forEach(location => {
     const animalTemp = animals.filter(animal => animal.location === location);
     for (let animal of animalTemp) {
@@ -139,11 +134,10 @@ function animalMap(options) {
       locations.push(animal.location);
       animalLocation[animal.location] = [];
     }
-  })
+  });
 
   if (!options) { return withOutParameters(locations, animalLocation); };
   if (options.includeNames) { return includeNamesTrue(locations, animalLocation); };
-
 }
 
 function schedule(dayName) {
