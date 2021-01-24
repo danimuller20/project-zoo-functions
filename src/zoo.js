@@ -101,7 +101,7 @@ function entryCalculator(entrants) {
 const withOutParameters = (locations, animalLocation) => {
   locations.forEach(function (location) {
     const animalTemp = animals.filter(animal => animal.location === location);
-    animalTemp.forEach(animal => animalLocation[location].push(animal.name))
+    animalTemp.forEach(animal => animalLocation[location].push(animal.name));
   });
   return animalLocation;
 };
@@ -109,15 +109,15 @@ const withOutParameters = (locations, animalLocation) => {
 function includeNamesTrue(locations, animalLocation) {
   locations.forEach(function (location) {
     const animalTemp = animals.filter(animal => (animal.location === location));
-    animalTemp.forEach((animal => {
+    animalTemp.forEach(function (animal) {
       const animalArrayTemp = {};
       const animalsResidentTemp = [];
-      animal.residents.forEach((resident => {
+      animal.residents.forEach(function (resident) {
         animalsResidentTemp.push(resident.name);
-      }));
+      });
       animalArrayTemp[animal.name] = animalsResidentTemp;
       animalLocation[location].push(animalArrayTemp);
-    }))
+    });
   });
   return animalLocation;
 }
@@ -126,12 +126,12 @@ function animalMap(options) {
   // seu código aqui
   const locations = [];
   const animalLocation = {};
-  animals.forEach((animal => {
+  animals.forEach(function (animal) {
     if (!locations.includes(animal.location)) {
       locations.push(animal.location);
       animalLocation[animal.location] = [];
     }
-  }));
+  });
   let returnClimate;
   if (!options) {
     returnClimate = withOutParameters(locations, animalLocation);
