@@ -163,11 +163,11 @@ function getAnimalsLocationBySex(sex, locations) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  // seu código
   const locations = getLocations();
   const animalsAtEachLocation = getAnimalsByLocation(locations);
   let animalsWithResidentNames = getAnimalsLocationPlusResidentsNames(animalsAtEachLocation);
-  
+
   switch (true) {
     case (!options || !options.includeNames):
       return animalsAtEachLocation;
