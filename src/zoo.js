@@ -159,7 +159,7 @@ function schedule(dayName) {
   // seu código aqui
   const daysOpen = {};
   if (!dayName) {
-    Object.keys(hours).forEach(key => {
+    Object.keys(hours).forEach((key) => {
       if (key === 'Monday') {
         daysOpen[key] = ('CLOSED');
       } else {
