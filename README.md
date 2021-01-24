@@ -8,7 +8,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 
 ---
 
-## Habilidades
+## Habilidades!
 
 Neste projeto, verificamos se você é capaz de:
 
