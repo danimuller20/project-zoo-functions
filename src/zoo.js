@@ -56,9 +56,9 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   const addObject = {
-    id: id, 
-    firstName: firstName, 
-    lastName: lastName, 
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
     managers: managers, 
     responsibleFor: responsibleFor,
   };
