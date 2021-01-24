@@ -90,14 +90,9 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  return Object.values(animals
-    .find(
-      specie =>
-        specie.id ===
-        employees.filter(numberId => numberId.id === id)[0].responsibleFor[0]
-    )
-    .residents.reduce((accumulater, currentAge) => {
-      return accumulater.age > currentAge.age ? accumulater : currentAge
+  return Object.values(animals.find(specie => specie.id === employees
+    .filter(numberId => numberId.id === id)[0].responsibleFor[0]).residents.reduce((accumulater, currentAge) => {
+      return accumulater.age > currentAge.age ? accumulater : currentAge;
     }));
 }
 
