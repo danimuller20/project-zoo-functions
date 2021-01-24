@@ -50,7 +50,8 @@ function animalCount(species) {
   let listOfAnimals = {};
   if (species === undefined) {
     animals.forEach(({ name, popularity }) => {
-      return (listOfAnimals[name] = popularity);
+      listOfAnimals[name] = popularity
+      return (listOfAnimals);
     });
   } else {
     const numberPopularity = animals.find(({ name }) => name === species);
