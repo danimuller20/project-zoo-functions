@@ -90,7 +90,15 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  return Object.values(animals
+    .find(
+      specie =>
+        specie.id ===
+        employees.filter(numberId => numberId.id === id)[0].responsibleFor[0]
+    )
+    .residents.reduce((accumulater, currentAge) => {
+      return accumulater.age > currentAge.age ? accumulater : currentAge
+    }));
 }
 
 function increasePrices(percentage) {
