@@ -101,7 +101,9 @@ function getAnimalsList(gender, sort) {
 }
 
 function animalMap(options) {
-  let includeNames, sex, sorted = undefined;
+  let includeNames;
+  let sex;
+  let sorted;
   if (options) {
     includeNames = options.includeNames;
     sex = options.sex;
