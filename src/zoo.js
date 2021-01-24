@@ -29,7 +29,6 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  const { employees } = data;
   const employeeFound = employees.find(
     employee => employee.firstName === employeeName || employee.lastName === employeeName);
   const employeeObj = { ...employeeFound };
@@ -47,8 +46,8 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // seu código aqui
   let verify = false;
-  employees.forEach((valueId) => {
-    const verifyManagers = valueId.managers.some((value) => value === id);
+  employees.forEach(valueId => {
+    const verifyManagers = valueId.managers.some(value => value === id);
     if (verifyManagers) { verify = true; }
   });
   return verify;
