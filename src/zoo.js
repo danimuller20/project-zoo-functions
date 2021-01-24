@@ -13,7 +13,6 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
-const { prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -48,13 +47,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  let countReport = animals.reduce((accObject, current) => {
-    accObject[current.name] = current.residents.length;
-    return accObject;
-  }, {});
-  if (Object.keys(countReport).includes(species)){
-    countReport = countReport[species];}
-  return countReport;
 }
 
 function entryCalculator(entrants) {
@@ -63,13 +55,6 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  options => animals.reduce((mappingObject, currentSpecies) => {
-    const speciesMap = makeMapFrom(currentSpecies);
-    speciesMap.accumulateWith(mappingObject);
-    speciesMap.byOptions(options);
-    mappingObject[speciesMap.location] = [...speciesMap.locationAnimals, speciesMap.map];
-    return mappingObject;
-  }, {});
 }
 
 function schedule(dayName) {
