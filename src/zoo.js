@@ -102,7 +102,9 @@ function getLocations() {
   const locations = [];
   animals.forEach((animal) => {
     if (!locations || !locations.some(location => location === animal.location)) {
-      locations.push(animal.location); } });
+      locations.push(animal.location);
+    }
+  });
   return locations;
 }
 
@@ -160,16 +162,12 @@ function getAnimalsLocationBySex(sex, locations) {
   return animalsResidentsBySex;
 }
 
-function animalMap(options) {
-  // seu código aqui
-  const locations = getLocations();
-  const animalsAtEachLocation = getAnimalsByLocation(locations);
-  let animalsWithResidentNames = getAnimalsLocationPlusResidentsNames(animalsAtEachLocation);
+function verifyEmptyOptions (options, animalList, animalListWithNames) {
   if (!options || !options.includeNames) {
-    return animalsAtEachLocation;
+    return animalList;
   }
   if (options.includeNames && Object.keys(options).length === 1) {
-    return animalsWithResidentNames;
+    return animalListWithNames;
   }
   if (options.sex) {
     animalsWithResidentNames = getAnimalsLocationBySex(options.sex, locations);
@@ -179,6 +177,30 @@ function animalMap(options) {
   }
   return animalsWithResidentNames;
 }
+
+function animalMap(options) {
+  // seu código aqui
+  const locations = getLocations();
+  const animalsAtEachLocation = getAnimalsByLocation(locations);
+  let animalsWithResidentNames = getAnimalsLocationPlusResidentsNames(animalsAtEachLocation);
+  
+  switch (true) {
+    case (!options || !options.includeNames):
+      return animalsAtEachLocation;
+    case (options.includeNames && Object.keys(options).length === 1):
+      return animalsWithResidentNames;
+    case (options.sex === 'female' || options.sex === 'male' ):
+      animalsWithResidentNames = getAnimalsLocationBySex(options.sex, locations);
+    default:
+      break;
+  }
+  if(options.sorted === true) {
+    sortResidentNames(animalsWithResidentNames);
+  }
+  return animalsWithResidentNames;
+}
+
+console.log(animalMap({ includeNames: true, sex: 'female' }))
 
 function schedule(dayName) {
   // seu código aqui
