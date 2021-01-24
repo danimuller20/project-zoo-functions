@@ -135,6 +135,8 @@ function oldestFromFirstSpecies(id) {
   const animalResult = specie.residents.reduce((oldAnimal, currentValue) => {
     if (currentValue.age >= oldAnimal.age) {
       return currentValue;
+    } else {
+      return oldAnimal;
     }
   });
   return Object.values(animalResult);
@@ -143,7 +145,8 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   Object.keys(data.prices).forEach((key) => {
-    data.prices[key] = Number((data.prices[key] + (data.prices[key] * (percentage/100)) + 0.001).toFixed(2));
+    let price = (data.prices[key] + (data.prices[key] * (percentage / 100)) + 0.001);
+    data.prices[key] = Number(price.toFixed(2));
   });
 }
 
