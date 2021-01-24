@@ -59,12 +59,9 @@ const entryCalculator = (entrants = {}) => Object.entries(entrants).reduce(
     return priceAccumulator + (price * quantity);
   }, 0);
 
-const filterResidentsBySex = (sex, residents) => {
-  if (sex) {
-    residents = residents.filter(resident => resident.sex === sex);
-  }
-  return residents;
-};
+const filterResidentsBySex = (sex, residents) => (
+  sex ? residents.filter(resident => resident.sex === sex) : residents
+  );
 
 const getResidentsNames = residents => residents.reduce((array, currentResident) => {
   array.push(currentResident.name);
