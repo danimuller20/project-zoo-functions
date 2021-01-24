@@ -65,10 +65,10 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 }
 
 function animalPopulation() {
-  let allAnimals = {};
-  animals.forEach(type => {
-    allAnimals[type.name] = type.residents.length
-    })
+  const allAnimals = {};
+  animals.forEach((type) => {
+    allAnimals[type.name] = type.residents.length;
+  });
   return allAnimals;
 }
 console.log(animalPopulation());
@@ -76,8 +76,8 @@ console.log(animalPopulation());
 function animalCount(species) {
   if (!species) {
     return animalPopulation();
-  };
-  const countSpecimens = animals.find(creature => creature.name === species)
+  }
+  const countSpecimens = animals.find(creature => creature.name === species);
   return countSpecimens.residents.length;
 }
 
