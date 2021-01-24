@@ -96,7 +96,7 @@ function schedule(dayName) {
   if (dayName === undefined) {
     hoursValue.forEach(noParamaterFunction);
   } else {
-    Object.entries(hours).find((value) => {
+    Object.entries(hours).forEach((value, index) => {
       if (value[0] === dayName && dayName !== 'Monday') {
         object[value[0]] = `Open from ${value[1].open}am until ${value[1].close - 12}pm`;
       }
@@ -108,8 +108,6 @@ function schedule(dayName) {
   }
   return object;
 }
-
-console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
