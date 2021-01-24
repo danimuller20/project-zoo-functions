@@ -133,16 +133,36 @@ function increasePrices(percentage) {
   return prices;
 }
 
+const returnResponsibleFor = (...responsibleFor) => {
+  const takenCare = responsibleFor[0]
+    .reduce((acc, curr) => acc
+    .concat(animalsByIds(curr)[0].name), []);
+  return takenCare;
+};
+
+const employeeAndCoverage = {
+  'Nigel Nelson': ['lions', 'tigers'],
+  'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+  'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
+  'Wilburn Wishart': ['snakes', 'elephants'],
+  'Stephanie Strauss': ['giraffes', 'otters'],
+  'Sharonda Spry': ['otters', 'frogs'],
+  'Ardith Azevado': ['tigers', 'bears'],
+  'Emery Elser': ['elephants', 'bears', 'lions'],
+};
+
 function employeeCoverage(idOrName) {
   if (!idOrName) {
-    return {};
+    return employeeAndCoverage;
   }
 
   const myEmployee = employeeByName(idOrName);
-
-  return myEmployee;
+  const fullName = `${myEmployee.firstName} ${myEmployee.lastName}`;
+  const takenCare = returnResponsibleFor(myEmployee.responsibleFor);
+  const employeeCare = {};
+  employeeCare[fullName] = takenCare;
+  return employeeCare;
 }
-
 
 module.exports = {
   entryCalculator,
