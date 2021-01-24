@@ -72,7 +72,7 @@ const sortIfEnabled = (sorted, residents) => (
   sorted ? residents.sort() : residents
   );
 
-const mapAnimal = ({ location, name, residents }) => ({
+const makeMapFrom = ({ location, name, residents }) => ({
   name,
   location,
   byOptions({ includeNames = false, sex = false, sorted = false } = {}) {
@@ -90,12 +90,12 @@ const mapAnimal = ({ location, name, residents }) => ({
   },
 });
 
-const animalMap = options => animals.reduce((accumulatorObj, currentSpecies) => {
-  const speciesMap = mapAnimal(currentSpecies);
-  speciesMap.accumulateWith(accumulatorObj);
+const animalMap = options => animals.reduce((mappingObject, currentSpecies) => {
+  const speciesMap = makeMapFrom(currentSpecies);
+  speciesMap.accumulateWith(mappingObject);
   speciesMap.byOptions(options);
-  accumulatorObj[speciesMap.location] = [...speciesMap.locationAnimals, speciesMap.map];
-  return accumulatorObj;
+  mappingObject[speciesMap.location] = [...speciesMap.locationAnimals, speciesMap.map];
+  return mappingObject;
 }, {});
 
 const getReadbleHour = hour => (
