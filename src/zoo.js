@@ -139,7 +139,6 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
   const firstSpecies = employees.find(employee => employee.id === id).responsibleFor[0];
   return Object.values(animals.find(animal => animal.id === firstSpecies)
   .residents.reduce(function (oldest, resident) {
@@ -158,23 +157,26 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
     const coverageList = employees.reduce(
       (employeeList, { firstName, lastName, responsibleFor }) => {
-        employeeList[`${firstName} ${lastName}`] = responsibleFor.map(animalId => {
-          return animals.find(({ id }) => animalId === id).name;
-        });
+        employeeList[`${firstName} ${lastName}`] = responsibleFor.map(
+          animalId => animals.find(({ id }) => animalId === id).name
+        );
         return employeeList;
       },
-      {}
+      {},
     );
     return coverageList;
   }
 
-  const { firstName, lastName, responsibleFor } = employees.find(({ firstName, lastName, id }) => firstName === idOrName || lastName === idOrName || id === idOrName);
-  return { [`${firstName} ${lastName}`]: responsibleFor.map(animalId => {
-    return animals.find(({ id }) => animalId === id).name;
-  }) };
+  const { firstName, lastName, responsibleFor } = employees.find(
+    ({ firstName: employeeFirstName, lastName: employeeLastName, id }) =>
+    employeeFirstName === idOrName || employeeLastName === idOrName || id === idOrName
+  );
+  return {
+    [`${firstName} ${lastName}`]: responsibleFor.map(
+      animalId => animals.find(({ id }) => animalId === id).name
+    ),
+  };
 }
-// console.log(employeeCoverage());
-// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
