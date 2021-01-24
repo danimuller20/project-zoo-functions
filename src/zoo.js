@@ -101,14 +101,15 @@ function entryCalculator(entrants) {
 }
 
 function noOptions() {
-  const result = { NE: [], NW: [], SE: [], SW: [] };
   const locations = ['NE', 'NW', 'SE', 'SW'];
+  const result = { NE: [], NW: [], SE: [], SW: [] };
   locations.forEach(local =>
   (result[local] = animals.filter(({ location }) => location === local).map(({ name }) => name)));
   return result;
 }
 
 function addPerRegion({ sorted = false, sex: genre = false }) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
   const result = { NE: [], NW: [], SE: [], SW: [] };
   const speciesAndTheirNames = [];
   animals.forEach((animal) => {
@@ -126,20 +127,9 @@ function addPerRegion({ sorted = false, sex: genre = false }) {
     speciesAndTheirNames.push(species);
   });
 
-  const locations = ['NE', 'NW', 'SE', 'SW'];
-
   locations.forEach(local => animals.filter(({ location }) =>
   location === local).map(({ name }) => name).forEach(specie =>
   result[local].push(speciesAndTheirNames.find(element => element[specie]))));
-
-  // animals.filter(({ location }) => location === 'NE').map(({ name }) => name).forEach(specie =>
-  // result['NE'].push(speciesAndTheirNames.find(element => element[specie])));
-  // animals.filter(({ location }) => location === 'NW').map(({ name }) => name).forEach(specie =>
-  // result['NW'].push(speciesAndTheirNames.find(element => element[specie])));
-  // animals.filter(({ location }) => location === 'SE').map(({ name }) => name).forEach(specie =>
-  // result['SE'].push(speciesAndTheirNames.find(element => element[specie])));
-  // animals.filter(({ location }) => location === 'SW').map(({ name }) => name).forEach(specie =>
-  // result['SW'].push(speciesAndTheirNames.find(element => element[specie])));
 
   return result;
 }
