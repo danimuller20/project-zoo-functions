@@ -13,8 +13,6 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
-//const { prices } = data;
-//const { hours } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -22,33 +20,27 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-  const animalEncontrado = animals.find(myAnimal => myAnimal.name === animal);
-  return animalEncontrado.residents.every(idade => idade.age >= age);
+  const animalsOlderThan = (animal, age) => {
+  const { residents } = getAnimalByName(animal);
+  return residents.every(resident => resident.age >= age);
+  };
 }
 
 function employeeByName(employeeName) {
-    const employeeByName = (employeeName) => {
+  const employeeByName = (employeeName) => {
     const foundEmployee = employees.find(employee => Object.values(employee).includes(employeeName));
     return { ...foundEmployee };
-  }
+  };
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
-  const isManager = (id) => {
-    const managersIds = employees.reduce((acc, current) => [...acc, ...current.managers], []);
-    return managersIds.includes(id);
-  };
 }
 
 function isManager(id) {
-  // seu código aqui
-  const isManager = (id) => {
-    const managersIds = employees.reduce((acc, current) => [...acc, ...current.managers], []);
-    return managersIds.includes(id);
-  };
+  const managersIds = employees.reduce((acc, current) => [...acc, ...current.managers], []);
+  return managersIds.includes(id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
