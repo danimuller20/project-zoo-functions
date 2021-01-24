@@ -102,8 +102,8 @@ const getReadbleHour = hour => (
   hour > 12 ? `${hour - 12}pm` : `${hour}am`
   );
 
-const getInfoOfTheDay = (day, infoObject) => (
-  day ? { [day]: infoObject[day] } : infoObject
+const getInfoOfTheDay = (day, scheduleObject) => (
+  day ? { [day]: scheduleObject[day] } : scheduleObject
   );
 
 const schedule = (dayName) => {
