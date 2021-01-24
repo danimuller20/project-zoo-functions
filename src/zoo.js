@@ -46,7 +46,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // seu código aqui
   let verify = false;
-  employees.forEach(valueId => {
+  employees.forEach((valueId) => {
     const verifyManagers = valueId.managers.some(value => value === id);
     if (verifyManagers) { verify = true; }
   });
