@@ -73,7 +73,7 @@ function entryCalculator(entrants) {
   let total = 0;
   Object.entries(entrants)
     .map(arrayVisitor => arrayVisitor)
-    .forEach(element => {
+    .forEach((element) => {
       if (element[0] === 'Adult') total += element[1] * Adult;
       if (element[0] === 'Senior') total += element[1] * Senior;
       if (element[0] === 'Child') total += element[1] * Child;
