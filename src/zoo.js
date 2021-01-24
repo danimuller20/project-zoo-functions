@@ -72,7 +72,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  prices.Adult = parseFloat((prices.Adult * ((100 + percentage) / 100)  + 0.005).toFixed(2));
+  prices.Senior = parseFloat((prices.Senior * ((100 + percentage) / 100)  + 0.005).toFixed(2));
+  prices.Child = parseFloat((prices.Child * ((100 + percentage) / 100)  + 0.005).toFixed(2));
 }
 
 function employeeCoverage(idOrName) {
