@@ -132,10 +132,8 @@ function schedule(dayName) {
     return newObject;
   }
 
-  if (dayName === 'Tuesday') {
-    newObject['Tuesday'] = `Open from 8am until 6pm`;
-    return newObject;
-  }
+  newObject.Tuesday = `Open from 8am until 6pm`;
+  return newObject;
 }
 
 function oldestFromFirstSpecies(id) {
