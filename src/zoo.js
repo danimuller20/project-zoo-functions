@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -185,9 +185,41 @@ function animalMap(options) {
   return animalsWithResidentNames;
 }
 
+function changeTimeFormat(time) {
+  timeFormatted = 0;
+  if (time === 12) {
+    return timeFormatted;
+  }
+  timeFormatted = time - 12;
+  if (timeFormatted < 0) {
+    timeFormatted = time;
+  }
+  return timeFormatted;
+}
+
 function schedule(dayName) {
   // seu código aqui
+  const days = Object.entries(hours);
+  defaultSchedule = {};
+  filteredSchedule = {};
+    days.forEach(day => {
+      if (day[0] === 'Monday') {
+        defaultSchedule[day[0]] = 'CLOSED';
+      } else {
+        day[1].close = changeTimeFormat(day[1].close);
+        defaultSchedule[day[0]] = `Open from ${day[1].open}am until ${day[1].close}pm`;
+      }
+    });
+    if (!dayName) {
+      return defaultSchedule;
+    }
+    formatedSchedule = Object.entries(defaultSchedule);
+    filteredDay = formatedSchedule.find(day => day[0] === dayName);
+    filteredSchedule[filteredDay[0]] = filteredDay[1];
+  return filteredSchedule;
 }
+
+console.table(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -216,6 +248,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  
 }
 
 module.exports = {
