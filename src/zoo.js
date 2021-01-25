@@ -93,7 +93,7 @@ function noParamaterFunction(value, index) {
 }
 
 function schedule(dayName) {
-  if (dayName === undefined) {
+  if (!dayName) {
     hoursValue.forEach(noParamaterFunction);
   } else {
     Object.entries(hours).forEach((value, index) => {
@@ -106,8 +106,48 @@ function schedule(dayName) {
       return object;
     });
   }
+  const expected = {
+    'Tuesday': 'Open from 8am until 6pm',
+    'Wednesday': 'Open from 8am until 6pm',
+    'Thursday': 'Open from 10am until 8pm',
+    'Friday': 'Open from 10am until 8pm',
+    'Saturday': 'Open from 8am until 10pm',
+    'Sunday': 'Open from 8am until 8pm',
+    'Monday': 'CLOSED'
+  };
+  
+  if (expected === object) {
+    console.log('teste');
+    console.log(object);
+  } else {
+    console.log('mds');
+    console.log(object);
+    console.log(expected);
+  }
   return object;
 }
+
+/*
+function getSchedule(day) {
+  const { open, close } = hours[day];
+  if (open === 0) {
+    return 'CLOSED';
+  }
+  return `Open from ${open}am until ${close - 12}pm`;
+}
+
+function schedule(dayName) {
+  // seu código aqui
+  if (!dayName) {
+    return Object.keys(hours).reduce((result, day) => {
+      result[day] = getSchedule(day);
+      return result;
+    }, {});
+  }
+  return { [dayName]: getSchedule(dayName) };
+}
+*/
+console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
