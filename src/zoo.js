@@ -15,9 +15,11 @@ const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   const animalsSelected = [];
-  ids.forEach(id => animals.filter((animal) => {
-    if (animal.id === id) return animalsSelected.push(animal);
-  }));
+  ids.forEach(id => {
+    return animals.filter((animal) => {
+      if (animal.id === id) return animalsSelected.push(animal);
+    })
+  });
   return animalsSelected;
 }
 
@@ -43,12 +45,15 @@ function createEmployee(personalInfo, associatedWith) {
     lastName,
     managers,
     responsibleFor,
-  }
+  };
   return newEmployee;
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => {
+    return employee.managers.some(manager => manager === id);
+  });
+
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
