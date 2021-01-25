@@ -87,8 +87,8 @@ function schedule(dayName) {
       workDay[day] = `Open from ${openHours}am until ${closeHours}pm`;
     }
   });
-  if(dayName === undefined) return workDay;
-  return{ [dayName]: workDay[dayName] };
+  if (dayName === undefined) return workDay;
+  return { [dayName]: workDay[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
