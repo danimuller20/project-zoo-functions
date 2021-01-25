@@ -98,8 +98,23 @@ function increasePrices(percentage) {
     (prices[price[0]] = Math.ceil(price[1] * (percentage + 100)).toFixed(2) / 100));
 }
 
+function populateAndCleanEmployeesObject(array) {
+  const allEmployees = array.map(employee => [`${employee.firstName} ${employee.lastName}`,
+    employee.responsibleFor]);
+  allEmployees.forEach(employee => employee.push(employee[1].map(animalId =>
+    animals.filter(id => id.id === animalId)[0].name)));
+
+  allEmployees.forEach(employee => employee.splice(1, 1));
+  return Object.fromEntries(allEmployees);
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    return populateAndCleanEmployeesObject(employees);
+  }
+  const filteredEmployee = employees.filter((employee => employee.id === idOrName ||
+    employee.firstName === idOrName || employee.lastName === idOrName));
+  return populateAndCleanEmployeesObject(filteredEmployee);
 }
 
 module.exports = {
