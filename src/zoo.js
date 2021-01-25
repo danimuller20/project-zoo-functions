@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees} = data; // destructure
+const { animals, employees } = data; // destructure
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -60,16 +60,6 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-    
-  // { 'Adult': 2, 'Child': 3, 'Senior': 1 };
-  // prices: {
-  //   'Adult': 49.99,
-  //   'Senior': 24.99,
-  //   'Child': 20.99
-  // }
-  // if ((!entrants) || (entrants = {})) {
-  //   return 0
-  //  } 
 }
 
 function animalMap(options) {
