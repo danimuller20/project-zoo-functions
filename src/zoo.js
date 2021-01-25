@@ -77,37 +77,37 @@ function entryCalculator(entrants) {
 function animalsByRegion() {
   const animalsObj = { NE: [], NW: [], SE: [], SW: [] };
   Object.keys(animalsObj).forEach((section) => {
-    animalsObj[section] = animals.filter((animalFiltered) => section === animalFiltered.location);
-    animalsObj[section] = animalsObj[section].map((animal) => animal.name);
+    animalsObj[section] = animals.filter(animalFiltered => section === animalFiltered.location);
+    animalsObj[section] = animalsObj[section].map(animal => animal.name);
   });
   return animalsObj;
 }
 
 function animalsOptionsSexTrue(animal, sex) {
-  return animal.residents.filter((animal) => animal.sex === sex).map((animal) => animal.name);
+  return animal.residents.filter(animalSex => animalSex.sex === sex).map(animalName => animalName.name);
 }
 
 function animalsOptionsSexFalse(animal) {
-  return animal.residents.map((animal) => animal.name);
+  return animal.residents.map(animalName => animalName.name);
 }
 
-function kkk(animal, sex, sorted) {
+function applyOptions(animal, sex, sorted) {
   let breedsNames;
   if (sex) {
     breedsNames = animalsOptionsSexTrue(animal, sex);
   } else {
     breedsNames = animalsOptionsSexFalse(animal);
   }
-  if(sorted) {
+  if (sorted) {
     breedsNames.sort();
   }
   return breedsNames;
 }
 
-function animalsByOptions({includeNames = false, sorted = false, sex = false}) {
+function animalsByOptions({ includeNames = false, sorted = false, sex = false }) {
   let animalsObj = { NE: [], NW: [], SE: [], SW: [] };
-  animals.forEach(animal => {
-    const breedsNames = kkk(animal,sex,sorted);
+  animals.forEach((animal) => {
+    const breedsNames = applyOptions(animal, sex, sorted);
     const breedAndListNames = {};
     breedAndListNames[animal.name] = breedsNames;
     animalsObj[animal.location].push(breedAndListNames);
@@ -121,9 +121,8 @@ function animalsByOptions({includeNames = false, sorted = false, sex = false}) {
 function animalMap(options) {
   if (!options) {
     return animalsByRegion();
-  } else {
-    return animalsByOptions(options);
   }
+  return animalsByOptions(options);
 }
 
 function schedule(dayName) {
