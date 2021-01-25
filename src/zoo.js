@@ -74,8 +74,56 @@ function entryCalculator(entrants) {
   return sum;
 }
 
+function animalsByRegion() {
+  const animalsObj = { NE: [], NW: [], SE: [], SW: [] };
+  Object.keys(animalsObj).forEach((section) => {
+    animalsObj[section] = animals.filter((animalFiltered) => section === animalFiltered.location);
+    animalsObj[section] = animalsObj[section].map((animal) => animal.name);
+  });
+  return animalsObj;
+}
+
+function animalsOptionsSexTrue(animal, sex) {
+  return animal.residents.filter((animal) => animal.sex === sex).map((animal) => animal.name);
+}
+
+function animalsOptionsSexFalse(animal) {
+  return animal.residents.map((animal) => animal.name);
+}
+
+function kkk(animal, sex, sorted) {
+  let breedsNames;
+  if (sex) {
+    breedsNames = animalsOptionsSexTrue(animal, sex);
+  } else {
+    breedsNames = animalsOptionsSexFalse(animal);
+  }
+  if(sorted) {
+    breedsNames.sort();
+  }
+  return breedsNames;
+}
+
+function animalsByOptions({includeNames = false, sorted = false, sex = false}) {
+  let animalsObj = { NE: [], NW: [], SE: [], SW: [] };
+  animals.forEach(animal => {
+    const breedsNames = kkk(animal,sex,sorted);
+    const breedAndListNames = {};
+    breedAndListNames[animal.name] = breedsNames;
+    animalsObj[animal.location].push(breedAndListNames);
+  });
+  if (!includeNames) {
+    animalsObj = animalsByRegion();
+  }
+  return animalsObj;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  if (!options) {
+    return animalsByRegion();
+  } else {
+    return animalsByOptions(options);
+  }
 }
 
 function schedule(dayName) {
