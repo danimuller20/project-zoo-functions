@@ -65,9 +65,6 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (!entrants){
-    return 0;
-  }
 }
 
 function animalMap(options) {
