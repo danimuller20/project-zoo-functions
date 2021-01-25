@@ -63,10 +63,10 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const specieId = employees.find(employee => employee.id === id).responsibleFor[0];
-  const specieObj =  animals.find(animal => animal.id === specieId).residents;
+  const specieObj = animals.find(animal => animal.id === specieId).residents;
   const oldest = specieObj.reduce((acc, curr) => (acc.age < curr.age ? curr : acc));
   return Object.values(oldest);
- }
+}
 
 function increasePrices(percentage) {
   Object.keys(prices).forEach(key =>
