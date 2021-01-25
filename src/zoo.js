@@ -82,32 +82,38 @@ function animalMap(options) {
 
 const hoursValue = Object.entries(hours).map(value => value[1]);
 const hoursKeys = Object.keys(hours).map(value => value);
-const object = {};
 
 function noParamaterFunction(value, index) {
   if (hoursKeys[index] === 'Monday') {
-    object[hoursKeys[index]] = 'CLOSED';
+    return {'Monday': 'CLOSED'};
   } else {
-    object[hoursKeys[index]] = `Open from ${value.open}am until ${value.close - 12}am`;
+    return {[hoursKeys[index]]: `Open from ${value.open}am until ${value.close - 12}pm`};
   }
 }
 
 function schedule(dayName) {
+  const object = {}
   if (!dayName) {
-    hoursValue.forEach(noParamaterFunction);
+    const mapHours = hoursValue.map(noParamaterFunction).forEach((value) => {
+      object[Object.keys(value)] =  Object.values(value)[0];
+      return object;
+    });
   } else {
     Object.entries(hours).forEach((value, index) => {
       if (value[0] === dayName && dayName !== 'Monday') {
         object[value[0]] = `Open from ${value[1].open}am until ${value[1].close - 12}pm`;
+        return object;
       }
       if (value[0] === dayName && dayName === 'Monday') {
         object[value[0]] = 'CLOSED';
+        return object;
       }
-      return object;
     });
   }
   return object;
 }
+
+console.log(schedule('Sunday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
