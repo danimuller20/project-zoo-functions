@@ -12,16 +12,18 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
+  //verifica se o array está vazio
   if (!Array.isArray(ids) || ids.length === 0) {
     return [];
   }
   return animals.filter(animal => ids.includes(animal.id));
 }
 
-
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+
+  return animals.values(animal, age => (animal.name.residents.age > animals.residents.age === 'false'));
+
+};
 
 function employeeByName(employeeName) {
   // seu código aqui
