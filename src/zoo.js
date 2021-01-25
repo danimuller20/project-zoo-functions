@@ -27,10 +27,8 @@ function employeeByName(employeeName) {
   }
   const search = (name) => {
     const { firstName, lastName } = name;
-    if ((firstName === employeeName) || (lastName === employeeName)) {
-      return name;
-    }
-  }
+    return (firstName === employeeName) || (lastName === employeeName);
+  };
   return employees.find(search);
 }
 
