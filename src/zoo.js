@@ -13,7 +13,7 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...args) {
-  return animals.filter((element) => args.includes(element.id));
+  return animals.filter(element => args.includes(element.id));
 }
 
 
