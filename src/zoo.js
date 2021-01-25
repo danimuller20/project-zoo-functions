@@ -17,17 +17,11 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // return animals;
-  // .some(animal => animal.residents)
-  // .every(resident => (animal.name === name && resident.age >ager))
+  // seu código aqui
 }
 
 function employeeByName(employeeName) {
-  // if (!employeeByName) {
-  //   return {};
-  // }
-  // return employees;
-  //   .find((employee) => employee.firstName === employeeName || employee.lastName === )
+  // seu código aqui
 }
 
 function createEmployee(personalInfo, associatedWith) {
