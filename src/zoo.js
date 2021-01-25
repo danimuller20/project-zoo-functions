@@ -11,14 +11,12 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   const animalsSelected = [];
-  ids.forEach(function(id) {
-    animals.filter(function(animal) {
-      if (animal.id === id) return animalsSelected.push(animal);
-    });
+  ids.forEach((id) => {
+    animals.filter(animal =>  (animal.id === id) ? animalsSelected.push(animal) : '');
   });
   return animalsSelected;
 }
@@ -84,17 +82,30 @@ function entryCalculator(entrants) {
   const { Adult, Senior, Child } = prices;
   const { Adult: qtdAdult = 0, Senior: qtdSenior = 0, Child: qtdChild = 0 } = entrants;
 
-  total += (Adult * qtdAdult) + (Senior * qtdSenior) + (Child * qtdChild);
-  return total;
+  return total += (Adult * qtdAdult) + (Senior * qtdSenior) + (Child * qtdChild);
 }
 
 function animalMap(options) {
-  // seu código aqui
+  // const contentByLocation = { NE: [], NW: [], SE: [], SW: [] };
+  // const { NE, NW, SE, SW } = contentByLocation;
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  // if (dayName === 'Monday') return { Monday: 'CLOSED' };
+
+  // if (dayName !== undefined) {
+  //   const openingHours = hours[dayName];
+  //   return { [dayName]: `Open from ${openingHours.open}am until ${openingHours.close}pm` };
+  // }
+
+  // const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Monday } = hours;
+  // hours.forEach(day => {
+  //   ({ [dayName]: `Open from ${day.open}am until ${day.close}pm` });
+  // })
+
 }
+// console.log(schedule('Friday'));
+// // 'Tuesday': 'Open from 8am until 6pm'
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
