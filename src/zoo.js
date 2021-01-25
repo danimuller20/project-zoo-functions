@@ -84,8 +84,7 @@ function animalsByRegion() {
 }
 
 function animalsOptionsSexTrue(animal, sex) {
-  return animal.residents.filter(animalSex => {
-    return animalSex.sex === sex}).map(animalName => animalName.name);
+  return animal.residents.filter(animalSex => animalSex.sex === sex).map(animalN => animalN.name);
 }
 
 function animalsOptionsSexFalse(animal) {
