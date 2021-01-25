@@ -61,7 +61,7 @@ function animalCount(species) {
   // seu código aqui
   const objectFinal = {};
   if (species === undefined) {
-    animals.forEach(animal => objectFinal[animal.name] = animal.residents.length);
+    animals.forEach(animal => (objectFinal[animal.name] = animal.residents.length));
     return objectFinal;
   }
   return animals.find(animal => animal.name === species).residents.length;
@@ -73,7 +73,7 @@ function entryCalculator(...entrants) {
   if (entrants.length === 0 || entrants === {}) {
     return result;
   }
-  Object.keys(entrants[0]).forEach(item => result += entrants.reduce((acc, curr) =>
+  Object.keys(entrants[0]).forEach(item => (result += entrants).reduce((acc, curr) =>
   acc + (curr[item] * prices[item]), 0));
   return result;
 }
