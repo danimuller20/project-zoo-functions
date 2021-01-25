@@ -49,16 +49,17 @@ function employeeByName(employeeName) {
     if (firstName === employeeName || lastName === employeeName) {
       return employee;
     }
-  }); 
-  
-     return employeeObject;
+    return 0;
+  });
+
+      return employeeObject;
 }
 // exercício 4
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   const newEmployee = {
     ...personalInfo,
-    ...associatedWith
+    ...associatedWith,
   };
   return newEmployee;
 }
