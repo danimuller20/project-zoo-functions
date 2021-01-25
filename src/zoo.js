@@ -121,8 +121,16 @@ function oldestFromFirstSpecies(id) {
   return Object.values(arraySort.sort((value1, value2) => value2.age - value1.age)[0]);
 }
 
+function percentualAdjust(value, percentageValue) {
+  return parseFloat((Math.round(value * percentageValue) / 100) + value).toFixed(2);
+
+  //return parseFloat(returnValue).toFixed(2);
+}
+
 function increasePrices(percentage) {
-  // seu código aqui
+  prices.Adult = parseFloat(percentualAdjust(prices.Adult, percentage));
+  prices.Senior = parseFloat(percentualAdjust(prices.Senior, percentage));
+  prices.Child = parseFloat(percentualAdjust(prices.Child, percentage)); 
 }
 
 function employeeCoverage(idOrName) {
