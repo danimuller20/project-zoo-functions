@@ -200,7 +200,7 @@ function increasePrices(percentage) {
 
 function filterResponsibleFor(employee) {
   const responsibleForTemp = [];
-  employee.responsibleFor.forEach(idAnimal => {
+  employee.responsibleFor.forEach((idAnimal) => {
     const animalTemp = animals.find(animal => animal.id === idAnimal);
     responsibleForTemp.push(animalTemp.name);
   });
