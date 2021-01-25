@@ -54,7 +54,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  employees.push({
+  return employees.push({
     id,
     firstName,
     lastName,
@@ -64,12 +64,13 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (species) return animals.find(specie => specie.name === species).residents.length;
+  if (species) {
+    const objAnimal = animals.find(specie => specie.name === species);
+    return objAnimal.residents.length;
+  }
 
-  // baseado na resolução do Tiago Yoneda
   const newObj = {};
   animals.forEach(animal => (newObj[animal.name] = animal.residents.length));
-
   return newObj;
 }
 
