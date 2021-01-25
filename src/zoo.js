@@ -67,32 +67,31 @@ function entryCalculator(entrants) {
   }, 0);
 }
 
-function animalsByLocations(animalLocation, includeNames, sex, sorted) {
-  return animals.reduce((namesArray, { name, location, residents }) => 
-  location === animalLocation ? namesArray
-  .concat(includeNames ? createAnimalsObjects(name, sex, sorted, residents) : name) : namesArray, []);
-  
-}
-
 function createAnimalsObjects(name, sex, sorted, residents) {
   let residentsResult = residents;
 
   if (sex) {
-    residentsResult = residents.filter(({sex:residentGender}) => residentGender === sex);
-  };
-  
-  const residentsNames = residentsResult.map(({name:residentName}) => residentName);
-  
+    residentsResult = residents.filter(({ sex: residentGender }) => residentGender === sex);
+  }
+
+  const residentsNames = residentsResult.map(({ name: residentName }) => residentName);
+
   if (sorted) {
     residentsNames.sort();
-  };
+  }
 
-  const animalObjects = {
-    [name]: residentsNames,
-  };
- 
+  const animalObjects = { [name]: residentsNames, };
+
   return animalObjects;
 }
+
+function animalsByLocations(animalLocation, includeNames, sex, sorted) {
+  return animals.reduce((namesArray, { name, location, residents }) => {
+  return location === animalLocation ? namesArray
+  .concat(includeNames ? createAnimalsObjects(name, sex, sorted, residents) : name)
+  : namesArray
+}, []);
+};
 
 function animalsByLocationsList(includeNames, sex, sorted) {
   return animals.reduce((AnimalsAndLocationslist, { location }) => {
