@@ -9,17 +9,18 @@ eslint no-unused-vars: [
 ]
 */
 // LET'S DO THIS!
+
 const { prices } = require('./data');
 const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
 
-
 const managersList = [];
 employees.forEach(worker => worker.managers.forEach((id) => {
   managersList.push(id);
 }));
+
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
