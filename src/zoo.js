@@ -101,18 +101,17 @@ function animalMap(options) {
   if (!options || !options.includeNames) {
     return animals.reduce(getNamesAnimalsForLocation, {});
   }
-  const { includeNames = false, sorted = false, sex = '' } = options;
-  if (includeNames) {
-    return animals.reduce((acc, current) => {
-      acc[current.location] = animals
-        .filter(({ location }) => location === current.location)
-        .reduce(
-          (accAnimal, currentAnimal) =>
-            sortedNamesOrGetForSex(accAnimal, currentAnimal, sex, sorted),
-          []);
-      return acc;
-    }, {});
-  }
+  const { sorted = false, sex = '' } = options;
+  return animals.reduce((acc, current) => {
+    acc[current.location] = animals
+      .filter(({ location }) => location === current.location)
+      .reduce(
+        (accAnimal, currentAnimal) =>
+          sortedNamesOrGetForSex(accAnimal, currentAnimal, sex, sorted),
+        []
+      );
+    return acc;
+  }, {});
 }
 
 // auxiliary function of schedule()
