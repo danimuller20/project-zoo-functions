@@ -175,7 +175,11 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const listEntrants = ['Adult', 'Child', 'Senior'];
+  for (const i of listEntrants) {
+    const price = data.prices[i] + ((percentage / 100) * (data.prices[i] + 0.001));
+    data.prices[i] = parseFloat(price.toFixed(2));
+  }
 }
 
 function employeeCoverage(idOrName) {
