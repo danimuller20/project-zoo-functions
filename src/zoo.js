@@ -186,7 +186,7 @@ function increasePrices(percentage) {
   // incrementa todos os preços arredondados em duas casas decimais;
 
   Object.keys(prices).forEach((label) => {
-    prices[label] = 
+    prices[label] =
     (Math.round(prices[label] * percentage) + (prices[label] * 100)) / 100;
   });
   return prices;
