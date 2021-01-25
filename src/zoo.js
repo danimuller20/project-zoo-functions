@@ -84,7 +84,7 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
- /* const animalsPerLocation = {};
+  /* const animalsPerLocation = {};
   if (!options) {
     animals.forEach((species) => {
       let animalsGrup = [];
@@ -123,19 +123,19 @@ function schedule(dayName) {
       } else {
         newObject[element] = `Open from ${arrayOfValues[index].open}am until ${arrayOfValues[index].close - 12}pm`;
       }
-    })
+    });
     return newObject;
   }
   if (dayName === 'Monday') {
-    newObject[dayName] = 'CLOSED' 
+    newObject[dayName] = 'CLOSED';
     return newObject;
   }
 
-  arrayOfKeys.forEach((element, index) => {
-    if (dayName === element) {
-      newObject[element] = `Open from ${arrayOfValues[index].open}am until ${arrayOfValues[index].close - 12}pm`;
+  arrayOfKeys.forEach((Element, index1) => {
+    if (dayName === Element) {
+      newObject[element] = `Open from ${arrayOfValues[index1].open}am until ${arrayOfValues[index1].close - 12}pm`;
     }
-  })
+  });
   return newObject;
 }
 
