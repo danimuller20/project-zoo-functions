@@ -91,12 +91,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  return Object.entries(prices).reduce((_, [key, value]) => {
+  return Object.entries(prices).forEach(([key, value]) => {
     const round = Math.round(value * percentage);
-    let float = ((value + round / 100)).toFixed(2);
+    let float = ((value + (round / 100))).toFixed(2);
     float = parseFloat(float);
     data.prices[key] = float;
-  }, { });
+  });
 }
 
 function employeeCoverage(idOrName) {
