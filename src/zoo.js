@@ -12,7 +12,7 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  //verifica se o array está vazio
+  // verifica se o array está vazio
   if (!Array.isArray(ids) || ids.length === 0) {
     return [];
   }
@@ -20,9 +20,8 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-
-  return animals.values(animal, age => (animal.name.residents.age > animals.residents.age === 'false'));
-
+  // find: busca por animal / every: analisa a idade e compara se for maior dar falso.
+  return animals.find(buscAnimal => buscAnimal.name === animal).residents.every( idade => idade.age >= age);
 };
 
 function employeeByName(employeeName) {
