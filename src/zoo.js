@@ -59,13 +59,13 @@ function employeeByName(employeeName) {
 // console.log(employeeByName('Nelson'));
 
 function createEmployee(personalInfo, associatedWith) {
-//codigo aqui
+  // codigo aqui
 }
 
 function isManager(id) {
   let boo = false;
   // aqui se o id for igual ao manager de employ return o objeto
-  const objEmploy = employees.find((employ) => employ.managers.includes(id));
+  const objEmploy = employees.find(employ => employ.managers.includes(id));
   if (!objEmploy) {
     boo = false;
   } else {
