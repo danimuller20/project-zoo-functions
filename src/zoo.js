@@ -63,7 +63,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  /*const locationObject = { };
+  /* const locationObject = { };
   if (options === undefined) {
     return {
     NE: animals.filter(animal => animal.location === 'NE').map(animal => animal.name),
@@ -71,22 +71,22 @@ function animalMap(options) {
     SE: animals.filter(animal => animal.location === 'SE').map(animal => animal.name),
     SW: animals.filter(animal => animal.location === 'SW').map(animal => animal.name),
     }
-  }*/
+  } */
 }
 
 function schedule(dayName) {
   const zooSchedule = {
-  'Tuesday': 'Open from 8am until 6pm',
-  'Wednesday': 'Open from 8am until 6pm',
-  'Thursday': 'Open from 10am until 8pm',
-  'Friday': 'Open from 10am until 8pm',
-  'Saturday': 'Open from 8am until 10pm',
-  'Sunday': 'Open from 8am until 8pm',
-  'Monday': 'CLOSED',
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+   Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+   Monday: 'CLOSED',
   };
 
   if (dayName === undefined) {
-    return zooSchedule
+    return zooSchedule;
   }
   const daySchedule = Object.entries(zooSchedule).filter(index => index[0] === dayName);
   const objectDaySchedule = Object.fromEntries(daySchedule);
