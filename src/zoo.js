@@ -67,7 +67,7 @@ function entryCalculator(entrants) {
   }, 0);
 }
 
-function createAnimalsObjects(name, sex, sorted, residents) {
+function createAnimalObject(name, sex, sorted, residents) {
   let residentsResult = residents;
 
   if (sex) {
@@ -85,16 +85,16 @@ function createAnimalsObjects(name, sex, sorted, residents) {
   return animalObjects;
 }
 
-function animalsByLocations(animalLocation, includeNames, sex, sorted) {
+function listAnimalsBySpecies(animalLocation, includeNames, sex, sorted) {
   return animals.reduce((namesArray, { name, location, residents }) => (
   location === animalLocation ? namesArray
-  .concat(includeNames ? createAnimalsObjects(name, sex, sorted, residents) : name)
+  .concat(includeNames ? createAnimalObject(name, sex, sorted, residents) : name)
   : namesArray), []);
 }
 
-function animalsByLocationsList(includeNames, sex, sorted) {
+function listAnimalsByLocation(includeNames, sex, sorted) {
   return animals.reduce((AnimalsAndLocationslist, { location }) => {
-    AnimalsAndLocationslist[location] = animalsByLocations(location, includeNames, sex, sorted);
+    AnimalsAndLocationslist[location] = listAnimalsBySpecies(location, includeNames, sex, sorted);
     return AnimalsAndLocationslist;
   }, {});
 }
@@ -102,9 +102,9 @@ function animalsByLocationsList(includeNames, sex, sorted) {
 function animalMap(options) {
   if (options) {
     const { includeNames, sex, sorted } = options;
-    return animalsByLocationsList(includeNames, sex, sorted);
+    return listAnimalsByLocation(includeNames, sex, sorted);
   }
-  return animalsByLocationsList();
+  return listAnimalsByLocation();
 }
 
 function schedule(dayName) {
