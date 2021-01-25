@@ -100,6 +100,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName = 0) {
+  const day = {};
   const openDays = {
     Tuesday: 'Open from 8am until 6pm',
     Wednesday: 'Open from 8am until 6pm',
@@ -113,10 +114,9 @@ function schedule(dayName = 0) {
     return openDays;
   }
   if( dayName in openDays ) {
-    const day = {};
     day[dayName] = openDays[dayName];
-    return day;
   }
+  return day;
 }
 
 function oldestFromFirstSpecies(id) {
