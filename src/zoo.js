@@ -8,9 +8,10 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { employees } = require('./data');
-const { animals } = require('./data');
+
 const data = require('./data');
+
+const { employees, animals } = data;
 
 function animalsByIds(...ids) {
   if (!ids) return [];
@@ -44,18 +45,16 @@ function addEmployee(id, firstName, lastName, managers = []
 function animalCount(species) {
   if (!species) {
     const obj = {};
-    animals.forEach(element => {
+    animals.forEach((element) => {
       obj[element.name] = element.residents.length;
-    })
+    });
     return obj;
-  };
-  return animals.filter((item) => species === item.name)[0].residents.length;
-
+  }
+  return animals.filter(item => species === item.name)[0].residents.length;
 }
-console.log(animalCount());
 
 function entryCalculator(entrants) {
-  // seu código aqui
+
 }
 
 function animalMap(options) {
