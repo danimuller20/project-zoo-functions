@@ -57,15 +57,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const object = {};
   if (!species) {
-    animals.forEach((animalSpe) => object[animalSpe.name] = animalSpe.residents.length);
+    animals.forEach(animalSpe => (object[animalSpe.name] = animalSpe.residents.length));
     return object;
-  } else {
-    const arrayOfresidents = animals.filter((animal) => animal.name === species);
-    return arrayOfresidents[0].residents.length;
   }
+  const arrayOfresidents = animals.filter(animal => animal.name === species);
+  return arrayOfresidents[0].residents.length;
 }
 
 function entryCalculator(entrants) {
+  if (!entrants){
+    return 0;
+  }
 }
 
 function animalMap(options) {
