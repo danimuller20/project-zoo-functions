@@ -114,7 +114,7 @@ function increasePrices(percentage) {
 
 function selectEmployee(employeeSelected) {
   return employees.find(valueEmployee => valueEmployee.id === employeeSelected ||
-  valueEmployee.firstName === employeeSelected || valueEmployee.lastName === employeeSelected); 
+  valueEmployee.firstName === employeeSelected || valueEmployee.lastName === employeeSelected);
 }
 
 function listAnimals(arrayList) {
@@ -126,9 +126,8 @@ function listAnimals(arrayList) {
 function employeeCoverage(idOrName) {
   const objectReturn = {};
   if (idOrName === undefined) {
-    employees.forEach(employee => {
-      objectReturn[`${employee.firstName} ${employee.lastName}`] = listAnimals(employee.responsibleFor);
-    });
+    employees.forEach(employee => 
+      objectReturn[`${employee.firstName} ${employee.lastName}`] = listAnimals(employee.responsibleFor));
     return objectReturn;
   }
   const employee = selectEmployee(idOrName);
