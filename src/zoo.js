@@ -71,7 +71,9 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-}
+  }
+  
+
 
 function schedule(dayName) {
   // seu código aqui
@@ -93,7 +95,20 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-
+  const employee = data.employees.find(function (person) {
+    return person.id === id;
+  });
+  const idTreatedAnimal = employee.responsibleFor[0];
+  const treatedAnimal = data.animals.find(function (it) {
+    return it.id === idTreatedAnimal;
+  });
+  const residentsTreated =
+  treatedAnimal.residents.sort(function (itA, itB) {
+    return itA.age - itB.age;
+  });
+  const olderAnimal = residentsTreated[residentsTreated.length - 1];
+  const olderInformation = [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
+  return olderInformation;
 }
 
 function increasePrices(percentage) {
