@@ -34,17 +34,16 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(id, firstName, lastName, managers, responsibleFor) {
-  
 }
 
 function isManager(id) {
   // seu código aqui
-  return employees.some((employee) => employee.managers.some((manager) => (manager == id)));
+  return employees.some(employee => employee.managers.some(manager => (manager === id)));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  let newEmployee = { 
+  const newEmployee = {
     id,
     firstName,
     lastName,
