@@ -77,7 +77,6 @@ function schedule(dayName) {
   return dayName === 'Monday' ? { [dayName]: 'CLOSED' } : { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
 }
 
-
 function oldestFromFirstSpecies(id) {
   let oldest = 0;
   const species = animals.find(
@@ -95,7 +94,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(prices).forEach((currentValue) => {
+    prices[currentValue] += prices[currentValue] * (percentage / 100);
+    prices[currentValue] = Math.round(prices[currentValue] * 100) / 100;
+  });
+
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
