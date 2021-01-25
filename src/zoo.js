@@ -126,13 +126,13 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  let weekSchedule = {}
-  Object.keys(hours).forEach(hour => {
-    weekSchedule[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close -12}pm`;
-    hour === 'Monday' ? weekSchedule[hour] = 'CLOSED': '';
+  let weekSchedule = {};
+  Object.keys(hours).forEach((hour) => {
+    weekSchedule[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`;
+    if (hour === 'Monday') { weekSchedule[hour] = 'CLOSED' };
   });
   if (dayName) {
-    let daySchedule = {};
+    const daySchedule = {};
     daySchedule[dayName] = weekSchedule[dayName];
     weekSchedule = daySchedule;
   }
