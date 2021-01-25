@@ -22,11 +22,15 @@ function animalsOlderThan(animal, age) {
 } // concluido
 
 function employeeByName(employeeName) {
-  // seu código aqui
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find(search => (search.firstName === employeeName) || (search.lastName === employeeName));
+  return employees.find((search) => {
+    const { firstName, lastName } = search;
+    if ((firstName === employeeName) || (lastName === employeeName)) {
+      return search;
+    }
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -47,7 +51,7 @@ function addEmployee(...person) {
     responsibleFor,
   };
   employees.push(employee);
-} //concluido
+} // concluido
 
 function speciesCount(species) {
   const animalGroup = animals.find(value => value.name === species);
@@ -64,7 +68,7 @@ function animalCount(species) {
     return quantitiesObject;
   }
   return speciesCount(species);
-} //concluido
+} // concluido
 
 function entryCalculator(entrants) {
   // seu código aqui
