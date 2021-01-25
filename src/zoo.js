@@ -200,7 +200,7 @@ function employeeCoverage(idOrName) {
     let employeesListAnimalsBreeds;
     employees.forEach((employee) => {
       employeesListAnimalsBreeds = employeeCoverageFindEmployee(employee.id);
-      Object.assign(employeeFoundObj, employeesListAnimalsBreeds)
+      Object.assign(employeeFoundObj, employeesListAnimalsBreeds);
     });
   }
   return employeeFoundObj;
