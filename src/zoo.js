@@ -91,10 +91,24 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return Object.entries(prices).reduce((_, [key, value]) => {
+    const round = Math.round(value * percentage);
+    let float = ((value + round / 100)).toFixed(2);
+    float = parseFloat(float);
+    data.prices[key] = float;
+  }, { });
 }
 
 function employeeCoverage(idOrName) {
+  // const responsable = employees.find(info => info.id === percentage).responsibleFor;
+  // const array =  responsable.map(code => animals.find((info) => info.id === code).name);
+  // const arr = animals.map(info => info.name);
+  // return arr
+  // // return employees.reduce((acc, curr) => {
+  // //   const fullName = `${curr.firstName} ${curr.lastName}`
+  // //   acc[fullName] = array;
+  // //   return acc;
+  // // }, { });
 }
 
 module.exports = {
