@@ -166,9 +166,8 @@ function increasePrices(percentage) {
 
 // auxiliary function of employeeCoverage()
 function getListOfSpeciesPerEmployee(employeer) {
-  return employeer.responsibleFor.map(idAnimal => {
-    return animals.find(({ id }) => id === idAnimal).name;
-  });
+  return employeer.responsibleFor.map(
+    (idAnimal) => animals.find(({ id }) => id === idAnimal).name);
 }
 
 function employeeCoverage(idOrName) {
