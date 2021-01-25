@@ -90,7 +90,7 @@ function returnAnimalsByLocation() {
     object[item] = [];
     Object.keys(object).forEach((key) => {
       object[key] = animals
-      .filter(item => item.location === key)
+      .filter(element => element.location === key)
       .map(specie => specie.name);
     });
   });
@@ -114,7 +114,7 @@ function filterAnimalBySex(name, sex) {
 function filterAnimal(name, sex) {
   if (!sex) {
     return filterAnimalsBySpecie(name);
-  };
+  }
   return filterAnimalBySex(name, sex);
 }
 
@@ -143,7 +143,7 @@ function createMapOfAnimalsWithName(sorted, sex) {
         filterAnimal(animal.name, sex) :
         filterAnimal(animal.name, sex).sort();
         object[location].push(obj);
-      };
+      }
     });
   });
   return object;
