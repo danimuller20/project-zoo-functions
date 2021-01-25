@@ -8,23 +8,23 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals } = require("./data");
-const { employees } = require("./data");
-const data = require("./data");
+const { animals } = require('./data');
+const { employees } = require('./data');
+const data = require('./data');
 
 function animalsByIds(...ids) {
   // verifica se o array está vazio
   if (!Array.isArray(ids) || ids.length === 0) {
     return [];
   }
-  return animals.filter((animal) => ids.includes(animal.id));
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
   // find: busca por animal / every: analisa a idade e compara se for maior dar falso.
   return animals
-    .find((buscAnimal) => buscAnimal.name === animal)
-    .residents.every((idade) => idade.age >= age);
+    .find(buscAnimal => buscAnimal.name === animal)
+    .residents.every(idade => idade.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -32,7 +32,7 @@ function employeeByName(employeeName) {
     return {};
   }
   return employees.find(
-    (nomesFuncionarios) =>
+      nomesFuncionarios =>
       nomesFuncionarios.firstName === employeeName ||
       nomesFuncionarios.lastName === employeeName
   );
