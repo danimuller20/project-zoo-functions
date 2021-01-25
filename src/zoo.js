@@ -70,10 +70,11 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const filteredEmployee = employees.find(employee => employee.id === id);
   let animalEmployee = animalsByIds(filteredEmployee.responsibleFor[0]);
-  const oldestAnimal = animalEmployee[0].residents.reduce((acc, curr) =>
-    acc = ((acc.age < curr.age) ? curr : acc));
-  return [oldestAnimal.name, oldestAnimal.sex, oldestAnimal.age];
+  animalEmployee = animalEmployee[0].residents.reduce((acc, curr) => ((acc.age < curr.age) ? acc = curr : acc));
+  return [animalEmployee.name, animalEmployee.sex, animalEmployee.age];
 }
+
+// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 function increasePrices(percentage) {
   const multiplier = (percentage / 100) + 1;
