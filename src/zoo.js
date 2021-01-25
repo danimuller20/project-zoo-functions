@@ -48,7 +48,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   const lista = {};
-  animals.forEach((value) => lista[value.name] = value.residents.length);
+  animals.forEach(value => {lista[value.name] = value.residents.length});
   if (!species) {
     return lista;
   }
@@ -56,6 +56,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
+  let totalPercs = 0;
 
 }
 
