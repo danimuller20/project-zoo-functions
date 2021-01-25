@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -68,27 +68,75 @@ function entryCalculator(entrants) {
   }
   let sum = 0;
   if (entrants.Adult) {
-    sum += entrants.Adult * 49.99;
+    sum += entrants.Adult * prices.Adult;
   }
   if (entrants.Child) {
-    sum += entrants.Child * 20.99;
+    sum += entrants.Child * prices.Child;
   }
   if (entrants.Senior) {
-    sum += entrants.Senior * 24.99;
+    sum += entrants.Senior * prices.Senior;
   }
   /*  Object.values(entrants).forEach((element, index) => {
     sum += element * Object.values(prices)[index];
   })*/
   return sum;
 }
-console.log(Object.values(prices));
 
 function animalMap(options) {
   // seu código aqui
+ /* const animalsPerLocation = {};
+  if (!options) {
+    animals.forEach((species) => {
+      let animalsGrup = [];
+      animals.forEach((element) => {
+        if (species.location === element.location) {
+          animalsGrup.push(element.name);
+        }
+      })
+      return animalsPerLocation[species.location] = animalsGrup;
+    })
+    return animalsPerLocation;
+  }
+}
+
+function animalNames(name) {
+  const arrayNames = [];
+  animals.forEach((element) => {
+    if (element.name === name) {
+      element.residents.forEach((element2) => {
+        arrayNames.push(element2.name);
+      })
+    }
+  })
+  return arrayNames;*/
 }
 
 function schedule(dayName) {
   // seu código aqui
+  const newObject = {};
+  const arrayOfKeys = Object.keys(hours);
+  const arrayOfValues = Object.values(hours);
+  if (!dayName) {
+    arrayOfKeys.forEach((element, index) => {
+      if (element === 'Monday') {
+        newObject[element] = 'CLOSED';
+      } else {
+        newObject[element] = `Open from ${arrayOfValues[index].open}am until ${arrayOfValues[index].close - 12}pm`;
+      }
+    })
+    return newObject;
+  }
+  if (dayName === 'Monday') {
+    newObject[dayName] = 'CLOSED' 
+    return newObject;
+  }
+
+  arrayOfKeys.forEach((element, index) => {
+    if (dayName === element) {
+      newObject[element] = `Open from ${arrayOfValues[index].open}am until ${arrayOfValues[index].close - 12}pm`;
+    }
+  })
+  return newObject;
 }
 
 function oldestFromFirstSpecies(id) {
