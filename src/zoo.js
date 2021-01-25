@@ -69,12 +69,13 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const filteredEmployee = employees.find(employee => employee.id === id);
-  let animalEmployee = animalsByIds(filteredEmployee.responsibleFor[0]);
-  animalEmployee = animalEmployee[0].residents.reduce((acc, curr) => ((acc.age < curr.age) ? acc = curr : acc));
-  return [animalEmployee.name, animalEmployee.sex, animalEmployee.age];
+  let animalsEmployee = animalsByIds(filteredEmployee.responsibleFor[0])[0].residents;
+  animalsEmployee = animalsEmployee.reduce((acc, curr) =>
+    ((acc.age < curr.age) ? (acc = curr ): acc));
+  return [animalsEmployee.name, animalsEmployee.sex, animalsEmployee.age];
 }
 
-// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 function increasePrices(percentage) {
   const multiplier = (percentage / 100) + 1;
