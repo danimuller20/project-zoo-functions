@@ -170,11 +170,12 @@ function oldestFromFirstSpecies(id) {
   // Passa o id de um funcionario;
   // Encontra a primeira espécie de animal gerenciada pelo funcionário;
   // Retorna um array com nome, sexo e idade do animal mais velho da espécie
-  
+
   const findTheFirstSpecie = employees.find(({ id: funcId }) => funcId === id).responsibleFor[0];
-  
-  const findTheOldestAnimal = animals.find(({ id: animalId }) => animalId === findTheFirstSpecie)
-  .residents.map(animal => animal).sort(({ age: prevAge }, { age: currAge }) => prevAge - currAge).reverse();
+
+  const findTheOldestAnimal = animals.find(({ id: animalId }) =>
+  animalId === findTheFirstSpecie).residents.map(animal => animal)
+  .sort(({ age: prevAge }, { age: currAge }) => prevAge - currAge).reverse();
 
   return Object.values(findTheOldestAnimal[0]);
 }
