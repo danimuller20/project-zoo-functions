@@ -58,15 +58,14 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   let totalPrices = 0;
   if (!entrants) {
-      Object.keys(prices).forEach(value => {
-        if(!entrants[value]); { totalPrices += (entrants[value] * data.prices[value]);
-        }
-      });
-    return totalPrices;
-  };
+    Object.keys(entrants).forEach((value) => { totalPrices += (entrants[value] * data.prices[value]);
+    });
+  }
+  return totalPrices;
 }
 
 function animalMap(options) {
+
 }
 
 function schedule(dayName) {
