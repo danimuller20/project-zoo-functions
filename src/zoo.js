@@ -123,12 +123,11 @@ function schedule(dayName) {
         [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
       };
       return daySchedule;
-    } else {
-      daySchedule = {
-        Monday: 'CLOSED'
-      };
-      return daySchedule;
-    }
+    };
+    daySchedule = {
+      Monday: 'CLOSED',
+    };
+    return daySchedule;
   }
   return weeklyProgram;
 }
@@ -137,14 +136,23 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const firstAnimalID = employees.find(employee => employee.id === id).responsibleFor[0];
   const animalsList = animals.find(animal => animal.id === firstAnimalID).residents;
-  const oldestAnimal = animalsList.sort((animalA, animalB) => { return animalB.age - animalA.age })[0];
+  const oldestAnimal = animalsList.sort((animalA, animalB) => {
+    return animalB.age - animalA.age;
+  })[0];
   return Object.values(oldestAnimal);
 }
 
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(prices).forEach((key) => {
+    const newValue = prices[key]*(1 + percentage/100);
+    prices[key] = Math.round(newValue * 100)/100;
+  });
+  return prices;
 }
+
+// console.log(increasePrices(50))
+
 
 function employeeCoverage(idOrName) {
   // seu código aqui
