@@ -163,19 +163,18 @@ function createObjectWithSex(optionSex) {
   return objectWithSex;
 }
 function animalMap(options) {
-  if (!options || !options.includeNames) {
-    return createDefaultObject();
-  } else if (options.sex !== undefined && options.includeNames === true) {
-    if (options.sex === 'female') {
-      return (!options.sorted === true ? createObjectWithSex('female') : sortNames(createObjectWithSex('female')));
+  if (options) {
+    const { includeNames = false, sorted = false, sex = undefined } = options;
+    if (includeNames && sex !== undefined) {
+      return (!sorted ? createObjectWithSex(sex) : sortNames(createObjectWithSex(sex)));
     }
-    return (!options.sorted === true ? createObjectWithSex('male') : sortNames(createObjectWithSex('male')));
-  } else if (options.includeNames === true) {
-    return (!options.sorted === true ?
-      createObjectWithNames() : sortNames(createObjectWithNames()));
+    if (includeNames) {
+      return (!sorted ? createObjectWithNames() : sortNames(createObjectWithNames()));
+    }
   }
-  return options;
+  return createDefaultObject();
 }
+
 function schedule(dayName) {
   // seu código aqui
 }
