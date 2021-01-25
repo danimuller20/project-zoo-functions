@@ -53,7 +53,7 @@ function animalCount(species) {
     } else {
       const animalserched = data.animals.find(unit => unit.name === species);
       especimens = animalserched.residents.length; 
-    }
+    };
   });
   return especimens;
 }
