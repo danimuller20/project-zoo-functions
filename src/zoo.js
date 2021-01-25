@@ -15,8 +15,8 @@ const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   const animalsSelected = [];
-  ids.forEach(id => animals.filter(animal => {
-    if (animal.id === id) animalsSelected.push(animal);
+  ids.forEach(id => animals.filter((animal) => {
+    if (animal.id === id) return animalsSelected.push(animal);
   }));
   return animalsSelected;
 }
@@ -34,7 +34,17 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  }
+  return newEmployee;
 }
 
 function isManager(id) {
