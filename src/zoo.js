@@ -98,8 +98,87 @@ function entryCalculator(entrants) {
   return result;
 }
 
-function animalMap() {
+
+// Sem parâmetros, retorna animais categorizados por localização
+const test = animals.reduce(
+  (list, { location }) => {
+    list[location] = animals.filter(animal => location === animal.location)
+      .map(species => species.name);
+    return list;
+  }, {});
+
+// Com a opção includeNames: true especificada, retorna nomes de animais
+const firstParam = animals.reduce(
+  (list, { location }) => {
+    list[location] = animals.filter(animal => location === animal.location)
+      .reduce((array, { name, residents }) => {
+        array.push({ [name]: residents.map(value => value.name) });
+        return array
+      }, []);
+    return list;
+  }, {});
+
+// Com a opção sorted: true especificada, retorna nomes de animais ordenados
+const secondParam = () => {
+  return animals.reduce(
+    (list, { location }) => {
+      list[location] = animals.filter(animal => location === animal.location)
+        .reduce((array, { name, residents }) => {
+          array.push({ [name]: residents.map(value => value.name).sort() });
+          return array
+        }, []);
+      return list;
+    }, {});
+}
+
+// Com a opção sex: 'female' ou sex: 'male' especificada, retorna somente nomes de animais macho/fêmea
+function tresParam(sexo) {
+  return animals.reduce(
+    (list, { location }) => {
+      list[location] = animals.filter(animal => location === animal.location)
+        .reduce((array, { name, residents }) => {
+          array.push({ [name]: residents.filter(valor => valor.sex === sexo).map(value => value.name) });
+          return array
+        }, []);
+      return list;
+    }, {});
+}
+
+// Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
+function fourParam(sexo) {
+  return animals.reduce(
+    (list, { location }) => {
+      list[location] = animals.filter(animal => location === animal.location)
+        .reduce((array, { name, residents }) => {
+          array.push({ [name]: residents.filter(valor => valor.sex === sexo).map(value => value.name).sort() });
+          return array
+        }, []);
+      return list;
+    }, {});
+}
+
+
+function animalMap(options) {
   // seu código aqui
+  if (!options || !options.includeNames) {
+    return test;
+  }
+
+  if (options.includeNames && options.sex && options.sorted) {
+    return fourParam(options.sex);
+  }
+
+  if (options.includeNames && options.sex && !options.sorted) {
+    return tresParam(options.sex);
+  }
+
+  if (options.sorted && options.includeNames && !options.sex) {
+    return secondParam();
+  }
+
+  if (options.includeNames) {
+    return firstParam;
+  }
 }
 
 const showDay = (day) => {
@@ -120,6 +199,7 @@ function schedule(dayName) {
   }
   return { [dayName]: showDay(dayName) };
 }
+
 function find(resident) {
   return resident.reduce((older, newest) => {
     let animal = '';
