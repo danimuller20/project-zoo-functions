@@ -55,10 +55,10 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const scheduleObj = {};
-    Object.keys(hours).forEach((day) => (hours[day].open !== hours[day].close) ?
-    (scheduleObj[{ open, close }] = `Open from ${open}am until ${close - 12}pm`)
-    : (scheduleObj[day] = 'CLOSED'));
-    return dayName ? scheduleObj[dayName] : schedule;
+  Object.keys(hours).forEach(day => ((hours[day].open !== hours[day].close) ?
+  (scheduleObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`)
+  : (scheduleObj[day] = 'CLOSED')));
+  return dayName? {[dayName]: scheduleObj[dayName]}: scheduleObj;
 }
 
 function oldestFromFirstSpecies(id) {
