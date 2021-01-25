@@ -83,9 +83,156 @@ function entryCalculator(entrants) {
   return amount;
 }
 
-function animalMap(options) {
-  // seu código aqui
+function animalsByLocation(animalLocation) {
+  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
+  const northWesttAnimals = animals.filter(animal => animal.location === 'NW');
+  const southEasttAnimals = animals.filter(animal => animal.location === 'SE');
+  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  northEastAnimals.forEach(northEastAnimal => animalLocation.NE.push(northEastAnimal.name));
+  northWesttAnimals.forEach(northWesttAnimal => animalLocation.NW.push(northWesttAnimal.name));
+  southEasttAnimals.forEach(southEasttAnimal => animalLocation.SE.push(southEasttAnimal.name));
+  southWestAnimals.forEach(southWestAnimal => animalLocation.SW.push(southWestAnimal.name));
+  return animalLocation;
 }
+
+function animalsByLocationWithNames(animalLocation) {
+  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
+  const northWestAnimals = animals.filter(animal => animal.location === 'NW');
+  const southEastAnimals = animals.filter(animal => animal.location === 'SE');
+  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  northEastAnimals.forEach((northEastAnimal) => {
+    const animalWithName = {};
+    animalWithName[northEastAnimal.name] = northEastAnimal.residents.map(resident => resident.name);
+    animalLocation.NE.push(animalWithName);
+  });
+  northWestAnimals.forEach((northWestAnimal) => {
+    const animalWithName = {};
+    animalWithName[northWestAnimal.name] = northWestAnimal.residents.map(resident => resident.name);
+    animalLocation.NW.push(animalWithName);
+  });
+  southEastAnimals.forEach((southEastAnimal) => {
+    const animalWithName = {};
+    animalWithName[southEastAnimal.name] = southEastAnimal.residents.map(resident => resident.name);
+    animalLocation.SE.push(animalWithName);
+  });
+  southWestAnimals.forEach((southWestAnimal) => {
+    const animalWithName = {};
+    animalWithName[southWestAnimal.name] = southWestAnimal.residents.map(resident => resident.name);
+    animalLocation.SW.push(animalWithName);
+  });
+  return animalLocation;
+}
+
+function animalsByLocationWithNamesSorted(animalLocation) {
+  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
+  const northWestAnimals = animals.filter(animal => animal.location === 'NW');
+  const southEastAnimals = animals.filter(animal => animal.location === 'SE');
+  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  northEastAnimals.forEach((northEastAnimal) => {
+    const animalWithName = {};
+    animalWithName[northEastAnimal.name] = northEastAnimal.residents.map(resident => resident.name).sort();
+    animalLocation.NE.push(animalWithName);
+  });
+  northWestAnimals.forEach((northWestAnimal) => {
+    const animalWithName = {};
+    animalWithName[northWestAnimal.name] = northWestAnimal.residents.map(resident => resident.name).sort();
+    animalLocation.NW.push(animalWithName);
+  });
+  southEastAnimals.forEach((southEastAnimal) => {
+    const animalWithName = {};
+    animalWithName[southEastAnimal.name] = southEastAnimal.residents.map(resident => resident.name).sort();
+    animalLocation.SE.push(animalWithName);
+  });
+  southWestAnimals.forEach((southWestAnimal) => {
+    const animalWithName = {};
+    animalWithName[southWestAnimal.name] = southWestAnimal.residents.map(resident => resident.name).sort();
+    animalLocation.SW.push(animalWithName);
+  });
+  return animalLocation;
+}
+
+function animalsByLocationWithNamesBySex(animalLocation, sex) {
+  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
+  const northWestAnimals = animals.filter(animal => animal.location === 'NW');
+  const southEastAnimals = animals.filter(animal => animal.location === 'SE');
+  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  northEastAnimals.forEach((northEastAnimal) => {
+    const animalWithName = {};
+    const residentsBySex = northEastAnimal.residents.filter(item => item.sex === sex)
+    animalWithName[northEastAnimal.name] = residentsBySex.map(resident => resident.name);
+    animalLocation.NE.push(animalWithName);
+    console.log(animalLocation.NE);
+  });
+  northWestAnimals.forEach((northWestAnimal) => {
+    const animalWithName = {};
+    const animalBySex = northWestAnimal.residents.filter(item => item.sex === sex)
+    animalWithName[northWestAnimal.name] = animalBySex.map(resident => resident.name);
+    animalLocation.NW.push(animalWithName);
+  });
+  southEastAnimals.forEach((southEastAnimal) => {
+    const animalWithName = {};
+    const animalBySex = southEastAnimal.residents.filter(item => item.sex === sex)
+    animalWithName[southEastAnimal.name] = animalBySex.map(resident => resident.name);
+    animalLocation.SE.push(animalWithName);
+  });
+  southWestAnimals.forEach((southWestAnimal) => {
+    const animalWithName = {};
+    const animalBySex = southWestAnimal.residents.filter(item => item.sex === sex)
+    animalWithName[southWestAnimal.name] = animalBySex.map(resident => resident.name);
+    animalLocation.SW.push(animalWithName);
+  });
+  return animalLocation;
+}
+
+function animalsByLocationWithNamesBySexSorted(animalLocation, sex) {
+  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
+  const northWestAnimals = animals.filter(animal => animal.location === 'NW');
+  const southEastAnimals = animals.filter(animal => animal.location === 'SE');
+  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  northEastAnimals.forEach((northEastAnimal) => {
+    const animalWithName = {};
+    const residentsBySex = northEastAnimal.residents.filter(item => item.sex === sex)
+    animalWithName[northEastAnimal.name] = residentsBySex.map(resident => resident.name).sort();
+    animalLocation.NE.push(animalWithName);
+  });
+  northWestAnimals.forEach((northWestAnimal) => {
+    const animalWithName = {};
+    const animalBySex = northWestAnimal.residents.filter(item => item.sex === sex)
+    animalWithName[northWestAnimal.name] = animalBySex.map(resident => resident.name).sort();
+    animalLocation.NW.push(animalWithName);
+  });
+  southEastAnimals.forEach((southEastAnimal) => {
+    const animalWithName = {};
+    const animalBySex = southEastAnimal.residents.filter(item => item.sex === sex)
+    animalWithName[southEastAnimal.name] = animalBySex.map(resident => resident.name).sort();
+    animalLocation.SE.push(animalWithName);
+  });
+  southWestAnimals.forEach((southWestAnimal) => {
+    const animalWithName = {};
+    const animalBySex = southWestAnimal.residents.filter(item => item.sex === sex)
+    animalWithName[southWestAnimal.name] = animalBySex.map(resident => resident.name).sort();
+    animalLocation.SW.push(animalWithName);
+  });
+  return animalLocation;
+}
+
+function animalMap(options) {
+  const animalLocation = { NE: [], NW: [], SE: [], SW: [], };
+  if (options && options.includeNames && options.sex && options.sorted) {
+    return animalsByLocationWithNamesBySexSorted(animalLocation, options.sex);
+  }
+  if (options && options.includeNames && options.sex) {
+    return animalsByLocationWithNamesBySex(animalLocation, options.sex);
+  }
+  if (options && options.includeNames && options.sorted) {
+    return animalsByLocationWithNamesSorted(animalLocation);
+  }
+  if (options && options.includeNames) {
+    return animalsByLocationWithNames(animalLocation);
+  }
+  return animalsByLocation(animalLocation);
+}
+console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
