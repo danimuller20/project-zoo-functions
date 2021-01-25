@@ -48,19 +48,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // ### 7. IMPLEMENTE A FUNÇÃO animalCount
-
-  // Esta função é responsável por contabilizar a quantidade de animais.
-
-  // **Observações técnicas**
-
-  // - Sem parâmetros, retorna um objeto
-  // - Com o nome de uma espécie de animal, retorna um número
-
-  // **O que será avaliado**
-
-  // - Sem parâmetros, retorna animais e suas quantidades
-  // - Com o nome de uma espécie de animal, retorna somente a quantidade
   if (species === undefined) {
     return data.animals.reduce((accumulator, currentValue) => {
       accumulator[currentValue.name] = currentValue.residents.length;
@@ -70,8 +57,10 @@ function animalCount(species) {
   return data.animals.find(animal => animal.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = 0) {
+  return Object.keys(entrants)
+  .reduce((previusValue, currentValue) =>
+  previusValue + (entrants[currentValue] * data.prices[currentValue]), 0);
 }
 
 function animalMap(options) {
