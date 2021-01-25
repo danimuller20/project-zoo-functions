@@ -126,7 +126,7 @@ function listAnimals(arrayList) {
 function employeeCoverage(idOrName) {
   const objectReturn = {};
   if (idOrName === undefined) {
-    employees.forEach(employee => 
+    employees.forEach(employee =>
       objectReturn[`${employee.firstName} ${employee.lastName}`] = listAnimals(employee.responsibleFor));
     return objectReturn;
   }
