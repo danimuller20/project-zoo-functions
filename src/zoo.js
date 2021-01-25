@@ -86,10 +86,10 @@ function createAnimalsObjects(name, sex, sorted, residents) {
 }
 
 function animalsByLocations(animalLocation, includeNames, sex, sorted) {
-  return animals.reduce((namesArray, { name, location, residents }) => 
+  return animals.reduce((namesArray, { name, location, residents }) => (
   location === animalLocation ? namesArray
   .concat(includeNames ? createAnimalsObjects(name, sex, sorted, residents) : name) 
-  : namesArray, []);
+  : namesArray ), []);
 }
 
 function animalsByLocationsList(includeNames, sex, sorted) {
