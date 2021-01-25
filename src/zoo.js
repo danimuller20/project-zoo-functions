@@ -176,13 +176,11 @@ function employeeCoverage(idEmployee) {
       first === idEmployee || last === idEmployee || id === idEmployee,
   );
 
-  const officialResponsibleForTheAnimals = {};
-
-  officialResponsibleForTheAnimals[`${firstName} ${lastName}`] = responsibleFor.map(
-    idAnimal => animals.find(value => idAnimal === value.id).name,
-  );
-
-  return officialResponsibleForTheAnimals;
+  return {
+    [`${firstName} ${lastName}`]: responsibleFor.map(
+      idAnimal => animals.find(value => idAnimal === value.id).name,
+    )
+  };
 }
 
 module.exports = {
