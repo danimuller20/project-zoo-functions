@@ -108,28 +108,28 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const weeklyProgram = {
-  'Tuesday': 'Open from 8am until 6pm',
-  'Wednesday': 'Open from 8am until 6pm',
-  'Thursday': 'Open from 10am until 8pm',
-  'Friday': 'Open from 10am until 8pm',
-  'Saturday': 'Open from 8am until 10pm',
-  'Sunday': 'Open from 8am until 8pm',
-  'Monday': 'CLOSED'
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
   };
   let daySchedule = {};
   if (dayName !== undefined) {
-    if (dayName !== 'Monday'){
+    if (dayName !== 'Monday') {
       daySchedule = {
         [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
       };
       return daySchedule;
     } else {
       daySchedule = {
-        'Monday': 'CLOSED'
+        Monday: 'CLOSED'
       };
       return daySchedule;
-    };
-  };
+    }
+  }
   return weeklyProgram;
 }
 
@@ -137,9 +137,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const firstAnimalID = employees.find(employee => employee.id === id).responsibleFor[0];
   const animalsList = animals.find(animal => animal.id === firstAnimalID).residents;
-  const oldestAnimal = animalsList.sort((animalA, animalB) => {
-    return animalB.age - animalA.age;
-  })[0];
+  const oldestAnimal = animalsList.sort((animalA, animalB) => { return animalB.age - animalA.age })[0];
   return Object.values(oldestAnimal);
 }
 
