@@ -70,7 +70,7 @@ function entryCalculator(entrants) {
   Object.keys(prices).forEach((person) => {
     if (entrants[person]) {
       total += entrants[person] * prices[person];
-    };
+    }
   });
   return total;
 }
