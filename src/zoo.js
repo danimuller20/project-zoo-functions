@@ -54,13 +54,12 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  let trueOrFalse;
-  employees.find((employee) => {
-    employee.managers.forEach(managerId => managerId === id ?
-      trueOrFalse = true : trueOrFalse = false);
-  });
-  return trueOrFalse;
-}
+//   let trueOrFalse;
+//   employees.find((employee) => {
+//     employee.managers.forEach
+//   });
+//   return trueOrFalse;
+// }
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
