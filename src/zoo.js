@@ -65,9 +65,6 @@ function entryCalculator(entrants = 0) {
 
 function animalMap(options) {
   // seu código aqui
-  const animals = data.map(locale => {
-
-  })
 }
 
 function schedule(dayName) {
@@ -86,12 +83,11 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
   const personFound = data.employees.filter(person => person.id.includes(id)).
   find(value => value.managers !== undefined).responsibleFor[0];
   const residents = data.animals.find(object => object.id === personFound).residents;
-  const oldest = residents.map(animal => animal.age)
-  .reduce((acc, cur) => Math.max(acc, cur));
+  const oldest = residents.map(animal => animal.age).
+  reduce((acc, cur) => Math.max(acc, cur));
   return Object.values(residents.find(animals => animals.age === oldest));
 }
 
