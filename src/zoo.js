@@ -16,11 +16,8 @@ function animalsByIds(...ids) {
   const result = [];
 
   ids.forEach((e) => {
-    animals.find((finded) => {
-      if (finded.id === e) {
-        result.push(finded);
-        return result;
-      }
+    return animals.find((finded) => {
+      if (finded.id === e) return result.push(finded);
     });
   });
   return result;
