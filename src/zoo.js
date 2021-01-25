@@ -105,7 +105,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const { animals, employees } = data;
   const arrEmployee = employees.filter((employee) => {
     if (idOrName === '') {
       return true;
