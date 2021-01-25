@@ -140,7 +140,7 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   const coverageList = employees.reduce(
     (employeeCoverageList, { firstName, lastName, responsibleFor }) => {
-      employeeCoverageList[`${firstName} ${lastName}`] = responsibleFor.map((animalId) => animals
+      employeeCoverageList[`${firstName} ${lastName}`] = responsibleFor.map(animalId => animals
       .find(({ id }) => id === animalId).name);
       return employeeCoverageList;
     }, {});
