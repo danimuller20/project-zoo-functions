@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 
+
 function animalsByIds(...ids) {
   // seu código aqui
   return animals.filter((animalsId, i) => animalsId.id === ids[i]);
@@ -50,7 +51,7 @@ function animalCount(species) {
   let countReport = animals.reduce((accObject, current) => {
     accObject[current.name] = current.residents.length;
     return accObject;
-  }, {});
+  }, {} );
   if (Object.keys(countReport).includes(species)) {
     countReport = countReport[species];
   }
@@ -79,6 +80,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+
 }
 
 module.exports = {
