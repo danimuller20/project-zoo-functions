@@ -75,14 +75,33 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  const days = Object.keys(data.hours);
+  const workDay = {};
+
+  days.forEach((day) => {
+    if (day === 'Monday') {
+      workDay[day] = 'CLOSED';
+    } else {
+      const openHours = data.hours[day].open;
+      const closeHours = data.hours[day].close - 12;
+      workDay[day] = `Open from ${openHours}am until ${closeHours}pm`;
+    }
+  });
+  if(dayName === undefined) return workDay;
+  return{ [dayName]: workDay[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+
 }
 
 function increasePrices(percentage) {
   // seu código aqui
+  const percent = number => Math.round((number + (number * percentage * 0.01)) * 100) / 100;
+  Object.keys(data.prices).forEach((element) => {
+    data.prices[element] = percent(data.prices[element]);
+  });
 }
 
 function employeeCoverage(idOrName) {
