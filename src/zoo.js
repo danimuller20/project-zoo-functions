@@ -21,8 +21,6 @@ employees.forEach(worker => worker.managers.forEach((id) => {
   managersList.push(id);
 }));
 
-
-
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
   return animals.filter((animal, index) => animal.id === ids[index]);
@@ -104,9 +102,9 @@ function schedule(dayName = 0) {
 function oldestFromFirstSpecies(id) {
   const person = employees.find(number => number.id === id).responsibleFor;
   const foundAnimal = animals.find(species => species.id === person[0]).residents;
-  const residentsFound = foundAnimal.sort((a , b) => b.age - a.age)[0];
-  let result = [];
-  result.push(residentsFound.name, residentsFound.sex, residentsFound.age)
+  const residentsFound = foundAnimal.sort((a, b) => b.age - a.age)[0];
+  const result = [];
+  result.push(residentsFound.name, residentsFound.sex, residentsFound.age);
   return result;
 }
 
