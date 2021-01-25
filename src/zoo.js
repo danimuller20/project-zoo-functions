@@ -74,20 +74,11 @@ function schedule(dayName) {
     (obj[day] = 'CLOSED')));
   return !dayName ? obj : { [dayName]: obj[dayName] };
 }
-console.log(schedule('Monday'));
-
-// {
-//   'Tuesday': 'Open from 8am until 6pm',
-//   'Wednesday': 'Open from 8am until 6pm',
-//   'Thursday': 'Open from 10am until 8pm',
-//   'Friday': 'Open from 10am until 8pm',
-//   'Saturday': 'Open from 8am until 10pm',
-//   'Sunday': 'Open from 8am until 8pm',
-//   'Monday': 'CLOSED'
-// }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+
+  return animals.find(animal => (animal.id === (employees.find(person => person.id === id)
+    .responsibleFor[0]))).residents.reduce((older, next) => next.age > older.age ? next : older);
 }
 
 function increasePrices(percentage) {
