@@ -83,19 +83,8 @@ function entryCalculator(entrants) {
   return amount;
 }
 
-function animalsByLocation(animalLocation) {
-  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
-  const northWesttAnimals = animals.filter(animal => animal.location === 'NW');
-  const southEasttAnimals = animals.filter(animal => animal.location === 'SE');
-  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
-  northEastAnimals.forEach(northEastAnimal => animalLocation.NE.push(northEastAnimal.name));
-  northWesttAnimals.forEach(northWesttAnimal => animalLocation.NW.push(northWesttAnimal.name));
-  southEasttAnimals.forEach(southEasttAnimal => animalLocation.SE.push(southEasttAnimal.name));
-  southWestAnimals.forEach(southWestAnimal => animalLocation.SW.push(southWestAnimal.name));
-  return animalLocation;
-}
-function filterAnimalsByName(animals) {
-  const filteredAnimals = animals.map((animal) => {
+function filterAnimalsByName(animalsByName) {
+  const filteredAnimals = animalsByName.map((animal) => {
     const animalWithName = {};
     animalWithName[animal.name] = animal.residents.map(resident => resident.name);
     return animalWithName;
@@ -103,8 +92,8 @@ function filterAnimalsByName(animals) {
   return filteredAnimals;
 }
 
-function filterAnimalsByNamesSorted(animals) {
-  const filteredAnimals = animals.map((animal) => {
+function filterAnimalsByNamesSorted(animalsByNameSorted) {
+  const filteredAnimals = animalsByNameSorted.map((animal) => {
     const animalWithName = {};
     animalWithName[animal.name] = animal.residents.map(resident => resident.name).sort();
     return animalWithName;
@@ -112,8 +101,8 @@ function filterAnimalsByNamesSorted(animals) {
   return filteredAnimals;
 }
 
-function filterAnimalsByNameAndSex(animals, sex) {
-  const filteredAnimals = animals.map((animal) => {
+function filterAnimalsByNameAndSex(animalsByNameAndSex, sex) {
+  const filteredAnimals = animalsByNameAndSex.map((animal) => {
     const animalWithName = {};
     const residentsBySex = animal.residents.filter(item => item.sex === sex);
     animalWithName[animal.name] = residentsBySex.map(resident => resident.name);
@@ -122,8 +111,8 @@ function filterAnimalsByNameAndSex(animals, sex) {
   return filteredAnimals;
 }
 
-function filterAnimalsByNameAndSexSorted(animals, sex) {
-  const filteredAnimals = animals.map((animal) => {
+function filterAnimalsByNameAndSexSorted(animalsByNameAndSexSorted, sex) {
+  const filteredAnimals = animalsByNameAndSexSorted.map((animal) => {
     const animalWithName = {};
     const residentsBySex = animal.residents.filter(item => item.sex === sex);
     animalWithName[animal.name] = residentsBySex.map(resident => resident.name).sort();
@@ -132,11 +121,28 @@ function filterAnimalsByNameAndSexSorted(animals, sex) {
   return filteredAnimals;
 }
 
+function filterAnimalsLocation(initials) {
+  return animals.filter(animal => animal.location === initials);
+}
+
+function animalsByLocation() {
+  const northEastAnimals = filterAnimalsLocation('NE');
+  const northWestAnimals = filterAnimalsLocation('NW');
+  const southEastAnimals = filterAnimalsLocation('SE');
+  const southWestAnimals = filterAnimalsLocation('SW');
+  const animalLocation = { NE: [], NW: [], SE: [], SW: [] };
+  northEastAnimals.forEach(northEastAnimal => animalLocation.NE.push(northEastAnimal.name));
+  northWestAnimals.forEach(northWesttAnimal => animalLocation.NW.push(northWesttAnimal.name));
+  southEastAnimals.forEach(southEasttAnimal => animalLocation.SE.push(southEasttAnimal.name));
+  southWestAnimals.forEach(southWestAnimal => animalLocation.SW.push(southWestAnimal.name));
+  return animalLocation;
+}
+
 function animalsByLocationWithNames() {
-  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
-  const northWestAnimals = animals.filter(animal => animal.location === 'NW');
-  const southEastAnimals = animals.filter(animal => animal.location === 'SE');
-  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  const northEastAnimals = filterAnimalsLocation('NE');
+  const northWestAnimals = filterAnimalsLocation('NW');
+  const southEastAnimals = filterAnimalsLocation('SE');
+  const southWestAnimals = filterAnimalsLocation('SW');
   const animalLocation = {};
   animalLocation.NE = filterAnimalsByName(northEastAnimals);
   animalLocation.NW = filterAnimalsByName(northWestAnimals);
@@ -146,10 +152,10 @@ function animalsByLocationWithNames() {
 }
 
 function animalsByLocationWithNamesSorted() {
-  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
-  const northWestAnimals = animals.filter(animal => animal.location === 'NW');
-  const southEastAnimals = animals.filter(animal => animal.location === 'SE');
-  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  const northEastAnimals = filterAnimalsLocation('NE');
+  const northWestAnimals = filterAnimalsLocation('NW');
+  const southEastAnimals = filterAnimalsLocation('SE');
+  const southWestAnimals = filterAnimalsLocation('SW');
   const animalLocation = {};
   animalLocation.NE = filterAnimalsByNamesSorted(northEastAnimals);
   animalLocation.NW = filterAnimalsByNamesSorted(northWestAnimals);
@@ -159,10 +165,10 @@ function animalsByLocationWithNamesSorted() {
 }
 
 function animalsByLocationWithNamesBySex(sex) {
-  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
-  const northWestAnimals = animals.filter(animal => animal.location === 'NW');
-  const southEastAnimals = animals.filter(animal => animal.location === 'SE');
-  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  const northEastAnimals = filterAnimalsLocation('NE');
+  const northWestAnimals = filterAnimalsLocation('NW');
+  const southEastAnimals = filterAnimalsLocation('SE');
+  const southWestAnimals = filterAnimalsLocation('SW');
   const animalLocation = {};
   animalLocation.NE = filterAnimalsByNameAndSex(northEastAnimals, sex);
   animalLocation.NW = filterAnimalsByNameAndSex(northWestAnimals, sex);
@@ -172,10 +178,10 @@ function animalsByLocationWithNamesBySex(sex) {
 }
 
 function animalsByLocationWithNamesBySexSorted(sex) {
-  const northEastAnimals = animals.filter(animal => animal.location === 'NE');
-  const northWestAnimals = animals.filter(animal => animal.location === 'NW');
-  const southEastAnimals = animals.filter(animal => animal.location === 'SE');
-  const southWestAnimals = animals.filter(animal => animal.location === 'SW');
+  const northEastAnimals = filterAnimalsLocation('NE');
+  const northWestAnimals = filterAnimalsLocation('NW');
+  const southEastAnimals = filterAnimalsLocation('SE');
+  const southWestAnimals = filterAnimalsLocation('SW');
   const animalLocation = {};
   animalLocation.NE = filterAnimalsByNameAndSexSorted(northEastAnimals, sex);
   animalLocation.NW = filterAnimalsByNameAndSexSorted(northWestAnimals, sex);
@@ -185,7 +191,9 @@ function animalsByLocationWithNamesBySexSorted(sex) {
 }
 
 function animalMap(options) {
-  const animalLocation = { NE: [], NW: [], SE: [], SW: [], }
+  if (!options || !options.includeNames) {
+    return animalsByLocation();
+  }
   if (options && options.includeNames && options.sex && options.sorted) {
     return animalsByLocationWithNamesBySexSorted(options.sex);
   }
@@ -198,7 +206,6 @@ function animalMap(options) {
   if (options && options.includeNames) {
     return animalsByLocationWithNames();
   }
-  return animalsByLocation(animalLocation);
 }
 console.log(animalMap({ includeNames: true }));
 
