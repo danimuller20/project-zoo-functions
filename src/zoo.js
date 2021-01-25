@@ -56,8 +56,8 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 function isManager(id) {
   let trueOrFalse;
   employees.find((employee) => {
-    return employee.managers.forEach(managerId => managerId === id ? trueOrFalse = true
-      : trueOrFalse = false );
+    employee.managers.forEach(managerId => managerId === id ? trueOrFalse = true
+      : trueOrFalse = false;);
   });
   return trueOrFalse;
 }
