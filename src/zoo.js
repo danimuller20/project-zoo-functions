@@ -74,8 +74,40 @@ function entryCalculator(entrants) {
   return entrantsValue;
 }
 
-function animalMap(options) {
-  // seu código aqui
+// Função auxiliar da "animalMap()"; filtra animais
+const animalFilter = (name, sorted, sex) => {
+  let filterAnimal = animals.find(animal => animal.name === name).residents;
+  if (sex === 'female' || sex === 'male') {
+    filterAnimal = filterAnimal.filter(animal => animal.sex === sex);
+  }
+
+  const filteredAnimal = filterAnimal.map(animal => animal.name);
+
+  if (sorted) {
+    filteredAnimal.sort();
+  }
+
+  return { [name]: filteredAnimal };
+};
+
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+
+  let mapResults = animals.reduce((accumulator, animal) => {
+    if (!accumulator[animal.location]) {
+      accumulator[animal.location] = [];
+    }
+    accumulator[animal.location].push(animal.name);
+    return accumulator;
+  }, {});
+
+  if (includeNames) {
+    mapResults = Object.entries(mapResults).reduce((accumulator, [region, animal]) => {
+      accumulator[region] = animal.map(name => animalFilter(name, sorted, sex));
+      return accumulator;
+    }, {});
+  }
+  return mapResults;
 }
 
 function schedule(dayName) {
