@@ -148,10 +148,8 @@ function oldestFromFirstSpecies(id) {
     return older;
   });
   const oldAnimal = animal.residents.find(element => element.age === older);
-  return Object.values(oldAnimal)
+  return Object.values(oldAnimal);
 }
-
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
   // seu código aqui
