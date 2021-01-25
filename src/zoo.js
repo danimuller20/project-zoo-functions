@@ -21,7 +21,9 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // find: busca por animal / every: analisa a idade e compara se for maior dar falso.
-  return animals.find(buscAnimal => buscAnimal.name === animal).residents.every( idade => idade.age >= age);
+  return animals
+  .find(buscAnimal => buscAnimal.name === animal)
+  .residents.every(idade => idade.age >= age);
 };
 
 function employeeByName(employeeName) {
