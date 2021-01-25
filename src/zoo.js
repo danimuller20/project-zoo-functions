@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -94,11 +94,68 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-
+  const returnLocation = () => {
+    const typesOfLocation = [];
+    animals.forEach((element) => {
+      if (!typesOfLocation.includes(element.location)) {
+        typesOfLocation.push(element.location);
+      }
+    });
+    return typesOfLocation;
+  };
+  const searchAnimalsByLocation = (location) => {
+    return animals
+    .filter(animal => animal.location === location)
+    .map(element => element.name);
+  };
+  const createDefaultObject = () => {
+    const arrayOfLocation = returnLocation();
+    return arrayOfLocation.reduce((defaultObject, location) => {
+      defaultObject[location] = searchAnimalsByLocation(location);
+      return defaultObject;
+    }, {});
+  };
+  const searchAnimalsNames = (animal) => {
+    return animals
+    .reduce((objectAnimalName, element) => {
+      if (element.name === animal) {
+        objectAnimalName[animal] = element.residents.map(resident => resident.name);
+      }
+      return objectAnimalName;
+    }, {});
+  };
+  const includeNames = () => {
+    const arrayOfLocation = returnLocation();
+    const objectWithNames = arrayOfLocation.reduce((objectWithNames, location) => {
+      const arrayWithNames = searchAnimalsByLocation(location).map(searchAnimalsNames);
+      objectWithNames[location] = arrayWithNames;
+      return objectWithNames;
+    }, {});
+    return objectWithNames;
+  };
+  const sortNames = () => {
+    const objectWithNames = includeNames();
+    Object.keys(objectWithNames).forEach((location) => {
+      objectWithNames[location].forEach((especie) => {
+        especie[Object.keys(especie)[0]].sort();
+      });
+    });
+    return objectWithNames;
+  };
+  if (!options) {
+    return createDefaultObject();
+  }
+  else if (options.sorted === true) { 
+    return sortNames();
+  }
+  else if (options.includeNames === true) {
+    return includeNames();
+  }
 }
 
 function schedule(dayName) {
   // seu código aqui
+
 }
 
 function oldestFromFirstSpecies(id) {
