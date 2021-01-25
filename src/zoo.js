@@ -15,10 +15,12 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 
+
 const managersList = [];
 employees.forEach(worker => worker.managers.forEach((id) => {
   managersList.push(id);
 }));
+
 
 
 function animalsByIds(...ids) {
@@ -95,13 +97,20 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function schedule(dayName = 0) {
+
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const person = employees.find(number => number.id === id).responsibleFor;
+  const foundAnimal = animals.find(species => species.id === person[0]).residents;
+  const residentsFound = foundAnimal.sort((a , b) => b.age - a.age)[0];
+  let result = [];
+  result.push(residentsFound.name, residentsFound.sex, residentsFound.age)
+  return result;
 }
+
+oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1');
 
 function increasePrices(percentage) {
   // seu código aqui
