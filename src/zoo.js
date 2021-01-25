@@ -85,7 +85,7 @@ const hoursKeys = Object.keys(hours).map(value => value);
 
 function noParamaterFunction(value, index) {
   if (hoursKeys[index] === 'Monday') {
-    return { Monday : 'CLOSED' };
+    return { Monday: 'CLOSED' };
   }
   return { [hoursKeys[index]]: `Open from ${value.open}am until ${value.close - 12}pm` };
 }
@@ -94,7 +94,7 @@ function schedule(dayName) {
   const object = {};
   if (!dayName) {
     hoursValue.map(noParamaterFunction).forEach((value) => {
-      object[Object.keys(value)] =  Object.values(value)[0];
+      object[Object.keys(value)] = Object.values(value)[0];
       return object;
     });
   } else {
