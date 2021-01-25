@@ -126,8 +126,8 @@ function entryCalculator(entrants) {
 
   const total = Object.keys(entrants).reduce(
     (acc, typeOfEntrant) =>
-      acc + entrants[typeOfEntrant] * prices[typeOfEntrant],
-    0
+      acc + (entrants[typeOfEntrant] * prices[typeOfEntrant]),
+    0,
   );
 
   return total;
