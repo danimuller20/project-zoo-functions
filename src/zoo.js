@@ -67,14 +67,14 @@ function isManager(id) {
   return resultManager;
 }
 
-function addEmployee(id, firstName, lastName, managers = null, responsibleFor = null) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   const employee = {
-    'id': id,
-    'firstName': firstName,
-    'lastName': lastName,
-    'managers': managers,
-    'responsibleFor': responsibleFor,
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
   }
   data.employees.push(employee);
 }
