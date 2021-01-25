@@ -29,6 +29,7 @@ function animalsByIds(...ids) {
   });
   return arrayOfIDs;
 }
+// exercício 2
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
