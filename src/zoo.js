@@ -53,7 +53,7 @@ function employeeByName(employeeName) {
   
      return employeeObject;
 }
-
+// exercício 4
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   const newEmployee = {
