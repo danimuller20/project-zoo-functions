@@ -69,29 +69,14 @@ const getNamesAnimalsForLocation = (accumulator, currentValue) => {
 };
 
 // auxiliary function of animalMap()
-const sortedNames = arrayOfNames => arrayOfNames.sort();
-
-// auxiliary function of animalMap()
-const getAnimalForSex = (currentAnimal, sex, sorted) => {
-  const animalForSex = currentAnimal.residents
-    .filter(resident => resident.sex === sex)
-    .map(resident => resident.name);
-  if (!sorted) {
-    return animalForSex;
-  }
-  return sortedNames(animalForSex);
-};
-
-// auxiliary function of animalMap()
 const sortedNamesOrGetForSex = (accAnimal, currentAnimal, sex, sorted) => {
   const objAnimal = {};
-  const namesOfResidents = currentAnimal.residents.map(resident => resident.name);
-  if (sex !== '') {
-    objAnimal[currentAnimal.name] = getAnimalForSex(currentAnimal, sex, sorted);
-  } else if (sorted) {
-    objAnimal[currentAnimal.name] = sortedNames(namesOfResidents);
-  } else {
-    objAnimal[currentAnimal.name] = namesOfResidents;
+  const animalForSex = currentAnimal.residents
+    .filter((resident) => (sex === '' ? true : resident.sex === sex))
+    .map((resident) => resident.name);
+  objAnimal[currentAnimal.name] = animalForSex;
+  if (sorted) {
+    objAnimal[currentAnimal.name].sort();
   }
   accAnimal.push(objAnimal);
   return accAnimal;
