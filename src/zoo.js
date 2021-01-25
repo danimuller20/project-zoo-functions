@@ -89,7 +89,7 @@ function schedule(dayName) {
   if (dayName === 'Monday') return { Monday: 'CLOSED' };
   if (!dayName) return editedGmtSchedule;
   const { open, close } = hours[dayName];
-  return { [dayName]: `Open from ${open}am until ${close - 12} pm` };
+  return { [dayName]: `Open from ${open}am until ${close - 12}pm` };
 }
 
 function oldestFromFirstSpecies(id) {
