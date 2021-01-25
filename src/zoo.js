@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, hours, prices } = data;
 
 /* animalsByIds */
 
@@ -100,12 +100,46 @@ function entryCalculator(entrants) {
   return keys.reduce((total, entrant, index) => total + checkEntrants(values[index], entrant), 0);
 }
 
+/* animalMap */
+
 function animalMap(options) {
   // seu código aqui
 }
+// console.log(animalMap());
+// console.log(animalMap({ includeNames: true }));
+// console.log(animalMap({ includeNames: true, sorted: true }));
+// console.log(animalMap({ includeNames: true, sex: 'female' }));
+// console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
+// console.log(animalMap({ sex: 'female' })['NE'][0]);
+// console.log(animalMap({ sex: 'female', sorted: true })['NE'][0]);
+
+/* schedule */
+
+function createSchedule(arrayOpenClose) {
+  const open = arrayOpenClose.open;
+  const close = (arrayOpenClose.close) - 12;
+
+  if (open === 0 && close === -12) {
+    return 'CLOSED';
+  }
+
+  return `Open from ${open}am until ${close}pm`;
+}
 
 function schedule(dayName) {
-  // seu código aqui
+  const keys = Object.keys(hours);
+  const values = Object.values(hours);
+  const result = {};
+
+  if (dayName === undefined) {
+    keys.forEach((day, index) => {
+      result[day] = createSchedule(values[index]);
+    });
+  } else {
+    result[dayName] = createSchedule(values[keys.indexOf(dayName)]);
+  }
+
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
