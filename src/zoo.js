@@ -33,22 +33,26 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
- return data.employees.some(ver => ver.managers === id);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const newEmployee ={
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
-  }
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
   data.employees.push(newEmployee);
 }
 
 function animalCount(species) {
-  // seu código aqui
+  let lista = {};
+  animals.forEach(value => lista[value.name] = value.residents.length);
+  if (!species){
+    return lista;
+  }
+  return lista[species];
 }
 
 function entryCalculator(entrants) {
