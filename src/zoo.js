@@ -56,7 +56,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  const totalPrices;
+  let totalPrices = 0;
   if (!entrants) {
       Object.keys(prices).forEach(value => {
         if(!entrants[value]); { totalPrices += (entrants[value] * data.prices[value]);
@@ -67,7 +67,6 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-
 }
 
 function schedule(dayName) {
