@@ -15,10 +15,10 @@ const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   const animalsSelected = [];
-  ids.forEach(id => {
+  ids.forEach((id) => {
     return animals.filter((animal) => {
       if (animal.id === id) return animalsSelected.push(animal);
-    })
+    });
   });
   return animalsSelected;
 }
@@ -50,10 +50,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some(employee => {
-    return employee.managers.some(manager => manager === id);
-  });
-
+  return employees.some(employee => employee.managers.some(manager => manager === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
