@@ -33,13 +33,13 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  const employee = employees.find(employee => employee.firstName === employeeName ||
+  const searchEmployee = employees.find(employee => employee.firstName === employeeName ||
     employee.lastName === employeeName);
 
-  if (!employee) return {};
-
-  return employee;
+  if (!searchEmployee) return {};
+  return searchEmployee;
 }
+console.log(employeeByName('Stephanie'))
 
 function createEmployee(personalInfo, associatedWith) {
   return {
@@ -53,7 +53,6 @@ function isManager(id) {
   if (findManager) return true;
   return false;
 }
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({
