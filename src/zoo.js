@@ -82,23 +82,85 @@ function entryCalculator(entrants = 0) {
 }
 
 // 9
-// function returnAnimalsByLocation() {
-//   const object = {
-//     NE: [],
-//     NW: [],
-//     SE: [],
-//     SW: [],
-//   };
-//   Object.keys(object).forEach((key) => {
-//     object[key] = animals
-//     .filter(item => item.location === key)
-//     .map(specie => specie.name);
-//   });
-//   return object;
-// }
+const locations = ['NE', 'NW', 'SE', 'SW'];
+
+function returnAnimalsByLocation() {
+  const object = {};
+  locations.forEach((item) => {
+    object[item] = [];
+    Object.keys(object).forEach((key) => {
+      object[key] = animals
+      .filter(item => item.location === key)
+      .map(specie => specie.name);
+    });
+  });
+  return object;
+}
+
+function filterAnimalsBySpecie(name) {
+  const findAnimal = animals.find(animal => animal.name === name).residents;
+  const getResidentNames = findAnimal.map(element => element.name);
+  return getResidentNames;
+}
+
+function filterAnimalBySex(name, sex) {
+  const findAnimal = animals.find(animal => animal.name === name).residents;
+  const filterAnimals = findAnimal.filter(element =>
+    element.sex === sex);
+  const getResidentNames = filterAnimals.map(item => item.name);
+  return getResidentNames;
+}
+
+function filterAnimal(name, sex) {
+  if (!sex) {
+    return filterAnimalsBySpecie(name);
+  } else {
+    return filterAnimalBySex(name, sex);
+  }
+}
+
+function createMapOfAnimal() {
+  const object = {};
+  locations.forEach((location) => {
+    const array = [];
+    object[location] = array;
+    animals.forEach((animal) => {
+      if (animal.location === location) {
+        array.push(animal.name);
+      };
+    });
+  });
+  return object;
+};
+
+function createMapOfAnimalsWithName(sorted, sex) {
+  const object = {};
+  locations.forEach((location) => {
+    object[location] = [];
+    animals.forEach((animal) => {
+      if (animal.location === location) {
+        const obj = {};
+        obj[animal.name] = (!sorted) ?
+        filterAnimal(animal.name, sex) :
+        filterAnimal(animal.name, sex).sort();
+        object[location].push(obj);
+      };
+    });
+  });
+  return object;
+}
+
+function verifyIncludeNames(includeNames, sorted, sex) {
+  if (!includeNames) {
+    return createMapOfAnimal();
+  } else {
+    return createMapOfAnimalsWithName(sorted, sex);
+  }
+}
 
 function animalMap(options = '') {
-  // seu codigo aqui
+  const { includeNames, sorted, sex } = options;
+  return (options === '') ? returnAnimalsByLocation() : verifyIncludeNames(includeNames, sorted, sex);
 }
 
 // 10
