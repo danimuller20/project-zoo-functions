@@ -56,7 +56,7 @@ function employeeByName(employeeName) {
 // console.log(employeeByName('Nelson'));
 
 function createEmployee(personalInfo, associatedWith) {
-  const newObj = {...personalInfo, ...associatedWith}
+  const newObj = { ...personalInfo, ...associatedWith };
   return newObj;
 }
 
