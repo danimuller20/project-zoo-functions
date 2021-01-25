@@ -207,14 +207,13 @@ function noParameter() {
 }
 
 function verifyIdFirstNameOrLastName(idOrName) {
-  const id = employees.find(({ id, firstName, lastName }) =>
+  const idFirstOrLastName = employees.find(({ id, firstName, lastName }) =>
   id === idOrName || firstName === idOrName || lastName === idOrName);
 
-  const arrAnimals = id.responsibleFor.map(id => animals.find(({ id:animalId }) => animalId === id).name);
+  const arrAnimals = idFirstOrLastName.responsibleFor.map(responsibleAnimal =>
+  animals.find(({ id: animalId }) => animalId === responsibleAnimal).name);
 
-  const result = { [id.firstName + ' ' + id.lastName]: arrAnimals };
-
-  return result;
+  return { [`${idFirstOrLastName.firstName} ${idFirstOrLastName.lastName}`]: arrAnimals };
 }
 
 function employeeCoverage(idOrName) {
