@@ -15,6 +15,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { hours } = data;
 
 const managersList = [];
 employees.forEach(worker => worker.managers.forEach((id) => {
@@ -100,8 +101,24 @@ function animalMap(options) {
 }
 
 function schedule(dayName = 0) {
-
+  const openDays = {
+    'Tuesday': 'Open from 8am until 6pm',
+    'Wednesday': 'Open from 8am until 6pm',
+    'Thursday': 'Open from 10am until 8pm',
+    'Friday': 'Open from 10am until 8pm',
+    'Saturday': 'Open from 8am until 10pm',
+    'Sunday': 'Open from 8am until 8pm',
+    'Monday': 'CLOSED'
+  };
+  if(dayName === 0) return openDays;
+  if(dayName in openDays) {
+    let day = {};
+    day[dayName] = openDays[dayName];
+    return day;
+  }
 }
+
+console.log(schedule('Monday'))
 
 function oldestFromFirstSpecies(id) {
   const person = employees.find(number => number.id === id).responsibleFor;
@@ -118,6 +135,12 @@ function increasePrices(percentage) {
   prices.Senior = Math.ceil(prices.Senior * (100 + percentage)) / 100;
   prices.Child = Math.ceil(prices.Child * (100 + percentage)) / 100;
 }
+
+const employeesAndAnimals = () => {
+
+}
+
+employeesAndAnimals();
 
 function employeeCoverage(idOrName) {
   // seu código aqui
