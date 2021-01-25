@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -51,7 +51,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   let entryTotalFee = 0;
-  if (entrants === undefined || entrants === {}) {
+  if (!entrants) {
     return entryTotalFee;
   }
   Object.keys(prices).forEach((age) => {
@@ -63,11 +63,34 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const locationObject = { };
+  if (options === undefined) {
+    return {
+    NE: animals.filter(animal => animal.location === 'NE').map(animal => animal.name),
+    NW: animals.filter(animal => animal.location === 'NW').map(animal => animal.name),
+    SE: animals.filter(animal => animal.location === 'SE').map(animal => animal.name),
+    SW: animals.filter(animal => animal.location === 'SW').map(animal => animal.name),
+    }
+  }
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const zooSchedule = { 
+  'Tuesday': 'Open from 8am until 6pm',
+  'Wednesday': 'Open from 8am until 6pm',
+  'Thursday': 'Open from 10am until 8pm',
+  'Friday': 'Open from 10am until 8pm',
+  'Saturday': 'Open from 8am until 10pm',
+  'Sunday': 'Open from 8am until 8pm',
+  'Monday': 'CLOSED',
+  };
+
+  if (dayName === undefined) {
+    return zooSchedule
+  }
+  const daySchedule = Object.entries(zooSchedule).filter(index => index[0] === dayName);
+  const objectDaySchedule = Object.fromEntries(daySchedule);
+  return objectDaySchedule;
 }
 
 function oldestFromFirstSpecies(id) {
