@@ -89,15 +89,11 @@ const animalFilter = (name, sorted, sex) => {
     filteredAnimal.sort();
   }
 
-  return {
-    [name]: filteredAnimal
-  };
+  return { [name]: filteredAnimal };
 };
 
 function animalMap(options = {}) {
-  const {
-    includeNames = false, sorted = false, sex
-  } = options;
+  const { includeNames = false, sorted = false, sex } = options;
 
   let mapResults = animals.reduce((accumulator, animal) => {
     if (!accumulator[animal.location]) {
@@ -132,9 +128,7 @@ function schedule(dayName = '') {
     if (!verifyDay) {
       return 'Dia inválido!';
     }
-    return {
-      [dayName]: myObject[dayName]
-    };
+    return { [dayName]: myObject[dayName] };
   }
 
   return myObject;
