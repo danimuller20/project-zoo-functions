@@ -90,8 +90,8 @@ function increasePrices(percentage) {
   const senior = Math.round(data.prices.Senior * percentage) / 100;
   const child = Math.round(data.prices.Child * percentage) / 100;
   data.prices.Adult = Number.parseFloat((data.prices.Adult + adult).toPrecision(4));
-  data.prices.Senior = Number.parseFloat((data.prices.Senior + senior).toPrecision(4))
-  data.prices.Child = Number.parseFloat((data.prices.Child + child).toPrecision(4))
+  data.prices.Senior = Number.parseFloat((data.prices.Senior + senior).toPrecision(4));
+  data.prices.Child = Number.parseFloat((data.prices.Child + child).toPrecision(4));
 }
 
 function employeeCoverage(idOrName) {
