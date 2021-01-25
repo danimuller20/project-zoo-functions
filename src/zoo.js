@@ -15,7 +15,7 @@ const {
   animals,
   employees,
   hours,
-  prices
+  prices,
 } = data;
 
 function animalsByIds(...ids) {
@@ -38,18 +38,18 @@ function createEmployee(personalInfo, associatedWith) {
   const {
     id,
     firstName,
-    lastName
+    lastName,
   } = personalInfo;
   const {
     managers,
-    responsibleFor
+    responsibleFor,
   } = associatedWith;
   return {
     id,
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   };
 }
 
@@ -62,17 +62,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push(createEmployee({
     id,
     firstName,
-    lastName
+    lastName,
   }, {
     managers,
-    responsibleFor
+    responsibleFor,
   }));
 }
 
 function animalCount(species) {
   if (species !== undefined) {
     const {
-      residents
+      residents,
     } = animals.find(animal => animal.name === species);
     return residents.length;
   }
@@ -83,7 +83,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants = {}) {
   const {
-    Adult = 0, Child = 0, Senior = 0
+    Adult = 0, Child = 0, Senior = 0,
   } = entrants;
   return ((Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior));
 }
@@ -94,26 +94,26 @@ function animalMap(options) {
 
 function schedule(dayName) {
   if (dayName === 'Monday') {
-    const day = {}
+    const day = {};
     day[dayName] = 'CLOSED';
     return day;
   }
   if (dayName !== undefined) {
-    const day = {}
+    const day = {};
     day[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
     return day;
   }
 
   const formatedSchedule = {};
-  const schedule = Object.entries(hours);
-  schedule.forEach((day) => {
+  const scheduleEntries = Object.entries(hours);
+  scheduleEntries.forEach((day) => {
     if (day[0] === 'Monday') {
-      formatedSchedule[day[0]] = `CLOSED`
+      formatedSchedule[day[0]] = 'CLOSED';
     } else {
-      formatedSchedule[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`
+      formatedSchedule[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
     }
   });
-  return formatedSchedule
+  return formatedSchedule;
 }
 
 function oldestFromFirstSpecies(id) {
