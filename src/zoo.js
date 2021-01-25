@@ -114,9 +114,8 @@ function filterAnimalBySex(name, sex) {
 function filterAnimal(name, sex) {
   if (!sex) {
     return filterAnimalsBySpecie(name);
-  } else {
-    return filterAnimalBySex(name, sex);
-  }
+  };
+  return filterAnimalBySex(name, sex);
 }
 
 function createMapOfAnimal() {
@@ -127,11 +126,11 @@ function createMapOfAnimal() {
     animals.forEach((animal) => {
       if (animal.location === location) {
         array.push(animal.name);
-      };
+      }
     });
   });
   return object;
-};
+}
 
 function createMapOfAnimalsWithName(sorted, sex) {
   const object = {};
@@ -153,9 +152,8 @@ function createMapOfAnimalsWithName(sorted, sex) {
 function verifyIncludeNames(includeNames, sorted, sex) {
   if (!includeNames) {
     return createMapOfAnimal();
-  } else {
-    return createMapOfAnimalsWithName(sorted, sex);
   }
+  return createMapOfAnimalsWithName(sorted, sex);
 }
 
 function animalMap(options = '') {
