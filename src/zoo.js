@@ -192,8 +192,38 @@ function increasePrices(percentage) {
   return prices;
 }
 
+function noParameter() {
+  // [[fullName, [arrOfAnimals]]
+  const fullName = employees.map(({ firstName, lastName }) => `${firstName} ${lastName}`);
+  const arrOfAnimals = employees.map(({ responsibleFor }) => responsibleFor).map(arrayId =>
+  arrayId.map(id => animals.find(animal => animal.id === id).name));
+
+  const arrKeyValue = [];
+  fullName.forEach((func, index) => {
+    arrKeyValue.push([func, arrOfAnimals[index]]);
+  });
+
+  return Object.fromEntries(arrKeyValue);
+}
+
+function verifyIdFirstNameOrLastName(idOrName) {
+  const id = employees.find(({ id, firstName, lastName }) =>
+  id === idOrName || firstName === idOrName || lastName === idOrName);
+
+  const arrAnimals = id.responsibleFor.map(id => animals.find(({ id:animalId }) => animalId === id).name);
+
+  const result = { [id.firstName + ' ' + id.lastName]: arrAnimals };
+
+  return result;
+}
+
 function employeeCoverage(idOrName) {
   // seu código aqui
+  // Sem parâmetros: retorna lista de funcionários e animais que são responsaveis;
+  // id do func.: retorna os animais que o func. é responsavel;
+  // func. firstName ou func.lastName retorna animais que o func é responsavel;
+  if (!idOrName) return noParameter();
+  return verifyIdFirstNameOrLastName(idOrName);
 }
 
 module.exports = {
