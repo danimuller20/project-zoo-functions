@@ -12,6 +12,7 @@ const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 
 
 function animalsByIds(...ids) {
@@ -102,12 +103,36 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  // seu código aqui
+  // depois
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const weeklyProgram = {
+  'Tuesday': 'Open from 8am until 6pm',
+  'Wednesday': 'Open from 8am until 6pm',
+  'Thursday': 'Open from 10am until 8pm',
+  'Friday': 'Open from 10am until 8pm',
+  'Saturday': 'Open from 8am until 10pm',
+  'Sunday': 'Open from 8am until 8pm',
+  'Monday': 'CLOSED'
+  };
+  let daySchedule = {};
+  if (dayName !== undefined) {
+    if (dayName !== 'Monday'){
+      daySchedule = {
+        [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
+      };
+      return daySchedule;
+    } else {
+      daySchedule = {
+        'Monday': 'CLOSED'
+      };
+      return daySchedule;
+    };
+  };
+  return weeklyProgram;
 }
+
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
