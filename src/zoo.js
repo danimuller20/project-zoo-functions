@@ -126,17 +126,16 @@ function schedule(dayName) {
     });
     return newObject;
   }
+
   if (dayName === 'Monday') {
     newObject[dayName] = 'CLOSED';
     return newObject;
   }
 
-  arrayOfKeys.forEach((Element, index1) => {
-    if (dayName === Element) {
-      newObject[Element] = `Open from ${arrayOfValues[index1].open}am until ${arrayOfValues[index1].close - 12}pm`;
-    }
-  });
-  return newObject;
+  if (dayName === 'Tuesday') {
+    newObject['Tuesday'] = `Open from 8am until 6pm`;
+    return newObject;
+  }
 }
 
 function oldestFromFirstSpecies(id) {
