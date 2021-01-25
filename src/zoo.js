@@ -16,9 +16,8 @@ const { animals, employees } = data;
 function animalsByIds(...ids) {
   const animalsSelected = [];
   ids.forEach((id) => animals.filter((animal) => {
-      if (animal.id === id) return animalsSelected.push(animal);
-    })
-  );
+    if (animal.id === id) return animalsSelected.push(animal);
+  }));
   return animalsSelected;
 }
 
@@ -53,19 +52,26 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const newEmployee = {
+  return employees.push({
     id,
     firstName,
     lastName,
     managers,
     responsibleFor,
-  };
-
-  employees.push(newEmployee);
+  });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species !== undefined) {
+    return animals.find(currentAnimal =>
+      currentAnimal.name === species).residents.length;
+  } else {
+    let newObj = {};
+    animals.forEach((animal) => {
+      newObj[animal.name] = animal.residents.length;
+    });
+    return newObj;
+  };
 }
 
 function entryCalculator(entrants) {
