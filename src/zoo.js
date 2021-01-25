@@ -25,11 +25,11 @@ employees.forEach(worker => worker.managers.forEach((id) => {
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
   const foundIds = [];
-  ids.forEach(number => ({
+  ids.forEach(number => {
     const checkId = number;
     const animalFound = data.animals.find(creature => creature.id === checkId);
     foundIds.push(animalFound);
-  }));
+  });
   return foundIds;
 }
 
@@ -114,7 +114,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-
+  
 }
 
 function employeeCoverage(idOrName) {
