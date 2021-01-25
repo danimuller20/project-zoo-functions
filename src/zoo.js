@@ -65,7 +65,6 @@ function entryCalculator(entrants) {
   });
   return totalPrices;
 }
-console.log(entryCalculator({ 'Child': 1}));
 
 function animalMap(options) {
 
