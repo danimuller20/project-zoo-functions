@@ -56,11 +56,11 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-//   let trueOrFalse;
-//   employees.find((employee) => {
-//     employee.managers.forEach
-//   });
-//   return trueOrFalse;
+  const hasManager = employees.find((employee) => {
+    return employee.managers.some(managerId => managerId === id)
+  });
+  if (hasManager !== undefined) {return true};
+  return false;
 }
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
 
@@ -149,11 +149,9 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// console.log(increasePrices(50))
-
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  // adad
 }
 
 module.exports = {
