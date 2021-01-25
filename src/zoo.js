@@ -44,12 +44,24 @@ function animalsOlderThan(animal, age) {
   });
   return !returnSearch;
 }
-console.log(animalsOlderThan('penguins', 7));
+// console.log(animalsOlderThan('penguins', 7));
 // console.log(animals[0].residents);
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) {
+    return {};
+  }
+  const objFuncionari = data.employees.find((functionari) => {
+    if (functionari.firstName === employeeName) {
+      return functionari;
+    } else if (functionari.lastName === employeeName) {
+      return functionari
+    }
+  });
+  return objFuncionari;
 }
+// console.log(employeeByName());
+console.log(employeeByName('Nelson'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
