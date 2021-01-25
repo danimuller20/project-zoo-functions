@@ -1,4 +1,4 @@
-/*Inicio
+/*
 eslint no-unused-vars: [
   "error",
   {
@@ -11,8 +11,10 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+const { animals, employers, hours, prices } = data;
+
+function animalsByIds(...ids) {
+    return ids.map(animal => animals.find(element => element.id === animal));
 }
 
 function animalsOlderThan(animal, age) {
