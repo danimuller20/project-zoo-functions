@@ -27,14 +27,14 @@ function animalsByIds(...ids) {
 
 
 function animalsOlderThan(animal, age) {
-  const givenSpecie = animals.find(specie => specie.name === animal);
-  const everyAnimalHasMinimalAge = givenSpecie.residents.every(resident => resident.age >= age);
+  const givenSpecies = animals.find(species => species.name === animal);
+  const everyAnimalHasMinimalAge = givenSpecies.residents.every(resident => resident.age >= age);
   return everyAnimalHasMinimalAge;
 }
-
+//duvida pq com !== null dá problema mas com !== null n da
 function employeeByName(employeeName) {
   const nada = {};
-  if (employeeName !== null) {
+  if (employeeName !== undefined) {
     const employeeObject = employees.find(employee => employee.firstName === employeeName ||
       employee.lastName === employeeName);
     return employeeObject;
@@ -53,13 +53,14 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
   };
 }
 
-function isManager(id) {
-  let trueOrFalse;
-  employees.find( employee => {
-    employee.managers.forEach( managerId => managerId === id ? trueOrFalse = true : trueOrFalse = false );
-  });
-  return trueOrFalse;
-}
+// function isManager(id) {
+//   let trueOrFalse;
+//   employees.find((employee) => {
+//     return employee.managers.forEach(managerId => managerId === id ? trueOrFalse = true
+//       : trueOrFalse = false );
+//   });
+//   return trueOrFalse;
+// }
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -70,13 +71,22 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
       lastName,
       managers,
       responsibleFor,
-    }
+    },
   );
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species !== undefined) {
+    const numberForSpecies = animals.find( animal => animal.name === species).residents.length;
+    return numberForSpecies;
+  };
+  let quantityObject = {};
+  animals.forEach( animal => {
+    quantityObject[animal.name] = animal.residents.length;
+  });
+  return quantityObject;
 }
+
 
 function entryCalculator(entrants) {
   // seu código aqui
