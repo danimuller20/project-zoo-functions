@@ -137,11 +137,9 @@ function employeeCoverage(idOrName) {
     });
     return returnObject;
   }
-  const { firstName, lastName, responsibleFor } = getEmployees(idOrName);
-  
+  const { firstName, lastName, responsibleFor } = getEmployees(idOrName);  
   returnObject[`${firstName} ${lastName}`] = getAnimals(
-    responsibleFor
-  );
+    responsibleFor);
   return returnObject;
 }
 
