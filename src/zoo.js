@@ -59,30 +59,21 @@ function employeeByName(employeeName) {
 // console.log(employeeByName('Nelson'));
 
 function createEmployee(personalInfo, associatedWith) {
-//   const personalInfo = {
-//     id,
-//     firstName,
-//     lastName,
-//   }
-
-//   const associatedWith = {
-//     managers,
-//     responsibleFor,
-//   }
+//codigo aqui
 }
 
 function isManager(id) {
-  let booManager = false;
-  employees.forEach((employ) => {
-    employ.managers.find((manager) => {
-      if (manager === id) {
-        return booManager = true;
-      }
-    });
-  });
-  return booManager;
+  let boo = false;
+  // aqui se o id for igual ao manager de employ return o objeto
+  const objEmploy = employees.find((employ) => employ.managers.includes(id));
+  if (!objEmploy) {
+    boo = false;
+  } else {
+    boo = true;
+  }
+  return boo;
 }
-// console.log(isManager('fdb2543b-5662-46a7-badc-93d960fdc0a8'));
+console.log(isManager('b0dc644a-5335-489b-8a2c-4e086c7819a2'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
