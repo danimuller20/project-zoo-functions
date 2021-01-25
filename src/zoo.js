@@ -77,9 +77,9 @@ function animalCount(species) {
     return residents.length;
   }
   return animals.reduce((acc, currentValue) => {
-      acc[currentValue.name] = currentValue.residents.length
-      return acc;
-  }, {})
+    acc[currentValue.name] = currentValue.residents.length;
+    return acc;
+  }, {});
 }
 
 function entryCalculator(entrants = {}) {
@@ -105,16 +105,15 @@ function schedule(dayName) {
     return day;
   }
 
-  const formatedSchedule = {};
   const scheduleEntries = Object.entries(hours);
-  scheduleEntries.forEach((day) => {
-    if (day[0] === 'Monday') {
-      formatedSchedule[day[0]] = 'CLOSED';
+  return scheduleEntries.reduce((acc, currentValue) => {
+    if (currentValue[0] === 'Monday') {
+      acc[currentValue[0]] = 'CLOSED';
     } else {
-      formatedSchedule[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
+      acc[currentValue[0]] = `Open from ${currentValue[1].open}am until ${currentValue[1].close - 12}pm`;
     }
-  });
-  return formatedSchedule;
+    return acc;
+  }, {});
 }
 
 function oldestFromFirstSpecies(id) {
