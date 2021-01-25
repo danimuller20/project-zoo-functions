@@ -123,14 +123,12 @@ function oldestFromFirstSpecies(id) {
 
 function percentualAdjust(value, percentageValue) {
   return parseFloat((Math.round(value * percentageValue) / 100) + value).toFixed(2);
-
-  //return parseFloat(returnValue).toFixed(2);
 }
 
 function increasePrices(percentage) {
   prices.Adult = parseFloat(percentualAdjust(prices.Adult, percentage));
   prices.Senior = parseFloat(percentualAdjust(prices.Senior, percentage));
-  prices.Child = parseFloat(percentualAdjust(prices.Child, percentage)); 
+  prices.Child = parseFloat(percentualAdjust(prices.Child, percentage));
 }
 
 function employeeCoverage(idOrName) {
