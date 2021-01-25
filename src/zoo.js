@@ -43,7 +43,7 @@ function isManager(id) {
   return data.employees.some(item => item.managers.some(item2 => item2 === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
@@ -66,47 +66,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  const filterLocation = (location => data.animals
-    .filter(animal => animal.location === location)
-    .map(animal => animal.name)
-  );
-  const filterResidents = ((name) => {
-    let animalByName = data.animals
-      .find(animal => animal.name === name).residents;
-    if (sex !== '') {
-      animalByName = animalByName
-        .filter(resident => resident.sex === sex);
-    }
-    if (sorted) {
-      animalByName = animalByName
-        .map(resident => resident.name)
-        .sort();
-      return animalByName;
-    }
-    return animalByName
-      .map(resident => resident.name);
-  });
-  const residentNames = ((location) => {
-    const arr = filterLocation(location);
-    arr.forEach((name, index) => {
-      arr[index] = { [name]: filterResidents(name) };
-    });
-    return arr;
-  });
-  if (includeNames) {
-    return {
-      NE: residentNames('NE'),
-      NW: residentNames('NW'),
-      SE: residentNames('SE'),
-      SW: residentNames('SW'),
-    };
-  }
-  return {
-    NE: filterLocation('NE'),
-    NW: filterLocation('NW'),
-    SE: filterLocation('SE'),
-    SW: filterLocation('SW'),
-  };
+  // seu código aqui
 }
 
 function schedule(dayName) {
