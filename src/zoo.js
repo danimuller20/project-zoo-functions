@@ -79,6 +79,7 @@ function oldestFromFirstSpecies(id) {
       return employe.responsibleFor[0];
     }
   }).responsibleFor[0];
+
   const animalManaged = animals
     .find(managed => managed.id === employeeFilter).residents
     .sort(({ age: a }, { age: b }) => b - a);
@@ -86,6 +87,7 @@ function oldestFromFirstSpecies(id) {
   return [name, sex, age];
 }
 
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
   // seu código aqui
 }
