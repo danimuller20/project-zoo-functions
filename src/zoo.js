@@ -15,7 +15,7 @@ const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   const animalsSelected = [];
-  ids.forEach((id) => animals.filter((animal) => {
+  ids.forEach((id) => animals.filter(animal => {
     if (animal.id === id) return animalsSelected.push(animal);
   }));
   return animalsSelected;
@@ -65,13 +65,13 @@ function animalCount(species) {
   if (species !== undefined) {
     return animals.find(currentAnimal =>
       currentAnimal.name === species).residents.length;
-  } else {
-    let newObj = {};
-    animals.forEach((animal) => {
-      newObj[animal.name] = animal.residents.length;
-    });
-    return newObj;
-  };
+  }
+
+  const newObj = {};
+  animals.forEach((animal) => {
+    newObj[animal.name] = animal.residents.length;
+  });
+  return newObj;
 }
 
 function entryCalculator(entrants) {
