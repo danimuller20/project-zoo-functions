@@ -45,19 +45,24 @@ function isManager(id) {
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const employee = {
+  employees.push({
     id,
     firstName,
     lastName,
     managers,
     responsibleFor,
-  }
-  employees.push(employee);
+  });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  let allAnimals = {};
+  animals.forEach(animal => {allAnimals[animal.name] = animal.residents.length});
+  if (!species) return allAnimals;
+  return animals.find(value => value.name === species).residents.length;
 }
+// console.log(animalCount());
+// console.log(animalCount('lions'));
+// console.log(animalCount('snakes'));
 
 function entryCalculator(entrants) {
   // seu código aqui
