@@ -61,15 +61,27 @@ function entryCalculator(entrants) {
   return (adultCount * Adult) + (seniorCount * Senior) + (childCount * Child);
 }
 
-const withParameter = () => {
+function changeList(animal, sex) {
+  function checkSex(animalName) {
+    return sex ? animalName.sex === sex : true;
+  }
+  return animal.residents.filter(checkSex)
+  .reduce((accumulator, value) => {
+    accumulator.push(value.name);
+    return accumulator;
+  }, []);
+}
+
+const withParameter = (options) => {
+  const { sex, sorted } = options;
   const animalsLocation = animals.reduce((acc, valueOne) => {
     acc[valueOne.location] = animals
     .filter(animal => valueOne.location.includes(animal.location)).map((animal) => {
       const result = {};
-      result[animal.name] = animal.residents.reduce((accumulator, value) => {
-        accumulator.push(value.name);
-        return accumulator;
-      }, []);
+      result[animal.name] = changeList(animal, sex);
+      if (sorted) {
+        result[animal.name].sort();
+      }
       return result;
     });
     return acc;
@@ -87,7 +99,12 @@ const withoutParameter = () => {
 };
 
 function animalMap(options) {
-  return (options) ? withParameter() : withoutParameter();
+  if (options) {
+    if (options.includeNames) {
+      return withParameter(options);
+    }
+  }
+  return withoutParameter();
 }
 
 function schedule(dayName) {
