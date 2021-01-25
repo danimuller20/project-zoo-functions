@@ -98,7 +98,7 @@ const sortedNamesOrGetForSex = (accAnimal, currentAnimal, sex, sorted) => {
 };
 
 function animalMap(options) {
-  if (!options) {
+  if (!options || !options.includeNames) {
     return animals.reduce(getNamesAnimalsForLocation, {});
   }
   const { includeNames = false, sorted = false, sex = '' } = options;
@@ -113,7 +113,6 @@ function animalMap(options) {
       return acc;
     }, {});
   }
-  return animals.reduce(getNamesAnimalsForLocation, {});
 }
 
 // auxiliary function of schedule()
