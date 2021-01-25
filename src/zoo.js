@@ -116,31 +116,31 @@ function getEmployees(idOrName) {
     person =>
       person.id === idOrName ||
       person.firstName === idOrName ||
-      person.lastName === idOrName
-  );
+      person.lastName === idOrName);
 }
 
 function getAnimals(listAnimals) {
   const arrayReturn = [];
-  listAnimals.forEach(animal => {
+  listAnimals.forEach((animal) => {
     arrayReturn.push(animals.find(idAnimal => idAnimal.id === animal).name);
   });
   return arrayReturn;
 }
 
 function employeeCoverage(idOrName) {
-  let returnObject = {};
+  const returnObject = {};
   if (!idOrName) {
-    employees.forEach(employeeName => {
+    employees.forEach((employeeName) => {
       returnObject[
         `${employeeName.firstName} ${employeeName.lastName}`
       ] = getAnimals(employeeName.responsibleFor);
     });
     return returnObject;
   }
-  const employee = getEmployees(idOrName);
-  returnObject[`${employee.firstName} ${employee.lastName}`] = getAnimals(
-    employee.responsibleFor
+  const { firstName, lastName, responsibleFor } = getEmployees(idOrName);
+  
+  returnObject[`${firstName} ${lastName}`] = getAnimals(
+    responsibleFor
   );
   return returnObject;
 }
