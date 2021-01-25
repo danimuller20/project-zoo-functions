@@ -219,8 +219,6 @@ function schedule(dayName) {
   return filteredSchedule;
 }
 
-console.table(schedule());
-
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const specieId = employees.find(employee => employee.id === id).responsibleFor[0];
@@ -246,8 +244,50 @@ function increasePrices(percentage) {
   data.prices.Senior = Number.parseFloat((prices.Senior + senior).toPrecision(4));
 }
 
+function getAnimalsListByFilteredEmloyee(employee, animalListArray) {
+  const animalsOfEmployee = {};
+  const filteredAnimalsEmployee = animalListArray
+  .filter(animalsEmployee => animalsEmployee[0] === employee.firstName);
+  animalsOfEmployee[`${employee.firstName} ${employee.lastName}`] = filteredAnimalsEmployee[0][1];
+  return animalsOfEmployee;
+}
+
+function getAnimalsByEmployeeInfo(idOrName, animalList) {
+  const animalListArray = Object.entries(animalList);
+  let animalsOfEmployee = {};
+  let employeeFiltered = {};
+  employeeFiltered = employees.find(employee => employee.id === idOrName);
+  if (employeeFiltered) {
+    return animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
+  }
+  employeeFiltered = employees.find(employee => employee.firstName === idOrName);
+  if (employeeFiltered) {
+    return animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
+  }
+  employeeFiltered = employees.find(employee => employee.lastName === idOrName);
+  if (employeeFiltered) {
+    return animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
+  }
+
+  return animalsOfEmployee;
+}
+
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const animalsByEmployee = {};
+  const animalsByEmployeeNoParameter = {};
+  employees.forEach((employee) => {
+    const animalsNames = [];
+    employee.responsibleFor.forEach((animalId) => {
+      animalsNames.push(animals.find(animal => animal.id === animalId).name);
+    })
+    animalsByEmployee[employee.firstName] = animalsNames;
+    animalsByEmployeeNoParameter[`${employee.firstName} ${employee.lastName}`] = animalsNames;
+  })
+  if(!idOrName) {
+    return animalsByEmployeeNoParameter;
+  }
+  return getAnimalsByEmployeeInfo(idOrName, animalsByEmployee);
 }
 
 module.exports = {
