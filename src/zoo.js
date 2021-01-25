@@ -11,14 +11,16 @@ eslint no-unused-vars: [
 
 // commit inicial
 
-const data = require('./data');
+const { animals } = require('./data')
 
-function animalsByIds(ids) {
+function animalsByIds(...ids) {
   // seu código aqui
+  return animals.filter(animal => ids.find(id => id == animal.id))
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+
 }
 
 function employeeByName(employeeName) {
