@@ -118,13 +118,17 @@ function schedule(dayName) {
   return objAnsw;
 }
 
+function olderAnimal(specie) {
+  return specie.residents.reduce((acum, valuePass) => {
+    return valuePass.age > acum.age ? valuePass : acum;
+  });
+}
+
 function oldestFromFirstSpecies(id) {
   const idFirstSpecie = employees.find(employee => employee.id === id).responsibleFor[0];
   const specieSearch = animals.find(animal => animal.id === idFirstSpecie);
-  const olderAnimal = specieSearch.residents.reduce((acum, valuePass) => {
-    return valuePass.age > acum.age ? valuePass : acum;
-  });
-  return Object.values(olderAnimal);
+  const older = olderAnimal(specieSearch);
+  return Object.values(older);
 }
 
 function increasePrices(percentage) {
