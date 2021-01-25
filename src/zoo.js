@@ -169,9 +169,44 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function employeeCoverage(idOrName) {
-  // const employeeFound = employees.filter((employee) => idOrName in employee);
+function employeeCoverageFindAnimalsById(employeeObj) {
+  const animalIdList = employeeObj[Object.keys(employeeObj)[0]];
+  const animalNameList = [];
+  animalIdList.forEach((id) => {
+    const animalFoundById = animals.find((animalId) => animalId.id === id);
+    animalNameList.push(animalFoundById.name);
+  })
+  employeeObj[Object.keys(employeeObj)[0]] = animalNameList;
+  return employeeObj;
 }
+
+function elementFinder(idNm) {
+  return employees.find((at) => at.id === idNm || at.firstName === idNm || at.lastName === idNm);
+}
+
+function employeeCoverageFindEmployee(idOrName) {
+  const employee = elementFinder(idOrName);
+  let employeeAnimals = {};
+  employeeAnimals[`${employee.firstName} ${employee.lastName}`] = ([ ] = employee.responsibleFor);
+  employeeAnimals = employeeCoverageFindAnimalsById(employeeAnimals);
+  return employeeAnimals;
+}
+
+function employeeCoverage(idOrName) {
+  let employeeFoundObj = {}; 
+  if (idOrName) {
+    employeeFoundObj = employeeCoverageFindEmployee(idOrName);
+  } else {
+    let employeesListAnimalsBreeds;
+    employees.forEach((employee)=> {
+      employeesListAnimalsBreeds = employeeCoverageFindEmployee(employee.id)
+      Object.assign(employeeFoundObj,employeesListAnimalsBreeds)
+    });
+  }
+  return employeeFoundObj;
+}
+
+employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad')
 
 module.exports = {
   entryCalculator,
