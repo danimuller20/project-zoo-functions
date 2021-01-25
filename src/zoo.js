@@ -15,7 +15,6 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
-const { hours } = data;
 
 const managersList = [];
 employees.forEach(worker => worker.managers.forEach((id) => {
@@ -110,15 +109,16 @@ function schedule(dayName = 0) {
     'Sunday': 'Open from 8am until 8pm',
     'Monday': 'CLOSED'
   };
-  if(dayName === 0) return openDays;
+  
+  if(dayName === 0) {
+    return openDays;
+  }
   if(dayName in openDays) {
     let day = {};
     day[dayName] = openDays[dayName];
     return day;
   }
 }
-
-console.log(schedule('Monday'))
 
 function oldestFromFirstSpecies(id) {
   const person = employees.find(number => number.id === id).responsibleFor;
