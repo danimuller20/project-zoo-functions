@@ -25,7 +25,7 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
-  return employees.find(employee => 
+  return employees.find(employee =>
     (employeeName === employee.firstName || employeeName === employee.lastName));
 }
 
@@ -64,7 +64,28 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  if(dayName === 'Monday'){
+      const day = {}
+      day[dayName] = 'CLOSED';
+      return day; 
+  }
+  if (dayName !== undefined){
+      const day = {}
+      day[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+      return day;    
+  }
+
+  const formatedSchedule = {};
+  const schedule = Object.entries(hours);
+  schedule.forEach((day) => {
+      if(day[0] === 'Monday'){
+          formatedSchedule[day[0]] = `CLOSED`
+      }
+      else{
+          formatedSchedule[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`
+      }
+  });
+  return formatedSchedule
 }
 
 function oldestFromFirstSpecies(id) {
