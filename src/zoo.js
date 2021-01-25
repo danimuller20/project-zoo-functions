@@ -132,7 +132,7 @@ function schedule(dayName) {
     return newObject;
   }
 
-  newObject.Tuesday = `Open from 8am until 6pm`;
+  newObject.Tuesday = 'Open from 8am until 6pm';
   return newObject;
 }
 
