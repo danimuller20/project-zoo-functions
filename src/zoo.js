@@ -29,21 +29,23 @@ function animalsOlderThan(animalName, age) {
 }
 
 function employeeByName(employeeName) {
-  if (!employeeName) {
-    return {};
+  if(!employeeName) {
+    return {}
   }
   const Name = employees.find((employee) => {
     if (employee.firstName === employeeName) {
-      return employee
+      return employee;
     } else if (employee.lastName === employeeName) {
-      return employee
-    }
+      return employee;
+    } else {return false} 
+    
   });
   return Name;
 }
+console.log(employeeByName('Wilburn'))
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+
 }
 
 function isManager(id) {
