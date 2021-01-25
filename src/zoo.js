@@ -39,7 +39,6 @@ function employeeByName(employeeName) {
   if (!searchEmployee) return {};
   return searchEmployee;
 }
-console.log(employeeByName('Stephanie'))
 
 function createEmployee(personalInfo, associatedWith) {
   return {
