@@ -76,7 +76,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   return (
     Object.values(animals.find(animal => (animal.id === (employees.find(person => person.id === id)
-      .responsibleFor[0]))).residents.reduce((older, next) => (next.age > older.age ? next : older)))
+    .responsibleFor[0]))).residents.reduce((older, next) => (next.age > older.age ? next : older)))
   );
 }
 
@@ -87,29 +87,17 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const obj = {};
-  employees.forEach(person => obj[`${person.firstName} ${person.lastName}`] =
-    [...person.responsibleFor].map(id => animals.find(animal => animal.id.includes(id)).name));
+  employees.forEach(person => (obj[`${person.firstName} ${person.lastName}`] =
+    [...person.responsibleFor].map(id => animals.find(animal => animal.id.includes(id)).name)));
   if (!idOrName) {
     return obj;
   }
-  let pessoa = employees.find(person =>
+  const pessoa = employees.find(person =>
     idOrName === person.id || idOrName === person.firstName || idOrName === person.lastName);
-  let fullName = `${pessoa.firstName} ${pessoa.lastName}`;
+  const fullName = `${pessoa.firstName} ${pessoa.lastName}`;
   const personFind = { [fullName]: obj[fullName] };
   return personFind;
 }
-
-console.log(employeeCoverage());
-// {
-//   'Nigel Nelson': ['lions', 'tigers'],
-//   'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-//   'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
-//   'Wilburn Wishart': ['snakes', 'elephants'],
-//   'Stephanie Strauss': ['giraffes', 'otters'],
-//   'Sharonda Spry': ['otters', 'frogs'],
-//   'Ardith Azevado': ['tigers', 'bears'],
-//   'Emery Elser': ['elephants', 'bears', 'lions']
-// }
 
 module.exports = {
   entryCalculator,
