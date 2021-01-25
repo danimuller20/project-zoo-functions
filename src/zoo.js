@@ -34,7 +34,7 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   const specieAnimals = animals.find(animalZoo => animalZoo.name === animal);
-  const specieAnimalsOlderThanAge = specieAnimals.residents.every(animalSpecie => animalSpecie.age > age);
+  const specieAnimalsOlderThanAge = specieAnimals.residents.every(animalS => animalS.age > age);
   return specieAnimalsOlderThanAge;
 }
 
