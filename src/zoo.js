@@ -33,12 +33,11 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  const newObj = {};
-  const employee = employees.find(value => value.firstName === employeeName ||
-    value.lastName === employeeName);
-  if (employee === undefined) {
-    return newObj;
-  }
+  const employee = employees.find(employee => employee.firstName === employeeName ||
+    employee.lastName === employeeName);
+
+  if (!employee) return {};
+
   return employee;
 }
 
@@ -50,9 +49,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  if (id === '0e7b460e-acf4-4e17-bcb3-ee472265db83') return true;
+  const findManager = employees.find(employee => employee.managers.find(manager => manager === id));
+  if (findManager) return true;
   return false;
 }
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({
