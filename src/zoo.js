@@ -129,7 +129,7 @@ function schedule(dayName) {
   let weekSchedule = {};
   Object.keys(hours).forEach((hour) => {
     weekSchedule[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`;
-    if (hour === 'Monday') { weekSchedule[hour] = 'CLOSED' };
+    if (hour === 'Monday') { weekSchedule[hour] = 'CLOSED'; }
   });
   if (dayName) {
     const daySchedule = {};
