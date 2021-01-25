@@ -11,12 +11,12 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices, hours } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   const animalsSelected = [];
   ids.forEach((id) => {
-    animals.filter(animal =>  (animal.id === id) ? animalsSelected.push(animal) : '');
+    animals.filter(animal => (animal.id === id ? animalsSelected.push(animal) : ''));
   });
   return animalsSelected;
 }
@@ -82,7 +82,8 @@ function entryCalculator(entrants) {
   const { Adult, Senior, Child } = prices;
   const { Adult: qtdAdult = 0, Senior: qtdSenior = 0, Child: qtdChild = 0 } = entrants;
 
-  return total += (Adult * qtdAdult) + (Senior * qtdSenior) + (Child * qtdChild);
+  total += (Adult * qtdAdult) + (Senior * qtdSenior) + (Child * qtdChild);
+  return total;
 }
 
 function animalMap(options) {
