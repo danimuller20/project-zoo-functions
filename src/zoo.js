@@ -113,21 +113,21 @@ function animalMap(options) {
       if (animal.location === zone) { zooMap[zone].push(animal.name); }
     });
   });
-  // if (options[includeNames] === true && options !== undefined) {
-  //   Object.keys(zooMap).forEach((animalArray) => {
-  //     animalArray.forEach(animal => {
-  //       const newKey = animal;
-  //       animal = {};
-  //       const foundAnimal = animals.find(eachAnimal => eachAnimal.name === newKey);
-  //       const animalsNames = [];
-  //       foundAnimal.residents.forEach(resident => animalsNames.push(resident.name));
-  //     });
-  //   });
-  // }
+  if (options !== undefined) {
+    Object.values(zooMap).forEach((animalArray) => {
+      animalArray.forEach(animal => {
+        const newKey = animal;
+        animal = {};
+        const foundAnimal = animals.find(eachAnimal => eachAnimal.name === newKey);
+        const animalsNames = [];
+        foundAnimal.residents.forEach(resident => animalsNames.push(resident.name));
+      });
+    });
+  }
   return zooMap;
 }
-
-// console.log(animalMap())
+// const options = { includeNames: true };
+// console.log(animalMap(options));
 
 function schedule(dayName) {
   const weeklyProgram = {
@@ -172,13 +172,12 @@ function increasePrices(percentage) {
   return prices;
 }
 
-// pq deu ceerto linha 184
 function employeeCoverage(idOrName) {
   const everyEmployee = {};
   employees.forEach((employee) => {
     const fullName = `${employee.firstName} ${employee.lastName}`;
     const responsibleForList = employee.responsibleFor;
-    for (let index = 0; index < responsibleForList.length; index += index) {
+    for (let index = 0; index < responsibleForList.length; index += 1) {
       const toSearch = responsibleForList[index];
       const foundIt = animals.find(animal => animal.id === toSearch);
       if (typeof foundIt === 'object') { responsibleForList[index] = foundIt.name; }
@@ -201,7 +200,7 @@ function employeeCoverage(idOrName) {
 }
 
 // // console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
-// // console.log(employeeCoverage('Nigel'))
+console.log(employeeCoverage('Nigel'))
 // console.log(employeeCoverage())
 
 module.exports = {
