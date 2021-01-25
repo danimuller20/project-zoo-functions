@@ -42,14 +42,15 @@ function isManager(id) {
   return employees.some(employee => (employee.managers).find(managerId => managerId === id));
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = [] ) { // parameter default
-   const newEmployee = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  };
+// parameter default
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+    const newEmployee = {
+     id,
+     firstName,
+     lastName,
+     managers,
+     responsibleFor,
+   };
   return employees.push(newEmployee);
 }
 
