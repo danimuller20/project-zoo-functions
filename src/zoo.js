@@ -35,21 +35,22 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   const nada = {};
   if (employeeName !== null) {
-    const employeeObject = employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+    const employeeObject = employees.find(employee => employee.firstName === employeeName ||
+      employee.lastName === employeeName);
     return employeeObject;
   }
   return nada;
 }
 
 
-function createEmployee({id, firstName, lastName}, {managers, responsibleFor}) {
-    return {
-      id,
-      firstName,
-      lastName,
-      managers,
-      responsibleFor,
-    };
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
+  return {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
 }
 
 function isManager(id) {
