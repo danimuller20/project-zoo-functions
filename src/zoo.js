@@ -179,7 +179,7 @@ function employeeCoverage(idEmployee) {
   return {
     [`${firstName} ${lastName}`]: responsibleFor.map(
       idAnimal => animals.find(value => idAnimal === value.id).name,
-    )
+    ),
   };
 }
 
