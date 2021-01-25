@@ -119,7 +119,10 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstSpecieId = employees.find(({id:employeeId}) => employeeId === id).responsibleFor[0];
+  const oldestAnimal = Object.values(animals.find(({id}) => id === firstSpecieId).residents
+  .reduce((oldest, resident) => oldest.age < resident.age ? resident : oldest));
+  return oldestAnimal;
 }
 
 function increasePrices(percentage) {
