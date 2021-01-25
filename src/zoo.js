@@ -26,24 +26,32 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
-  const employeeObject = employees.find((value) => 
-     value.firstName === employeeName || value.lastName === employeeName);
-  if (employeeObject === undefined) {
+  const employeeObject = employees.find(value =>
+      value.firstName === employeeName || value.lastName === employeeName);
+  if (!employeeObject) {
     return {};
   } return employeeObject;
 }
-console.log(employeeByName());
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+function createEmployee(id, firstName, lastName, managers, responsibleFor) {
+  
 }
 
 function isManager(id) {
   // seu código aqui
+  return employees.some((employee) => employee.managers.some((manager) => (manager == id)));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  let newEmployee = { 
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {
