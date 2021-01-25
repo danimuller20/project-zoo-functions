@@ -178,7 +178,7 @@ function employeeCoverage(idOrName) {
   employees.forEach((employee) => {
     const fullName = `${employee.firstName} ${employee.lastName}`;
     const responsibleForList = employee.responsibleFor;
-    for (let index = 0; index<responsibleForList.length; index += index) {
+    for (let index = 0; index < responsibleForList.length; index += index) {
       const toSearch = responsibleForList[index];
       const foundIt = animals.find(animal => animal.id === toSearch);
       if (typeof foundIt === 'object') { responsibleForList[index] = foundIt.name; }
