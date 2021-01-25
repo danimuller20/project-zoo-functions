@@ -166,8 +166,8 @@ function employeeCoverage(idOrName) {
     return objResult;
   }, {});
   if (idOrName !== undefined) {
-    const employee = data.employees.find((value) => {
-      return value.firstName === idOrName || value.lastName === idOrName || value.id === idOrName 
+    const employee = data.employees.find(value => {
+      return value.firstName === idOrName || value.lastName === idOrName || value.id === idOrName;
     });
     result = {
       [`${employee.firstName} ${employee.lastName}`]: result[`${employee.firstName} ${employee.lastName}`],
@@ -175,8 +175,6 @@ function employeeCoverage(idOrName) {
   }
   return result;
 }
-
-console.log(employeeCoverage('Stephanie'));
 
 module.exports = {
   entryCalculator,
