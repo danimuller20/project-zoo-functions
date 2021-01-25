@@ -25,12 +25,13 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find((search) => {
-    const { firstName, lastName } = search;
+  const search = (name) => {
+    const { firstName, lastName } = name;
     if ((firstName === employeeName) || (lastName === employeeName)) {
-      return search;
+      return name;
     }
-  });
+  }
+  return employees.find(search);
 }
 
 function createEmployee(personalInfo, associatedWith) {
