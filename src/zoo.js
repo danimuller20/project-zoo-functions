@@ -66,7 +66,11 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const mapperCount = data
+    .animals
+    .map(item => ({ [item.name]: item.residents.length }))
+    .reduce((a, b) => ({ ...b, ...a }), {});
+  return mapperCount[species] || mapperCount;
 }
 
 function entryCalculator(entrants) {
