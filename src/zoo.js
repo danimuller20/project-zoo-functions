@@ -73,8 +73,13 @@ function animalCount(species) {
   return mapperCount[species] || mapperCount;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = 0) {
+  const listEntrants = ['Adult', 'Child', 'Senior'];
+  let total = 0;
+  for (const i of listEntrants) {
+    total += entrants[i] && data.prices[i] * entrants[i] || entrants;
+  }
+  return total;
 }
 
 function animalMap(options) {
