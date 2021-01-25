@@ -27,7 +27,6 @@ function employeeByName(employeeName) {
   return data.employees.find(nome => nome.firstName === employeeName ||
     nome.lastName === employeeName);
 }
-console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   return Object.assign(personalInfo, associatedWith);
