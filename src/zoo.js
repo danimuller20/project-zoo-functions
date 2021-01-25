@@ -213,8 +213,8 @@ function schedule(dayName) {
   if (!dayName) {
     return defaultSchedule;
   }
-  let formatedSchedule = Object.entries(defaultSchedule);
-  let filteredDay = formatedSchedule.find(day => day[0] === dayName);
+  const formatedSchedule = Object.entries(defaultSchedule);
+  const filteredDay = formatedSchedule.find(day => day[0] === dayName);
   filteredSchedule[filteredDay[0]] = filteredDay[1];
   return filteredSchedule;
 }
