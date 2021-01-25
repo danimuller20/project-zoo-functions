@@ -57,7 +57,7 @@ function isManager(id) {
   let trueOrFalse;
   employees.find((employee) => {
     employee.managers.forEach(managerId => managerId === id ?
-      trueOrFalse = true : trueOrFalse = false;);
+      trueOrFalse = true : trueOrFalse = false);
   });
   return trueOrFalse;
 }
