@@ -85,15 +85,15 @@ function schedule(dayName) {
 function oldestFromFirstSpeciesByAge(residents) {
   let higherAge = 0;
   let olderResident;
-  residents.map((resident) => {
+  residents.forEach((resident) => {
     if (resident.age > higherAge) {
-      olderResident = resident
+      olderResident = resident;
       higherAge = resident.age;
     }
   });
   return olderResident;
 }
-  
+
 function oldestFromFirstSpecies(id) {
   const employeeFound = employees.find(employee => employee.id === id);
   const olderAnimalArray = [];
@@ -102,7 +102,7 @@ function oldestFromFirstSpecies(id) {
     olderAnimalArray.push(oldestFromFirstSpeciesByAge(olderAnimal.residents));
   });
   const mostOlder = oldestFromFirstSpeciesByAge(olderAnimalArray);
-  return [ mostOlder.name, mostOlder.sex, mostOlder.age];
+  return [mostOlder.name, mostOlder.sex, mostOlder.age];
 }
 
 function increasePrices(percentage) {
