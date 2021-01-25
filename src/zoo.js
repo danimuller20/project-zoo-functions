@@ -58,7 +58,8 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   let totalPrices = 0;
   if (!entrants) {
-    Object.keys(entrants).forEach((value) => { totalPrices += (entrants[value] * data.prices[value]);
+    Object.keys(entrants).forEach((value) => {
+      totalPrices += (entrants[value] * data.prices[value]);
     });
   }
   return totalPrices;
