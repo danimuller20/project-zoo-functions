@@ -24,8 +24,16 @@ employees.forEach(worker => worker.managers.forEach((id) => {
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return animals.filter((animal, index) => animal.id === ids[index]);
+  let foundIds = [];
+  ids.forEach(number => {
+    let checkId = number;
+    const animalFound = data.animals.find(creature => creature.id === checkId)
+    foundIds.push(animalFound)
+  })
+  return foundIds;
 }
+
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'))
 
 // a função filter recebe até três parâmetros, assim podemos utilizar o segundo parâmetro
 // (index) para utilizarmos na comparação com o o índice do parâmetro ids;
@@ -103,16 +111,15 @@ function schedule(dayName = 0) {
 function oldestFromFirstSpecies(id) {
   const person = employees.find(number => number.id === id).responsibleFor;
   const foundAnimal = animals.find(species => species.id === person[0]).residents;
-  const residentsFound = foundAnimal.sort((a, b) => b.age - a.age)[0];
+  const foundAnimalCopy = foundAnimal.slice();
+  const residentsFound = foundAnimalCopy.sort((a, b) => b.age - a.age)[0];
   const result = [];
   result.push(residentsFound.name, residentsFound.sex, residentsFound.age);
   return result;
 }
 
-oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1');
-
 function increasePrices(percentage) {
-  // seu código aqui
+
 }
 
 function employeeCoverage(idOrName) {
