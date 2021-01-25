@@ -12,7 +12,6 @@ eslint no-unused-vars: [
 const { animals, employees } = require('./data');
 const data = require('./data');
 
-
 function animalsByIds(...ids) {
   const zooArray = [];
   if (!ids) {
@@ -73,9 +72,24 @@ function isManager(id) {
 }
 // console.log(isManager('b0dc644a-5335-489b-8a2c-4e086c7819a2'));
 
+
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  const newObj = {};
+  newObj.id = id;
+  newObj.firstName = firstName;
+  newObj.lastName = lastName;
+  newObj.managers = managers;
+  if (!newObj.managers) {
+    newObj.managers = [];
+  }
+  newObj.responsibleFor = responsibleFor;
+  if (!newObj.responsibleFor) {
+    newObj.responsibleFor = [];
+  }
+  employees.push(newObj);
+  return employees;
 }
+// addEmployee('39800c14-4b76-454a-858d-2f8d168146a7','John','Doe',[],[]);
 
 function animalCount(species) {
   // seu código aqui
