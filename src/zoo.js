@@ -59,7 +59,7 @@ function animalCount(species) {
   return allAnimals[species];
 }
 
-function entryCalculator(entrants) {    
+function entryCalculator(entrants) {
   let total = 0;
   if (entrants) {
     Object.keys(prices).forEach((ageRange) => {
@@ -68,7 +68,7 @@ function entryCalculator(entrants) {
       }
     });
   }
-  return total; 
+  return total;
 }
 
 function animalMap(options) {
