@@ -70,9 +70,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  if (!entrants) {
-    return 0;
-  }
+  if (!entrants) { return 0; }
   const { Adult = 0, Senior = 0, Child = 0 } = entrants;
   return (Adult * prices.Adult) + (Senior * prices.Senior) + (Child * prices.Child);
 }
@@ -104,6 +102,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  Object.keys(prices).forEach((value) => {
+    prices[value] = Math.round(((percentage/100)+1) * prices[value] * 100) / 100
+  })
+  console.log(prices)
 }
 
 function employeeCoverage(idOrName) {
