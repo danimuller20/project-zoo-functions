@@ -73,11 +73,15 @@ function animalCount(species) {
   return mapperCount[species] || mapperCount;
 }
 
+/* eslint no-restricted-syntax: ["error",
+"FunctionExpression",
+"WithStatement",
+"BinaryExpression[operator='in']"] */
 function entryCalculator(entrants = 0) {
   const listEntrants = ['Adult', 'Child', 'Senior'];
   let total = 0;
   for (const i of listEntrants) {
-    total += entrants[i] && data.prices[i] * entrants[i] || entrants;
+    total += (entrants[i] && data.prices[i] * entrants[i]) || 0;
   }
   return total;
 }
