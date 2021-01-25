@@ -29,31 +29,48 @@ function animalsOlderThan(animalName, age) {
 }
 
 function employeeByName(employeeName) {
-  if(!employeeName) {
-    return {}
+  if (!employeeName) {
+    return {};
   }
   const Name = employees.find((employee) => {
     if (employee.firstName === employeeName) {
       return employee;
     } else if (employee.lastName === employeeName) {
       return employee;
-    } else {return false} 
-    
+    }
   });
   return Name;
 }
-console.log(employeeByName('Wilburn'))
 
 function createEmployee(personalInfo, associatedWith) {
-
+  const newEmployee = {
+    id: personalInfo.id,
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    managers: associatedWith.managers,
+    responsibleFor: associatedWith.responsibleFor
+  };
+  return newEmployee;
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers[0] === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  if((!managers) || (!responsibleFor)) {
+    managers = [];
+    responsibleFor = []
+  }
+  const addedEmployee = {
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
+  };
+  employees.push(addedEmployee);
+  return addedEmployee;
 }
 
 function animalCount(species) {
