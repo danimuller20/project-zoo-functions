@@ -64,11 +64,6 @@ function animalCount(species) {
     return arrayOfresidents[0].residents.length;
   }
 }
-console.log(animalCount());
-
-function animal(valor){
-  valor = valor.residents
-}
 
 function entryCalculator(entrants) {
 }
