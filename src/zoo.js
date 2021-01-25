@@ -158,14 +158,37 @@ function oldestFromFirstSpecies(idEmployee) {
 }
 
 function increasePrices(percentage) {
-  Object.keys(prices).forEach(key => {
+  Object.keys(prices).forEach((key) => {
     prices[key] = (Math.round(prices[key] * percentage) + (prices[key] * 100)) / 100;
   });
   return prices;
 }
 
+// auxiliary function of employeeCoverage()
+function getListOfSpeciesPerEmployee(employeer) {
+  return employeer.responsibleFor.map((idAnimal) => {
+    return animals.find(({ id }) => id === idAnimal).name;
+  });
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    return employees.reduce((accumulator, currentValue) => {
+      accumulator[`${currentValue.firstName} ${currentValue.lastName}`] =
+      getListOfSpeciesPerEmployee(currentValue);
+      return accumulator;
+    }, {});
+  }
+
+  const employeeSelected = employees.find(({ id, firstName, lastName }) => {
+    return id === idOrName || firstName === idOrName || lastName === idOrName;
+  });
+
+  const { firstName, lastName } = employeeSelected;
+
+  return {
+    [`${firstName} ${lastName}`]: getListOfSpeciesPerEmployee(employeeSelected)
+  };
 }
 
 module.exports = {
