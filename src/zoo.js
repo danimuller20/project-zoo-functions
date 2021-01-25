@@ -166,9 +166,8 @@ function employeeCoverage(idOrName) {
     return objResult;
   }, {});
   if (idOrName !== undefined) {
-    const employee = data.employees.find(value => {
-      return value.firstName === idOrName || value.lastName === idOrName || value.id === idOrName;
-    });
+    const employee = data.employees.find((value) => value.firstName === idOrName || value.lastName === idOrName || value.id === idOrName
+    );
     result = {
       [`${employee.firstName} ${employee.lastName}`]: result[`${employee.firstName} ${employee.lastName}`],
     };
