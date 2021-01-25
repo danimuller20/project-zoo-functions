@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data; // destructure
+const { animals, employees, prices} = data; // destructure
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -33,7 +33,9 @@ function employeeByName(employeeName) {
   } return employeeObject;
 }
 
-function createEmployee(id, firstName, lastName, managers, responsibleFor) {
+function createEmployee(personalInfo, associatedWith) {
+  const newEmployee = Object.assign(personalInfo, associatedWith);
+  return newEmployee;
 }
 
 function isManager(id) {
@@ -58,7 +60,16 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+    
+  // { 'Adult': 2, 'Child': 3, 'Senior': 1 };
+  // prices: {
+  //   'Adult': 49.99,
+  //   'Senior': 24.99,
+  //   'Child': 20.99
+  // }
+  // if ((!entrants) || (entrants = {})) {
+  //   return 0
+  //  } 
 }
 
 function animalMap(options) {
