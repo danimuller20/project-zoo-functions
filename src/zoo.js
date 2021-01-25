@@ -44,13 +44,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  employees.push({
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  });
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
@@ -76,7 +70,23 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const container = {};
+  if (dayName === 'Monday') {
+    container[dayName] = 'CLOSED';
+    return container;
+  } else if (dayName) {
+    container[dayName] = `Open from ${data.hours[dayName].open}am until ${data.hours[dayName].close - 12}pm`;
+    return container;
+  }
+  const arrayHours = Object.entries(data.hours);
+  arrayHours.forEach((item) => {
+    if (item[0] === 'Monday') {
+      container[item[0]] = 'CLOSED';
+    } else {
+      container[item[0]] = `Open from ${item[1].open}am until ${item[1].close - 12}pm`;
+    }
+  });
+  return container;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -95,7 +105,27 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const { animals, employees } = data;
+  const arrEmployee = employees.filter((employee) => {
+    if (idOrName === '') {
+      return true;
+    }
+    return Object.values(employee)
+      .some(info => info === idOrName);
+  });
+  const arr = {};
+  arrEmployee.map((employee, idx) => {
+    const arrName = [];
+    employee.responsibleFor
+      .forEach((animalId, index) => {
+        const animalName = animals.find(animal => animal.id === animalId);
+        arrName[index] = animalName.name;
+      });
+    const { firstName, lastName } = arrEmployee[idx];
+    arr[`${firstName} ${lastName}`] = arrName;
+    return 'maravilhoso!!!';
+  });
+  return arr;
 }
 
 module.exports = {
