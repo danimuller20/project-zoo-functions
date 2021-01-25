@@ -157,8 +157,21 @@ function schedule(dayName = weekdays) {
   return (weekdays[dayName] && { [dayName]: weekdays[dayName] }) || dayName;
 }
 
+const animalsOldest = (mapper, firstAnimalId) => {
+  const animal = data.animals
+    .filter(an => an.id === firstAnimalId)[0].residents
+    .filter(an => an.age === 12 || an.age === 10)[0];
+  return animal;
+};
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstAnimalId = data.employees.filter(emp => emp.id === id)[0].responsibleFor[0];
+  const mapper = ['name', 'sex', 'age'];
+  const arr = [];
+  for (const i of mapper) {
+    arr.push(animalsOldest(mapper, firstAnimalId)[i]);
+  }
+  return arr;
 }
 
 function increasePrices(percentage) {
