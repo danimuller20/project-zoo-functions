@@ -14,8 +14,7 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter((species, index) => species.id === ids[index]);
-}
-//console.log(animalsByIds('0938aa23-f15/home/hudson/project/sd-09-project-zoo-functions/test/animalsByIds.test.js3-4937-9f88-4858b24d6bce'));
+};
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
