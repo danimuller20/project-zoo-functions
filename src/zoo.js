@@ -76,9 +76,9 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-
-  return animals.find(animal => (animal.id === (employees.find(person => person.id === id)
-    .responsibleFor[0]))).residents.reduce((older, next) => next.age > older.age ? next : older);
+  return (
+    Object.values(animals.find(animal => (animal.id === (employees.find(person => person.id === id)
+    .responsibleFor[0]))).residents.reduce((old, next) => (next.age > old.age ? next : old))));
 }
 
 function increasePrices(percentage) {
