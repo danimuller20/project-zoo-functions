@@ -182,6 +182,14 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  // Aumenta o preço do ingresso de acordo com o parametro;
+  // incrementa todos os preços arredondados em duas casas decimais;
+
+  Object.keys(prices).forEach((label) => {
+    prices[label] = 
+    (Math.round(prices[label] * percentage) + (prices[label] * 100)) / 100;
+  });
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
