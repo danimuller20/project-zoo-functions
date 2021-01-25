@@ -159,7 +159,7 @@ function increasePrices(percentage) {
 const listOfLiabilityByEmployee = employees.reduce(
   (list, { firstName, lastName, responsibleFor }) => {
     list[`${firstName} ${lastName}`] = responsibleFor.map(
-      idAnimal => animals.find((value) => idAnimal === value.id).name,
+      idAnimal => animals.find(animal => idAnimal === animal.id).name,
     );
     return list;
   }, {});
@@ -169,7 +169,7 @@ function employeeCoverage(idEmployee) {
 
   if (!idEmployee) {
     return listOfLiabilityByEmployee;
-  };
+  }
 
   const { firstName, lastName, responsibleFor } = employees.find(
     ({ id, firstName: first, lastName: last }) =>
@@ -179,7 +179,7 @@ function employeeCoverage(idEmployee) {
   const officialResponsibleForTheAnimals = {};
 
   officialResponsibleForTheAnimals[`${firstName} ${lastName}`] = responsibleFor.map(
-    idAnimal => animals.find((value) => idAnimal === value.id).name
+    idAnimal => animals.find(value => idAnimal === value.id).name,
   );
 
   return officialResponsibleForTheAnimals;
