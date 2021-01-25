@@ -189,14 +189,20 @@ function animalMap(options) {
   }
   return objeto;
 }
+
+function convertFormatHours(schedule) {
+  let convertedSchedule = 0;
+  if (schedule > 12) convertedSchedule = (schedule - 12);
+  else if (schedule === 12) convertedSchedule = 12;
+  else convertedSchedule = schedule;
+  return convertedSchedule;
+}
+
 function convertHours(open, close) {
   const convertedHours = [];
-  if (open > 12) convertedHours.push(open - 12);
-  else if (open === 12) convertedHours.push(12);
-  else convertedHours.push(open)
-  if (close > 12) convertedHours.push(close - 12);
-  else if (close === 12) convertedHours.push(12);
-  else convertedHours.push(close)
+  convertedHours.push(convertFormatHours(open));
+  convertedHours.push(convertFormatHours(close));
+  console.log(convertedHours);
   return convertedHours;
 }
 
@@ -209,7 +215,7 @@ function schedule(dayName) {
         day[key] = `Open from ${convertedHours[0]}am until ${convertedHours[1]}pm`;
       } else {
         day[key] = 'CLOSED';
-      }  
+      }
     });
   }
   if (dayName && dayName !== 'Monday') {
