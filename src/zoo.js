@@ -38,6 +38,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   const retorno = data.employees.push({
     id,
     firstName,
+    lastName,
     managers,
     responsibleFor,
   });
