@@ -11,6 +11,8 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+const { animals, employees, prices, hours } = data;
+
 function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
@@ -34,7 +36,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return object.assign(personalInfo, associatedWith);
+  return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
