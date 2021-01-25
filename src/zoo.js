@@ -24,19 +24,14 @@ employees.forEach(worker => worker.managers.forEach((id) => {
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  let foundIds = [];
-  ids.forEach(number => {
-    let checkId = number;
-    const animalFound = data.animals.find(creature => creature.id === checkId)
-    foundIds.push(animalFound)
-  })
+  const foundIds = [];
+  ids.forEach(number => ({
+    const checkId = number;
+    const animalFound = data.animals.find(creature => creature.id === checkId);
+    foundIds.push(animalFound);
+  }));
   return foundIds;
 }
-
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'))
-
-// a função filter recebe até três parâmetros, assim podemos utilizar o segundo parâmetro
-// (index) para utilizarmos na comparação com o o índice do parâmetro ids;
 
 function animalsOlderThan(animal, age) {
   const animalsToCheckAge = animals.find(iteratedAnimal => (
