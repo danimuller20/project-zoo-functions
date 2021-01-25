@@ -110,10 +110,10 @@ function schedule(dayName = 0) {
     Sunday: 'Open from 8am until 8pm',
     Monday: 'CLOSED',
   };
-  if( dayName === 0 ) {
+  if (dayName === 0) {
     return openDays;
   }
-  if( dayName in openDays ) {
+  if (dayName in openDays) {
     day[dayName] = openDays[dayName];
   }
   return day;
@@ -137,7 +137,7 @@ function increasePrices(percentage) {
 
 const employeesAndAnimals = () => {
 
-}
+};
 
 employeesAndAnimals();
 
