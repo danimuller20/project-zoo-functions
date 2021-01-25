@@ -84,8 +84,58 @@ function entryCalculator(...entrants) {
   return income;
 }
 
+const animalsByLocation = (location) => {
+  const myAnimals = {};
+
+  location.forEach((direction) => {
+    const animalsHere = animals
+    .filter(animal => animal.location === direction)
+    .map(animal => animal.name);
+
+    myAnimals[direction] = animalsHere;
+  });
+
+  return myAnimals;
+};
+
+function animalsByLocationWithParameters(location, sorted, sex) {
+  const myAnimals = {};
+
+  location.forEach((direction) => {
+    const myAnimalList = animals
+    .filter(mySpecies => mySpecies.location === direction)
+    .map((specie) => {
+      const specieName = specie.name;
+
+      const animalNames = specie.residents
+      .filter((resident) => {
+        const filtered = sex !== undefined;
+        return filtered ? resident.sex === sex : true;
+      })
+      .map(resident => resident.name);
+
+      if (sorted) animalNames.sort();
+      return { [specieName]: animalNames };
+    });
+
+    myAnimals[direction] = myAnimalList;
+  });
+  return myAnimals;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const location = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) {
+    return animalsByLocation(location);
+  }
+
+  const { includeNames, sex, sorted } = options;
+
+  if (!includeNames) {
+    return animalsByLocation(location);
+  }
+
+  return animalsByLocationWithParameters(location, sorted, sex);
 }
 
 function schedule(dayName) {
