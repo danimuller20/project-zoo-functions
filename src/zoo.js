@@ -34,13 +34,7 @@ function isManager(id) {
 }
 
 function addEmployee(...person) {
-  let [ id, firstName, lastName, managers, responsibleFor ] = person;
-  if (managers === undefined) {
-    managers = [];
-  }
-  if (responsibleFor === undefined) {
-    responsibleFor = [];
-  }
+  const [id, firstName, lastName, managers = [], responsibleFor = []] = person;
   const employee = {
     id,
     firstName,
