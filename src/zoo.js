@@ -65,7 +65,7 @@ function entryCalculator(entrants) {
     } else if (element[0] === 'Senior') {
       entryPrice += prices.Senior * element[1];
     }
-  })
+  });
   return entryPrice;
 }
 
