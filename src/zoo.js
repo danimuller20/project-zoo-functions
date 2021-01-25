@@ -112,8 +112,29 @@ function increasePrices(percentage) {
   prices.Child = parseFloat(percentualAdjust(prices.Child, percentage));
 }
 
+function selectEmployee(employeeSelected) {
+  return employees.find(valueEmployee => valueEmployee.id === employeeSelected ||  valueEmployee.firstName === employeeSelected ||
+  valueEmployee.lastName === employeeSelected); 
+}
+
+function listAnimals(arrayList) {
+  let arrayAnimals = [];
+  arrayList.forEach(animal => arrayAnimals.push(animals.find((id) => animal == id.id).name));
+  return arrayAnimals;
+}
+// 
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  let objectReturn = {};
+  if (idOrName === undefined) {
+    employees.forEach(employee => {
+      objectReturn[`${employee.firstName} ${employee.lastName}`] = listAnimals(employee.responsibleFor);
+    });
+    return objectReturn;
+  }
+  let employee = selectEmployee(idOrName);
+  objectReturn[`${employee.firstName} ${employee.lastName}`] = listAnimals(employee.responsibleFor);
+  return objectReturn;
 }
 
 module.exports = {
