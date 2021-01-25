@@ -47,9 +47,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  let countReport = animals.reduce((accObject, current) => {
-  accObject[current.name] = current.residents.length;
-    return accObject}, {});
+  let countReport = animals.reduce((accObject, current) => {  accObject[current.name] = current.residents.length;
+    return accObject} , {} );
   if (Object.keys(countReport).includes(species)) {
     countReport = countReport[species];
   }
