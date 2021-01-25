@@ -91,7 +91,7 @@ function schedule(dayName) {
     listHours[day] = `Open from ${close.open}am until ${close.close - 12}pm`;
     if (close.open === 0) listHours[day] = 'CLOSED';
     return listHours;
-  }, {});  
+  },{});
   return !dayName ? arrayObject : { [dayName]: arrayObject[dayName] };
 }
 
