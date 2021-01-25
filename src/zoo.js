@@ -61,7 +61,7 @@ function isManager(id) {
   if (hasManager !== undefined) { return true; }
   return false;
 }
-// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
+
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push(
@@ -102,8 +102,32 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  // depois
+  const zooMap = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: [],
+  };
+  Object.keys(zooMap).forEach((zone) => {
+    animals.forEach(animal => {
+      if (animal.location === zone) { zooMap[zone].push(animal.name); }
+    });
+  });
+  // if (options[includeNames] === true && options !== undefined) {
+  //   Object.keys(zooMap).forEach((animalArray) => {
+  //     animalArray.forEach(animal => {
+  //       const newKey = animal;
+  //       animal = {};
+  //       const foundAnimal = animals.find(eachAnimal => eachAnimal.name === newKey);
+  //       const animalsNames = [];
+  //       foundAnimal.residents.forEach(resident => animalsNames.push(resident.name));
+  //     });
+  //   });
+  // }
+  return zooMap;
 }
+
+// console.log(animalMap())
 
 function schedule(dayName) {
   const weeklyProgram = {
@@ -148,10 +172,37 @@ function increasePrices(percentage) {
   return prices;
 }
 
-
+// pq deu ceerto linha 184
 function employeeCoverage(idOrName) {
-  // adad
+  const everyEmployee = {};
+  employees.forEach(employee => {
+    const fullName = `${employee.firstName} ${employee.lastName}`;
+    const responsibleForList = employee.responsibleFor
+    for (let index = 0; index<responsibleForList.length; index++) {
+      const toSearch = responsibleForList[index];
+      const foundIt = animals.find(animal => animal.id === toSearch);
+      if (typeof foundIt === 'object') { responsibleForList[index] = foundIt.name;}
+    }
+    everyEmployee[fullName] = responsibleForList;
+  });
+  if (idOrName !== undefined) {
+    const workerAnimals = {};
+    const isName = Object.keys(everyEmployee).find( fullName => fullName.includes(idOrName));
+    if (isName) {
+      workerAnimals[isName] = everyEmployee[isName];
+      return workerAnimals;
+    }
+    const hasId = employees.find(employee => employee.id === idOrName);
+    const nameById = `${hasId.firstName} ${hasId.lastName}`;
+    workerAnimals[nameById] = everyEmployee[nameById];
+    return workerAnimals;
+  }
+  return everyEmployee;
 }
+
+// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
+// console.log(employeeCoverage('Nigel'))
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
