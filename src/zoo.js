@@ -55,8 +55,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  let allAnimals = {};
-  animals.forEach(animal => {allAnimals[animal.name] = animal.residents.length});
+  const allAnimals = {};
+  animals.forEach((animal) => { allAnimals[animal.name] = animal.residents.length });
   if (!species) return allAnimals;
   return animals.find(value => value.name === species).residents.length;
 }
