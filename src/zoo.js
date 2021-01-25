@@ -80,18 +80,17 @@ function createAnimalsObjects(name, sex, sorted, residents) {
     residentsNames.sort();
   }
 
-  const animalObjects = { [name]: residentsNames, };
+  const animalObjects = { [name]: residentsNames };
 
   return animalObjects;
 }
 
 function animalsByLocations(animalLocation, includeNames, sex, sorted) {
-  return animals.reduce((namesArray, { name, location, residents }) => {
-  return location === animalLocation ? namesArray
-  .concat(includeNames ? createAnimalsObjects(name, sex, sorted, residents) : name)
-  : namesArray
-}, []);
-};
+  return animals.reduce((namesArray, { name, location, residents }) => 
+  location === animalLocation ? namesArray
+  .concat(includeNames ? createAnimalsObjects(name, sex, sorted, residents) : name) 
+  : namesArray, []);
+}
 
 function animalsByLocationsList(includeNames, sex, sorted) {
   return animals.reduce((AnimalsAndLocationslist, { location }) => {
@@ -102,7 +101,7 @@ function animalsByLocationsList(includeNames, sex, sorted) {
 
 function animalMap(options) {
   if (options) {
-    const {includeNames, sex, sorted } = options;
+    const { includeNames, sex, sorted } = options;
     return animalsByLocationsList(includeNames, sex, sorted);
   }
   return animalsByLocationsList();
