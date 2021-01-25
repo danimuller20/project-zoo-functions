@@ -164,12 +164,12 @@ function createObjectWithSex(optionSex) {
 }
 function animalMap(options) {
   if (options) {
-    const { includeNames = false, sorted = false, sex = undefined } = options;
+    const { includeNames, sorted, sex = undefined } = options;
     if (includeNames && sex !== undefined) {
-      return (!sorted ? createObjectWithSex(sex) : sortNames(createObjectWithSex(sex)));
+      return (sorted ? sortNames(createObjectWithSex(sex)) : createObjectWithSex(sex));
     }
     if (includeNames) {
-      return (!sorted ? createObjectWithNames() : sortNames(createObjectWithNames()));
+      return (sorted ? sortNames(createObjectWithNames()) : createObjectWithNames());
     }
   }
   return createDefaultObject();
