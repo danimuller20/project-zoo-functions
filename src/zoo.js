@@ -83,15 +83,20 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const responsable = employees.find(code => code.id === id).responsibleFor[0];
+  const animal = animals.find(code => code.id === responsable).residents;
+  const { name, sex, age } = animal.reduce((accumulator, currentValue) =>
+  currentValue.age > accumulator.age ? currentValue : accumulator);
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
   // seu código aqui
 }
 
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  
 }
 
 module.exports = {
