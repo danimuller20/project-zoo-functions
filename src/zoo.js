@@ -19,7 +19,7 @@ function animalsByIds() {
 function animalsOlderThan(animal, age) {
   const animalsGroup = animals.find(value => value.name === animal);
   return animalsGroup.residents.every(value => value.age >= age);
-}
+} // concluido
 
 function employeeByName(employeeName) {
   // seu código aqui
@@ -31,11 +31,24 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  employees
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(...person) {
+  let [ id, firstName, lastName, managers, responsibleFor ] = person;
+  if (managers === undefined) {
+    managers = [];
+  }
+  if (responsibleFor === undefined) {
+    responsibleFor = [];
+  }
+  const employee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  employees.push(employee);
 }
 
 function speciesCount(species) {
