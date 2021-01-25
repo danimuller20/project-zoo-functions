@@ -14,7 +14,7 @@ const data = require('./data');
 const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
-  return ids.map(identificator => animals.find(animal => animal.id === identificator));
+  return ids.map(identifier => animals.find(animal => animal.id === identifier));
 }
 
 function animalsOlderThan(animalName, minAge) {
@@ -61,8 +61,33 @@ function entryCalculator(entrants) {
   return (adultCount * Adult) + (seniorCount * Senior) + (childCount * Child);
 }
 
+const withParameter = () => {
+  const animalsLocation = animals.reduce((acc, valueOne) => {
+    acc[valueOne.location] = animals
+    .filter(animal => valueOne.location.includes(animal.location)).map((animal) => {
+      const result = {};
+      result[animal.name] = animal.residents.reduce((accumulator, value) => {
+        accumulator.push(value.name);
+        return accumulator;
+      }, []);
+      return result;
+    });
+    return acc;
+  }, {});
+  return animalsLocation;
+};
+
+const withoutParameter = () => {
+  const animalList = location => animals.filter(animal => location.includes(animal.location))
+  .map(animal => animal.name);
+  return animals.reduce((acc, value) => {
+    acc[value.location] = animalList(value.location);
+    return acc;
+  }, {});
+};
+
 function animalMap(options) {
-  // seu código aqui
+  return (options) ? withParameter() : withoutParameter();
 }
 
 function schedule(dayName) {
@@ -99,9 +124,22 @@ function increasePrices(percentage) {
   prices.Child = roundNumber(prices.Child + (prices.Child * percentage));
 }
 
-
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const result = {};
+  const animalResponsibleFor = employee => employee.responsibleFor
+  .map(identifier => animals.find(animal => animal.id === identifier).name);
+
+  if (idOrName === undefined) {
+    employees.forEach((employee) => {
+      result[`${employee.firstName} ${employee.lastName}`] = animalResponsibleFor(employee);
+    });
+    return result;
+  }
+
+  const employeeName = employees.find(employee => employee.id === idOrName
+    || employee.firstName === idOrName || employee.lastName === idOrName);
+  result[`${employeeName.firstName} ${employeeName.lastName}`] = animalResponsibleFor(employeeName);
+  return result;
 }
 
 module.exports = {
