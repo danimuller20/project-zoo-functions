@@ -84,9 +84,9 @@ function increasePrices(percentage) {
 
 function hasIdOrNameEmployeeCoverage(idOrName) {
   const employee = employees.find(person => person.id === idOrName) || employeeByName(idOrName);
-  const fullName = `${employee.firstName} ${employee.lastName}`
+  const fullName = `${employee.firstName} ${employee.lastName}`;
   const animalsCover = animalsByIds(...employee.responsibleFor).map(animal => animal.name);
-  return {[fullName]: animalsCover};
+  return { [fullName]: animalsCover };
 }
 
 function dontHasIdOrNameEmployeeCoverage() {
