@@ -278,7 +278,7 @@ function employeeCoverage(idOrName) {
   employees.forEach((employee) => {
     const animalsNames = [];
     employee.responsibleFor.forEach((animalId) => {
-      animalsNames.push(animals.find(animal => animal.id === animalId).name); 
+      animalsNames.push(animals.find(animal => animal.id === animalId).name);
     });
     animalsByEmployee[employee.firstName] = animalsNames;
     animalsByEmployeeNoParameter[`${employee.firstName} ${employee.lastName}`] = animalsNames;
