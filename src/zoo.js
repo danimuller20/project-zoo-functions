@@ -190,11 +190,11 @@ function animalMap(options) {
   return objeto;
 }
 
-function convertFormatHours(schedule) {
+function convertFormatHours(hourFormat) {
   let convertedSchedule = 0;
-  if (schedule > 12) convertedSchedule = (schedule - 12);
-  else if (schedule === 12) convertedSchedule = 12;
-  else convertedSchedule = schedule;
+  if (hourFormat > 12) convertedSchedule = (hourFormat - 12);
+  else if (hourFormat === 12) convertedSchedule = 12;
+  else convertedSchedule = hourFormat;
   return convertedSchedule;
 }
 
