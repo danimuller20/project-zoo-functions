@@ -134,8 +134,8 @@ function oldestFromFirstSpecies(id) {
 function newPrices(percent) {
   const oldPrices = Object.values(prices);
   return oldPrices.map((price) => {
-    const newPrices = (price * (percent / 100 + 1));
-    const roundNum = ((Math.round(newPrices * 100)) / 100);
+    const updatePrices = (price * ((percent / 100) + 1));
+    const roundNum = ((Math.round(updatePrices * 100)) / 100);
     return roundNum;
   });
 }
@@ -149,8 +149,11 @@ function increasePrices(percentage) {
 console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  /* if(!idOrName) {
+    return employees
+  } */
 }
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
