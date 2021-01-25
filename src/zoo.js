@@ -153,7 +153,7 @@ function employeeCoverage(idOrName) {
     return employees
   } */
 }
-console.log(employeeCoverage())
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
