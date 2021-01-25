@@ -17,7 +17,12 @@ function animalsByIds(...ids) {
 
   ids.forEach((e) => {
     animals.find((finded) => {
-      if (finded.id === e) return result.push(finded);
+      if (finded.id === e){
+        return result.push(finded);
+      }
+      else{
+        return;
+      }
     });
   });
   return result;
