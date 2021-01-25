@@ -200,12 +200,12 @@ function increasePrices(percentage) {
 
 function filterResponsibleFor(employee) {
   const responsibleForTemp = [];
-  employee.responsibleFor.forEach((idAnimal) => {
+  employee.responsibleFor.forEach(idAnimal => {
     const animalTemp = animals.find((animal) => {
       return animal.id === idAnimal;
-    })
+    });
     responsibleForTemp.push(animalTemp.name);
-  })
+  });
   return responsibleForTemp;
 }
 
@@ -213,18 +213,18 @@ function employeesAndAnimals() {
   const employeeNamesAndAnimals = {};
   employees.forEach((employee) => {
     const responsibleForTemp = filterResponsibleFor(employee);
-    const fulllName = `${employee.firstName} ${employee.lastName}`
+    const fulllName = `${employee.firstName} ${employee.lastName}`;
     employeeNamesAndAnimals[fulllName] = responsibleForTemp;
   });
   return employeeNamesAndAnimals;
 }
 
 function filterByIdfirstNameOrLastName(idName) {
-  const person = employees.find((employee) => {
+  const person = employees.find(employee => {
     return employee.id === idName ||
     employee.firstName === idName ||
     employee.lastName === idName;
-  })
+  });
   const responsibleForTemp = filterResponsibleFor(person);
   const personFind = {};
   const fullName = `${person.firstName} ${person.lastName}`;
