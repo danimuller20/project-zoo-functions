@@ -75,8 +75,6 @@ function oldestFromFirstSpecies(id) {
   return [animalsEmployee.name, animalsEmployee.sex, animalsEmployee.age];
 }
 
-console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
-
 function increasePrices(percentage) {
   const multiplier = (percentage / 100) + 1;
   prices.Adult = parseFloat(((prices.Adult * multiplier) + 0.005).toFixed(2));
@@ -84,8 +82,22 @@ function increasePrices(percentage) {
   prices.Child = parseFloat(((prices.Child * multiplier) + 0.005).toFixed(2));
 }
 
+function hasIdOrNameEmployeeCoverage(idOrName) {
+  const employee = employees.find(person => person.id === idOrName) || employeeByName(idOrName);
+  const fullName = `${employee.firstName} ${employee.lastName}`
+  const animalsCover = animalsByIds(...employee.responsibleFor).map(animal => animal.name);
+  return {[fullName]: animalsCover};
+}
+
+function dontHasIdOrNameEmployeeCoverage() {
+  const employeesIds = employees.map(employee => employee.id);
+  const employeesCovers = employeesIds.reduce((acc, curr) =>
+    Object.assign(acc, hasIdOrNameEmployeeCoverage(curr)), {});
+  return employeesCovers;
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  return (!idOrName) ? dontHasIdOrNameEmployeeCoverage() : hasIdOrNameEmployeeCoverage(idOrName);
 }
 
 module.exports = {
