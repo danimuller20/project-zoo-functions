@@ -53,12 +53,12 @@ function animalCount(species) {
     });
     return obj;
   }
-  return animals.filter((animal) => animal.name === species)[0].residents.length;
+  return animals.filter(animal => animal.name === species)[0].residents.length;
 }
 
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
-  return Object.keys(entrants).reduce((acc, crr) => acc + (entrants[crr] * prices[crr]), 0)
+  return Object.keys(entrants).reduce((acc, crr) => acc + (entrants[crr] * prices[crr]), 0);
 }
 
 function animalMap(options) {
