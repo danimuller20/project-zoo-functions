@@ -18,10 +18,7 @@ function animalsByIds(...ids) {
   if (!ids) {
     return [];
   }
-  if (ids.length === 1) {
-    zooArray.push(data.animals.find(animal => animal.id === ids[0]));
-  }
-  if (ids.length > 1) {
+  if (ids.length >= 1) {
     // for (let index = 0; index < ids.length; index++) {
     //   const element = ids[index];
     //   achou.push(data.animals.find((animal) => animal.id === element));
@@ -59,7 +56,8 @@ function employeeByName(employeeName) {
 // console.log(employeeByName('Nelson'));
 
 function createEmployee(personalInfo, associatedWith) {
-  // codigo aqui
+  const newObj = {...personalInfo, ...associatedWith}
+  return newObj;
 }
 
 function isManager(id) {
@@ -73,7 +71,7 @@ function isManager(id) {
   }
   return boo;
 }
-console.log(isManager('b0dc644a-5335-489b-8a2c-4e086c7819a2'));
+// console.log(isManager('b0dc644a-5335-489b-8a2c-4e086c7819a2'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
