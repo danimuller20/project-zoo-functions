@@ -92,15 +92,14 @@ function entryCalculator(entrants) {
   let finalPrice = 0;
   if (entrants !== undefined && entrants !== {}) {
     const completeInfo = Object.entries(entrants);
-    completeInfo.forEach((pair)=>{
+    completeInfo.forEach((pair) => {
       finalPrice += prices[pair[0]] * pair[1];
     });
     return finalPrice;
   }
   return finalPrice;
 }
-entrants = { 'Adult': 1 };
-console.log(entryCalculator(entrants))
+
 
 function animalMap(options) {
   // seu código aqui
