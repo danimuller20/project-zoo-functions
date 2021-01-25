@@ -138,30 +138,31 @@ function separateAnimalsBySex(animalName, sex) {
   }, []);
   return arrayAnimalBySex[0].map(value => value.name);
 }
-function animalMap(options) {
-  const arrayOfLocations = returnLocations();
-  const createDefaultObject = () =>
-    arrayOfLocations.reduce((defaultObject, location) => {
-      defaultObject[location] = searchAnimalsByLocation(location);
-      return defaultObject;
-    }, {});
-  const createObjectWithNames = () => {
-    const objectWithNames = arrayOfLocations.reduce((objectWithNamesByEspecie, location) => {
-      const arrayWithNames = searchAnimalsByLocation(location).map(searchResidentsNamesByEspecie);
-      objectWithNamesByEspecie[location] = arrayWithNames;
-      return objectWithNamesByEspecie;
-    }, {});
-    return objectWithNames;
-  };
-  const createObjectWithSex = (optionSex) => {
-    const objectWithSex = createObjectWithNames();
-    Object.keys(objectWithSex).forEach((location) => {
-      objectWithSex[location].forEach((animal) => {
-        animal[Object.keys(animal)[0]] = separateAnimalsBySex(Object.keys(animal)[0], optionSex);
-      });
+const arrayOfLocations = returnLocations();
+function createDefaultObject() {
+  return arrayOfLocations.reduce((defaultObject, location) => {
+    defaultObject[location] = searchAnimalsByLocation(location);
+    return defaultObject;
+  }, {});
+}
+function createObjectWithNames() {
+  const objectWithNames = arrayOfLocations.reduce((objectWithNamesByEspecie, location) => {
+    const arrayWithNames = searchAnimalsByLocation(location).map(searchResidentsNamesByEspecie);
+    objectWithNamesByEspecie[location] = arrayWithNames;
+    return objectWithNamesByEspecie;
+  }, {});
+  return objectWithNames;
+}
+function createObjectWithSex(optionSex) {
+  const objectWithSex = createObjectWithNames();
+  Object.keys(objectWithSex).forEach((location) => {
+    objectWithSex[location].forEach((animal) => {
+      animal[Object.keys(animal)[0]] = separateAnimalsBySex(Object.keys(animal)[0], optionSex);
     });
-    return objectWithSex;
-  };
+  });
+  return objectWithSex;
+}
+function animalMap(options) {
   if (!options || !options.includeNames) {
     return createDefaultObject();
   } else if (options.sex !== undefined && options.includeNames === true) {
@@ -173,11 +174,10 @@ function animalMap(options) {
     return (!options.sorted === true ?
       createObjectWithNames() : sortNames(createObjectWithNames()));
   }
-  return createDefaultObject();
+  return options;
 }
 function schedule(dayName) {
   // seu código aqui
-
 }
 
 function oldestFromFirstSpecies(id) {
