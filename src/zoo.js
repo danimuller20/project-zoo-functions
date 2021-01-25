@@ -75,8 +75,8 @@ function isManager(id) {
   let booManager = false;
   employees.forEach((employ) => {
     employ.managers.find((manager) => {
-      if ( manager === id) {
-        booManager = true;
+      if (manager === id) {
+        return booManager = true;
       }
     });
   });
