@@ -109,7 +109,7 @@ function animalMap(options) {
     SW: [],
   };
   Object.keys(zooMap).forEach((zone) => {
-    animals.forEach(animal => {
+    animals.forEach((animal) => {
       if (animal.location === zone) { zooMap[zone].push(animal.name); }
     });
   });
@@ -175,19 +175,19 @@ function increasePrices(percentage) {
 // pq deu ceerto linha 184
 function employeeCoverage(idOrName) {
   const everyEmployee = {};
-  employees.forEach(employee => {
+  employees.forEach((employee) => {
     const fullName = `${employee.firstName} ${employee.lastName}`;
-    const responsibleForList = employee.responsibleFor
-    for (let index = 0; index<responsibleForList.length; index++) {
+    const responsibleForList = employee.responsibleFor;
+    for (let index = 0; index<responsibleForList.length; index += index) {
       const toSearch = responsibleForList[index];
       const foundIt = animals.find(animal => animal.id === toSearch);
-      if (typeof foundIt === 'object') { responsibleForList[index] = foundIt.name;}
+      if (typeof foundIt === 'object') { responsibleForList[index] = foundIt.name; }
     }
     everyEmployee[fullName] = responsibleForList;
   });
   if (idOrName !== undefined) {
     const workerAnimals = {};
-    const isName = Object.keys(everyEmployee).find( fullName => fullName.includes(idOrName));
+    const isName = Object.keys(everyEmployee).find(fullName => fullName.includes(idOrName));
     if (isName) {
       workerAnimals[isName] = everyEmployee[isName];
       return workerAnimals;
@@ -200,9 +200,9 @@ function employeeCoverage(idOrName) {
   return everyEmployee;
 }
 
-// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
-// console.log(employeeCoverage('Nigel'))
-console.log(employeeCoverage())
+// // console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
+// // console.log(employeeCoverage('Nigel'))
+// console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
