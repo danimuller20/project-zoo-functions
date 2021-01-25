@@ -119,7 +119,7 @@ function schedule(dayName) {
 }
 
 function olderAnimal(specie) {
-  return specie.residents.reduce((acum, valuePass) => {
+  return specie.residents.reduce(function (acum, valuePass) {
     return valuePass.age > acum.age ? valuePass : acum;
   });
 }
