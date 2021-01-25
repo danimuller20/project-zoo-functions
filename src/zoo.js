@@ -56,7 +56,7 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  const hasManager = employees.find((employee) => employee.managers.some(
+  const hasManager = employees.find(employee => employee.managers.some(
     managerId => managerId === id));
   if (hasManager !== undefined) { return true; }
   return false;
