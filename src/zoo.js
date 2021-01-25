@@ -73,10 +73,12 @@ function entryCalculator(...entrants) {
   if (entrants.length === 0 || entrants === {}) {
     return result;
   }
-  Object.keys(entrants[0]).forEach(item => result += entrants.reduce((acc, curr) => 
+  Object.keys(entrants[0]).forEach(item => result += entrants.reduce((acc, curr) =>
   acc + (curr[item] * prices[item]), 0));
   return result;
 }
+
+// Funcoes auxiliares de animalMap
 
 function sortAnimal(options, objectLocal, animal, animalArray) {
   const animalObject = {};
@@ -101,7 +103,7 @@ function animalLocation(options, objectLocal) {
 function sexAnimal(options, objectLocal) {
   animals.forEach((animal) => {
     const animalArray = (animal.residents.filter(animalFilter =>
-       animalFilter.sex === options.sex).map(resident => resident.name));
+        animalFilter.sex === options.sex).map(resident => resident.name));
     sortAnimal(options, objectLocal, animal, animalArray);
   });
   return objectLocal;
@@ -118,10 +120,10 @@ function animalMap(options) {
     NW: [],
     SE: [],
     SW: [],
-  }
+  };
 
   if (options === undefined) {
-    noOptions(objectLocal)
+    noOptions(objectLocal);
     return objectLocal;
   }
 
@@ -137,7 +139,7 @@ function animalMap(options) {
 
   noOptions(objectLocal);
   return objectLocal;
-};
+}
 
 
 function schedule(dayName) {
