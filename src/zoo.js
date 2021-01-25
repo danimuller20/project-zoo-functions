@@ -73,24 +73,25 @@ function animalMap(options) {
 function schedule(dayName) {
   const cronograma = {};
   Object.keys(data.hours).forEach((dias) => {
-  cronograma[dias] = `Open from ${data.hours[dias].open}am until ${data.hours[dias].close}pm`});
+    cronograma[dias] = `Open from ${data.hours[dias].open}am until ${data.hours[dias].close}pm`;
+  });
   cronograma.Monday = 'CLOSED';
   if (!dayName) {
     return cronograma;
   }
-  let dia = {};
+  const dia = {};
   dia[dayName] = cronograma[dayName];
   return dia;
 }
 
 function oldestFromFirstSpecies(id) {
   let animalSenio = [];
-  animals.find(idd => idd.id === id).residents.forEach((senio) => { animalSenio.push(senio.age)});
+  animals.find(idd => idd.id === id).residents.forEach((senio) => { animalSenio.push(senio.age) } );
   animalSenio = Math.max(...animalSenio);
-  animalSenio = animals.find(idd => idd.id === id).residents.find(senio => senio.age === animalSenio);
+  animalSenio = animals.find(idd => idd.id === id).
+  residents.find(senio => senio.age === animalSenio);
   return Object.values(animalSenio);
-
-}console.log(oldestFromFirstSpecies('ef3778eb-2844-4c7c-b66c-f432073e1c6b'));
+}
 
 function increasePrices(percentage) {
   // seu código aqui
