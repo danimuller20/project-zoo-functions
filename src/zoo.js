@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(id, ...rest) {
@@ -104,16 +104,6 @@ function filterAnimalsByNameAndSex(animalsByNameAndSex, sex, sort = false) {
   return filteredAnimals;
 }
 
-/* function filterAnimalsByNameAndSexSorted(animalsByNameAndSexSorted, sex) {
-  const filteredAnimals = animalsByNameAndSexSorted.map((animal) => {
-    const animalWithName = {};
-    const residentsBySex = animal.residents.filter(item => item.sex === sex);
-    animalWithName[animal.name] = residentsBySex.map(resident => resident.name).sort();
-    return animalWithName;
-  });
-  return filteredAnimals;
-} */
-
 function filterAnimalsLocation(initials) {
   return animals.filter(animal => animal.location === initials);
 }
@@ -199,13 +189,40 @@ function animalMap(options) {
   }
   return objeto;
 }
-// console.log(animalMap({ includeNames: true }));
-console.log(animalMap({ includeNames: true, sorted: true }));
-
-function schedule(dayName) {
-  // seu código aqui
+function convertHours(open, close) {
+  const convertedHours = [];
+  if (open > 12) convertedHours.push(open - 12);
+  else if (open === 12) convertedHours.push(12);
+  else convertedHours.push(open)
+  if (close > 12) convertedHours.push(close - 12);
+  else if (close === 12) convertedHours.push(12);
+  else convertedHours.push(close)
+  return convertedHours;
 }
 
+function schedule(dayName) {
+  const day = {};
+  if (!dayName) {
+    Object.keys(hours).forEach((key) => {
+      const convertedHours = convertHours(hours[key].open, hours[key].close);
+      if (key !== 'Monday') {
+        day[key] = `Open from ${convertedHours[0]}am until ${convertedHours[1]}pm`;
+      } else {
+        day[key] = 'CLOSED';
+      }  
+    });
+  }
+  if (dayName && dayName !== 'Monday') {
+    const convertedHours = convertHours(hours[dayName].open, hours[dayName].close);
+    day[dayName] = `Open from ${convertedHours[0]}am until ${convertedHours[1]}pm`;
+  }
+  if (dayName && dayName === 'Monday') {
+    day[dayName] = 'CLOSED';
+  }
+  return day;
+}
+
+console.log(schedule('Tuesday'));
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
