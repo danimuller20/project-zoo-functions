@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -63,7 +63,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  const locationObject = { };
+  /*const locationObject = { };
   if (options === undefined) {
     return {
     NE: animals.filter(animal => animal.location === 'NE').map(animal => animal.name),
@@ -71,11 +71,11 @@ function animalMap(options) {
     SE: animals.filter(animal => animal.location === 'SE').map(animal => animal.name),
     SW: animals.filter(animal => animal.location === 'SW').map(animal => animal.name),
     }
-  }
+  }*/
 }
 
 function schedule(dayName) {
-  const zooSchedule = { 
+  const zooSchedule = {
   'Tuesday': 'Open from 8am until 6pm',
   'Wednesday': 'Open from 8am until 6pm',
   'Thursday': 'Open from 10am until 8pm',
