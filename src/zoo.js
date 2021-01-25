@@ -56,10 +56,9 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  const hasManager = employees.find((employee) => {
-    return employee.managers.some(managerId => managerId === id)
-  });
-  if (hasManager !== undefined) {return true};
+  const hasManager = employees.find((employee) => employee.managers.some(
+    managerId => managerId === id));
+  if (hasManager !== undefined) { return true; }
   return false;
 }
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
