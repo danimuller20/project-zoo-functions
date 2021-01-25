@@ -52,7 +52,7 @@ function employeeByName(employeeName) {
     return 0;
   });
 
-      return employeeObject;
+  return employeeObject;
 }
 // exercício 4
 function createEmployee(personalInfo, associatedWith) {
