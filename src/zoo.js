@@ -88,15 +88,11 @@ const animalFilter = (name, sorted, sex) => {
     filteredAnimal.sort();
   }
 
-  return {
-    [name]: filteredAnimal
-  };
+  return { [name]: filteredAnimal };
 };
 
 function animalMap(options = {}) {
-  const {
-    includeNames = false, sorted = false, sex
-  } = options;
+  const { includeNames = false, sorted = false, sex } = options;
 
   let mapResults = animals.reduce((accumulator, animal) => {
     if (!accumulator[animal.location]) {
@@ -123,7 +119,7 @@ function schedule(dayName = '') {
     return (myObject[index] = value.close - value.open > 0 ?
       `Open from ${value.open}am until ${closeTime}pm` :
       'CLOSED'
-    )
+    );
   }, {});
 
   const verifyDay = Object.entries(myObject).some(day => day[0] === dayName);
@@ -131,7 +127,7 @@ function schedule(dayName = '') {
     if (!verifyDay) {
       return 'Dia inválido!';
     }
-    return { [dayName] : myObject[dayName] };
+    return { [dayName]: myObject[dayName] };
   }
 
   return myObject;
