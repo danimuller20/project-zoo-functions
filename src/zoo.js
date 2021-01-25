@@ -258,17 +258,16 @@ function getAnimalsByEmployeeInfo(idOrName, animalList) {
   let employeeFiltered = {};
   employeeFiltered = employees.find(employee => employee.id === idOrName);
   if (employeeFiltered) {
-    return animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
+    animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
   }
   employeeFiltered = employees.find(employee => employee.firstName === idOrName);
   if (employeeFiltered) {
-    return animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
+    animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
   }
   employeeFiltered = employees.find(employee => employee.lastName === idOrName);
   if (employeeFiltered) {
-    return animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
+    animalsOfEmployee = getAnimalsListByFilteredEmloyee(employeeFiltered, animalListArray);
   }
-
   return animalsOfEmployee;
 }
 
@@ -278,13 +277,13 @@ function employeeCoverage(idOrName) {
   const animalsByEmployeeNoParameter = {};
   employees.forEach((employee) => {
     const animalsNames = [];
-    employee.responsibleFor.forEach((animalId) => {
-      animalsNames.push(animals.find(animal => animal.id === animalId).name);
-    })
+    employee.responsibleFor.forEach((animalId) => {animalsNames.push(animals
+      .find(animal => animal.id === animalId).name);
+    });
     animalsByEmployee[employee.firstName] = animalsNames;
     animalsByEmployeeNoParameter[`${employee.firstName} ${employee.lastName}`] = animalsNames;
-  })
-  if(!idOrName) {
+  });
+  if (!idOrName) {
     return animalsByEmployeeNoParameter;
   }
   return getAnimalsByEmployeeInfo(idOrName, animalsByEmployee);
