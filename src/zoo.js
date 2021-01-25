@@ -30,7 +30,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const retorna = data.employees.some(admin => admin.managers.includes(id));
+  return retorna;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
