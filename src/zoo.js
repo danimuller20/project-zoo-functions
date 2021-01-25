@@ -133,7 +133,7 @@ function schedule(dayName) {
 
   arrayOfKeys.forEach((Element, index1) => {
     if (dayName === Element) {
-      newObject[element] = `Open from ${arrayOfValues[index1].open}am until ${arrayOfValues[index1].close - 12}pm`;
+      newObject[Element] = `Open from ${arrayOfValues[index1].open}am until ${arrayOfValues[index1].close - 12}pm`;
     }
   });
   return newObject;
