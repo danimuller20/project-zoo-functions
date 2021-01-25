@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices} = data; // destructure
+const { animals, employees} = data; // destructure
 
 function animalsByIds(...ids) {
   // seu código aqui
