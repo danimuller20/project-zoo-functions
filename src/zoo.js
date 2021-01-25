@@ -73,15 +73,85 @@ function entryCalculator(...entrants) {
   if (entrants.length === 0 || entrants === {}) {
     return result;
   }
-  Object.keys(entrants[0]).forEach(item => {
-  result += entrants.reduce((acc, curr) => acc + (curr[item] * prices[item]), 0);
-  });
+  Object.keys(entrants[0]).forEach(item => result += entrants.reduce((acc, curr) => acc + (curr[item] * prices[item]), 0));
   return result;
+}
+
+function sortAnimal(options, objectLocal, animal, animalArray) {
+  const animalObject = {};
+  if (options.sorted) {
+    animalObject[animal.name] = animalArray.sort();
+    objectLocal[animal.location].push(animalObject);
+  } else {
+    animalObject[animal.name] = animalArray;
+    objectLocal[animal.location].push(animalObject);
+  }
+  return objectLocal;
+}
+
+function animalLocation(options, objectLocal) {
+  animals.forEach(animal => {
+    let animalArray;
+    animalArray = (animal.residents.map(resident => resident.name));
+    sortAnimal(options, objectLocal, animal, animalArray);
+  });
+  return objectLocal;
+}
+
+function sexAnimal(options, objectLocal) {
+  animals.forEach(animal => {
+    let animalArray;
+    animalArray = (animal.residents.filter(animalFilter => animalFilter.sex === options.sex).map(resident => resident.name));
+    sortAnimal(options, objectLocal, animal, animalArray)
+  });
+  return objectLocal;
+}
+
+function allAnimal(options, objectLocal) {
+  if (options.sex && options.sorted !== true) {
+    locals.forEach(element => animals.filter(animal => {
+      if (animal.location === element) {
+        objectLocal[element].push({ [animal.name]: animal.residents.map(resident => resident.name).sort(), })
+      }
+    }))
+  }
+}
+
+function noOptions(objectLocal) {
+  return animals.forEach(element => objectLocal[element.location].push(element.name));
 }
 
 function animalMap(options) {
   // seu código aqui
-}
+  const objectLocal = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: [],
+  }
+
+  if (options === undefined) {
+    noOptions(objectLocal)
+    return objectLocal;
+  }
+
+  if (options.includeNames !== undefined && options.sex !== undefined) {
+    sexAnimal(options, objectLocal);
+    console.log(objectLocal)
+    return objectLocal;
+  }
+
+  if (options.includeNames !== undefined) {
+    animalLocation(options, objectLocal);
+    console.log(objectLocal)
+    return objectLocal;
+  }
+  
+  noOptions(objectLocal);
+  return objectLocal;
+};
+
+console.log(animalMap({ sex: 'female' }))
 
 function schedule(dayName) {
   // seu código aqui
