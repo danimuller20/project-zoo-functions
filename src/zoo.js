@@ -44,7 +44,6 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // seu código aqui
   const newEmployee = {
     id,
     firstName,
@@ -56,7 +55,19 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const object = {};
+  if (!species) {
+    const arrayAnimals = animals.forEach((animal) => (object[animal.name] = animal.residents.length));
+    return object;
+  } else {
+    const arrayOfresidents = animals.filter((animal) => animal.name === species);
+    return arrayOfresidents[0].residents.length;
+  }
+}
+console.log(animalCount());
+
+function animal(valor){
+  valor = valor.residents
 }
 
 function entryCalculator(entrants) {
@@ -64,6 +75,7 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+
 }
 
 function schedule(dayName) {
