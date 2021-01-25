@@ -14,15 +14,7 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  const idReturn = [];
-  animals.forEach((idAnimals) => {
-    ids.forEach((searchAnimals) => {
-      if (searchAnimals === idAnimals.id) {
-        idReturn.push(idAnimals);
-      }
-    });
-  });
-  return idReturn;
+  return ids.map((id) => animals.find((idAnimal) => idAnimal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -31,12 +23,16 @@ function animalsOlderThan(animal, age) {
   name === animal && residents.every(valor => valor.age > age));
 }
 
-function employeeByName(employeeName) {
+function employeeByName(employeeName = {}) {
+
+}
+
+/*function employeeByName(employeeName) {
   // seu código aqui
   if (employeeName === undefined) return {};
   return employees.find(({ firstName, lastName }) => (
   firstName === employeeName || lastName === employeeName));
-}
+}*/
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
