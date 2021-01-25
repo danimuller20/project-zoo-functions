@@ -14,7 +14,7 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  return animals.filter(element =>
+  return data.animals.filter(element =>
   ids.some(elementParameter => element.id === elementParameter));
 }
 
@@ -93,7 +93,6 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
   const returnLocation = () => {
     const typesOfLocation = [];
     animals.forEach((element) => {
@@ -103,11 +102,10 @@ function animalMap(options) {
     });
     return typesOfLocation;
   };
-  const searchAnimalsByLocation = (location) => {
-    return animals
+  const searchAnimalsByLocation = location =>
+    animals
     .filter(animal => animal.location === location)
     .map(element => element.name);
-  };
   const createDefaultObject = () => {
     const arrayOfLocation = returnLocation();
     return arrayOfLocation.reduce((defaultObject, location) => {
@@ -115,21 +113,20 @@ function animalMap(options) {
       return defaultObject;
     }, {});
   };
-  const searchAnimalsNames = (animal) => {
-    return animals
+  const searchAnimalsNames = animal =>
+    animals
     .reduce((objectAnimalName, element) => {
       if (element.name === animal) {
         objectAnimalName[animal] = element.residents.map(resident => resident.name);
       }
       return objectAnimalName;
     }, {});
-  };
   const includeNames = () => {
     const arrayOfLocation = returnLocation();
-    const objectWithNames = arrayOfLocation.reduce((objectWithNames, location) => {
+    const objectWithNames = arrayOfLocation.reduce((objectWithNamesConstruction, location) => {
       const arrayWithNames = searchAnimalsByLocation(location).map(searchAnimalsNames);
-      objectWithNames[location] = arrayWithNames;
-      return objectWithNames;
+      objectWithNamesConstruction[location] = arrayWithNames;
+      return objectWithNamesConstruction;
     }, {});
     return objectWithNames;
   };
@@ -142,15 +139,46 @@ function animalMap(options) {
     });
     return objectWithNames;
   };
-  if (!options) {
+  const separateAnimalsBySex = (animalName, sex) => {
+    const arrayAnimalBySex =
+    animals.reduce((arrayAnimalBySexConstruction, element) => {
+      if (element.name === animalName) {
+        arrayAnimalBySexConstruction.push(element.residents
+          .filter(resident => resident.sex === sex));
+      }
+      return arrayAnimalBySexConstruction;
+    }, []);
+    return arrayAnimalBySex[0].map(value => value.name);
+  };
+  const includeNamesBySex = (optionSex) => {
+    const objectWithNames = includeNames();
+    Object.keys(objectWithNames).forEach((location) => {
+      objectWithNames[location].forEach((animal) => {
+        animal[Object.keys(animal)[0]] = separateAnimalsBySex(Object.keys(animal)[0], optionSex);
+      });
+    });
+    return objectWithNames;
+  };
+  const includeNamesBySexSorted = (optionSex) => {
+    const objectWithNamesBySex = includeNamesBySex(optionSex);
+    Object.keys(objectWithNamesBySex).forEach((location) => {
+      objectWithNamesBySex[location].forEach((especie) => {
+        especie[Object.keys(especie)[0]].sort();
+      });
+    });
+    return objectWithNamesBySex;
+  };
+  if (!options || !options.includeNames) {
     return createDefaultObject();
+  } else if (options.sex !== undefined && options.includeNames === true) {
+    if (options.sex === 'female') {
+      return (!options.sorted === true ? includeNamesBySex('female') : includeNamesBySexSorted('female'));
+    }
+    return (!options.sorted === true ? includeNamesBySex('male') : includeNamesBySexSorted('male'));
+  } else if (options.includeNames === true) {
+    return (!options.sorted === true ? includeNames() : sortNames());
   }
-  else if (options.sorted === true) { 
-    return sortNames();
-  }
-  else if (options.includeNames === true) {
-    return includeNames();
-  }
+  return createDefaultObject();
 }
 
 function schedule(dayName) {
