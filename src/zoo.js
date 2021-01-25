@@ -21,7 +21,6 @@ function animalsByIds(...ids) {
         result.push(finded);
         return result;
       }
-      return;
     });
   });
   return result;
