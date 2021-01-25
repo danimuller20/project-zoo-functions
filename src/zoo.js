@@ -21,14 +21,14 @@ function animalsOlderThan(animal, age) {
   return animalSpecies.residents.every(resident => resident.age >= age);
 }
 
-// busca das pessoas colaboradoras através do primeiro OU do último nome delas
 function employeeByName(employeeName) {
   if (!employeeName) return {};
   return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newEmployee = ({...personalInfo, ...associatedWith});
+  return newEmployee;
 }
 
 function isManager(id) {
