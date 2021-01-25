@@ -51,8 +51,8 @@ function animalCount(species) {
     if (!species) {
       especimens[animal.name] = animal.residents.length;
     } else {
-      const animalserched = data.animals.find(unit => unit.name === species);
-      especimens = animalserched.residents.length; 
+    const animalserched = data.animals.find(unit => unit.name === species);
+    especimens = animalserched.residents.length;
     }
   });
   return especimens;
