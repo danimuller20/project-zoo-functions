@@ -11,8 +11,12 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals } = data;
-const { employees } = data;
+const {
+  animals
+} = data;
+const {
+  employees
+} = data;
 
 function animalsByIds(...ids) {
   if (!ids) {
@@ -32,14 +36,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const Name = employees.find((employee) => {
-    if (employee.firstName === employeeName) {
-      return employee;
-    } else if (employee.lastName === employeeName) {
-      return employee;
-    }
-  });
-  return Name;
+  const returnEmployee = employees.find((employee) => employee.firstName === employeeName || employee.lastName === employeeName);
+  return returnEmployee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -48,7 +46,7 @@ function createEmployee(personalInfo, associatedWith) {
     firstName: personalInfo.firstName,
     lastName: personalInfo.lastName,
     managers: associatedWith.managers,
-    responsibleFor: associatedWith.responsibleFor
+    responsibleFor: associatedWith.responsibleFor,
   };
   return newEmployee;
 }
@@ -58,24 +56,30 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  if((!managers) || (!responsibleFor)) {
+  if ((!managers) || (!responsibleFor)) {
     managers = [];
-    responsibleFor = []
+    responsibleFor = [];
   }
   const addedEmployee = {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   };
   employees.push(addedEmployee);
   return addedEmployee;
 }
 
-function animalCount(species) {
-  // seu código aqui
+/*function animalCount(species) {
+    let allSpecies = {};
+    if (!species) {
+        return animals.forEach( animal => {
+            allSpecies.name = animal.name;
+        })
+    }
 }
+console.log(animalCount());*/
 
 function entryCalculator(entrants) {
   // seu código aqui

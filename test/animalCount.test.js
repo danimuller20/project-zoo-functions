@@ -4,7 +4,7 @@ const zoo = require('../src/zoo');
 describe('Implemente a função animalCount', () => {
 
   it('Sem parâmetros, retorna animais e suas quantidades', () => {
-    const expected = {
+    const expected = {   
       'lions': 4,
       'tigers': 2,
       'bears': 3,
