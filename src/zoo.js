@@ -115,7 +115,7 @@ function animalMap(options) {
   });
   if (options !== undefined) {
     Object.values(zooMap).forEach((animalArray) => {
-      animalArray.forEach(animal => {
+      animalArray.forEach((animal) => {
         const newKey = animal;
         animal = {};
         const foundAnimal = animals.find(eachAnimal => eachAnimal.name === newKey);
@@ -200,7 +200,7 @@ function employeeCoverage(idOrName) {
 }
 
 // // console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
-console.log(employeeCoverage('Nigel'))
+// console.log(employeeCoverage('Nigel'))
 // console.log(employeeCoverage())
 
 module.exports = {
