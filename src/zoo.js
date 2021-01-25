@@ -15,8 +15,7 @@ const { animals } = data;
 const { employees } = data;
 
 function animalsByIds(...ids) {
-  const emptyParameter = Object.keys(ids).length;
-  if (emptyParameter === 0) {
+  if (!ids) {
     return [];
   }
   const idAnimal = ids.map(id => animals.find(animal => id === animal.id));
@@ -30,19 +29,19 @@ function animalsOlderThan(animalName, age) {
 }
 
 function employeeByName(employeeName) {
-  const emptyParameter = Object.keys(ids).length;
-  if(emptyParameter === 0){
-    return []
+  if (!employeeName) {
+    return {};
   }
-  const searchEmployee = employees.find(employee => {
-    if(employee.firstName === employeeName){
-      console.log(employee.firstName)
+  const Name = employees.find((employee) => {
+    if (employee.firstName === employeeName) {
+      return employee
+    } else if (employee.lastName === employeeName) {
+      return employee
     }
-  })
-  console.log(searchEmployee)
-  return searchEmployee
+  });
+  return Name;
 }
-employeeByName('Nigel');
+
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
