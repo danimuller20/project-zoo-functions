@@ -219,7 +219,7 @@ function schedule(dayName) {
   return filteredSchedule;
 }
 
-console.table(schedule('Monday'));
+console.table(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
