@@ -51,13 +51,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const objFuncionari = data.employees.find((functionari) => {
-    if (functionari.firstName === employeeName) {
-      return functionari;
-    } else if (functionari.lastName === employeeName) {
-      return functionari
-    }
-  });
+  const objFuncionari = data.employees.find(functionari =>
+    (functionari.firstName === employeeName || functionari.lastName === employeeName));
   return objFuncionari;
 }
 // console.log(employeeByName());
