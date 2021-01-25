@@ -12,9 +12,10 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  if ( !Array.isArray (ids) || ids.length === 0 )
+  if (!Array.isArray (ids) || ids.length === 0) {
     return [];
-return animals.filter(animal => ids.includes(animal.id));
+  }
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 
