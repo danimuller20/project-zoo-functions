@@ -117,7 +117,16 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  employee = employees.find((employee) => employee.id === id);
+  fisrtAnimalsResponsibleFor = animals.find((animal) => employee.responsibleFor[0] === animal.id).residents;
+  oldestAnimal = fisrtAnimalsResponsibleFor.reduce((oldest, currentAnimal) =>{
+    if(oldest.age < currentAnimal.age){
+      oldest = currentAnimal;
+    }
+    return oldest;
+  });
+
+  return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {
