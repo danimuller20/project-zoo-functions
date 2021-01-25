@@ -178,6 +178,20 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const person = employees.find(employee => employee.id === id);
+  const firstSpecieId = person.responsibleFor[0];
+  const specie = animals.find(animal => animal.id === firstSpecieId);
+  const specieResidents = specie.residents;
+  console.log(specieResidents);
+  let olderAge = 0;
+  const older = {};
+  specieResidents.forEach((resident) => {
+    if (resident.age > olderAge) {
+      olderAge = resident.age;
+      Object.assign(older, resident);
+    }
+  });
+  return [older.name, older.sex, older.age];
 }
 
 function increasePrices(percentage) {
