@@ -13,11 +13,10 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
-const { hours } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
-    return animals.filter((animalsId, i) => animalsId.id === ids[i]);
+  return animals.filter((animalsId, i) => animalsId.id === ids[i]);
 }
 
 function animalsOlderThan(animal, age) {
@@ -50,8 +49,7 @@ function animalCount(species) {
   // seu código aqui
   let countReport = animals.reduce((accObject, current) => {
   accObject[current.name] = current.residents.length;
-  return accObject;
-  }, {});
+    return accObject}, {});
   if (Object.keys(countReport).includes(species)) {
     countReport = countReport[species];
   }
