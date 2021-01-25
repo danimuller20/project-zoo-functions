@@ -43,13 +43,25 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const employeeObject = employees.find(employee => employee.lastName === employeeName || employee.firstName === employeeName);
-  return employeeObject;
+  const employeeObject = employees.find((employee) => {
+    const firstName = employee.firstName;
+    const lastName = employee.lastName;
+    if (firstName === employeeName || lastName === employeeName) {
+      return employee;
+    }
+  }); 
+  
+     return employeeObject;
 }
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  // seu código aqui
+  const newEmployee = {
+    ...personalInfo,
+    ...associatedWith
+  };
+  return newEmployee;
+}
 
 // function isManager(id) {
 //   // seu código aqui
@@ -100,5 +112,5 @@ module.exports = {
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
-  // createEmployee,
+  createEmployee,
 };
