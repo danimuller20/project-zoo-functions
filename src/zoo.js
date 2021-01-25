@@ -109,12 +109,11 @@ function schedule(dayName = 0) {
     'Sunday': 'Open from 8am until 8pm',
     'Monday': 'CLOSED'
   };
-  
-  if(dayName === 0) {
+  if( dayName === 0 ) {
     return openDays;
   }
-  if(dayName in openDays) {
-    let day = {};
+  if( dayName in openDays ) {
+    const day = {};
     day[dayName] = openDays[dayName];
     return day;
   }
