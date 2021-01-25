@@ -46,10 +46,9 @@ function animalCount(species) {
       acc[curr.name] = curr.residents.length;
       return acc;
     }), {});
-  } else {
-    const animal = animals.find(({ name }) => name === species);
-    return animal.residents.length;
   }
+  const animal = animals.find(({ name }) => name === species);
+  return animal.residents.length;
 }
 
 function entryCalculator(entrants) {
