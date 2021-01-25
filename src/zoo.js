@@ -107,9 +107,7 @@ function animalMap(options) {
       .filter(({ location }) => location === current.location)
       .reduce(
         (accAnimal, currentAnimal) =>
-          sortedNamesOrGetForSex(accAnimal, currentAnimal, sex, sorted),
-        []
-      );
+          sortedNamesOrGetForSex(accAnimal, currentAnimal, sex, sorted), []);
     return acc;
   }, {});
 }
