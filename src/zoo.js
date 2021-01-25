@@ -115,6 +115,13 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
 
+  // prices['Adult'] = (prices.Adult * (1 + (percentage / 100))).toFixed(2);
+  // prices['Senior'] = (prices.Senior * (1 + (percentage / 100))).toFixed(2);
+  // prices['Child'] = (prices.Child * (1 + (percentage / 100))).toFixed(2);
+
+  prices['Adult'] = Math.ceil(prices.Adult * (100 + percentage))/100;
+  prices['Senior'] = Math.ceil(prices.Senior * (100 + percentage))/100;
+  prices['Child'] = Math.ceil(prices.Child * (100 + percentage))/100;
 }
 
 function employeeCoverage(idOrName) {
