@@ -13,11 +13,11 @@ const data = require('./data');
 
 function animalsByIds(ids) {
   // seu código aqui
-  if (ids === undefined) {return [];  }
-//const species = [];
-ids.map(currentValue => currentValue.push(animals.finde(actualValue => actualValue.id === currentValue)));
-return currentValue;
-
+  if (ids === undefined) { return []; }
+  const currentValue = [];
+  (ids.map(currentValue => currentValue.push(
+    animals.finde(actualValue => actualValue.id === currentValue))));
+  return currentValue;
 }
 
 function animalsOlderThan(animal, age) {
@@ -25,7 +25,6 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  
   // seu código aqui
 }
 
