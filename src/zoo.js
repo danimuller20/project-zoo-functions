@@ -15,11 +15,7 @@ const data = require('./data');
 console.table(animals);
 console.table(employees);
 
-const checkVar = varChecked => {
-  if(!varChecked) {
-    return undefined;
-  }
-}
+const checkVar = (varChecked) => {if (!varChecked) {return undefined}}
 
 // const checkObj = objectChecked => {
 //   if (!objectChecked) {
