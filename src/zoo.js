@@ -110,12 +110,23 @@ function animalCount(species) {
 }
 // console.log(animalCount('lions'));
 
+function calculatorPrices(param1, param2, sumControl, price) {
+  param1.forEach((valueEntrants) => {
+    param2.forEach((valuePrice) => {
+      if (valuePrice[0] === valueEntrants[0]) {
+        sumControl = valuePrice[1] * valueEntrants[1];
+        price += sumControl;
+      }
+    });
+  });
+  return price;
+}
+
 function entryCalculator(entrants) {
   let valuesEntrants = '';
   let valuesPrices = '';
   let priceControl = 0;
   let priceEntrants = 0;
-  const {Adult, Senior, Child} = data.prices;
   if (!entrants) {
     return priceEntrants;
   }
@@ -124,19 +135,11 @@ function entryCalculator(entrants) {
   }
   valuesEntrants = Object.entries(entrants);
   valuesPrices = Object.entries(data.prices);
-  for (const key in valuesEntrants) {
-    const element1 = valuesEntrants[key];
-    for (const key in valuesPrices) {
-      const element2 = valuesPrices[key];
-      if (element1[0] === element2[0]) {
-        priceControl = element1[1] * element2[1];
-        priceEntrants += priceControl;
-      }
-    }
-  }
+  priceEntrants = calculatorPrices(valuesEntrants, valuesPrices, priceControl, priceEntrants);
+
   return priceEntrants;
 }
-// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
+console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
   // seu código aqui
