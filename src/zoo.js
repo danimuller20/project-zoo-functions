@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -17,15 +17,13 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, minAge) {
-  const name = animals.find(specie => (animal === specie.name)).residents;
+  const name = animals.find(species => (animal === species.name)).residents;
   return name.every(individual => individual.age >= minAge);
 }
 
 function employeeByName(employeeName) {
-  if (employeeName === undefined) {
-    return {};
-  }
-  return employees.find(name => name.lastName === employeeName || name.firstName === employeeName);
+  if (!employeeName) return {};
+  return employees.find(({ firstName, lastName }) => lastName === employeeName || firstName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -75,17 +73,13 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const zooSchedule = {
-    Tuesday: 'Open from 8am until 6pm',
-    Wednesday: 'Open from 8am until 6pm',
-    Thursday: 'Open from 10am until 8pm',
-    Friday: 'Open from 10am until 8pm',
-    Saturday: 'Open from 8am until 10pm',
-    Sunday: 'Open from 8am until 8pm',
-    Monday: 'CLOSED',
-  };
+  const zooSchedule = { };
+  Object.keys(hours).forEach(day => {
+    if (day === 'Monday') return zooSchedule[`${day}`] = 'CLOSED';
+    return (zooSchedule[`${day}`] = `Open from ${hours[day].open}am until ${hours[day].close}pm`);
+  });
 
-  if (dayName === undefined) {
+  if (!dayName) {
     return zooSchedule;
   }
   const daySchedule = Object.entries(zooSchedule).filter(index => index[0] === dayName);
@@ -93,8 +87,16 @@ function schedule(dayName) {
   return objectDaySchedule;
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+function oldestFromFirstSpecies(employeeId) {
+  const employeeFirstSpeciesId = employees.find(({ id }) => id.includes(employeeId)).responsibleFor[0];
+  const employeeFirstSpeciesResidents = animals.find(({ id }) => id.includes(employeeFirstSpeciesId)).residents;
+  let oldestAge = 0;
+  const findOldestAnimal = employeeFirstSpeciesResidents.forEach(animal => {
+    if (animal.age > oldestAge) {
+      oldestAge = animal.age;
+    }
+  });
+  return Object.values(employeeFirstSpeciesResidents.find(animal => animal.age === oldestAge));
 }
 
 function increasePrices(percentage) {
