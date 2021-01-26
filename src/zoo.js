@@ -73,7 +73,7 @@ function entryCalculator(...entrants) {
   if (entrants.length === 0 || entrants === {}) {
     return result;
   }
-  Object.keys(entrants[0]).forEach(item => result += (entrants.reduce((acc, curr) =>
+  Object.keys(entrants[0]).forEach(item => (result += entrants.reduce((acc, curr) =>
   acc + (curr[item] * prices[item]), 0)));
   return result;
 }
@@ -160,6 +160,13 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const findAnimal = employees.find(employee => employee.id === id).responsibleFor[0];
+
+  const ageAnimal = animals.find(animal => animal.id === findAnimal).residents.reduce((acc, curr) => acc < curr.age ? curr.age : acc, 0);
+
+  const animalInfo = animals.find(animal => animal.id === findAnimal).residents.find(resident => resident.age === ageAnimal);
+
+  return [animalInfo.name, animalInfo.sex, animalInfo.age]
 }
 
 function increasePrices(percentage) {
