@@ -65,7 +65,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   let soma = 0;
-  Object.entries(entrants).forEach(item => {
+  Object.entries(entrants).forEach((item) => {
     soma += item[1] * prices[item[0]];
   });
   return soma;
