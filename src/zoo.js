@@ -162,11 +162,15 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
   const findAnimal = employees.find(employee => employee.id === id).responsibleFor[0];
 
-  const ageAnimal = animals.find(animal => animal.id === findAnimal).residents.reduce((acc, curr) => acc < curr.age ? curr.age : acc, 0);
+  const ageAnimal = animals.find((animal) =>
+    animal.id === findAnimal).residents.reduce((acc, curr) =>
+    acc < curr.age ? curr.age : acc, 0);
 
-  const animalInfo = animals.find(animal => animal.id === findAnimal).residents.find(resident => resident.age === ageAnimal);
+  const animalInfo = animals.find((animal) => 
+    animal.id === findAnimal).residents.find(resident =>
+    resident.age === ageAnimal);
 
-  return [animalInfo.name, animalInfo.sex, animalInfo.age]
+  return [animalInfo.name, animalInfo.sex, animalInfo.age];
 }
 
 function increasePrices(percentage) {
