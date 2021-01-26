@@ -89,8 +89,65 @@ function entryCalculator(entrants = {}) {
   return ((Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior));
 }
 
+const getDirections = () => {
+  const directions = animals.map(animal => animal.location);
+  const uniqueDirectionsSet = new Set(directions);
+  const uniqueDirectionsArray = [...uniqueDirectionsSet];
+  return uniqueDirectionsArray;
+};
+
+const getFilteredResidentNamesBySex = (speciesObject, sex, sorted) => {
+  const names = speciesObject.residents.filter(resident =>
+    resident.sex === sex).map(animal => animal.name);
+  if (sorted) {
+    names.sort();
+  }
+  return names;
+};
+
+const getResidentNames = (speciesObject, sorted) => {
+  const names = speciesObject.residents.map(animal => animal.name);
+  if (sorted) {
+    names.sort();
+  }
+  return names;
+};
+
+const getAnimalAndNamesByDirection = (direction, options) => {
+  const {
+    sorted = false, sex,
+  } = options;
+  return animals.filter(animal => animal.location === direction).map((species) => {
+    const object = {};
+    if (sex !== undefined) {
+      object[species.name] = getFilteredResidentNamesBySex(species, sex, sorted);
+    } else {
+      object[species.name] = getResidentNames(species, sorted);
+    }
+    return object;
+  });
+};
+
+const getAnimalMapWithNames = (options, directions) => {
+  const mappedAnimals = directions.reduce((acc, direction) => {
+    const animalNames = getAnimalAndNamesByDirection(direction, options);
+    acc[direction] = animalNames;
+    return acc;
+  }, {});
+  return mappedAnimals;
+};
+
 function animalMap(options) {
-  // seu código aqui
+  const directions = getDirections();
+  if (options !== undefined && options.includeNames === true) {
+    return getAnimalMapWithNames(options, directions);
+  }
+  const mappedAnimals = directions.reduce((acc, direction) => {
+    acc[direction] = animals.filter(animal =>
+      animal.location === direction).map(element => element.name);
+    return acc;
+  }, {});
+  return mappedAnimals;
 }
 
 function schedule(dayName) {
