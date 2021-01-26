@@ -139,8 +139,26 @@ function animalMap(options) {
   return categorizedAnimals;
 }
 
+function formatDay(dayHours, dayName) {
+  const formatHour = hour =>  hour < 12 ? `${hour}am`: `${hour - 12}pm`;
+  if (dayHours.open === 0 && dayHours.close === 0) {
+    return 'CLOSED';
+  }
+  return `Open from ${formatHour(dayHours.open)} until ${formatHour(dayHours.close)}`
+}
+
 function schedule(dayName) {
-  // seu código aqui
+  const { hours } = data;
+  const scheduleHours = {};
+  if (dayName) {
+    const dayHours = hours[dayName];
+    scheduleHours[dayName] = formatDay(dayHours, dayName);
+    return scheduleHours;
+  }
+  Object.keys(hours).forEach((dayName) => {
+    scheduleHours[dayName] = formatDay(hours[dayName], dayName);
+  });
+  return scheduleHours;
 }
 
 function oldestFromFirstSpecies(id) {
