@@ -145,29 +145,26 @@ function createDefaultObject() {
     return defaultObject;
   }, {});
 }
-function createObjectWithNames() {
+function createObjectWithNames(optionSex = false) {
   const objectWithNames = arrayOfLocations.reduce((objectWithNamesByEspecie, location) => {
     const arrayWithNames = searchAnimalsByLocation(location).map(searchResidentsNamesByEspecie);
     objectWithNamesByEspecie[location] = arrayWithNames;
     return objectWithNamesByEspecie;
   }, {});
-  return objectWithNames;
-}
-function createObjectWithSex(optionSex) {
-  const objectWithSex = createObjectWithNames();
-  Object.keys(objectWithSex).forEach((location) => {
-    objectWithSex[location].forEach((animal) => {
-      animal[Object.keys(animal)[0]] = separateAnimalsBySex(Object.keys(animal)[0], optionSex);
+  if (optionSex) {
+    Object.keys(objectWithNames).forEach((location) => {
+      objectWithNames[location].forEach((animal) => {
+        animal[Object.keys(animal)[0]] = separateAnimalsBySex(Object.keys(animal)[0], optionSex);
+      });
     });
-  });
-  return objectWithSex;
+    return objectWithNames;
+  }
+  return objectWithNames;
 }
 function animalMap(options) {
   const result = (includeNames, sorted, sex) => {
-    if (includeNames && sex !== undefined) {
-      return (sorted ? sortNames(createObjectWithSex(sex)) : createObjectWithSex(sex));
-    } else if (includeNames) {
-      return (sorted ? sortNames(createObjectWithNames()) : createObjectWithNames());
+    if (includeNames) {
+      return (sorted ? sortNames(createObjectWithNames(sex)) : createObjectWithNames(sex));
     }
     return createDefaultObject();
   };
