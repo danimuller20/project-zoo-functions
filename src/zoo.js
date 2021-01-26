@@ -135,14 +135,32 @@ function increasePrices(percentage) {
   prices.Child = Math.ceil(prices.Child * (100 + percentage)) / 100;
 }
 
-const employeesAndAnimals = () => {
-
-};
-
-employeesAndAnimals();
+function employeesAndAnimals() {
+  const workersTable = {};
+  const worker = employees.forEach(person => {
+    workersTable[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map(iteratedId => {
+      return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
+    })
+  })
+  return workersTable;
+}
+console.log(employeesAndAnimals());
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if(!idOrName) return employeesAndAnimals();
+  const worker = employees.find(person => {
+    return person.firstName === idOrName ||
+    person.lastName === idOrName ||
+    person.id === idOrName
+  });
+  const workerInfo = `${worker.firstName} ${worker.lastName}`;
+  const caredAnimals = worker.responsibleFor.map(iteratedId => {
+    return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
+  })
+
+  const result = {};
+  result[workerInfo] = caredAnimals;
+  return result;
 }
 
 module.exports = {
