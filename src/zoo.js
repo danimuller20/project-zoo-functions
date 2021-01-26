@@ -70,15 +70,9 @@ function isManager(id) {
   idManagers = idManagers.reduce((previous, current) => previous.concat(current), []);
   return idManagers.some(ids => ids === id);
 }
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor= []) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  const newEmployee = {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
-  };
+  const newEmployee = {id, firstName, lastName, managers, responsibleFor};
   return data.employees.push(newEmployee);
 }
 
