@@ -156,7 +156,8 @@ function searchForAnimalBySex(sex, sorted) {
   }
 
   if (!sorted) {
-    return animalBySex = searchForAnimalBySexNot(sex)
+    animalBySex = searchForAnimalBySexNot(sex);
+    return animalBySex;
   }
   return animalBySex;
 }
