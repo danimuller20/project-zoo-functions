@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 // commit inicial
 
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -25,6 +25,9 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   // seu código aqui
+  const employee = employees.find(employee => employeeName === employee.firstName || employeeName === employee.lastName);
+  let employeeObj = {...employee};
+  return employeeObj
 }
 
 function createEmployee(personalInfo, associatedWith) {
