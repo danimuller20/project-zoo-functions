@@ -167,7 +167,7 @@ function increasePrices(percentage) {
 
   return data.prices;
 }
-console.log(increasePrices(50));
+// console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
   // seu código aqui
