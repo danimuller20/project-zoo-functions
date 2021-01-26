@@ -20,7 +20,9 @@ function animalsByIds(...ids) {
     newArray.push(animals.find(animal => animal.id === ids[0]));
     return newArray;
   }
-  ids.forEach(id => animals.forEach(animal => animal.id === id ? newArray.push(animal) : null));
+  ids.forEach((id) => {
+    return animals.forEach(animal => animal.id === id ? newArray.push(animal) : null)
+  });
   return newArray;
 }
 
