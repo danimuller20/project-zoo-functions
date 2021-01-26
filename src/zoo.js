@@ -43,10 +43,9 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const { employees } = data;
-  const isManager = employees.some(
-    employee => employee.managers.find(managerId => managerId === id)
+  return employees.some(
+    employee => employee.managers.find(managerId => managerId === id),
   );
-  return isManager;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
