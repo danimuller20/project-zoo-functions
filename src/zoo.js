@@ -73,19 +73,17 @@ function sortAnimalResidents(animalResidents, speciesName, sorted) {
   if (sorted) animalResidents[speciesName].sort();
 }
 
-function getResidentsBySpecies(species, { sex = false, sorted = false }) {
-  const mySpeciesResidents = species.residents.reduce((namesBySpeacies, animalName) => {
+function getResidentsBySpecies(animal, { sex = false, sorted = false }) {
+  return animal.residents.reduce((namesBySpeacies, animalName) => {
     if (sex) {
       if (animalName.sex === sex) {
-        namesBySpeacies[species.name].push(animalName.name);
+        namesBySpeacies[animal.name].push(animalName.name);
       }
     } else {
-      namesBySpeacies[species.name].push(animalName.name);
+      namesBySpeacies[animal.name].push(animalName.name);
     }
     return namesBySpeacies;
-  }, { [species.name]: [] });
-  sortAnimalResidents(mySpeciesResidents, species.name, sorted);
-  return mySpeciesResidents;
+  }, { [animal.name]: [] });
 }
 
 function animalMap(options) {
@@ -94,8 +92,13 @@ function animalMap(options) {
     if (!myAnimalMap[animal.location]) {
       myAnimalMap[animal.location] = [];
     }
-    options.includeNames ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal, options))
-      : myAnimalMap[animal.location].push(animal.name);
+    if (options.includeNames) {
+      const speciesResidents = getResidentsBySpecies(animal, options);
+      sortAnimalResidents(speciesResidents, animal.name, options.sorted);
+      myAnimalMap[animal.location].push(speciesResidents);
+    } else {
+      myAnimalMap[animal.location].push(animal.name);
+    }
     return myAnimalMap;
   }, {});
 }
