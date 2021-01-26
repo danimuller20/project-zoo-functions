@@ -65,7 +65,7 @@ function increasePrices() {
 }
 
 function employeeCoverage() {
-  //idOrName
+  // idOrName
   // seu código aqui
 }
 
