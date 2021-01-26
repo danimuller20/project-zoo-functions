@@ -1,6 +1,6 @@
 /*
 eslint no-unused-vars: [
-  "error",
+  "error"
   {
     "args": "none",
     "vars": "local",
@@ -12,6 +12,9 @@ const { employees, animals } = require('./data');
 const { data } = require('./data');
 
 function animalsByIds(...ids) {
+  if (ids === undefined){
+    return [];
+  }
   return animals.filter(zooAnimal => ids.some(id => id === zooAnimal.id));
 }
 
@@ -20,9 +23,8 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(...employeeName) {
-  if (!employeeName) return { };
-  return employees.find(
-    employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  if (!employeeName) return {};
+  return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
