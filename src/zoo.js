@@ -166,7 +166,19 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const { prices } = data;
+  // const formatDecimal = value => Number(value.toFixed(2));
+  /*
+    Encontrei essa solução no slack respondido pelo Thiago Granville - Turma 09
+    Estava com problema de arredondamento ultilzando a solução acima.
+   */
+  const formatDecimal = value => Math.round(value * 100) / 100;
+  const calculateNewPrice = (oldPrice, percentage) => formatDecimal(
+    ((oldPrice / 100) * percentage) + oldPrice,
+  );
+  prices.Adult = calculateNewPrice(prices.Adult, percentage);
+  prices.Child = calculateNewPrice(prices.Child, percentage);
+  prices.Senior = calculateNewPrice(prices.Senior, percentage);
 }
 
 function employeeCoverage(idOrName) {
