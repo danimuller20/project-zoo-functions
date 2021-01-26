@@ -170,9 +170,8 @@ function animalMap(options) {
 }
 function schedule(dayName) {
   // seu código aqui
-  const getDays = Object.keys(hours);
-  const createDefaultSchedule = () =>
-    getDays.reduce((defaultObject, current) => {
+  if (!dayName) {
+    return Object.keys(hours).reduce((defaultObject, current) => {
       if (hours[current].open === 0) {
         defaultObject[current] = 'CLOSED';
       } else {
@@ -180,8 +179,6 @@ function schedule(dayName) {
       }
       return defaultObject;
     }, {});
-  if (!dayName) {
-    return createDefaultSchedule();
   }
   const daySchedule = {};
   daySchedule[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
