@@ -143,7 +143,23 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  const locais = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: [],
+  }
+
+  if (!options) {
+    const location = animals.filter((animal) => {
+      if (animal.location.includes('NE')) {
+        locais.NE.push(animal.name);
+      }
+    });
+    return locais;
+  }
 }
+// console.log(animalMap());
 
 function schedule(dayName) {
   // seu código aqui
@@ -155,7 +171,18 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  let {Adult, Senior, Child} = data.prices;
+  let percent = percentage / 100;
+  let NewPriceAdult = Adult + (Adult * percent);
+  let NewPriceSenior = Senior + (Senior * percent);
+  let NewPriceChild = Child + (Child * percent);
+  data.prices.Adult = Math.round(NewPriceAdult * 100) / 100;
+  data.prices.Senior = Math.round(NewPriceSenior * 100) / 100;
+  data.prices.Child = Math.round(NewPriceChild * 100) / 100;
+
+  return data.prices;
 }
+// console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
   // seu código aqui
