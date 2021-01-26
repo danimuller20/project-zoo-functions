@@ -103,8 +103,8 @@ function animalCount(species) {
   animals.find((animal) => {
     if (animal.name === species) {
       countSpecies = animal.residents.length;
-      return countSpecies;
     }
+    return countSpecies;
   });
   return countSpecies;
 }
