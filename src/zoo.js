@@ -76,29 +76,33 @@ const getLocation = (acc, curr) => {
 
 function animalMap(options) {
   const zooMap = animals.reduce(getLocation, {});
-  Object.keys(zooMap).forEach(key => {
+  Object.keys(zooMap).forEach((key) => {
     zooMap[key] = animals.filter(({ location }) => location === key).map(({ name }) => name);
   });
   if (options === undefined) {
     return zooMap;
   }
   if ((options.includeNames) && (options.sex === undefined)) {
-    Object.keys(zooMap).forEach(key => {
-      zooMap[key].forEach((animal, index) =>
-      zooMap[key][index] = { [animal]: animals.find(({ name }) => name === animal).residents.map(({ name }) => name)});
+    Object.keys(zooMap).forEach((key) => {
+      zooMap[key].forEach((animal, index) => {
+        zooMap[key][index] = { [animal]: animals.find(({ name }) =>
+          name === animal).residents.map(({ name }) => name)}});
     });
   }
   if ((options.includeNames) && (options.sex)) {
-    Object.keys(zooMap).forEach(key => {
-      zooMap[key].forEach((animal, index) =>
-      zooMap[key][index] = { [animal]: animals.find(({ name }) => name === animal).residents.filter(({ sex }) => 
-        sex === options.sex).map(({ name }) => name) })
+    Object.keys(zooMap).forEach((key) => {
+      zooMap[key].forEach((animal, index) => {
+        zooMap[key][index] = { [animal]: animals.find(({ name }) =>
+          name === animal).residents.filter(({ sex }) =>
+            sex === options.sex).map(({ name }) => name) };})
     });
   }
   if ((options.includeNames) && (options.sorted)) {
-    Object.keys(zooMap).forEach(key =>
-      zooMap[key].forEach((animal) => { Object.keys(animal).forEach(key2 => { animal[key2].sort();});
-    }));
+    Object.keys(zooMap).forEach((key) =>
+      zooMap[key].forEach((animal) => { 
+        Object.keys(animal).forEach(key2 => { animal[key2].sort();});
+      })
+    );
   }
   return zooMap;
 }
