@@ -73,7 +73,7 @@ function animalMap(options) {
 function schedule(dayName) {
   const cronograma = {};
   Object.keys(data.hours).forEach((dias) => {
-    cronograma[dias] = `Open from ${data.hours[dias].open}am until ${data.hours[dias].close-12}pm`;
+    cronograma[dias] = `Open from ${data.hours[dias].open}am until ${data.hours[dias].close - 12}pm`;
   });
   cronograma.Monday = 'CLOSED';
   if (!dayName) {
@@ -84,7 +84,6 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-
   let animalSenio = [];
   const idEmployee = employees.find(elemento => elemento.id === id);
   const animalId = animals.find(elementoId => elementoId.id === idEmployee.responsibleFor[0]);
