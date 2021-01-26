@@ -96,6 +96,7 @@ function employeeCoverage(idOrName) {
     }
     return employeesQuery;
   }
+  const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(animal => animal.name);
   const employeesQuery = getEmployeesInfo(idOrName);
   return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
     employeesObject[`${firstName} ${lastName}`] = getAnimalsNamesByIds(responsibleFor);
