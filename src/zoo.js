@@ -66,9 +66,9 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  let idManagers = employees.map((employee) => employee.managers);
-  idManagers = idManagers.reduce((previous, current) => previous.concat(current),[]);
-  return idManagers.some((ids) => ids === id);
+  let idManagers = employees.map(employee => employee.managers);
+  idManagers = idManagers.reduce((previous, current) => previous.concat(current), []);
+  return idManagers.some(ids => ids === id);
 }
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
