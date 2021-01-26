@@ -140,7 +140,7 @@ function animalMap(options) {
 }
 
 function formatDay(dayHours) {
-  const format12Hour = hour => hour < 12 ? `${hour}am` : `${hour - 12}pm`;
+  const format12Hour = hour => (hour < 12 ? `${hour}am` : `${hour - 12}pm`);
   if (dayHours.open === 0 && dayHours.close === 0) {
     return 'CLOSED';
   }
