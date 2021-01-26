@@ -139,7 +139,7 @@ function employeesAndAnimals() {
   const workersTable = {};
   employees.forEach((person) => {
     workersTable[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map((iteratedId) =>
-      return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
+      animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
     });
   );
   return workersTable;
