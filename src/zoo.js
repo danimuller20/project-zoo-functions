@@ -119,7 +119,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  entryCalculator,
+  // entryCalculator,
   // schedule,
   animalCount,
   // animalMap,
