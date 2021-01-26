@@ -100,13 +100,6 @@ function entryCalculator(entrants) {
   return finalPrice;
 }
 
-function searchInAnimals() {
-Object.keys(zooMap).forEach((zone) => {
-  animals.forEach((animal) => {
-    if (animal.location === zone) {return animal}
-  });
-  });
-}
 function animalMap(options) {
   const zooMap = {
     NE: [],
@@ -114,7 +107,7 @@ function animalMap(options) {
     SE: [],
     SW: [],
   };
-  //primeiro requisito
+  // primeiro requisito
   if (options === undefined || options.includeNames !== true) {
     Object.keys(zooMap).forEach((zone) => {
       animals.forEach((animal) => {
@@ -123,25 +116,24 @@ function animalMap(options) {
     });
     return zooMap;
   }
-  
-
-  //segundo terceiro  quarto e quinto requisito
+  // segundo terceiro  quarto e quinto requisito
   if (options.includeNames) {
     Object.keys(zooMap).forEach((zone) => {
       animals.forEach((animal) => {
-        if (animal.location === zone) { 
+        if (animal.location === zone) {
           const keyAnimal = animal.name;
           const valueAnimalNames = [];
-          if (options.sex !== undefined){
-            animal.residents.forEach(resident => {
-              if (resident.sex === options.sex) {valueAnimalNames.push(resident.name)}});
+          if (options.sex !== undefined) {
+            animal.residents.forEach((resident) => {
+              if (resident.sex === options.sex) { valueAnimalNames.push(resident.name); }
+            });
           } else {
             animal.residents.forEach(resident => valueAnimalNames.push(resident.name));
           }
           const finalAnimalObject = {};
-          if (options.sorted) { valueAnimalNames.sort() }
+          if (options.sorted) { valueAnimalNames.sort(); }
           finalAnimalObject[keyAnimal] = valueAnimalNames;
-          zooMap[zone].push(finalAnimalObject); 
+          zooMap[zone].push(finalAnimalObject);
         }
       });
     });
