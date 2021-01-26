@@ -10,10 +10,22 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, hours, prices } = data;
 
-function animalsByIds(ids) {
-  // seu código aqui
+const { animals } = data;
+
+function animalsByIds(... ids) { // '...' (rest parameter) serve pra tratar numero indefinido de parametros (os parametros sao convertidos em elementos de array)
+  // if (!ids) { // compara se o parametro e === [false || undefined || null ]
+  //   return []; // caso seja, retorna um array vazio. || o rest parameter ('...') retorna um array com os parametros declarados, sendo assim a verificacao do array de ids se torna desnecessario
+  // }
+  const animalsByIds = ids.map((id) => {
+    const animalById = data.animals.find((animal) => id === animal.id)
+
+    return animalById;
+
+  });
+
+  return animalsByIds;
+  
 }
 
 function animalsOlderThan(animal, age) {
