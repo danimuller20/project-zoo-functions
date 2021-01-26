@@ -12,28 +12,31 @@ eslint no-unused-vars: [
 const { animals, employees } = require('./data');
 const data = require('./data');
 
+console.table(animals);
+console.table(employees);
+
 const checkVar = varChecked => {
   if(!varChecked) {
-		return undefined;
-	}
-}
-
-const checkObj = objectChecked => {
-  if (!objectChecked) {
-    return {};
+    return undefined;
   }
 }
 
-const checkTwoVar = (varChecked1, varChecked2) => {
-  if(varChecked1) {
-    return varChecked1;
-  }
-  return varChecked2
-}
+// const checkObj = objectChecked => {
+//   if (!objectChecked) {
+//     return {};
+//   }
+// }
+
+// const checkTwoVar = (varChecked1, varChecked2) => {
+//   if(varChecked1) {
+//     return varChecked1;
+//   }
+//   return varChecked2
+// }
 
 function animalsByIds(...ids) {
   checkVar(ids);
-  return data.animals.filter(animal => ids.find(id => animal.id == id));
+  return data.animals.filter(animal => ids.find(id => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -51,10 +54,11 @@ console.table(animalsOlderThan('lions', 7));
 
 function employeeByName(employeeName) {
   let findEmployeeName = {};
-  if (!employeeName){
+  if (!employeeName) {
     return findEmployeeName;
   }
-  findEmployeeName = data.employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  findEmployeeName = data.employees.find(employee => employee
+    .firstName === employeeName || employee.lastName === employeeName);
   return findEmployeeName;
   // seu código aqui
 }
