@@ -8,12 +8,46 @@ eslint no-unused-vars: [
   }
 ]
 */
+/*{
+  id: '0938aa23-f153-4937-9f88-4858b24d6bce',
+  name: 'lions',
+  popularity: 4,
+  location: 'NE',
+  residents: [
+    {
+      name: 'Zena',
+      sex: 'female',
+      age: 12
+    },
+    {
+      name: 'Maxwell',
+      sex: 'male',
+      age: 15
+    },
+    {
+      name: 'Faustino',
+      sex: 'male',
+      age: 7
+    },
+    {
+      name: 'Dee',
+      sex: 'female',
+      age: 14
+    }
+  ]
+},*/
 
+const { animals } = require('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(arrayAnimals, idsSearch) {
+  if (idsSearch.length === 0) {
+    return [];
+  }
+  return arrayAnimals.filter((animal) => animal.id === idsSearch);
 }
+
+console.log(animalsByIds(animals, '0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
