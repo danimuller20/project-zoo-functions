@@ -118,73 +118,71 @@ function entryCalculator(entrants) {
   return total;
 }
 
-function animalMapByLocation() {
-  const locations = ['NE','NW', 'SE', 'SW']
-  const mapObject = {}
+// function animalMapByLocation() {
+//   const locations = ['NE','NW', 'SE', 'SW']
+//   const mapObject = {}
 
-  const animalsOfEachLocation = locations.map((location) => {
-    const filteredAnimalsByLocation = animals.filter((animal) => {
-      return animal.location === location
-    })
+//   const animalsOfEachLocation = locations.map((location) => {
+//     const filteredAnimalsByLocation = animals.filter((animal) => {
+//       return animal.location === location
+//     })
     
-    return filteredAnimalsByLocation
-  })
+//     return filteredAnimalsByLocation
+//   })
 
-  const mapByName = animalsOfEachLocation.map((location) => {
-    return location.map((animal) => {
-      return animal.name
-    })
-  })
+//   const mapByName = animalsOfEachLocation.map((location) => {
+//     return location.map((animal) => {
+//       return animal.name
+//     })
+//   })
 
-  locations.forEach((_, index) => {
-    mapObject[locations[index]] = mapByName[index]
-  })
+//   locations.forEach((_, index) => {
+//     mapObject[locations[index]] = mapByName[index]
+//   })
 
-  return mapObject
-}
+//   return mapObject
+// }
 
-function includeNames() {
+// function includeNames() {
 
-  const animalResidents = animals
-  .map((animal) => animal.residents)
+//   const animalResidents = animals
+//   .map((animal) => animal.residents)
 
 
-  const animalMap = animalMapByLocation()
+//   const animalMap = animalMapByLocation()
 
-  const everyTypeOfAnimal = [
-    ...animalMap.NE,
-    ...animalMap.NW,
-    ...animalMap.SE,
-    ...animalMap.SW,
-  ];
+//   const everyTypeOfAnimal = [
+//     ...animalMap.NE,
+//     ...animalMap.NW,
+//     ...animalMap.SE,
+//     ...animalMap.SW,
+//   ];
   
-  const animalsAndTheResidents = everyTypeOfAnimal.map((animal) => {
-    const currAnimal = animals.find((animalOfAnimals) => {
-      return animalOfAnimals.name === animal
-    })
+//   const animalsAndTheResidents = everyTypeOfAnimal.map((animal) => {
+//     const currAnimal = animals.find((animalOfAnimals) => {
+//       return animalOfAnimals.name === animal
+//     })
 
-    return {
-      [animal]: currAnimal.residents
-    }
-  })
+//     return {
+//       [animal]: currAnimal.residents
+//     }
+//   })
 
-  console.log(animalsAndTheResidents)
-}
+//   console.log(animalsAndTheResidents)
+// }
 
-includeNames()
+// includeNames()
 
-function animalMap(options) {
-  // seu código aqui
-  if (typeof (options) === 'undefined') {
-    return animalMapByLocation()
-  }
+// function animalMap(options) {
+//   // seu código aqui
+//   if (typeof (options) === 'undefined') {
+//     return animalMapByLocation()
+//   }
 
-  if (options.includeNames && options.includeNames === true) {
-    const toBeReturned = includeNames()
-  }
-}
-
-// console.log(animalMap())
+//   if (options.includeNames && options.includeNames === true) {
+//     const toBeReturned = includeNames()
+//   }
+// }
 
 function scheduleList() {
   const scheduleObject = {};
