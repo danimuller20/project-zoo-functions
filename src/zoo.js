@@ -105,7 +105,7 @@ function increasePrices(percentage) {
   Object.keys(prices).forEach(key =>
   (prices[key] = Math.ceil(prices[key] * (percentage + 100)) / 100));
   return prices;
-}console.log(increasePrices(50));
+}
 
 function employeeCoverage(idOrName) {
   // seu código aqui
