@@ -140,7 +140,7 @@ function animalMap(options) {
 function scheduleList() {
   const scheduleObject = {};
 
-  Object.keys(hours).forEach((day) => (scheduleObject[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`));
+  Object.keys(hours).forEach(day => (scheduleObject[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`));
 
   scheduleObject.Monday = 'CLOSED';
 
