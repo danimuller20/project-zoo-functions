@@ -148,14 +148,14 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const newObj = {};
-  const hours = data.hours
+  const hours = data.hours;
   const everyDays = Object.keys(hours);
 
   everyDays.forEach((day) => {
     const { open, close } = hours[day];
 
     if (day === 'Monday') {
-      newObj[day] = `CLOSED`;
+      newObj[day] = 'CLOSED';
     } else {
       newObj[day] = `Open from ${open}am until ${close - 12}pm`;
     }
