@@ -179,32 +179,31 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverageList() {
-  const responsabilitiesList = {}
-  const listOfEmployees = employees
-  .map(employee => `${employee.firstName} ${employee.lastName}`)
+  const responsabilitiesList = {};
+  const listOfEmployees = employees.map(
+    (employee) => `${employee.firstName} ${employee.lastName}`
+  );
 
   employees
-  .map((employee) => employee.responsibleFor)
-  .forEach((idList, index) => {
-    const maped = idList.map((id) => {
-      const found = animals.find((animal) => {
-        return animal.id === id
-      })
+    .map((employee) => employee.responsibleFor)
+    .forEach((idList, index) => {
+      const maped = idList.map((id) => {
+        const found = animals.find((animal) => {
+          return animal.id === id;
+        });
 
-      return found.name
-    })
+        return found.name;
+      });
 
-    responsabilitiesList[listOfEmployees[index]] = maped
-  })
+      responsabilitiesList[listOfEmployees[index]] = maped;
+    });
 
-  return responsabilitiesList
+  return responsabilitiesList;
 }
 
-
-
 function employeeCoverage(idOrName) {
-  if (typeof (idOrName) === 'undefined') {
-    return employeeCoverageList()
+  if (typeof idOrName === "undefined") {
+    return employeeCoverageList();
   }
 
   const employee = employees.find((employeeElement) => {
@@ -213,25 +212,22 @@ function employeeCoverage(idOrName) {
       employeeElement.firstName === idOrName ||
       employeeElement.lastName === idOrName
     ) {
-
-      return employeeElement
+      return employeeElement;
     }
   });
 
-  const animalsIds = employee.responsibleFor
+  const animalsIds = employee.responsibleFor;
 
   const animalsNames = animalsIds.map((animalId) => {
-    const found = animals.find((animal) => animal.id === animalId)
+    const found = animals.find((animal) => animal.id === animalId);
 
-    return found.name
-  })
+    return found.name;
+  });
 
   return {
-    [`${employee.firstName} ${employee.lastName}`]: animalsNames
-  }
+    [`${employee.firstName} ${employee.lastName}`]: animalsNames,
+  };
 }
-
-console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
