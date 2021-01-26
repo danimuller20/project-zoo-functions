@@ -1,19 +1,22 @@
 
 const { employees, animals } = require('./data');
+
 function animalsByIds(...ids) {
-  if (ids === undefined){
+  if (ids === undefined) {
     return [];
   }
   return animals.filter(zooAnimal => ids.some(id => id === zooAnimal.id));
 }
 
-function animalsOlderThan(animal, age) {
+function animalsOlderThan() {
+  // animal, age
   // seu código aqui
 }
 
 function employeeByName(...employeeName) {
   if (!employeeName) return {};
-  return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  return employees.find(employee => 
+   employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee() {
