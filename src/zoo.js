@@ -128,7 +128,7 @@ function sortAnimals(categorizedAnimals) {
 function animalMap(options) {
   const { animals } = data;
   const categorizedAnimals = categorizeAnimalsByLocation(animals);
-  if (options?.includeNames) {
+  if (options && options.includeNames) {
       addAnimalsName(categorizedAnimals, options.sex || undefined);
   } else {
     return categorizedAnimals;
