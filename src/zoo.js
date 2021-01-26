@@ -14,10 +14,10 @@ const data = require('./data');
 function animalsByIds(ids) {
   // seu código aqui
   if (ids === undefined) { return []; }
-  const currentValue = [];
-  (ids.map(currentValue => currentValue.push(
-    animals.finde(actualValue => actualValue.id === currentValue))));
-  return currentValue;
+  const species = [];
+  (ids.map(currentValue => species.push(
+    animals.find(actualValue => actualValue.id === currentValue))));
+  return species;
 }
 
 function animalsOlderThan(animal, age) {
