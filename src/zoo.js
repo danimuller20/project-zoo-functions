@@ -61,10 +61,11 @@ function entryCalculator(entrants) {
 
 function animalsPerRegion(regions, answer) {
   let holder;
+  let helper;
   regions.forEach((region) => {
-    holder = data.animals.filter(species => species.location === region)
-      .map(specimen => specimen.name);
-    Object.assign(answer, ({ [region]: holder }));
+    holder = data.animals.filter(species => species.location === region);
+    helper = holder.map(specimen => specimen.name);
+    Object.assign(answer, ({ [region]: helper }));
   });
   return answer;
 }
@@ -81,10 +82,11 @@ function animalsPerRegionWithNames(regions, answer, options) {
       .map(creature => creature.name);
     helper.forEach((animal) => {
       holder = {};
-      let { residents } = data.animals.find(creature => creature.name === animal);
-      if (sex) species = residents.filter(creature => creature.sex === sex)
-        .map(creature => creature.name);
-      else species = residents.map(creature => creature.name);
+      const { residents } = data.animals.find(creature => creature.name === animal);
+      if (sex) { 
+        species = residents.filter(creature => creature.sex === sex)
+          .map(creature => creature.name);
+      } else species = residents.map(creature => creature.name);
       if (sorted) species.sort();
       Object.assign(holder, { [animal]: species });
       counter.push(holder);
