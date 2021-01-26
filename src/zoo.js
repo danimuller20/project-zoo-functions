@@ -40,12 +40,25 @@ function isManager(id) {
   return data.employees.some(employee => employee.managers.some(idEmployee => idEmployee === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+}
+
+function createNumberForAnimals() {
+  return data.animals.reduce((acc, animal) => {
+    acc[animal.name] = animal.residents.length;
+    return acc;
+  }, {});
 }
 
 function animalCount(species) {
   // seu código aqui
+  const countAnimalSpecies = createNumberForAnimals();
+  if (!species) {
+    return countAnimalSpecies;
+  }
+  return countAnimalSpecies[species];
 }
 
 function entryCalculator(entrants) {
