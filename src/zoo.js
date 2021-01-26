@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 
 
 function animalsByIds(...ids) {
@@ -48,7 +49,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  const objAnimal = {};
   let countReport = animals.reduce((accObject, current) => {
     accObject[current.name] = current.residents.length;
     return accObject;
@@ -59,9 +59,9 @@ function animalCount(species) {
   return countReport;
 }
 
-function entryCalculator(entrants) {
   // seu código aqui
-  const parameter = (entrants = {}) => Object.entries(entrants).reduce(
+function entryCalculator(entrants = {}) {
+  return Object.entries(entrants).reduce(
     (priceAccumulator, currentGroup) => {
       const price = prices[currentGroup[0]];
       const quantity = currentGroup[1];
