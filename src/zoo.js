@@ -92,7 +92,7 @@ function oldestFromFirstSpecies(id) {
   animalSenio = Math.max(...animalSenio);
   animalSenio = residents.find(senio => senio.age === animalSenio);
   return Object.values(animalSenio);
-}console.log(oldestFromFirstSpecies('533bebf3-6bbe-41d8-9cdf-46f7d13b62ae'));
+}
 
 function increasePrices(percentage) {
   // seu código aqui
