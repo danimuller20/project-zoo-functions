@@ -148,15 +148,24 @@ function animalMap(options) {
 // console.log(animalMap(options));
 
 function schedule(dayName) {
-  const weeklyProgram = {
-    Tuesday: 'Open from 8am until 6pm',
-    Wednesday: 'Open from 8am until 6pm',
-    Thursday: 'Open from 10am until 8pm',
-    Friday: 'Open from 10am until 8pm',
-    Saturday: 'Open from 8am until 10pm',
-    Sunday: 'Open from 8am until 8pm',
-    Monday: 'CLOSED',
-  };
+  // const weeklyProgram = {
+  //   Tuesday: 'Open from 8am until 6pm',
+  //   Wednesday: 'Open from 8am until 6pm',
+  //   Thursday: 'Open from 10am until 8pm',
+  //   Friday: 'Open from 10am until 8pm',
+  //   Saturday: 'Open from 8am until 10pm',
+  //   Sunday: 'Open from 8am until 8pm',
+  //   Monday: 'CLOSED',
+  // };
+  const weeklyProgram = {};
+  Object.keys(hours).forEach((day) => {
+    if (day !== 'Monday') {
+    weeklyProgram[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    } else {
+    weeklyProgram[day] = 'CLOSED';
+    }
+  });
+
   let daySchedule = {};
   if (dayName !== undefined) {
     if (dayName !== 'Monday') {
