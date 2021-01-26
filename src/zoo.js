@@ -82,7 +82,7 @@ function entryCalculator(entrants) {
   );
   return total;
 }
-function categorizeAnimalsByLocation (animals) {
+function categorizeAnimalsByLocation(animals) {
   const categorizedAnimals = {};
   animals.forEach((animal) => {
     const location = animal.location;
@@ -120,7 +120,7 @@ function sortAnimals(categorizedAnimals) {
       (object) => {
         const animalName = Object.keys(object)[0];
         object[animalName].sort();
-      }
+      },
     );
   });
 }
@@ -129,7 +129,7 @@ function animalMap(options) {
   const { animals } = data;
   const categorizedAnimals = categorizeAnimalsByLocation(animals);
   if (options && options.includeNames) {
-      addAnimalsName(categorizedAnimals, options.sex || undefined);
+    addAnimalsName(categorizedAnimals, options.sex);
   } else {
     return categorizedAnimals;
   }
