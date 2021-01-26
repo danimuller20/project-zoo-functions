@@ -86,7 +86,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
   const getEmployeesInfo = (employeeInfo) => {
     let employeesQuery;
     if (employeeInfo) {
