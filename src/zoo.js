@@ -124,9 +124,24 @@ function orderedAnimals() {
     }, {});
 }
 
+function searchForAnimalBySexNot(sex) {
+  return animals.reduce((list, { location }) => {
+    list[location] = animals.filter(animal => location === animal.location)
+      .reduce((array, { name, residents }) => {
+        array.push({
+          [name]: residents.filter(valor => valor.sex === sex).map(value => value.name),
+        });
+        return array;
+      }, []);
+    return list;
+  }, {});
+}
+
 function searchForAnimalBySex(sex, sorted) {
+  let animalBySex = {};
+
   if (sorted) {
-    return animalBySex = animals.reduce((list, { location }) => {
+    animalBySex = animals.reduce((list, { location }) => {
       list[location] = animals.filter(animal => location === animal.location)
         .reduce((array, { name, residents }) => {
           array.push({
@@ -137,21 +152,13 @@ function searchForAnimalBySex(sex, sorted) {
         }, []);
       return list;
     }, {});
+    return animalBySex;
   }
 
   if (!sorted) {
-    return animalBySex = animals.reduce((list, { location }) => {
-      list[location] = animals.filter(animal => location === animal.location)
-        .reduce((array, { name, residents }) => {
-          array.push({
-            [name]: residents.filter(valor => valor.sex === sex).map(value => value.name),
-          });
-          return array;
-        }, []);
-      return list;
-    }, {});
+    return animalBySex = searchForAnimalBySexNot(sex)
   }
-  return false;
+  return animalBySex;
 }
 
 function animalMap(options) {
