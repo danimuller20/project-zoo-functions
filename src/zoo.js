@@ -16,7 +16,7 @@ function animalsByIds(ids) {
   if (ids === undefined) { return []; }
   const species = [];
   (ids.map(currentValue => species.push(
-    animals.find(actualValue => actualValue.id === currentValue))));
+    data.animals.find(actualValue => actualValue.id === currentValue))));
   return species;
 }
 
