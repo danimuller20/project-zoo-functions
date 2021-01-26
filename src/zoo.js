@@ -189,7 +189,7 @@ function employeeCoverageList() {
   employees
     .map(employee => employee.responsibleFor)
     .forEach((idList, index) => {
-      const maped = idList.map(function(id) {
+      const maped = idList.map(function (id) {
         const found = animals.find(animal => animal.id === id);
 
         return found.name;
@@ -215,7 +215,7 @@ function employeeCoverage(idOrName) {
       return employeeElement;
     }
 
-    return
+    return undefined;
   });
 
   const animalsIds = employee.responsibleFor;
