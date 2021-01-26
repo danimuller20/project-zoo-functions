@@ -86,8 +86,8 @@ function oldestFromFirstSpecies(id) {
   const { residents } = animal;
   const oldest = residents.reduce((maisVelho, atual) => (
     atual.age > maisVelho.age ? atual : maisVelho
- ));
- return Object.values(oldest);
+));
+  return Object.values(oldest);
 }
 
 function increasePrices(percentage) {
