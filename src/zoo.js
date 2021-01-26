@@ -109,7 +109,7 @@ function entryCalculator(entrants = 0) {
 }
 
 function animalMap(options) {
-  //Seu código aqui
+  // Seu código aqui
 }
 
 function schedule(dayName) {
@@ -128,10 +128,10 @@ function schedule(dayName) {
   });
 
   if (!dayName) {
-    return objResult
+    return objResult;
   }
 
-  return { [dayName]: objResult[dayName] }
+  return { [dayName]: objResult[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
