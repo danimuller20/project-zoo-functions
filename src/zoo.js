@@ -20,8 +20,8 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return data.animals.find(creature => creature.name === animal)
-    .residents.every(creature => creature.age > age);
+  return data.animals.find(species => species.name === animal)
+    .residents.every(specimen => specimen.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -64,8 +64,8 @@ function entryCalculator(entrants) {
 function animalsPerRegion(regions, answer) {
   let holder;
   regions.forEach((region) => {
-    holder = data.animals.filter(creature => creature.location === region)
-      .map(creature => creature.name);
+    holder = data.animals.filter(species => species.location === region)
+      .map(specimen => specimen.name);
     Object.assign(answer, ({ [region]: holder }));
   });
   return answer;
@@ -83,12 +83,12 @@ function animalsPerRegionWithNames(regions, answer, options) {
       .map(creature => creature.name);
     helper.forEach((animal) => {
       holder = {};
-      sex ? species = data.animals.find(creature => creature.name === animal).residents
-        .filter(creature => creature.sex === sex).map(creature => creature.name) : 
+      (sex) ? species = data.animals.find(creature => creature.name === animal).residents
+        .filter(creature => creature.sex === sex).map(creature => creature.name) :
         species = data.animals.find(creature => creature.name === animal).residents
         .map(creature => creature.name);
       if (sorted) species.sort();
-      Object.assign(holder, { [animal] : species });
+      Object.assign(holder, { [animal]: species });
       counter.push(holder);
     });
     Object.assign(answer, ({ [region]: counter }));
