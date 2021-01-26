@@ -123,9 +123,30 @@ function entryCalculator(entrants) {
 //   // seu código aqui
 // }
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // seu código aqui
+  const scheduleObj = {};
+  const allDays = data.hours;
+  if (dayName === undefined) {
+    const readableSchedule = {};
+    const hours = Object.keys(data.hours);
+    hours.forEach((hour) => {
+      readableSchedule[hour] = `Open from ${allDays[hour].open}am until ${(allDays[hour].close) - 12}pm`
+      if (allDays[hour].open === 0) {
+        readableSchedule[hour] = `CLOSED`
+      }
+    });
+    return readableSchedule;
+  }
+  if (allDays[dayName].open === 0) {
+    const mondaySchedule = {};
+    mondaySchedule[dayName] = `CLOSED`;
+    return mondaySchedule;
+  }
+  scheduleObj[dayName] = `Open from ${allDays[dayName].open}am until ${(allDays[dayName].close) - 12}pm`;
+
+  return scheduleObj;
+}
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
@@ -141,7 +162,7 @@ function entryCalculator(entrants) {
 
 module.exports = {
   entryCalculator,
-  // schedule,
+  schedule,
   animalCount,
   // animalMap,
   animalsByIds,
