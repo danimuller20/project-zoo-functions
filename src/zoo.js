@@ -48,6 +48,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+  const objAnimal = {};
   let countReport = animals.reduce((accObject, current) => {
     accObject[current.name] = current.residents.length;
     return accObject;
@@ -60,6 +61,12 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  const parameter = (entrants = {}) => Object.entries(entrants).reduce(
+    (priceAccumulator, currentGroup) => {
+      const price = prices[currentGroup[0]];
+      const quantity = currentGroup[1];
+      return priceAccumulator + (price * quantity);
+    }, 0);
 }
 
 function animalMap(options) {
