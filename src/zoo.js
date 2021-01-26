@@ -79,7 +79,7 @@ function entryCalculator(entrants) {
   if (!entrants || entrants === {}) {
     return 0;
   }
-  const { Adult = 0, Child = 0, Senior = 0} = entrants;
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   const sumPrice = (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
   return sumPrice;
 }
