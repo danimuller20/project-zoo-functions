@@ -99,23 +99,23 @@ function entryCalculator(entrants) {
   // seu código aqui
   if (entrants === undefined || isEmptyObject(entrants)) { return 0; }
   const keysOfObject = Object.keys(entrants);
-  let prices = [];
+  const prices = [];
   keysOfObject.forEach((key) => {
     if (key === 'Adult') {
-      let priceAdult = entrants.Adult * 49.99;
+      const priceAdult = entrants.Adult * 49.99;
       prices.push(priceAdult);
     }
     if (key === 'Child') {
-      let priceChild = entrants.Child * 20.99;
+      const priceChild = entrants.Child * 20.99;
       prices.push(priceChild);
     }
     if (key === 'Senior') {
-      let priceSenior = entrants.Senior * 24.99;
+      const priceSenior = entrants.Senior * 24.99;
       prices.push(priceSenior);
     }
     return 0;
   });
-  const totalPrice = prices.reduce((previous,current) => previous + current);
+  const totalPrice = prices.reduce((previous, current) => previous + current);
   return totalPrice;
 }
 
