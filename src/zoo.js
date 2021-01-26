@@ -88,7 +88,7 @@ function oldestFromFirstSpecies(id) {
       species = employee.responsibleFor[0];
     }
   });
-  const animalFound = animals.find((animal) => animal.id === species);
+  const animalFound = animals.find(animal => animal.id === species);
   const { residents } = animalFound;
   let olderAnimal = residents[0];
   residents.forEach((animal) => {
@@ -100,7 +100,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function calculatePercentage(number, percentage) {
-  return (number * percentage) / 100 ;
+  return (number * percentage) / 100;
 }
 
 function increasePrices(percentage) {
