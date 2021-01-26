@@ -74,19 +74,11 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  if (entrants.Child === undefined) {
-    entrants.Child = 0;
-  }
-  if (entrants.Adult === undefined) {
-    entrants.Adult = 0;
-  }
-  if (entrants.Senior === undefined) {
-    entrants.Senior = 0;
-  }
-  const childEntryPrice = entrants.Child * prices.Child;
-  const adultEntryPrice = entrants.Adult * prices.Adult;
-  const seniorEntryPrice = entrants.Senior * prices.Senior;
-  const totalEntryPrice = childEntryPrice + adultEntryPrice + seniorEntryPrice;
+  entrants.Child === undefined ? entrants.Child = 0 : entrants.Child;
+  entrants.Adult === undefined ? entrants.Adult = 0 : entrants.Adult;
+  entrants.Senior === undefined ? entrants.Senior = 0 : entrants.Senior;
+  const totalEntryPrice = (entrants.Child * prices.Child) + 
+  (entrants.Adult * prices.Adult) + (entrants.Senior * prices.Senior);
   return totalEntryPrice;
 }
 
