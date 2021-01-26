@@ -15,8 +15,6 @@ const data = require('./data');
 console.table(animals);
 console.table(employees);
 
-const checkVar = (varChecked) => {if (!varChecked) {return undefined}}
-
 // const checkObj = objectChecked => {
 //   if (!objectChecked) {
 //     return {};
@@ -31,7 +29,7 @@ const checkVar = (varChecked) => {if (!varChecked) {return undefined}}
 // }
 
 function animalsByIds(...ids) {
-  checkVar(ids);
+  if (!ids) { return undefined };
   return data.animals.filter(animal => ids.find(id => animal.id === id));
 }
 
