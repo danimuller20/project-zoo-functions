@@ -79,7 +79,7 @@ function schedule(dayName) {
   if (!dayName) {
     return cronograma;
   }
-  if (dayName === 'Monday') { return {Monday: 'CLOSED'}}
+  if (dayName === 'Monday') { return { Monday: 'CLOSED' }; }
   return cronograma[dayName];
 }
 
@@ -88,7 +88,7 @@ function oldestFromFirstSpecies(id) {
   let animalSenio = [];
   const idAnimal = data.employees.find(elemento => elemento.responsibleFor[0] === id);
   animals.find(elementoId => elementoId.id === idAnimal.responsibleFor[0]).residents
-  .forEach((addAge) => animalSenio.push(addAge.age));
+  .forEach(addAge => animalSenio.push(addAge.age));
   animalSenio = Math.max(...animalSenio);
   animalSenio = residents.find(senio => senio.age === animalSenio);
   return Object.values(animalSenio);
