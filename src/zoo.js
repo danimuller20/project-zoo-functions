@@ -82,16 +82,20 @@ function animalCount(species) {
     const name = animals.map(animal => animal.name);
     const quantity = animals.map(animal => animal.residents.length);
     const animalsAndQuantity = {};
-    name.forEach((animal, index) => animalsAndQuantity[animal] = quantity[index]);
+    name.forEach(function (animal, index) {
+      return animalsAndQuantity[animal] = quantity[index]
+    });
     return animalsAndQuantity;
   }
   const spicieRequested = animals.find(animal => animal.name === species);
   return spicieRequested.residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // seu código aqui
+  if (entrants === undefined) { return 0 };
+
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -114,7 +118,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,
