@@ -31,7 +31,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   const manager = data.animals.find(employee => employee.managers.some(managId => managId === id));
   if (manager !== undefined) { return true; }
-    return false;
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
