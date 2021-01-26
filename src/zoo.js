@@ -99,7 +99,7 @@ function increasePrices(percentage) {
   return prices;
 }
 
-//Usando o simples
+// Usando o simples
 // data.prices.Adult = Math.ceil(data.prices.Adult * (100 + percentage)).toFixed(2) / 100;
 // data.prices.Senior = Math.ceil(data.prices.Senior * (100 + percentage)).toFixed(2) / 100;
 // data.prices.Child = Math.ceil(data.prices.Child * (100 + percentage)).toFixed(2) / 100;
