@@ -125,7 +125,6 @@ function orderedAnimals() {
 }
 
 function searchForAnimalBySex(sex, sorted) {
-  let animalBySex = {};
   if (sorted) {
     return animalBySex = animals.reduce((list, { location }) => {
       list[location] = animals.filter(animal => location === animal.location)
@@ -152,7 +151,7 @@ function searchForAnimalBySex(sex, sorted) {
       return list;
     }, {});
   }
-  return animalBySex;
+  return false;
 }
 
 function animalMap(options) {
