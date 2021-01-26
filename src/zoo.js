@@ -183,13 +183,21 @@ function increasePrices(percentage) {
 // Funcoes auxiliares de employeeCoverage
 
 function animalsEmployee(employee) {
-  const animalsArray = []
-  employee.responsibleFor.forEach(animalID => animalsArray.push(animals.find(animal => animal.id === animalID).name));
+  const animalsArray = [];
+  employee.responsibleFor.forEach(animalID =>
+  animalsArray.push(animals.find(animal =>
+  animal.id === animalID).name));
+
   return animalsArray;
 }
 
 function putOnObject(findEmployee, employeeFinal, allEmployees) {
   employeeFinal[`${findEmployee.firstName} ${findEmployee.lastName}`] = allEmployees[`${findEmployee.firstName} ${findEmployee.lastName}`];
+}
+
+function findEmployee(property, employeeFinal, allEmployees, idOrName) {
+  const findEmployee = employees.find(employee => employee[property] === idOrName);
+  putOnObject(findEmployee, employeeFinal, allEmployees);
 }
 
 function employeeCoverage(idOrName) {
@@ -205,18 +213,15 @@ function employeeCoverage(idOrName) {
   const employeeFinal = {};
 
   if (employees.some(employee => employee.id === idOrName)) {
-    const findEmployee = employees.find(employee => employee.id === idOrName);
-    putOnObject(findEmployee, employeeFinal, allEmployees)
+    findEmployee('id', employeeFinal, allEmployees, idOrName);
   }
 
   if (employees.some(employee => employee.firstName === idOrName)) {
-    const findEmployee = employees.find(employee => employee.firstName === idOrName);
-    putOnObject(findEmployee, employeeFinal, allEmployees)
+    findEmployee('firstName', employeeFinal, allEmployees, idOrName);
   }
 
   if (employees.some(employee => employee.lastName === idOrName)) {
-    const findEmployee = employees.find(employee => employee.lastName === idOrName);
-    putOnObject(findEmployee, employeeFinal, allEmployees)
+    findEmployee('lastName', employeeFinal, allEmployees, idOrName);
   }
 
   return employeeFinal;
