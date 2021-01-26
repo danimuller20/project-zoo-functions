@@ -24,7 +24,7 @@ employees.forEach(worker => worker.managers.forEach((id) => {
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return animals.filter(animal => ids.find(ids => animal.id === ids));
+  return animals.filter(animal => ids.find(id => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -98,7 +98,7 @@ function animalMap(options) {
   // chave: string(localização)
   // valor: array de strings com as espécies
   //
-  // Com o parâmetro 'includeNames: true' o valor das chaves será 
+  // Com o parâmetro 'includeNames: true' o valor das chaves será
   // um array de objetos, cada objeto com os nomes dos animais
   // organizados por espécies;
   //
