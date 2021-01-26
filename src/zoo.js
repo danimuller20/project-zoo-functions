@@ -103,9 +103,95 @@ function entryCalculator(entrants) {
   return result;
 }
 
+function regionAndSpecies() {
+  const result = data.animals.reduce((objResult, currentValue) => {
+    objResult[`${currentValue.location}`] = [];
+    return objResult;
+  }, {});
+  data.animals.map((value) => result[`${value.location}`].push(value.name));
+  return result;
+}
+
+function includeName() {
+  const result = data.animals.reduce((objResult, currentValue) => {
+    objResult[`${currentValue.location}`] = [];
+    return objResult;
+  }, {});
+  data.animals.map((value) => {
+    const objNames = { [`${value.name}`]: [] };
+    value.residents.forEach((animal) => {
+      objNames[`${value.name}`].push(`${animal.name}`);
+    });
+    result[`${value.location}`].push(objNames);
+  });
+  return result;
+}
+
+function sortNames() {
+  const result = data.animals.reduce((objResult, currentValue) => {
+    objResult[`${currentValue.location}`] = [];
+    return objResult;
+  }, {});
+  data.animals.map((value) => {
+    const objNames = { [`${value.name}`]: [] };
+    value.residents.forEach((animal) => {
+      objNames[`${value.name}`].push(`${animal.name}`);
+    });
+    objNames[`${value.name}`].sort();
+    result[`${value.location}`].push(objNames);
+  });
+  return result;
+}
+
+function sexNames(sex) {
+  const result = data.animals.reduce((objResult, currentValue) => {
+    objResult[`${currentValue.location}`] = [];
+    return objResult;
+  }, {});
+  data.animals.map((value) => {
+    const objNames = { [`${value.name}`]: [] };
+    value.residents.forEach((animal) => {
+      if ( animal.sex === sex) {
+        objNames[`${value.name}`].push(`${animal.name}`);
+      }
+    });
+    result[`${value.location}`].push(objNames);
+  });
+  return result;
+}
+
+function sexAndSort(sex) {
+  const result = data.animals.reduce((objResult, currentValue) => {
+    objResult[`${currentValue.location}`] = [];
+    return objResult;
+  }, {});
+  data.animals.map((value) => {
+    const objNames = { [`${value.name}`]: [] };
+    value.residents.forEach((animal) => {
+      if ( animal.sex === sex) {
+        objNames[`${value.name}`].push(`${animal.name}`);
+      }
+    });
+    objNames[`${value.name}`].sort();
+    result[`${value.location}`].push(objNames);
+  });
+  return result;
+}
+
 function animalMap(options) {
   // seu código aqui
+  let result;
+  if (options === undefined) {
+    result = regionAndSpecies();
+  } else if (options.includeNames) {
+    result = includeName();
+  } else if (options.includeNames && options.sorted) {
+      result = sortNames();
+  }
+  return result;
 }
+
+console.table(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   // seu código aqui
