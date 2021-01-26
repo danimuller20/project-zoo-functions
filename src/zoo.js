@@ -92,8 +92,23 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 // addEmployee('39800c14-4b76-454a-858d-2f8d168146a7','John','Doe',[],[]);
 
 function animalCount(species) {
-  // seu código aqui
+  const obj = {};
+  let countSpecies = 0;
+  if (!species) {
+    animals.forEach((animal) => {
+      obj [animal.name] = animal.residents.length;
+    });
+    return obj;
+  } else {
+    animals.find((animal) => {
+     if (animal.name === species) {
+      countSpecies = animal.residents.length;
+     }
+   });
+  }
+  return countSpecies;
 }
+// console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
