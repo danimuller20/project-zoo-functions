@@ -13,15 +13,13 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  const answer = [];
-  ids.forEach(id => answer.push(data.animals.find(animal => animal.id === id)));
-  return answer;
+  return ids.map(id => data.animals.find(animal => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return data.animals.find(species => species.name === animal)
-    .residents.every(specimen => specimen.age > age);
+  const { residents } = data.animals.find(species => species.name === animal);
+  return residents.every(specimen => specimen.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -83,10 +81,10 @@ function animalsPerRegionWithNames(regions, answer, options) {
       .map(creature => creature.name);
     helper.forEach((animal) => {
       holder = {};
-      (sex) ? species = data.animals.find(creature => creature.name === animal).residents
-        .filter(creature => creature.sex === sex).map(creature => creature.name) :
-        species = data.animals.find(creature => creature.name === animal).residents
+      let { residents } = data.animals.find(creature => creature.name === animal);
+      if (sex) species = residents.filter(creature => creature.sex === sex)
         .map(creature => creature.name);
+      else species = residents.map(creature => creature.name);
       if (sorted) species.sort();
       Object.assign(holder, { [animal]: species });
       counter.push(holder);
