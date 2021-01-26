@@ -43,8 +43,13 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const obj = {};
+  animals.forEach(({ name, residents }) => {
+    obj[name] = residents.length;
+  });
+  return species ? obj[species] : obj;
 }
+
 
 function entryCalculator(entrants) {
   // seu código aqui
