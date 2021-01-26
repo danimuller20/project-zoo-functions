@@ -93,7 +93,7 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const getEmployeeId = employees.find((value) => value.id === id);
+  const getEmployeeId = employees.find(value => value.id === id);
   animalsByIds(getEmployeeId.responsibleFor[0])
   .find((value) => {
     let residentSpecies = value.residents
