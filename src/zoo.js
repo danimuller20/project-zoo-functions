@@ -82,33 +82,55 @@ function entryCalculator(entrants) {
   return sum;
 }
 
-function animalMap(options) {
-  // seu código aqui
-  /* const animalsPerLocation = {};
-  if (!options) {
-    animals.forEach((species) => {
-      let animalsGrup = [];
-      animals.forEach((element) => {
-        if (species.location === element.location) {
-          animalsGrup.push(element.name);
+const withOutParameters = (locations, animalLocation) => {
+  locations.forEach(function (location) {
+    const animalTemp = animals.filter(animal => animal.location === location);
+    animalTemp.forEach(({ name }) => animalLocation[location].push(name));
+    // animalTemp.forEach(animal => animalLocation[location].push(animal.name));
+  });
+};
+
+function includeNamesTrue(locations, animalLocation, options) {
+  locations.forEach(function (location) {
+    const animalTemp = animals.filter(animal => (animal.location === location));
+    animalTemp.forEach(function (animal) {
+      const animalArrayTemp = {};
+      const animalsResidentTemp = [];
+      animal.residents.forEach(function (resident) {
+        if ((options.sex) && (resident.sex === options.sex)) {
+          animalsResidentTemp.push(resident.name);
+        } else if (!options.sex) {
+          animalsResidentTemp.push(resident.name);
         }
-      })
-      return animalsPerLocation[species.location] = animalsGrup;
-    })
-    return animalsPerLocation;
-  }
+      });
+      if (options.sorted) {
+        animalArrayTemp[animal.name] = animalsResidentTemp.sort();
+      } else {
+        animalArrayTemp[animal.name] = animalsResidentTemp;
+      }
+      animalLocation[location].push(animalArrayTemp);
+    });
+  });
 }
 
-function animalNames(name) {
-  const arrayNames = [];
-  animals.forEach((element) => {
-    if (element.name === name) {
-      element.residents.forEach((element2) => {
-        arrayNames.push(element2.name);
-      })
+function animalMap(options) {
+  // seu código aqui
+  const locations = [];
+  const animalLocation = {};
+  animals.forEach(function (animal) {
+    if (!locations.includes(animal.location)) {
+      locations.push(animal.location);
+      animalLocation[animal.location] = [];
     }
-  })
-  return arrayNames;*/
+  });
+
+  if (!options || !options.includeNames) {
+    withOutParameters(locations, animalLocation);
+  }
+  if (options && options.includeNames) {
+    includeNamesTrue(locations, animalLocation, options);
+  }
+  return animalLocation;
 }
 
 function schedule(dayName) {
