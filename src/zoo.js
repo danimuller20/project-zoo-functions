@@ -178,9 +178,40 @@ function increasePrices(percentage) {
   });
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function employeeCoverageList() {
+  const responsabilitiesList = {}
+  const listOfEmployees = employees
+  .map(employee => `${employee.firstName} ${employee.lastName}`)
+
+  employees
+  .map((employee) => employee.responsibleFor)
+  .forEach((idList, index) => {
+    const maped = idList.map((id) => {
+      const found = animals.find((animal) => {
+        return animal.id === id
+      })
+
+      return found.name
+    })
+
+    responsabilitiesList[listOfEmployees[index]] = maped
+  })
+
+  return responsabilitiesList
 }
+
+
+
+function employeeCoverage(idOrName) {
+  // if (typeof (idOrName) === 'undefined') {
+  //   return employeeCoverageList()
+  // }
+
+  const listOfLists = []
+  
+}
+
+employeeCoverage()
 
 module.exports = {
   entryCalculator,
