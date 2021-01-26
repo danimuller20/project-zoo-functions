@@ -27,8 +27,6 @@ function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(ids => animal.id === ids));
 }
 
-console.log(animalsByIds());
-
 function animalsOlderThan(animal, age) {
   const animalsToCheckAge = animals.find(iteratedAnimal => (
     iteratedAnimal.name === animal));
