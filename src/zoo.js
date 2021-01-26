@@ -159,42 +159,25 @@ function increasePrices(percentage) {
 }
 
 function animalFind(id) {
-  return animals.find((element) => {
-    return element.id === id
-  }).name
+  return animals.find(element => element.id === id).name;
 }
 
 function findName(id) {
-  const employeesObject = employees.find((element) => {
-    return element.id === id || element.firstName === id || element.lastName === id;
-  })
-  return `${employeesObject.firstName} ${employeesObject.lastName}`
+  const employeesObject = employees.find(element => element.id === id || element.firstName === id || element.lastName === id);
+  return `${employeesObject.firstName} ${employeesObject.lastName}`;
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
   const newObject = {};
   const Object = {};
-  const employee = employees.map(element => {
-    return `${element.firstName} ${element.lastName}`;
-  });
-
-  const animalsId = employees.map(element => {
-    return element.responsibleFor;
-  });
-
-  const xablau = animalsId.map(element => {
-    return element.map(element2 => {
-      return animalFind(element2);
-    });
-  });
-  
-  employee.map((element, index) => {
-    return newObject[element] = xablau[index];
-  });
+  const employee = employees.map(element => `${element.firstName} ${element.lastName}`);
+  const animalsId = employees.map(element => element.responsibleFor);
+  const xablau = animalsId.map(element => element.map(element2 => animalFind(element2)));
+  employee.map((element, index) => newObject[element] = xablau[index]);
 
   if (!idOrName) return newObject;
-
+  
   Object[findName(idOrName)] = newObject[findName(idOrName)];
 
   return Object;
