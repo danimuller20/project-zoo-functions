@@ -202,7 +202,7 @@ function employeeCoverageList() {
 }
 
 function employeeCoverage(idOrName) {
-  if (typeof idOrName === "undefined") {
+  if (typeof idOrName === 'undefined') {
     return employeeCoverageList();
   }
 
