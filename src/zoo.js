@@ -87,12 +87,15 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   let animalSenio = [];
   animals.find(elemento => elemento.id === id).residents
-  .forEach(senio => {  animalSenio.push(senio.age) });
+  .forEach(elementoAge => { animalSenio.push(elementoAge.age) });
+  const { residents } = animals.find(elemento => elemento.id === id);
   animalSenio = Math.max(...animalSenio);
-  animalSenio = animals.find(idd => idd.id === id).residents
-  .find(senio => senio.age === animalSenio);
+  animalSenio = residents.find(senio => senio.age === animalSenio);
   return Object.values(animalSenio);
 }
+//const obj = animals.find(elemento => elemento === 'ef3778eb-2844-4c7c-b66c-f432073e1c6b');
+//const { residents } = obj;
+console.log( oldestFromFirstSpecies('ef3778eb-2844-4c7c-b66c-f432073e1c6b'));
 
 function increasePrices(percentage) {
   // seu código aqui
