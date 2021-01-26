@@ -96,7 +96,7 @@ function entryCalculator(entrants = {}) {
 }
 
 function animalMap(options) {
-  //vou fazer!!
+  //vou
 }
 
 function schedule(dayName = 0) {
@@ -141,22 +141,22 @@ function employeesAndAnimals() {
     workersTable[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map((iteratedId) =>
       animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name
     );
-  );
+  });
   return workersTable;
 }
 
 function idEmployee(idOrName) {
   const worker = employees.find((person) =>
-    return person.firstName === idOrName ||
+    person.firstName === idOrName ||
     person.lastName === idOrName ||
-    person.id === idOrName;
+    person.id === idOrName
   );
   return worker;
 }
 
 function idAnimal(id) {
   const caredAnimals = id.map((iteratedId) =>
-    return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
+    animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name
   );
   return caredAnimals;
 }
