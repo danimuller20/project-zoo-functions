@@ -85,17 +85,17 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
-function getEmployeesInfo(employeeInfo) {
-// seu código aqui
-  let employeesQuery;
-  if (employeeInfo) {
-    employeesQuery = [employeeByName(employeeInfo)];
-  } else {
-    employeesQuery = employees;
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  function getEmployeesInfo(employeeInfo) {
+    let employeesQuery;
+    if (employeeInfo) {
+      employeesQuery = [employeeByName(employeeInfo)];
+    } else {
+      employeesQuery = employees;
+    }
+    return employeesQuery;
   }
-  return employeesQuery;
-
-  const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(animal => animal.name);
   const employeesQuery = getEmployeesInfo(idOrName);
   return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
     employeesObject[`${firstName} ${lastName}`] = getAnimalsNamesByIds(responsibleFor);
