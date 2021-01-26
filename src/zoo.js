@@ -78,34 +78,22 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const locations = ['NE', 'NW', 'SE', 'SW'];
-  const locationAnimals = {};
-  locations.forEach(locations => {
-    const filterAnimals = animals.filter(animal => animal.location === location);
-    const filteredAnimalsName = filterAnimals.map(animal => animal.name);
-    locationAnimals[location] = filteredAnimalsName;
-  });
-  return locationAnimals;
 }
 
 function schedule(dayName) {
   const returnObject = {};
   const arraysKeys = Object.keys(hours);
-  
   arraysKeys.forEach((dayOfWeek) => {
     const { open, close } = hours[dayOfWeek];
     if (dayOfWeek === 'Monday') {
-      return returnObject[dayOfWeek] = 'CLOSED';
-    } else {
-      returnObject[dayOfWeek] = `Open from ${open}am until ${close-12}pm`;
-    }
+      returnObject[dayOfWeek] = 'CLOSED';
+    } returnObject[dayOfWeek] = `Open from ${open}am until ${close - 12}pm`;
+    return;
   });
   if (!dayName) {
     return returnObject;
-  } return { [dayName]:returnObject[dayName] };
+  } return { [dayName]: returnObject[dayName] };
 }
-
-console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
