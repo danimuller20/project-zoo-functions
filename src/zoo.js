@@ -162,17 +162,11 @@ function createObjectWithNames(optionSex = false) {
   return objectWithNames;
 }
 function animalMap(options) {
-  const result = (includeNames, sorted, sex) => {
-    if (includeNames) {
-      return (sorted ? sortNames(createObjectWithNames(sex)) : createObjectWithNames(sex));
-    }
+  if (!options || !options.includeNames) {
     return createDefaultObject();
-  };
-  if (options) {
-    const { includeNames, sorted, sex = undefined } = options;
-    return result(includeNames, sorted, sex);
   }
-  return createDefaultObject();
+  return (options.sorted ? sortNames(createObjectWithNames(options.sex))
+  : createObjectWithNames(options.sex));
 }
 
 function schedule(dayName) {
