@@ -80,7 +80,7 @@ function schedule(dayName) {
     return cronograma;
   }
   if (dayName === 'Monday') { return { Monday: 'CLOSED' }; }
-  return cronograma[dayName];
+  return { [dayName]: cronograma[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
