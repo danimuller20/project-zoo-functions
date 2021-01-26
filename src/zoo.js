@@ -100,23 +100,7 @@ function entryCalculator(entrants) {
   return finalPrice;
 }
 
-function animalMap(options) {
-  const zooMap = {
-    NE: [],
-    NW: [],
-    SE: [],
-    SW: [],
-  };
-  // primeiro requisito
-  if (options === undefined || options.includeNames !== true) {
-    Object.keys(zooMap).forEach((zone) => {
-      animals.forEach((animal) => {
-        if (animal.location === zone) { zooMap[zone].push(animal.name); }
-      });
-    });
-    return zooMap;
-  }
-  // segundo terceiro  quarto e quinto requisito
+function animalMapAsserts(zooMap, options) {
   if (options.includeNames) {
     Object.keys(zooMap).forEach((zone) => {
       animals.forEach((animal) => {
@@ -138,6 +122,26 @@ function animalMap(options) {
       });
     });
   }
+}
+
+function animalMap(options) {
+  const zooMap = {
+    NE: [],
+    NW: [],
+    SE: [],
+    SW: [],
+  };
+  // primeiro requisito
+  if (options === undefined || options.includeNames !== true) {
+    Object.keys(zooMap).forEach((zone) => {
+      animals.forEach((animal) => {
+        if (animal.location === zone) { zooMap[zone].push(animal.name); }
+      });
+    });
+    return zooMap;
+  }
+  // segundo terceiro  quarto e quinto requisito
+  animalMapAsserts(zooMap, options);
   return zooMap;
 }
 // const options = { includeNames: true , sorted: false, sex: 'male'};
