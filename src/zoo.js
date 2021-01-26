@@ -89,6 +89,7 @@ function animalCount(species) {
   return totalAnimal;
 }
 
+
 function entryCalculator(entrants = 0) {
   if (entrants === 0) {
     return entrants;
@@ -106,15 +107,76 @@ function entryCalculator(entrants = 0) {
   const conta = (Adult * entrants.Adult) + (Child * entrants.Child) + (Senior * entrants.Senior);
   return conta;
 }
+//____________________________________________________________________________________________________
+/*
+let locations = {
+  NE: [],
+  NW: [],
+  SE: [],
+  SW: [],
+};
 
+function noOptions() {
+  data.animals.forEach((animal) => {
+    if(animal.location === 'NE') {
+      locations.NE.push(animal.name);
+    }
+    if(animal.location === 'NW') {
+      locations.NW.push(animal.name);
+    }
+    if(animal.location === 'SE') {
+      locations.SE.push(animal.name);
+    }
+    if(animal.location === 'SW') {
+      locations.SW.push(animal.name)
+    }
+  });
+  return locations
+}
+
+function includeNamesHelp() {
+  data.animals.forEach((animal) => {
+    let resultObj = {};
+    resultObj[animal.name] = animal.residents.map(obj => obj.name);
+    locations[animal.location].push(resultObj);
+  });  
+  return locations
+}
+ */
 function animalMap(options) {
-  // seu código aqui
+  if (!options) {
+    return noOptions()
+  }
+  if (options.includeNames) {
+    return includeNamesHelp()
+  }
 }
 
+//console.log(animalMap({ includeNames: true }))
+
+//____________________________________________________________________________________________________
 function schedule(dayName) {
-  // seu código aqui
-}
+  const objHours = data.hours;
+  const daysOfWeek = Object.keys(objHours);
+  const objResult = {};
 
+  daysOfWeek.forEach((day) => {
+    const { open, close } = objHours[day];
+
+    if (open === 0 && close === 0){
+      objResult[day] = 'CLOSED'
+    } else {
+      objResult[day] = `Open from ${open}am until ${close % 12}pm`
+    }
+  })
+
+  if (!dayName){
+    return objResult
+  }
+
+  return { [dayName]: objResult[dayName] }
+}
+console.log(schedule("Monday"))
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
