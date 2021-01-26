@@ -17,7 +17,7 @@ function animalsByIds(ids) {
   }
   // seu código aqui
   const foundAnimals = ids.map((actualId) => {
-    const foundAnimal = data.animals.find( (animal) => actualId === animal.id);
+    const foundAnimal = data.animals.find(animal => actualId === animal.id);
     return foundAnimal;
   });
   return foundAnimals;
