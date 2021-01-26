@@ -87,11 +87,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-  const employeeByNames = (employeeName) => {
-    const foundEmployee = employees.find(
-      employee => Object.values(employee).includes(employeeName));
-    return { ...foundEmployee };
-  }
+  employeeByNames(employeeName);
   const getEmployeesInfo = (employeeInfo) => {
     let employeesQuery;
     if (employeeInfo) {
@@ -100,7 +96,7 @@ function employeeCoverage(idOrName) {
       employeesQuery = employees;
     }
     return employeesQuery;
-  }
+  };
   const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(animal => animal.name);
   const employeesQuery = getEmployeesInfo(idOrName);
   return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
