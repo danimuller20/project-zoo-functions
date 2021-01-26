@@ -65,7 +65,7 @@ function schedule(dayName) {
   allDays.forEach((day) => {
     const { open, close } = hours[day];
     if (day === 'Monday') {
-      scheduleDay[day] = 'CLOSED'
+      scheduleDay[day] = 'CLOSED';
     } else {
       scheduleDay[day] = `Open from ${open}am until ${close % 12}pm`;
     }
