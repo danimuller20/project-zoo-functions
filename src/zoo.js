@@ -69,6 +69,10 @@ function entryCalculator(entrants) {
   return entryTotal;
 }
 
+function sortAnimalResidents(animalResidents, speciesName, sorted) {
+  if (sorted) animalResidents[speciesName].sort();
+}
+
 function getResidentsBySpecies(species, { sex = false, sorted = false }) {
   const mySpeciesResidents = species.residents.reduce((namesBySpeacies, animalName) => {
     if (sex) {
@@ -80,7 +84,8 @@ function getResidentsBySpecies(species, { sex = false, sorted = false }) {
     }
     return namesBySpeacies;
   }, { [species.name]: [] });
-  return sorted ? mySpeciesResidents[species.name].sort() : mySpeciesResidents;
+  sortAnimalResidents(mySpeciesResidents, species.name, sorted);
+  return mySpeciesResidents;
 }
 
 function animalMap(options) {
@@ -89,12 +94,13 @@ function animalMap(options) {
     if (!myAnimalMap[animal.location]) {
       myAnimalMap[animal.location] = [];
     }
-    options.includeNames
-      ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal, options))
+    options.includeNames ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal, options))
       : myAnimalMap[animal.location].push(animal.name);
     return myAnimalMap;
   }, {});
 }
+
+console.log(animalMap({ includeNames: true, sex: true, sorted: true }));
 
 function getSchedule(day) {
   const { open, close } = hours[day];
