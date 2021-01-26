@@ -137,37 +137,36 @@ function increasePrices(percentage) {
 
 function employeesAndAnimals() {
   const workersTable = {};
-  const worker = employees.forEach(person => {
-    workersTable[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map(iteratedId => {
+  employees.forEach((person) => {
+    workersTable[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map((iteratedId) =>
       return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
-    })
-  })
+    });
+  );
   return workersTable;
 }
 
 function idEmployee(idOrName) {
-  const worker = employees.find(person => {
+  const worker = employees.find((person) =>
     return person.firstName === idOrName ||
     person.lastName === idOrName ||
-    person.id === idOrName
-  });
-  return worker
+    person.id === idOrName;
+  );
+  return worker;
 }
 
 function idAnimal(id) {
-  const caredAnimals = id.map(iteratedId => {
+  const caredAnimals = id.map((iteratedId) =>
     return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
-  })
+  );
   return caredAnimals;
 }
 function employeeCoverage(idOrName) {
-  if(!idOrName) return employeesAndAnimals();
+  if (!idOrName) return employeesAndAnimals();
 
   const worker = idEmployee(idOrName);
   const workerInfo = `${worker.firstName} ${worker.lastName}`;
-  
-  const caredAnimals = idAnimal(worker.responsibleFor)
-  console.log(caredAnimals)
+  const caredAnimals = idAnimal(worker.responsibleFor);
+  console.log(caredAnimals);
   const result = {};
   result[workerInfo] = caredAnimals;
   return result;
