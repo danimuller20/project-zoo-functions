@@ -178,8 +178,6 @@ function increasePrices(percentage) {
   });
 }
 
-
-
 function employeeCoverageList() {
   const responsabilitiesList = {};
   const listOfEmployees = employees.map(
@@ -206,7 +204,7 @@ function employeeCoverage(idOrName) {
     return employeeCoverageList();
   }
 
-  const employee = employees.find(function(employeeElement) {
+  const employee = employees.find(function (employeeElement) {
     if (
       employeeElement.id === idOrName ||
       employeeElement.firstName === idOrName ||
