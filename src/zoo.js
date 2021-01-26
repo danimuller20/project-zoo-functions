@@ -51,7 +51,7 @@ function animalCount(species) {
       acc[animal.name] = animal.residents.length;
       return acc;
     }, {});
-  } return animals.find(({name}) => name === species).residents.length;
+  } return animals.find(({ name }) => name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
