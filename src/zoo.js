@@ -91,12 +91,33 @@ function animalCount(species) {
   const spicieRequested = animals.find(animal => animal.name === species);
   return spicieRequested.residents.length;
 }
+function isEmptyObject(obj) {
+  return JSON.stringify(obj) === '{}';
+}
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-//   if (entrants === undefined ||) { return 0 };
-// }
-// console.log(entryCalculator({}));
+function entryCalculator(entrants) {
+  // seu código aqui
+  if (entrants === undefined || isEmptyObject(entrants)) { return 0; }
+  const keysOfObject = Object.keys(entrants);
+  let prices = [];
+  keysOfObject.forEach((key) => {
+    if (key === 'Adult') {
+      let priceAdult = entrants.Adult * 49.99;
+      prices.push(priceAdult);
+    }
+    if (key === 'Child') {
+      let priceChild = entrants.Child * 20.99;
+      prices.push(priceChild);
+    }
+    if (key === 'Senior') {
+      let priceSenior = entrants.Senior * 24.99;
+      prices.push(priceSenior);
+    }
+    return 0;
+  });
+  const totalPrice = prices.reduce((previous,current) => previous + current);
+  return totalPrice;
+}
 
 // function animalMap(options) {
 //   // seu código aqui
@@ -119,7 +140,7 @@ function animalCount(species) {
 // }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   // schedule,
   animalCount,
   // animalMap,
