@@ -37,9 +37,10 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
-}
+ return employees.some(funcionario => funcionario.managers.some(funcionarioId => funcionarioId === id));
 
+}
+console.log(isManager('fdb2543b-5662-46a7-badc-93d960fdc0a8'));
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
