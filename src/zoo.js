@@ -14,17 +14,14 @@ eslint no-unused-vars: [
 const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
-  // seu código aqui
   return animals.filter(animal => ids.find(id => id === animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
   return animals.find(anml => anml.name === animal).residents.every(anim => anim.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
   const employee = employees
   .find(mply => employeeName === mply.firstName || employeeName === mply.lastName);
   const employeeObj = { ...employee };
@@ -32,7 +29,6 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   const employeeObj = {};
   employeeObj.id = personalInfo.id;
   employeeObj.firstName = personalInfo.firstName;
@@ -44,7 +40,6 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(searchId) {
-  // seu código aqui  
   return employees.find(employee => employee.id === searchId).managers.length === 1;
 }
 
