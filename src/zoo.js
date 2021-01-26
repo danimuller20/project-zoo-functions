@@ -113,54 +113,43 @@ function animalsByLocation() {
 
 // Com a opção sorted: true especificada, retorna nomes de animais ordenados
 function orderedAnimals() {
-
   return animals.reduce(
     (list, { location }) => {
       list[location] = animals.filter(animal => location === animal.location)
         .reduce((array, { name, residents }) => {
           array.push({ [name]: residents.map(value => value.name).sort() });
-          return array
+          return array;
         }, []);
       return list;
     }, {});
 }
 
-// Com a opção sex: 'female' ou sex: 'male' especificada, retorna somente nomes de 
-//animais macho/fêmea
-
-// Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: 
-// true especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais 
-// ordenados
 function searchForAnimalBySex(sex, sorted) {
-
   if (sorted) {
-    return animals.reduce(
-      (list, { location }) => {
-        list[location] = animals.filter(animal => location === animal.location)
-          .reduce((array, { name, residents }) => {
-            array.push({
-              [name]: residents.filter(valor => valor.sex === sex)
-                .map(value => value.name).sort()
-            });
-            return array
-          }, []);
-        return list;
-      }, {});
+    return animals.reduce((list, { location }) => {
+      list[location] = animals.filter(animal => location === animal.location)
+        .reduce((array, { name, residents }) => {
+          array.push({
+            [name]: residents.filter(valor => valor.sex === sex)
+              .map(value => value.name).sort()
+          });
+          return array;
+        }, []);
+      return list;
+    }, {});
   }
 
   if (!sorted) {
-    return animals.reduce(
-      (list, { location }) => {
-        list[location] = animals.filter(animal => location === animal.location)
-          .reduce((array, { name, residents }) => {
-            array.push({
-              [name]: residents.filter(valor => valor.sex === sex)
-                .map(value => value.name)
-            });
-            return array
-          }, []);
-        return list;
-      }, {});
+    return animals.reduce((list, { location }) => {
+      list[location] = animals.filter(animal => location === animal.location)
+        .reduce((array, { name, residents }) => {
+          array.push({
+            [name]: residents.filter(valor => valor.sex === sex).map(value => value.name)
+          });
+          return array;
+        }, []);
+      return list;
+    }, {});
   }
 }
 
@@ -183,7 +172,7 @@ function animalMap(options) {
       list[location] = animals.filter(animal => location === animal.location)
         .reduce((array, { name, residents }) => {
           array.push({ [name]: residents.map(value => value.name) });
-          return array
+          return array;
         }, []);
       return list;
     }, {});
