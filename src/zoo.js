@@ -98,14 +98,14 @@ function schedule(dayName) {
 
   if (dayName !== undefined) {
     return { [dayName]: `Open from ${openingHours.open}am until ${openingHours.close - 12}pm` };
-  };
+  }
 
   const newObj = {};
   Object.keys(hours).forEach((day) => {
     newObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
     if (hours[day].open === 0) {
       newObj[day] = 'CLOSED';
-    };
+    }
   });
   return newObj;
 }
