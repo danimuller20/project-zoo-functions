@@ -173,12 +173,12 @@ function increasePrices(percentage) {
     Estava com problema de arredondamento ultilzando a solução acima.
    */
   const formatDecimal = value => Math.round(value * 100) / 100;
-  const calculateNewPrice = (oldPrice, percentage) => formatDecimal(
+  const calculateNewPrice = oldPrice => formatDecimal(
     ((oldPrice / 100) * percentage) + oldPrice,
   );
-  prices.Adult = calculateNewPrice(prices.Adult, percentage);
-  prices.Child = calculateNewPrice(prices.Child, percentage);
-  prices.Senior = calculateNewPrice(prices.Senior, percentage);
+  prices.Adult = calculateNewPrice(prices.Adult);
+  prices.Child = calculateNewPrice(prices.Child);
+  prices.Senior = calculateNewPrice(prices.Senior);
 }
 
 function employeeCoverage(idOrName) {
