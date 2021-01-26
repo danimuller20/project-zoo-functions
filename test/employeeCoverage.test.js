@@ -17,6 +17,7 @@ describe('Implemente a função employeeCoverage', () => {
     assert.deepStrictEqual(zoo.employeeCoverage(), expected);
   });
 
+
   it('Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável', () => {
     const actual = zoo.employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
     const expected = { 'Sharonda Spry': ['otters', 'frogs'] };

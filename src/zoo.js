@@ -182,8 +182,28 @@ function increasePrices(percentage) {
   }
 }
 
+const filtr = ite => data.animals.filter(an => an.id === ite)
+  .map(ani => Object.values([ani.name])[0])[0];
+
+const filtere = data.employees.map(item => ({
+  [item.firstName + ' ' + item.lastName]: item
+                                        .responsibleFor
+                                        .map(ite => filtr(ite)) }))
+  .reduce((a, b) => ({ ...a, ...b }), {});
+
+const filtered = byIdOrNam => byIdOrNam
+  .map(item => ({
+    [`${item.firstName + ' ' + item.lastName}`]: item
+                                                .responsibleFor
+                                                .map(ite => filtr(ite)) }))
+                            .reduce((a, b) => ({ ...a, ...b }), {});
+const byIdOrName = idOrName => data.employees
+  .filter(emplo => emplo.id === idOrName ||
+                  emplo.firstName === idOrName ||
+                  emplo.lastName === idOrName);
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  return (idOrName && filtered(byIdOrName(idOrName))) || filtere;
 }
 
 module.exports = {
