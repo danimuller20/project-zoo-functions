@@ -53,14 +53,53 @@ function entryCalculator(entrants) {
   return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
 
+function getLocations() {
+  let locations = animals.reduce((acc, curr) => { 
+    if (curr.location in acc) acc[curr.location].push(curr.name);
+    else acc[curr.location] = [curr.name];
+    return acc;
+  }, {});
+  return locations;
+}
+
+function animalsName(animals, options) {
+  if (options.sex) animals = animals.filter(animal => animal.sex === options.sex);
+  const beast = animals.map(animal => animal.name);
+  if (options.sorted) beast.sort();
+  return beast;
+}
+
+function animalsBySpecies(specie, options) {
+  // if (!options.includeNames) return
+  const speciesInfos = animals.find(animal =>
+    animal.name === specie).residents.map(resident => resident);
+  const names = animalsName(speciesInfos, options);
+  // console.log(names);
+  return { [specie]: names };
+}
+
+function animalNames(options) {
+  const speciesLocations = getLocations();
+  const locations = Object.keys(speciesLocations);
+  let animalsLocation;
+  if (!options || !options.includeNames) animalsLocation = locations.reduce((acc, curr) =>
+    Object.assign(acc, {[curr]: speciesLocations[curr]}), {});
+  else animalsLocation = locations.reduce((acc, curr) =>
+    Object.assign(acc, {[curr]: speciesLocations[curr].map(animal =>
+      animalsBySpecies(animal, options))}), {});
+  return animalsLocation;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const animalsByNames = animalNames(options);
+  return animalsByNames;
 }
 
 function schedule(dayName) {
   let day = {};
   if (!dayName) {
-    Object.keys(hours).forEach(hour => (day[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`));
+    Object.keys(hours).forEach(hour =>
+      (day[hour] = `Open from ${hours[hour].open}am until ${hours[hour].close - 12}pm`));
     day.Monday = 'CLOSED';
   } else if (dayName === 'Monday') day = { Monday: 'CLOSED' };
   else day = { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
@@ -84,9 +123,8 @@ function increasePrices(percentage) {
 
 function hasIdOrNameEmployeeCoverage(idOrName) {
   const employee = employees.find(person => person.id === idOrName) || employeeByName(idOrName);
-  const fullName = `${employee.firstName} ${employee.lastName}`;
   const animalsCover = animalsByIds(...employee.responsibleFor).map(animal => animal.name);
-  return { [fullName]: animalsCover };
+  return { [`${employee.firstName} ${employee.lastName}`]: animalsCover };
 }
 
 function dontHasIdOrNameEmployeeCoverage() {
