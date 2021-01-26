@@ -33,6 +33,14 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
+  let managers = [];
+  employees.forEach((manager)  => {
+    if (manager.managers !== undefined) {
+      managers.push(manager.managers)
+    }
+  });
+  let managersconcat = managers.reduce((array, addarray) => array.concat(addarray ));
+  return managersconcat.some(managerId => managerId === id);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
