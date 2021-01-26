@@ -63,13 +63,13 @@ function animalCount(species) {
   // seu código aqui
   const objAnimalCount = {};
   if (!species) {
-    animals.forEach(objAnimal => {
+    animals.forEach((objAnimal) => {
       const objNamePopulation = {
         [objAnimal.name]: objAnimal.residents.length,
-      }
-    Object.assign(objAnimalCount, objNamePopulation);
+      };
+      Object.assign(objAnimalCount, objNamePopulation);
     });
-  return objAnimalCount;
+    return objAnimalCount;
   }
   return animals.find(element => element.name === species).residents.length;
 }
