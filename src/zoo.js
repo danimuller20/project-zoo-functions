@@ -60,8 +60,8 @@ function entryCalculator(entrants) {
 }
 
 function animalsPerRegion(regions, answer) {
-  let holder;
   let helper;
+  let holder;
   regions.forEach((region) => {
     holder = data.animals.filter(species => species.location === region);
     helper = holder.map(specimen => specimen.name);
@@ -117,6 +117,10 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const helper = data.employees.find(person => person.id === id).responsibleFor[0];
+  const answer = data.animals.find(creature => creature.id === helper).residents
+    .sort((creature1, creature2) => creature2.age - creature1.age)[0];
+  return [answer.name, answer.sex, answer.age];
 }
 
 function increasePrices(percentage) {
