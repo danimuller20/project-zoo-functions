@@ -30,8 +30,8 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
 
-  return employees.find(employee =>
-    employee.firstName === employeeName || employee.lastName === employeeName);
+  return employees.find(({ firstName, lastName }) =>
+    firstName === employeeName || lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -121,7 +121,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  prices.Adult = +((prices.Adult * ((percentage / 100) + 1) + 0.00001)).toFixed(2);
+  prices.Senior = +((prices.Senior * ((percentage / 100) + 1) + 0.00001)).toFixed(2);
+  prices.Child = +((prices.Child * ((percentage / 100) + 1) + 0.00001)).toFixed(2);
 }
 
 function employeeCoverage(idOrName) {
