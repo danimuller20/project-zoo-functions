@@ -97,7 +97,6 @@ function oldestFromFirstSpecies(employeeId) {
     }
   });
   return Object.values(firstSpeciesResidents.find(animal => animal.age === oldestAge));
-
 }
 
 function increasePrices(percentage) {
