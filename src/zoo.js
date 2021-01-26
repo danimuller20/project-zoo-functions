@@ -144,16 +144,25 @@ function employeesAndAnimals() {
   })
   return workersTable;
 }
-console.log(employeesAndAnimals());
 
-function employeeCoverage(idOrName) {
-  if(!idOrName) return employeesAndAnimals();
+function idEmployee(idOrName) {
   const worker = employees.find(person => {
     return person.firstName === idOrName ||
     person.lastName === idOrName ||
     person.id === idOrName
   });
+  return worker
+}
+
+// function idAnimal(id) {
+  
+// }
+function employeeCoverage(idOrName) {
+  if(!idOrName) return employeesAndAnimals();
+
+  const worker = idEmployee(idOrName);
   const workerInfo = `${worker.firstName} ${worker.lastName}`;
+  
   const caredAnimals = worker.responsibleFor.map(iteratedId => {
     return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
   })
@@ -162,6 +171,8 @@ function employeeCoverage(idOrName) {
   result[workerInfo] = caredAnimals;
   return result;
 }
+
+console.log(employeeCoverage('Ola'))
 
 module.exports = {
   entryCalculator,
