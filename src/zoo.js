@@ -98,20 +98,26 @@ function schedule(dayName) {
 
   if (dayName !== undefined) {
     return { [dayName]: `Open from ${openingHours.open}am until ${openingHours.close - 12}pm` };
-  }
+  };
 
   const newObj = {};
   Object.keys(hours).forEach((day) => {
     newObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
     if (hours[day].open === 0) {
       newObj[day] = 'CLOSED';
-    }
+    };
   });
   return newObj;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalId = employees.find(({ id: employeeId }) => (employeeId === id)).responsibleFor[0];
+  const specieResidents = animals.find(({ id: specieId }) => (specieId === animalId)).residents;
+  const result = specieResidents.reduce((acc, current) => (acc.age < current.age ? current : acc));
+
+  const { name, sex, age } = result;
+  const newArray = [name, sex, age];
+  return newArray;
 }
 
 function increasePrices(percentage) {
@@ -119,38 +125,9 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const employeeResponsible = () => {
-    const newArray = [];
-    employees.forEach(employee => {
-      employee.responsibleFor.forEach(id => {
-        const animalItem = animals.find(animal => animal.id === id);
-        if (!newArray.includes(animalItem)) {
-          newArray.push(animalItem);
-        }
-      })
-    })
-    return newArray;
-  }
-
-  const result = {};
-  const animalResponsibleFor = employee => employeeResponsible()
-    .filter(animal => employee.responsibleFor.includes(animal.id))
-    .map(animal => animal.name);
-
-  if (idOrName === undefined) {
-    employees.forEach((employee) => {
-      result[`${employee.firstName} ${employee.lastName}`] = animalResponsibleFor(employee);
-    });
-    return result;
-  }
-
-  const employeeName = employees
-    .find(employee => employee.id === idOrName
-    || employee.firstName === idOrName || employee.lastName === idOrName);
-  result[`${employeeName.firstName} ${employeeName.lastName}`] = animalResponsibleFor(employeeName);
-  return result;
+  // seu código aqui
 }
-// console.log(employeeCoverage());
+
 
 module.exports = {
   entryCalculator,
