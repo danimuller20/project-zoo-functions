@@ -63,6 +63,47 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  const answer = {};
+  let helper;
+  let holder;
+  let counter;
+  if (!options) {
+    regions.forEach(region => {
+      helper = data.animals.filter(creature => creature.location === region)
+        .map(creature => creature.name);
+      Object.assign(answer, ({ [region]: helper }));
+    });
+    return answer;
+  } else {
+    const { includeNames = false, sorted = false, sex = false } = options;
+    if (includeNames) {
+      regions.forEach(region => {
+        counter = [];
+        helper = data.animals.filter(creature => creature.location === region)
+          .map(creature => creature.name);
+        helper.forEach(animal => {
+          holder = {};
+          sex ? Object.assign(holder, { [animal] :
+            data.animals.find(creature => creature.name === animal).residents
+            .filter(creature => creature.sex === sex).map(creature => creature.name) }) :
+          Object.assign(holder, { [animal] :
+            data.animals.find(creature => creature.name === animal).residents
+            .map(creature => creature.name) });
+          if (sorted) holder[animal].sort();
+          counter.push(holder);
+        });
+        Object.assign(answer, ({ [region]: counter }));
+      });
+    } else {
+      regions.forEach(region => {
+        helper = data.animals.filter(creature => creature.location === region)
+          .map(creature => creature.name);
+        Object.assign(answer, ({ [region]: helper }));
+      });
+    }
+  }
+  return answer;
 }
 
 function schedule(dayName) {
