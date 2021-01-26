@@ -13,12 +13,13 @@ const data = require('./data');
 
 const { animals } = data;
 
-const animalsByIds = (... ids) => ids.map((id) => animals.find((animal) => id === animal.id)); // '...' (rest parameter) serve pra tratar numero indefinido de parametros (os parametros sao convertidos em elementos de array)
-  // if (!ids) { // compara se o parametro e === [false || undefined || null ]
-  //   return []; // caso seja, retorna um array vazio. => o rest parameter ('...') retorna um array com os parametros declarados, sendo assim a verificacao do array de ids se torna desnecessario
-  // }
-
-
+const animalsByIds = (...ids) => ids.map((id) => animals.find((animal) => id === animal.id));
+  // verificacao de parametro vazio => if (!ids) { return [] }
+  // compara se o parametro ids === (false || undefined || null ), caso seja, retorna um array vazio [] 
+  // rest parameter ('...') trata numero indefinido de parametros (cada parametro e convertido em elemento de arr)
+  // o rest parameter ('...') retorna arr com os parametros declarados, verificacao do arr ids desnecessaria 
+  // .map trata cada elemento do array ids[]
+  // .find compara, e devolve o o objeto cuja propriedade id (animal.id) seja igual ao parametro fornecido (id)
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
