@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.some(id => id === animal.id));
@@ -78,12 +78,46 @@ function entryCalculator(entrants) {
 // console.log(entryCalculator({}));
 
 function animalMap(options) {
-  // seu código aqui
 }
 
 function schedule(dayName) {
-  // seu código aqui
+// Ao chamar a função sem parâmetros: retorna um objeto com o cronograma inteiro
+// Ao chamar a função com 1 parâmetro: retorna um objeto com o cronograma apenas do dia
+
+// Formato do objeto de retorno (cronograma):
+// chave === dia da semana
+// valor === legível para humanos
+// cronograma legível para humanos === 'Open from X until Y'
+// cronograma legível para humanos quando o zoo não abre === 'CLOSED'
+
+// 1. Buscar onde estão as infos de funcionamento do zoo (objeto hours)
+// 2. Passar por cada entrada do objeto e buscar as infos do dia
+// 3. Pegar as informações do zoo
+// 4. Montar o cronograma
+// 5. Retorna o cronograma
+
+  const days = Object.keys(hours);
+  const schedule = {};
+
+  days.forEach((day) => {
+    const { open, close } = hours[day];
+    if (day === 'Monday') {
+      schedule[day] = 'CLOSED';
+    } else {
+      schedule[day] = `Open from ${open}am until ${close - 12}pm`;
+    }
+    /* (day === 'Monday') ? (schedule[day] = 'CLOSED') : (schedule[day] = `Open from ${open}am until ${close - 12}pm`); */
+  });
+
+  if (!dayName) {
+    return schedule;
+  } else {
+    return { [dayName] : schedule[dayName] };
+  }
 }
+console.log(schedule());
+console.log(schedule('Monday'));
+console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
