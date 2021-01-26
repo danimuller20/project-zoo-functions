@@ -183,15 +183,19 @@ function animalMap(options) {
   let result;
   if (options === undefined) {
     result = regionAndSpecies();
+  } else if (options.includeNames && options.sorted && options.sex !== undefined) {
+    result = sexAndSort(options.sex);
+  } else if (options.includeNames && options.sorted) {
+    result = sortNames();
+  } else if (options.includeNames && options.sex !== undefined) {
+    result = sexNames(options.sex);
   } else if (options.includeNames) {
     result = includeName();
-  } else if (options.includeNames && options.sorted) {
-      result = sortNames();
+  } else {
+    result = regionAndSpecies();
   }
   return result;
 }
-
-console.table(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   // seu código aqui
