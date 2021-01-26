@@ -29,7 +29,7 @@ console.table(employees);
 // }
 
 function animalsByIds(...ids) {
-  if (!ids) { return undefined };
+  if (!ids) { return undefined; }
   return data.animals.filter(animal => ids.find(id => animal.id === id));
 }
 
