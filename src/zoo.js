@@ -178,7 +178,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   Object.keys(prices).forEach((index) => {
     const ticket = (prices[index]) * ((percentage / 100) + 1);
-    prices[index] = Math.round((ticket) * 100) / 100;
+    prices[index] = Math.round(ticket * 100) / 100;
   });
 
   return prices;
@@ -186,8 +186,48 @@ function increasePrices(percentage) {
 
 /* employeeCoverage */
 
+function findAnimals(arrayIdAnimals) {
+  const arrayNameAnimals = [];
+
+  arrayIdAnimals.forEach((id) => {
+    arrayNameAnimals.push(animals.find(animal => animal.id === id).name);
+  });
+
+  return arrayNameAnimals;
+}
+
+function employeeData(arrayEmployee) {
+  const objEmployee = {};
+
+  arrayEmployee.forEach((value) => {
+    const employee = employees.find((element) => {
+      const { id, firstName, lastName } = element;
+      return id === value || firstName === value || lastName === value;
+    });
+
+    const { firstName, lastName, responsibleFor } = employee;
+    const animalsResponsible = findAnimals(responsibleFor);
+
+    objEmployee[`${firstName} ${lastName}`] = animalsResponsible;
+
+    return objEmployee;
+  });
+
+  return objEmployee;
+}
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const arrayEmployee = [];
+
+  if (idOrName === undefined) {
+    employees.forEach((value) => {
+      arrayEmployee.push(value.id);
+    });
+  } else {
+    arrayEmployee.push(idOrName);
+  }
+
+  return employeeData(arrayEmployee);
 }
 
 module.exports = {
