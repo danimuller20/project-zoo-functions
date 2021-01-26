@@ -175,9 +175,7 @@ function returnAnimalId(employeeId) {
 function returnAnimalObject(animalId) {
   const animalInfoObject = animals
     .find(animal => animal.id === animalId)
-    .residents.reduce((acc, resident) => {
-      return (resident.age > acc.age) ? resident : acc
-    });
+    .residents.reduce((acc, resident) => (resident.age > acc.age ? resident : acc));
 
   return animalInfoObject;
 }
