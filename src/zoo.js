@@ -93,9 +93,9 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  if (entrants === undefined) { return 0 };
-
+  if (entrants === undefined || entrants === {}) { return 0 };
 }
+console.log(entryCalculator({}));
 
 // function animalMap(options) {
 //   // seu código aqui
