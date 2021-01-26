@@ -125,7 +125,7 @@ function calculatorPrices(param1, param2, sumControl, price) {
 function entryCalculator(entrants) {
   let valuesEntrants = '';
   let valuesPrices = '';
-  let priceControl = 0;
+  const priceControl = 0;
   let priceEntrants = 0;
   if (!entrants) {
     return priceEntrants;
@@ -139,7 +139,7 @@ function entryCalculator(entrants) {
 
   return priceEntrants;
 }
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
   // seu código aqui
