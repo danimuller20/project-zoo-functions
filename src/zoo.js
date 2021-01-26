@@ -96,6 +96,15 @@ function employeeCoverage(idOrName) {
     }
     return employeesQuery;
   }
+  const getEmployeesInfo = (employeeInfo) => {
+    let employeesQuery;
+    if (employeeInfo) {
+      employeesQuery = [employeeByName(employeeInfo)];
+    } else {
+      employeesQuery = employees;
+    }
+    return employeesQuery;
+  };
   const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(animal => animal.name);
   const employeesQuery = getEmployeesInfo(idOrName);
   return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
