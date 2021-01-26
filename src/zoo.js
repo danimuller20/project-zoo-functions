@@ -15,7 +15,7 @@ function animalsByIds(...ids) {
   // seu código aqui
   const { animals } = data;
   const filteredAnimals = animals.filter(
-    (animal) => ids.some((id) => animal.id === id),
+    animal => ids.some(id => animal.id === id),
   );
   return filteredAnimals;
 }
