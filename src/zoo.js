@@ -19,10 +19,11 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   const selectAnimal = animals.find((thisAnimal) => {
     return thisAnimal.name === animal;
-    const ageOlder = selectAnimal[0].residents.every(resident => resident.age >= age);
-    return age;
   });
+  const ageOlder = selectAnimal.residents.every(resident => resident.age >= age);
+  return ageOlder;
 }
+
 function employeeByName(employeeName) {
   // seu código aqui
 }
