@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds() {
@@ -30,7 +30,7 @@ function employeeByName(employeeName) {
     return (firstName === employeeName) || (lastName === employeeName);
   };
   return employees.find(search);
-}
+} // concluido
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
@@ -82,11 +82,39 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let species;
+  employees.forEach((employee) => {
+    if (employee.id === id) {
+      species = employee.responsibleFor[0];
+    }
+  });
+  const animalFound = animals.find((animal) => animal.id === species);
+  const { residents } = animalFound;
+  let olderAnimal = residents[0];
+  residents.forEach((animal) => {
+    if (animal.age > olderAnimal.age) {
+      olderAnimal = animal;
+    }
+  });
+  return Object.values(olderAnimal);
+}
+
+function calculatePercentage(number, percentage) {
+  return (number * percentage) / 100 ;
 }
 
 function increasePrices(percentage) {
   // seu código aqui
+  Object.keys(prices).forEach((item) => {
+    // console.log(item + " = " + obj[item]);
+    const percentageResult = calculatePercentage(prices[item], percentage);
+    console.log(`Item: ${item}, percentageResult: ${percentageResult}`);
+    const result = prices[item] + percentageResult;
+    console.log(`Result: ${result}`);
+    prices[item] = Math.round(result).toFixed(2);
+  });
+  // console.log(prices);
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
