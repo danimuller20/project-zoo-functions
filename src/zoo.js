@@ -96,7 +96,7 @@ function entryCalculator(entrants = {}) {
 }
 
 function animalMap(options) {
-  //vou
+  // vou
 }
 
 function schedule(dayName = 0) {
@@ -138,25 +138,25 @@ function increasePrices(percentage) {
 function employeesAndAnimals() {
   const workersTable = {};
   employees.forEach((person) => {
-    workersTable[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map((iteratedId) =>
-      animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name
+    workersTable[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map(iteratedId =>
+      animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name,
     );
   });
   return workersTable;
 }
 
 function idEmployee(idOrName) {
-  const worker = employees.find((person) =>
+  const worker = employees.find(person =>
     person.firstName === idOrName ||
     person.lastName === idOrName ||
-    person.id === idOrName
+    person.id === idOrName,
   );
   return worker;
 }
 
 function idAnimal(id) {
-  const caredAnimals = id.map((iteratedId) =>
-    animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name
+  const caredAnimals = id.map(iteratedId =>
+    animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name,
   );
   return caredAnimals;
 }
