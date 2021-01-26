@@ -96,13 +96,13 @@ function oldestFromFirstSpecies(id) {
   const getEmployeeId = employees.find(value => value.id === id);
   animalsByIds(getEmployeeId.responsibleFor[0])
   .find((value) => {
-    let residentSpecies = value.residents
+    const residentSpecies = value.residents;
   });
   const olderSpecie = residentSpecies.reduce((previousValue, currentValue) => {
-  if (currentValue.age >= previousValue.age) {
-    return currentValue;
-  } return previousValue;
-});
+    if (currentValue.age >= previousValue.age) {
+      return currentValue;
+    } return previousValue;
+  });
   return olderSpecie;
 }
 
