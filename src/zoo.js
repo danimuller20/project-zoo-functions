@@ -75,12 +75,12 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const objeto = {};
+  const resultObj = {};
   const employee = idOrName ? [employeeByName(idOrName)] : employees;
   employee.forEach(({ firstName, lastName, responsibleFor }) =>
-  (objeto[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(specie =>
+  (resultObj[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(specie =>
   specie.name)));
-  return objeto;
+  return resultObj;
 }
 
 module.exports = {
