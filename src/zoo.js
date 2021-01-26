@@ -13,7 +13,7 @@ const { animals, employees, hours, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  return animals.filter(({ id }, index) => id === ids[index]);
+  return ids.map((animalId) => animals.find(({ id }) => id === animalId ));
 }
 
 function animalsOlderThan(animal, age) {
@@ -22,8 +22,8 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  return employeeName ? employees.find(({ firstName, lastName }) =>
-  firstName === employeeName || lastName === employeeName) : {};
+  return employeeName ? employees.find(employee =>
+  Object.values(employee).includes(employeeName)) : {};
 }
 
 function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
@@ -54,17 +54,17 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const scheduleObj = {};
+  const schedObj = {};
   Object.keys(hours).forEach(day => ((hours[day].open !== hours[day].close) ?
-  (scheduleObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`)
-  : (scheduleObj[day] = 'CLOSED')));
-  return dayName ? { [dayName]: scheduleObj[dayName] } : scheduleObj;
+  (schedObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`)
+  : (schedObj[day] = 'CLOSED')));
+  return dayName ? { [dayName]: schedObj[dayName] } : schedObj;
 }
 
 function oldestFromFirstSpecies(id) {
   const specieId = employees.find(employee => employee.id === id).responsibleFor[0];
   const specieObj = animals.find(animal => animal.id === specieId).residents;
-  const oldest = specieObj.reduce((acc, curr) => (acc.age < curr.age ? curr : acc));
+  const oldest = specieObj.reduce((older, resid) => (older.age < resid.age ? resid : older));
   return Object.values(oldest);
 }
 
@@ -75,7 +75,12 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const objeto = {};
+  const employee = idOrName ? [employeeByName(idOrName)] : employees;
+  employee.forEach(({ firstName, lastName, responsibleFor }) =>
+  (objeto[`${firstName} ${lastName}`] = animalsByIds(...responsibleFor).map(specie =>
+  specie.name)));
+  return objeto;
 }
 
 module.exports = {
