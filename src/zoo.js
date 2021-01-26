@@ -96,7 +96,7 @@ function entryCalculator(entrants = {}) {
 }
 
 function animalMap(options) {
-  
+  //vou fazer!!
 }
 
 function schedule(dayName = 0) {
@@ -140,7 +140,7 @@ function employeesAndAnimals() {
   employees.forEach((person) => {
     workersTable[`${person.firstName} ${person.lastName}`] = person.responsibleFor.map((iteratedId) =>
       animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name
-    });
+    );
   );
   return workersTable;
 }
