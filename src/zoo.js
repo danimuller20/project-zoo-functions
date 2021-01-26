@@ -69,10 +69,6 @@ function entryCalculator(entrants) {
   return entryTotal;
 }
 
-function sortAnimalResidents(animalResidents, speciesName, sorted) {
-  if (sorted) animalResidents[speciesName].sort();
-}
-
 function getResidentsBySpecies(animal, { sex = false, sorted = false }) {
   return animal.residents.reduce((namesBySpeacies, animalName) => {
     if (sex) {
@@ -86,16 +82,15 @@ function getResidentsBySpecies(animal, { sex = false, sorted = false }) {
   }, { [animal.name]: [] });
 }
 
-function animalMap(options) {
-  if (!options) options = {};
+function animalMap(options = {}) {
   return animals.reduce((myAnimalMap, animal) => {
     if (!myAnimalMap[animal.location]) {
       myAnimalMap[animal.location] = [];
     }
     if (options.includeNames) {
-      const speciesResidents = getResidentsBySpecies(animal, options);
-      sortAnimalResidents(speciesResidents, animal.name, options.sorted);
-      myAnimalMap[animal.location].push(speciesResidents);
+      const animalResidents = getResidentsBySpecies(animal, options);
+      if (options.sorted) animalResidents[animal.name].sort();
+      myAnimalMap[animal.location].push(animalResidents);
     } else {
       myAnimalMap[animal.location].push(animal.name);
     }
