@@ -165,8 +165,30 @@ function schedule(dayName) {
   return daySchedule;
 }
 
+function returnAnimalId(employeeId) {
+  const animalId = employees.find((employee) => employee.id === employeeId)
+    .responsibleFor[0];
+
+  return animalId;
+}
+
+function returnAnimalObject(animalId) {
+  const animalInfoObject = animals
+    .find((animal) => animal.id === animalId)
+    .residents.reduce((acc, resident) =>
+      resident.age > acc.age ? resident : acc
+    );
+
+  return animalInfoObject;
+}
+
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+
+  const animalId = returnAnimalId(id);
+  const animalInfoObject = returnAnimalObject(animalId);
+
+  return Object.values(animalInfoObject);
 }
 
 function increasePrices(percentage) {
