@@ -62,53 +62,38 @@ function entryCalculator(entrants) {
     (prev + (prices[currentValue[0]] * currentValue[1])), 0);
 }
 
-function populateAnimalNames(array) {
+function populateAnimalNames(array, sort) {
   animals.forEach(animal =>
-    array[animal.location].push(({ [animal.name]:
-      animal.residents.map(resident => resident.name) })));
+    array[animal.location].push(
+      { [animal.name]: (sort ?
+      animal.residents.map(resident => resident.name).sort() :
+      animal.residents.map(resident => resident.name)) },
+    ),
+  );
   return array;
 }
 
-function populateSortedAnimalNames(array) {
+function populateAnimalFilteredBySex(array, sort, sex) {
   animals.forEach(animal =>
-    array[animal.location].push(({ [animal.name]:
-      animal.residents.map(resident => resident.name).sort() })));
-  return array;
-}
-
-function populateAnimalFilterNotSorted(array, sex) {
-  animals.forEach(animal =>
-    array[animal.location].push(({ [animal.name]:
-      animal.residents.filter(element => element.sex === sex).map(resident => resident.name) })));
-  return array;
-}
-
-
-function populateSortedAnimalFilterSorted(array, sex) {
-  animals.forEach(animal =>
-    array[animal.location].push(({ [animal.name]:
-      animal.residents.filter(element => element.sex === sex)
-      .map(resident => resident.name).sort() })));
+    array[animal.location].push(
+      { [animal.name]: sort ?
+        animal.residents.filter(element => element.sex === sex).map(resident => resident.name)
+        .sort() :
+        animal.residents.filter(element => element.sex === sex).map(resident => resident.name),
+      }));
   return array;
 }
 
 function animalMap(options = { includeNames: false, sorted: false, sex: false }) {
   const mapOfLocations = { NE: [], NW: [], SE: [], SW: [] };
-  let mapOfAnimals;
-  if (!options.includeNames && !options.sex && !options.sorted) {
-    animals.forEach(element => mapOfLocations[element.location].push(element.name));
-    mapOfAnimals = mapOfLocations;
-  } else if (options.includeNames && !options.sorted && !options.sex) {
-    mapOfAnimals = populateAnimalNames(mapOfLocations);
-  } else if (options.includeNames && options.sorted && !options.sex) {
-    mapOfAnimals = populateSortedAnimalNames(mapOfLocations);
-  } else if (options.includeNames && options.sex && !options.sorted) { // not sort
-    mapOfAnimals = populateAnimalFilterNotSorted(mapOfLocations, options.sex);
-  } else if (options.includeNames && options.sex && options.sorted) { // sort
-    mapOfAnimals = populateSortedAnimalFilterSorted(mapOfLocations, options.sex);
-  } else if (!options.includeNames && (options.sex || options.sorted)) {
-    animals.forEach(element => mapOfLocations[element.location].push(element.name));
-    return mapOfLocations;
+  const { includeNames, sorted, sex } = options;
+  let mapOfAnimals = mapOfLocations;
+  if (includeNames && !sex) {
+    mapOfAnimals = populateAnimalNames(mapOfLocations, sorted);
+  } else if (includeNames) {
+    mapOfAnimals = populateAnimalFilteredBySex(mapOfLocations, sorted, sex);
+  } else if (!includeNames) {
+    animals.forEach(element => mapOfAnimals[element.location].push(element.name));
   }
   return mapOfAnimals;
 }
