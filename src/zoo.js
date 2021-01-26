@@ -163,8 +163,8 @@ function animalFind(id) {
 }
 
 function findName(id) {
-  const employeesObject = 
-    (employees.find(element => element.id === id || element.firstName === id || element.lastName === id));
+  const employeesObject =
+    (employees.find(e => e.id === id || e.firstName === id || e.lastName === id));
   return `${employeesObject.firstName} ${employeesObject.lastName}`;
 }
 
