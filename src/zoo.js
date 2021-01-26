@@ -75,7 +75,6 @@ function addEmployee(
   managers = [],
   responsibleFor = [],
 ) {
-
   const newEmployee = {
     id,
     firstName,
