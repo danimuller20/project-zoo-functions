@@ -120,10 +120,18 @@ function schedule(dayName) {
   return dayName ? getSpecificDay(dayName) : allOpeningHours;
 }
 
-console.log(schedule('Monday'));
-
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  // 1 - Pega a primeira especie de animal gerenciado pelo funcionario
+  // 2 - Retorna array com nome, sexo e idade do animal mais velho
+  const employeeData = data.employees.find(employee => employee.id === id);
+  const firstAnimalID = employeeData.responsibleFor[0];
+  const animalResidents = data.animals.find(animal => animal.id === firstAnimalID).residents;
+  const oldestAnimalAge = animalResidents.reduce((accumulator, resident) =>
+    ((resident.age > accumulator) ? resident.age : accumulator), 0);
+  const oldestAnimalResident = animalResidents.find(animal => animal.age === oldestAnimalAge);
+  const { name, sex, age } = oldestAnimalResident;
+  const returnData = [name, sex, age];
+  return returnData;
 }
 
 function increasePrices(percentage) {
