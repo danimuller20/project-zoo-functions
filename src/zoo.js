@@ -37,7 +37,6 @@ function employeeByName(employeeName) {
     person.lastName === employeeName);
 }
 
-
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
   const { id, firstName, lastName } = personalInfo;
@@ -98,8 +97,6 @@ function entryCalculator(entrants) {
   return result;
 }
 
-
-// Sem parâmetros, retorna animais categorizados por localização
 function animalsByLocation() {
   return animals.reduce(
     (list, { location }) => {
@@ -108,10 +105,7 @@ function animalsByLocation() {
       return list;
     }, {});
 }
-// Com a opção includeNames: true especificada, retorna nomes de animais
 
-
-// Com a opção sorted: true especificada, retorna nomes de animais ordenados
 function orderedAnimals() {
   return animals.reduce(
     (list, { location }) => {
