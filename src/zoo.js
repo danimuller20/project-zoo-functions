@@ -133,7 +133,7 @@ function animalMap(options) {
   } else {
     return categorizedAnimals;
   }
-  if (options?.sorted) {
+  if (options && options.sorted) {
     sortAnimals(categorizedAnimals);
   }
   return categorizedAnimals;
