@@ -36,7 +36,16 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers: [],
+    responsibleFor: [],
+  };
+  if (managers !== undefined) { newEmployee.managers = managers; }
+  if (responsibleFor !== undefined) { newEmployee.responsibleFor = responsibleFor; }
+  data.employees.push(newEmployee);
 }
 
 function animalCount(species) {
