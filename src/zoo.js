@@ -12,8 +12,10 @@ eslint no-unused-vars: [
 const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
-function animalsByIds() {
-  // seu código aqui
+function animalsByIds(...params) {
+  return searchResult = params.map((id) => {
+    return animals.find(item => item.id === id);
+  });
 }
 
 function animalsOlderThan(animal, age) {
@@ -97,7 +99,7 @@ function oldestFromFirstSpecies(id) {
     }
   });
   return Object.values(olderAnimal);
-}
+} // concluido
 
 function calculatePercentage(number, percentage) {
   return (number * percentage) / 100;
@@ -105,16 +107,16 @@ function calculatePercentage(number, percentage) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  Object.keys(prices).forEach((item) => {
+  /* Object.keys(prices).forEach((item) => {
     // console.log(item + " = " + obj[item]);
     const percentageResult = calculatePercentage(prices[item], percentage);
     console.log(`Item: ${item}, percentageResult: ${percentageResult}`);
     const result = prices[item] + percentageResult;
     console.log(`Result: ${result}`);
     prices[item] = Math.round(result).toFixed(2);
-  });
+  }); */
   // console.log(prices);
-  return prices;
+  // return prices;
 }
 
 function employeeCoverage(idOrName) {
