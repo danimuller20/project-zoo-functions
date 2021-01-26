@@ -191,20 +191,20 @@ function animalsEmployee(employee) {
   return animalsArray;
 }
 
-function putOnObject(findEmployee, employeeFinal, allEmployees) {
-  employeeFinal[`${findEmployee.firstName} ${findEmployee.lastName}`] = allEmployees[`${findEmployee.firstName} ${findEmployee.lastName}`];
+function putOnObject(foundEmployee, employeeFinal, allEmployees) {
+  employeeFinal[`${foundEmployee.firstName} ${foundEmployee.lastName}`] = allEmployees[`${foundEmployee.firstName} ${foundEmployee.lastName}`];
 }
 
 function findEmployee(property, employeeFinal, allEmployees, idOrName) {
-  const findEmployee = employees.find(employee => employee[property] === idOrName);
-  putOnObject(findEmployee, employeeFinal, allEmployees);
+  const foundEmployee = employees.find(employee => employee[property] === idOrName);
+  putOnObject(foundEmployee, employeeFinal, allEmployees);
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
   const allEmployees = {};
 
-  Object.values(employees).forEach(employee => allEmployees[`${employee.firstName} ${employee.lastName}`] = animalsEmployee(employee));
+  Object.values(employees).forEach(employee => (allEmployees[`${employee.firstName} ${employee.lastName}`] = animalsEmployee(employee)));
 
   if (idOrName === undefined) {
     return allEmployees;
