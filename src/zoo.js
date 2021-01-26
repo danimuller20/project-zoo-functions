@@ -87,12 +87,15 @@ function schedule(dayName) {
     const { open, close } = hours[dayOfWeek];
     if (dayOfWeek === 'Monday') {
       returnObject[dayOfWeek] = 'CLOSED';
-    } returnObject[dayOfWeek] = `Open from ${open}am until ${close - 12}pm`;
+    } else {
+      returnObject[dayOfWeek] = `Open from ${open}am until ${close - 12}pm`;
+    }
   });
   if (!dayName) {
     return returnObject;
   } return { [dayName]: returnObject[dayName] };
 }
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
