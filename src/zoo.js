@@ -190,20 +190,16 @@ const returnResponsibleFor = (...responsibleFor) => {
   return takenCare;
 };
 
-const employeeAndCoverage = {
-  'Nigel Nelson': ['lions', 'tigers'],
-  'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-  'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
-  'Wilburn Wishart': ['snakes', 'elephants'],
-  'Stephanie Strauss': ['giraffes', 'otters'],
-  'Sharonda Spry': ['otters', 'frogs'],
-  'Ardith Azevado': ['tigers', 'bears'],
-  'Emery Elser': ['elephants', 'bears', 'lions'],
-};
-
 function employeeCoverage(idOrName) {
   if (!idOrName) {
-    return employeeAndCoverage;
+    const myEmployeeCoverage = {};
+    employees.forEach((employee) => {
+      const fullName = `${employee.firstName} ${employee.lastName}`;
+      const employeeAnimals = returnResponsibleFor(employee.responsibleFor);
+
+      myEmployeeCoverage[fullName] = employeeAnimals;
+    });
+    return myEmployeeCoverage;
   }
 
   const myEmployee = employeeByName(idOrName);
