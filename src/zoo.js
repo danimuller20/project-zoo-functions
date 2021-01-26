@@ -88,7 +88,6 @@ function schedule(dayName) {
     if (dayOfWeek === 'Monday') {
       returnObject[dayOfWeek] = 'CLOSED';
     } returnObject[dayOfWeek] = `Open from ${open}am until ${close - 12}pm`;
-    return;
   });
   if (!dayName) {
     return returnObject;
