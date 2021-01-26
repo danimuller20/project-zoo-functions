@@ -163,7 +163,8 @@ function animalFind(id) {
 }
 
 function findName(id) {
-  const employeesObject = employees.find(element => element.id === id || element.firstName === id || element.lastName === id);
+  const employeesObject = 
+    (employees.find(element => element.id === id || element.firstName === id || element.lastName === id));
   return `${employeesObject.firstName} ${employeesObject.lastName}`;
 }
 
@@ -174,10 +175,9 @@ function employeeCoverage(idOrName) {
   const employee = employees.map(element => `${element.firstName} ${element.lastName}`);
   const animalsId = employees.map(element => element.responsibleFor);
   const xablau = animalsId.map(element => element.map(element2 => animalFind(element2)));
-  employee.map((element, index) => newObject[element] = xablau[index]);
+  employee.map((element, index) => (newObject[element] = xablau[index]));
 
   if (!idOrName) return newObject;
-  
   Object[findName(idOrName)] = newObject[findName(idOrName)];
 
   return Object;
