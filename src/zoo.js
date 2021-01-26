@@ -90,7 +90,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const percentageValue = percentage / 100;
-  const entrantAge = Object.keys(prices) // Retorna ["Adult", "Senior", "Child"]
+  const entrantAge = Object.keys(prices); // Retorna ["Adult", "Senior", "Child"]
   entrantAge.forEach((key) => {
     const increase = prices[key] * percentageValue;
     prices[key] += increase;
@@ -99,7 +99,7 @@ function increasePrices(percentage) {
   return prices;
 }
 
-//Usando o simplies////
+//Usando o simples
 // data.prices.Adult = Math.ceil(data.prices.Adult * (100 + percentage)).toFixed(2) / 100;
 // data.prices.Senior = Math.ceil(data.prices.Senior * (100 + percentage)).toFixed(2) / 100;
 // data.prices.Child = Math.ceil(data.prices.Child * (100 + percentage)).toFixed(2) / 100;
