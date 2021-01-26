@@ -197,23 +197,26 @@ function increasePrices(percentage) {
   });
 }
 
+function searchEmployee(employeeInfo) {
+  if (employeeInfo.length === 36) {
+    const searchEmployeeByID = employees
+    .find(currentEmployee => currentEmployee.id === employeeInfo);
+    return searchEmployeeByID;
+  }
+  const searchEmployeeByName = employees.find(currentEmployee =>
+      employeeInfo === currentEmployee.firstName || employeeInfo === currentEmployee.lastName);
+  return searchEmployeeByName;
+}
+
+function searchEmployeeResponsabilities(employeeElement) {
+  return employeeElement.responsibleFor.map((animalId) => {
+    const animalName = animals.find(currentAnimal => currentAnimal.id === animalId);
+    return animalName.name;
+  });
+}
+
 function employeeCoverage(idOrName) {
   // seu código aqui
-  const searchEmployee = (employeeInfo) => {
-    if (employeeInfo.length === 36) {
-      const searchEmployeeByID = employees
-      .find(currentEmployee => currentEmployee.id === employeeInfo);
-      return searchEmployeeByID;
-    }
-    const searchEmployeeByName = employees.find(currentEmployee =>
-        employeeInfo === currentEmployee.firstName || employeeInfo === currentEmployee.lastName);
-    return searchEmployeeByName;
-  };
-  const searchEmployeeResponsabilities = employeeElement =>
-    employeeElement.responsibleFor.map((animalId) => {
-      const animalName = animals.find(currentAnimal => currentAnimal.id === animalId);
-      return animalName.name;
-    });
   const employeeFullName = (employeeInfo) => {
     const employeeElement = searchEmployee(employeeInfo);
     return `${employeeElement.firstName} ${employeeElement.lastName}`;
