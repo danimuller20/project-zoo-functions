@@ -166,7 +166,7 @@ function schedule(dayName) {
 }
 
 function returnAnimalId(employeeId) {
-  const animalId = employees.find((employee) => employee.id === employeeId)
+  const animalId = employees.find(employee => employee.id === employeeId)
     .responsibleFor[0];
 
   return animalId;
@@ -174,9 +174,9 @@ function returnAnimalId(employeeId) {
 
 function returnAnimalObject(animalId) {
   const animalInfoObject = animals
-    .find((animal) => animal.id === animalId)
+    .find(animal => animal.id === animalId)
     .residents.reduce((acc, resident) =>
-      resident.age > acc.age ? resident : acc
+      (resident.age > acc.age) ? resident : acc,
     );
 
   return animalInfoObject;
