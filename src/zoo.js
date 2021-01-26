@@ -103,11 +103,11 @@ function animalMap(options) {
     });
   }
   if ((options.includeNames) && (options.sorted)) {
-    zooLocations.forEach((key) =>
+    zooLocations.forEach((key) => {
       zooMap[key].forEach((animal) => {
-        Object.keys(animal).forEach(key2 => { animal[key2].sort(); });
-      })
-    );
+        Object.keys(animal).forEach((key2) => { animal[key2].sort(); });
+      });
+    });
   }
   return zooMap;
 }
