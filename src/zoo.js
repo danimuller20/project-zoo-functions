@@ -97,27 +97,25 @@ function schedule(dayName) {
 // 5. Retorna o cronograma
 
   const days = Object.keys(hours);
-  const schedule = {};
+  const legibleSchedule = {};
 
   days.forEach((day) => {
     const { open, close } = hours[day];
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';
+      legibleSchedule[day] = 'CLOSED';
     } else {
-      schedule[day] = `Open from ${open}am until ${close - 12}pm`;
+      legibleSchedule[day] = `Open from ${open}am until ${close - 12}pm`;
     }
-    /* (day === 'Monday') ? (schedule[day] = 'CLOSED') : (schedule[day] = `Open from ${open}am until ${close - 12}pm`); */
   });
 
   if (!dayName) {
-    return schedule;
-  } else {
-    return { [dayName] : schedule[dayName] };
+    return legibleSchedule;
   }
+  return { [dayName]: legibleSchedule[dayName] };
 }
-console.log(schedule());
-console.log(schedule('Monday'));
-console.log(schedule('Tuesday'));
+// console.log(schedule());
+// console.log(schedule('Monday'));
+// console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
