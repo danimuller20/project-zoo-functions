@@ -154,25 +154,24 @@ function idEmployee(idOrName) {
   return worker
 }
 
-// function idAnimal(id) {
-  
-// }
+function idAnimal(id) {
+  const caredAnimals = id.map(iteratedId => {
+    return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
+  })
+  return caredAnimals;
+}
 function employeeCoverage(idOrName) {
   if(!idOrName) return employeesAndAnimals();
 
   const worker = idEmployee(idOrName);
   const workerInfo = `${worker.firstName} ${worker.lastName}`;
   
-  const caredAnimals = worker.responsibleFor.map(iteratedId => {
-    return animals.find(iteratedAnimal => iteratedAnimal.id === iteratedId).name;
-  })
-
+  const caredAnimals = idAnimal(worker.responsibleFor)
+  console.log(caredAnimals)
   const result = {};
   result[workerInfo] = caredAnimals;
   return result;
 }
-
-console.log(employeeCoverage('Ola'))
 
 module.exports = {
   entryCalculator,
