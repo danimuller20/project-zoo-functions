@@ -80,14 +80,14 @@ function animalMap(options) {
   const zooLocations = Object.keys(zooMap);
   if (options === undefined) {
     return zooMap;
-  };
+  }
   if ((options.includeNames) && (options.sex === undefined)) {
     zooLocations.forEach((key) => {
       zooMap[key].forEach((animal, index) => {
         zooMap[key][index] = {
           [animal]: animals.find(({ name }) =>
-          name === animal).residents.map(({ name }) => name)
-        }
+          name === animal).residents.map(({ name }) => name),
+        };
       });
     });
   }
@@ -97,15 +97,15 @@ function animalMap(options) {
         zooMap[key][index] = {
           [animal]: animals.find(({ name }) =>
           name === animal).residents.filter(({ sex }) =>
-          sex === options.sex).map(({ name }) => name)
+          sex === options.sex).map(({ name }) => name),
         };
-      })
+      });
     });
   }
   if ((options.includeNames) && (options.sorted)) {
     zooLocations.forEach((key) =>
       zooMap[key].forEach((animal) => {
-        Object.keys(animal).forEach(key2 => { animal[key2].sort();});
+        Object.keys(animal).forEach(key2 => { animal[key2].sort(); });
       })
     );
   }
