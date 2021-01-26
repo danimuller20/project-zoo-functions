@@ -10,6 +10,13 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const {animals, employees, hours, prices} = data;
+
+// const teste2 = [5, 6, 7, 8];
+// const [cinco, seis, sete, oito] = teste2;
+// let teste3 = {...hours, ...prices}
+
+// console.log(teste3);
 
 function animalsByIds(...ids) {
   const foundAnimals = ids.map((actualId) => {
@@ -35,7 +42,7 @@ function employeeByName(employeeName) {
 
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return {...personalInfo, ...associatedWith};
 }
 
 function isManager(id) {
