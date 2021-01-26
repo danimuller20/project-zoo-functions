@@ -83,13 +83,12 @@ function animalNames(options) {
   const locations = Object.keys(speciesLocations);
   let animalsLocation;
   if (!options || !options.includeNames) {
-    animalsLocation = locations.reduce((acc, curr) => Object.
-      assign(acc, { [curr]: speciesLocations[curr] }), {});
-  }
-  else {
-    animalsLocation = locations.reduce((acc, curr) => Object.
-    assign(acc, { [curr]: speciesLocations[curr].
-      map(animal => animalsBySpecies(animal, options)) }), {});
+    animalsLocation = locations.reduce((acc, curr) => Object
+      .assign(acc, { [curr]: speciesLocations[curr] }), {});
+  } else {
+    animalsLocation = locations.reduce((acc, curr) => Object
+      .assign(acc, { [curr]: speciesLocations[curr]
+        .map(animal => animalsBySpecies(animal, options)) }), {});
   }
   return animalsLocation;
 }
