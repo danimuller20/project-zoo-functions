@@ -103,10 +103,8 @@ function schedule(dayName) {
   const newObj = {};
   Object.keys(hours).forEach((day) => {
     newObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
-    if (hours[day].open === 0) {
-      newObj[day] = 'CLOSED';
-    }
-  });
+    if (!hours[day].open) newObj[day] = 'CLOSED'});
+
   return newObj;
 }
 
@@ -127,9 +125,29 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+  if (idOrName) {
+    const responsibilitiesList = employees.find(({ id, firstName, lastName }) =>
+      (id === idOrName || firstName === idOrName || lastName === idOrName));
 
+    const { firstName, lastName, responsibleFor } = responsibilitiesList;
+
+    const newArray = [];
+    responsibleFor.forEach(item => animals.find(({ id, name }) => {
+        if (id === item) newArray.push(name);
+    }));
+
+    const newObj = {
+      [`${firstName} ${lastName}`]: newArray,
+    }
+
+    return newObj;
+  }
+
+
+
+}
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
