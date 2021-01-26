@@ -168,13 +168,26 @@ function animalMap(options) {
   return (options.sorted ? sortNames(createObjectWithNames(options.sex))
   : createObjectWithNames(options.sex));
 }
-
 function schedule(dayName) {
   // seu código aqui
 }
-
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const findFirstSpecies = (employeeId) => {
+    const findEmployee = employees
+    .find(employee => employee.id === employeeId);
+    return findEmployee.responsibleFor[0];
+  };
+  const findOldest = (animalId) => {
+    const findAnimal = animals
+    .find(animal => animal.id === animalId);
+    return findAnimal.residents.reduce((oldest, current) => {
+      if (current.age > oldest.age) { oldest = current; }
+      return oldest;
+    });
+  };
+
+  return Object.values(findOldest(findFirstSpecies(id)));
 }
 
 function increasePrices(percentage) {
