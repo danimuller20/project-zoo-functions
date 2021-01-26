@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -73,7 +73,7 @@ function animalMap(options) {
 function schedule(dayName) {
   const cronograma = {};
   Object.keys(data.hours).forEach((dias) => {
-    cronograma[dias] = `Open from ${data.hours[dias].open}am until ${data.hours[dias].close}pm`;
+    cronograma[dias] = `Open from ${data.hours[dias].open}am until ${data.hours[dias].close-12}pm`;
   });
   cronograma.Monday = 'CLOSED';
   if (!dayName) {
@@ -84,13 +84,13 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const { residents } = animals.find(elemento => elemento.id === id);
+
   let animalSenio = [];
-  const idAnimal = data.employees.find(elemento => elemento.responsibleFor[0] === id);
-  animals.find(elementoId => elementoId.id === idAnimal.responsibleFor[0]).residents
-  .forEach(addAge => animalSenio.push(addAge.age));
+  const idEmployee = employees.find(elemento => elemento.id === id);
+  const animalId = animals.find(elementoId => elementoId.id === idEmployee.responsibleFor[0]);
+  animalId.residents.forEach(addAge => animalSenio.push(addAge.age));
   animalSenio = Math.max(...animalSenio);
-  animalSenio = residents.find(senio => senio.age === animalSenio);
+  animalSenio = animalId.residents.find(senio => senio.age === animalSenio);
   return Object.values(animalSenio);
 }
 
