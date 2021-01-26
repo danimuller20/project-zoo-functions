@@ -52,7 +52,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 function animalCount(species) {
   // seu código aqui
   if (!species) {
-    const quantAnimal = {};
+    let quantAnimal = {};
     animals.forEach(animal => quantAnimal[animal.name] = animal.residents.length);
     return quantAnimal;
   }
