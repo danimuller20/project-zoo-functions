@@ -82,17 +82,46 @@ function entryCalculator(entrants) {
     (entrants[people] * prices[people]), 0);
 }
 
-function animalMap(options) {
-  /* if (!options) {
-    const newObj = {};
-    animals.forEach(animal => (newObj[animal.location] = animals.filter(animalArr =>
-      animalArr.location === animal.location)));
-    return newObj;
-  } */
+function animalLocation() {
+  const newObj = {};
+  animals.forEach((animal) => {
+    if (!newObj[animal.location]) {
+      newObj[animal.location] = [];
+      newObj[animal.location].push(animal.name);
+    } else {
+      newObj[animal.location].push(animal.name);
+    }
+  });
+  return newObj
 }
-// console.log(animalMap())
+// console.log(animalLocation())
 
-function daysOpen() {
+function includeAnimalNames() {
+  const animalLoc = animalLocation();
+
+  const animalNamesObj = {};
+  animals.forEach(animal => {
+    animalNamesObj[animal.name] = Object.values(animal.residents).map(resident => {
+      return (resident.name);
+    });
+  });
+
+  /* const finalObj = {};
+  Object.entries(animalLoc).forEach(value => {
+    finalObj[value[0]] = (Object.keys(animalNamesObj))
+  });
+  return finalObj; */
+}
+// console.log(includeAnimalNames())
+
+function animalMap(options) {
+  if (!options) return animalLocation();
+  if (options = { includeNames }) return includeAnimalNames();
+  if (options = { sorted }) return includeAnimalNames();
+}
+// console.log(animalMap({ includeNames: true }))
+
+/* function daysOpen() {
   // baseado na resolução do Daniel Frasano
   const newObj = {};
   Object.entries(hours).forEach((obj) => {
@@ -103,10 +132,27 @@ function daysOpen() {
     }
   });
   return newObj;
-}
+} */
 
 function schedule(dayName) {
-  if (!dayName) return daysOpen();
+  // baseado na resolução do Gabriel Oliva
+  const daysOfWeek = Object.keys(hours);
+  const newObj = {};
+
+  daysOfWeek.forEach(day => {
+    const { open, close } = hours[day];
+    if(day === 'Monday') {
+      newObj[day] = 'CLOSED'
+    }
+    else {
+      newObj[day] = `Open from ${open}am until ${close - 12}pm`;
+    }
+  });
+  if(!dayName) return newObj;
+
+  return {[dayName]: newObj[dayName]};
+  
+  /* if (!dayName) return daysOpen();
 
   const daysObj = daysOpen();
   const objAnsw = {};
@@ -115,7 +161,7 @@ function schedule(dayName) {
       objAnsw[value[0]] = value[1];
     }
   });
-  return objAnsw;
+  return objAnsw; */
 }
 
 function olderAnimal(specie) {
@@ -152,7 +198,6 @@ function employeeCoverage(idOrName) {
     return employees
   } */
 }
-console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
