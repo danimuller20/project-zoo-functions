@@ -43,8 +43,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species = '') {
   if (species !== '') {
-    const foundAnimal = animals.find(animalIndex => animalIndex.name === `${species}`);
-    return Object.keys(foundAnimal.residents).length;
+    return Object.keys(animals.find(animalValue => animalValue.name === `${species}`).residents).length;
   }
   const allAnimals = {};
   animals.forEach((animalIndex) => {
@@ -54,7 +53,23 @@ function animalCount(species = '') {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (typeof entrants !== 'object' || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  let sum = 0;
+  const entries = Object.entries(entrants);
+  entries.forEach((entryValue) => {
+    if (entryValue[0] === 'Child') {
+      sum += entryValue[1] * 20.99;
+    }
+    if (entryValue[0] === 'Adult') {
+      sum += entryValue[1] * 49.99;
+    }
+    if (entryValue[0] === 'Senior') {
+      sum += entryValue[1] * 24.99;
+    }
+  });
+  return parseFloat(sum.toFixed(2));
 }
 
 function animalMap(options) {
