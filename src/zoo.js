@@ -108,15 +108,7 @@ const test = animals.reduce(
   }, {});
 
 // Com a opção includeNames: true especificada, retorna nomes de animais
-const firstParam = animals.reduce(
-  (list, { location }) => {
-    list[location] = animals.filter(animal => location === animal.location)
-      .reduce((array, { name, residents }) => {
-        array.push({ [name]: residents.map(value => value.name) });
-        return array
-      }, []);
-    return list;
-  }, {});
+
 
 // Com a opção sorted: true especificada, retorna nomes de animais ordenados
 const secondParam = () => {
@@ -137,7 +129,10 @@ function tresParam(sexo) {
     (list, { location }) => {
       list[location] = animals.filter(animal => location === animal.location)
         .reduce((array, { name, residents }) => {
-          array.push({ [name]: residents.filter(valor => valor.sex === sexo).map(value => value.name) });
+          array.push({
+            [name]: residents.filter(valor => valor.sex === sexo)
+              .map(value => value.name)
+          });
           return array
         }, []);
       return list;
@@ -150,7 +145,10 @@ function fourParam(sexo) {
     (list, { location }) => {
       list[location] = animals.filter(animal => location === animal.location)
         .reduce((array, { name, residents }) => {
-          array.push({ [name]: residents.filter(valor => valor.sex === sexo).map(value => value.name).sort() });
+          array.push({
+            [name]: residents.filter(valor => valor.sex === sexo)
+              .map(value => value.name).sort()
+          });
           return array
         }, []);
       return list;
@@ -176,9 +174,15 @@ function animalMap(options) {
     return secondParam();
   }
 
-  if (options.includeNames) {
-    return firstParam;
-  }
+  return animals.reduce(
+    (list, { location }) => {
+      list[location] = animals.filter(animal => location === animal.location)
+        .reduce((array, { name, residents }) => {
+          array.push({ [name]: residents.map(value => value.name) });
+          return array
+        }, []);
+      return list;
+    }, {});
 }
 
 const showDay = (day) => {
