@@ -92,16 +92,16 @@ function animalLocation() {
       newObj[animal.location].push(animal.name);
     }
   });
-  return newObj
+  return newObj;
 }
 // console.log(animalLocation())
 
 function includeAnimalNames() {
-  const animalLoc = animalLocation();
+  // const animalLoc = animalLocation();
 
   const animalNamesObj = {};
-  animals.forEach(animal => {
-    animalNamesObj[animal.name] = Object.values(animal.residents).map(resident => {
+  animals.forEach((animal) => {
+    animalNamesObj[animal.name] = Object.values(animal.residents).map((resident) => {
       return (resident.name);
     });
   });
@@ -115,9 +115,9 @@ function includeAnimalNames() {
 // console.log(includeAnimalNames())
 
 function animalMap(options) {
-  if (!options) return animalLocation();
+  /* if (!options) return animalLocation();
   if (options = { includeNames }) return includeAnimalNames();
-  if (options = { sorted }) return includeAnimalNames();
+  if (options = { sorted }) return includeAnimalNames(); */
 }
 // console.log(animalMap({ includeNames: true }))
 
@@ -139,19 +139,17 @@ function schedule(dayName) {
   const daysOfWeek = Object.keys(hours);
   const newObj = {};
 
-  daysOfWeek.forEach(day => {
+  daysOfWeek.forEach((day) => {
     const { open, close } = hours[day];
-    if(day === 'Monday') {
-      newObj[day] = 'CLOSED'
-    }
-    else {
+    if (day === 'Monday') {
+      newObj[day] = 'CLOSED';
+    } else {
       newObj[day] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
-  if(!dayName) return newObj;
+  if (!dayName) return newObj;
 
-  return {[dayName]: newObj[dayName]};
-  
+  return { [dayName]: newObj[dayName] };
   /* if (!dayName) return daysOpen();
 
   const daysObj = daysOpen();
