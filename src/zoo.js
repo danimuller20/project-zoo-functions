@@ -100,7 +100,13 @@ function entryCalculator(entrants) {
   return finalPrice;
 }
 
-
+function searchInAnimals() {
+Object.keys(zooMap).forEach((zone) => {
+  animals.forEach((animal) => {
+    if (animal.location === zone) {return animal}
+  });
+  });
+}
 function animalMap(options) {
   const zooMap = {
     NE: [],
@@ -108,25 +114,41 @@ function animalMap(options) {
     SE: [],
     SW: [],
   };
-  Object.keys(zooMap).forEach((zone) => {
-    animals.forEach((animal) => {
-      if (animal.location === zone) { zooMap[zone].push(animal.name); }
+  //primeiro requisito
+  if (options === undefined || options.includeNames !== true) {
+    Object.keys(zooMap).forEach((zone) => {
+      animals.forEach((animal) => {
+        if (animal.location === zone) { zooMap[zone].push(animal.name); }
+      });
     });
-  });
-  if (options !== undefined) {
-    Object.values(zooMap).forEach((animalArray) => {
-      animalArray.forEach((animal) => {
-        const newKey = animal;
-        animal = {};
-        const foundAnimal = animals.find(eachAnimal => eachAnimal.name === newKey);
-        const animalsNames = [];
-        foundAnimal.residents.forEach(resident => animalsNames.push(resident.name));
+    return zooMap;
+  }
+  
+
+  //segundo terceiro  quarto e quinto requisito
+  if (options.includeNames) {
+    Object.keys(zooMap).forEach((zone) => {
+      animals.forEach((animal) => {
+        if (animal.location === zone) { 
+          const keyAnimal = animal.name;
+          const valueAnimalNames = [];
+          if (options.sex !== undefined){
+            animal.residents.forEach(resident => {
+              if (resident.sex === options.sex) {valueAnimalNames.push(resident.name)}});
+          } else {
+            animal.residents.forEach(resident => valueAnimalNames.push(resident.name));
+          }
+          const finalAnimalObject = {};
+          if (options.sorted) { valueAnimalNames.sort() }
+          finalAnimalObject[keyAnimal] = valueAnimalNames;
+          zooMap[zone].push(finalAnimalObject); 
+        }
       });
     });
   }
   return zooMap;
 }
-// const options = { includeNames: true };
+// const options = { includeNames: true , sorted: false, sex: 'male'};
 // console.log(animalMap(options));
 
 function schedule(dayName) {
