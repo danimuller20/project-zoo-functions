@@ -96,19 +96,19 @@ function animalCount(species) {
   let countSpecies = 0;
   if (!species) {
     animals.forEach((animal) => {
-      obj [animal.name] = animal.residents.length;
+      obj[animal.name] = animal.residents.length;
     });
     return obj;
-  } else {
-    animals.find((animal) => {
-     if (animal.name === species) {
-      countSpecies = animal.residents.length;
-     }
-   });
   }
+  animals.find((animal) => {
+    if (animal.name === species) {
+      countSpecies = animal.residents.length;
+      return countSpecies;
+    }
+  });
   return countSpecies;
 }
-// console.log(animalCount());
+console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
   // seu código aqui
