@@ -92,13 +92,35 @@ function entryCalculator(entrants = 0) {
   return totalPrice;
 }
 
-function animalMap(options) {
-  // seu código aqui
+//  Desafio animalMap
+function animalMap(options = {}) {
+  //  Codigo aqui
+}
+
+//  Desafio schedule
+
+function createDayKeyAndHourValue(sourceObject, newObject) {
+  sourceObject.forEach((dayData) => {
+    const dayName = dayData[0];
+    const openHour = dayData[1].open > 12 ? `${dayData[1].open - 12}pm` : `${dayData[1].open}am`;
+    const closedHour = dayData[1].close > 12 ? `${dayData[1].close - 12}pm` : `${dayData[1].close}am`;
+    newObject[dayName] = dayName === 'Monday' ? 'CLOSED' : `Open from ${openHour} until ${closedHour}`;
+  });
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const openingHoursDataSource = Object.entries(data.hours);
+  const allOpeningHours = {};
+  createDayKeyAndHourValue(openingHoursDataSource, allOpeningHours);
+  const getSpecificDay = (day) => {
+    const dayInfo = {};
+    dayInfo[day] = allOpeningHours[day];
+    return dayInfo;
+  };
+  return dayName ? getSpecificDay(dayName) : allOpeningHours;
 }
+
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
