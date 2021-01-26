@@ -49,9 +49,7 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   const personalInfo = { id, firstName, lastName };
   const associatedWith = { managers, responsibleFor };
-  if (!managers) {
-    associatedWith.managers = [];
-  }
+  !managers ? associatedWith.managers = [] : associatedWith.managers = associatedWith.managers;
   if (!responsibleFor) {
     associatedWith.responsibleFor = [];
   }
@@ -74,10 +72,10 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  entrants.Child === undefined ? entrants.Child = 0 : entrants.Child;
-  entrants.Adult === undefined ? entrants.Adult = 0 : entrants.Adult;
-  entrants.Senior === undefined ? entrants.Senior = 0 : entrants.Senior;
-  const totalEntryPrice = (entrants.Child * prices.Child) + 
+  entrants.Child === undefined ? entrants.Child = 0 : entrants.Child = entrants.Child;
+  entrants.Adult === undefined ? entrants.Adult = 0 : entrants.Adult = entrants.Adult;
+  entrants.Senior === undefined ? entrants.Senior = 0 : entrants.Senior = entrants.Senior;
+  const totalEntryPrice = (entrants.Child * prices.Child) +
   (entrants.Adult * prices.Adult) + (entrants.Senior * prices.Senior);
   return totalEntryPrice;
 }
