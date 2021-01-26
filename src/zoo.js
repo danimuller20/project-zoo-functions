@@ -64,11 +64,12 @@ function animalMap(options) {
   // seu código aqui - ultimo
 }
 
+
 function schedule(dayName) {
   const objDay = {};
   Object.keys(hours).forEach((day) => {
     if (day !== 'Monday') {
-      objDay[day] = `Open from ${hours[day]['open']}am until ${(hours[day]['close']) -12}pm`;
+      objDay[day] = `Open from ${hours[day].open}am until ${(hours[day].close) -12}pm`;
     } else {
       objDay[day] = 'CLOSED';
     }
