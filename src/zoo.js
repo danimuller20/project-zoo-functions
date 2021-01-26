@@ -17,8 +17,6 @@ const { prices } = data;
 const { hours } = data;
 
 function animalsByIds(...ids) {
-  // seu código aqui
-
   const foundAnimals = ids.map((idOfIds) => {
     const findById = animals.find(({ id }) => id === idOfIds);
 
@@ -29,8 +27,6 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-
   const isEveryResidentOlder = data.animals
     .find(animalOfAnimals => animalOfAnimals.name === animal) // Find the animal
     .residents //  Vccess the residents
@@ -47,7 +43,6 @@ function findEmployeeByName(employeeName) {
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
   if (typeof employeeName === 'undefined') {
     return {};
   }
@@ -56,8 +51,6 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
-  // seu código aqui
-
   return {
     id,
     firstName,
@@ -68,8 +61,6 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  // seu código aqui
-
   const listOfManagers = employees
     .map(({ managers }) => managers)
     .some(managerArray => managerArray.some(manager => manager === id));
@@ -84,7 +75,6 @@ function addEmployee(
   managers = [],
   responsibleFor = [],
 ) {
-  // seu código aqui
 
   const newEmployee = {
     id,
@@ -108,8 +98,6 @@ function showSpeciesNumberOfResidents() {
 }
 
 function animalCount(species) {
-  // seu código aqui
-
   if (species === undefined) {
     return showSpeciesNumberOfResidents();
   }
@@ -118,8 +106,6 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
-
   if (typeof entrants === 'undefined') {
     return 0;
   }
@@ -148,8 +134,6 @@ function scheduleList() {
 }
 
 function schedule(dayName) {
-  // seu código aqui
-
   if (typeof dayName === 'undefined') {
     return scheduleList();
   }
@@ -181,8 +165,6 @@ function returnAnimalObject(animalId) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
-
   const animalId = returnAnimalId(id);
   const animalInfoObject = returnAnimalObject(animalId);
 
@@ -190,8 +172,13 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(prices).forEach((typeOfCustomer) => {
+    prices[typeOfCustomer] = Math.round((prices[typeOfCustomer] * 100) * (100 + percentage) / 100) / 100
+  })
 }
+
+increasePrices(50)
+console.log(prices)
 
 function employeeCoverage(idOrName) {
   // seu código aqui
