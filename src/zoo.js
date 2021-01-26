@@ -93,8 +93,25 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const getEmployeeId = employees.find((value) => value.id === id);
+  animalsByIds(getEmployeeId.responsibleFor[0])
+  .find((value) => {
+    let residentSpecies = value.residents
+  });
+  const olderSpecie = residentSpecies.reduce((previousValue, currentValue) => {
+  if (currentValue.age >= previousValue.age) {     
+      return currentValue;
+      }
+      return previousValue;
+  });
+  return olderSpecie
 }
+
+
+// it('Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie', () => {
+//   let actual = zoo.oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992');
+//   let expected = ['Vicky', 'female', 12];
+// oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1')
 
 function increasePrices(percentage) {
   // seu código aqui
