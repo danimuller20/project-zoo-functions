@@ -54,7 +54,7 @@ function entryCalculator(entrants) {
 }
 
 function getLocations() {
-  let locations = animals.reduce((acc, curr) => { 
+  const locations = animals.reduce((acc, curr) => {
     if (curr.location in acc) acc[curr.location].push(curr.name);
     else acc[curr.location] = [curr.name];
     return acc;
@@ -62,9 +62,9 @@ function getLocations() {
   return locations;
 }
 
-function animalsName(animals, options) {
-  if (options.sex) animals = animals.filter(animal => animal.sex === options.sex);
-  const beast = animals.map(animal => animal.name);
+function animalsName(beasts, options) {
+  if (options.sex) beasts = beasts.filter(animal => animal.sex === options.sex);
+  const beast = beasts.map(animal => animal.name);
   if (options.sorted) beast.sort();
   return beast;
 }
@@ -82,11 +82,15 @@ function animalNames(options) {
   const speciesLocations = getLocations();
   const locations = Object.keys(speciesLocations);
   let animalsLocation;
-  if (!options || !options.includeNames) animalsLocation = locations.reduce((acc, curr) =>
-    Object.assign(acc, {[curr]: speciesLocations[curr]}), {});
-  else animalsLocation = locations.reduce((acc, curr) =>
-    Object.assign(acc, {[curr]: speciesLocations[curr].map(animal =>
-      animalsBySpecies(animal, options))}), {});
+  if (!options || !options.includeNames) {
+    animalsLocation = locations.reduce((acc, curr) => Object.
+      assign(acc, { [curr]: speciesLocations[curr] }), {});
+  }
+  else {
+    animalsLocation = locations.reduce((acc, curr) => Object.
+    assign(acc, { [curr]: speciesLocations[curr].
+      map(animal => animalsBySpecies(animal, options)) }), {});
+  }
   return animalsLocation;
 }
 
