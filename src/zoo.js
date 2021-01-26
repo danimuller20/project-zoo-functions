@@ -13,16 +13,14 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  const newArray = []
+  const newArray = [];
   if (ids.length === 0) {
     return [];
-  }else if (ids.length === 1) {
-    newArray.push(animals.find(animal => animal.id === ids[0]))
+  } else if (ids.length === 1) {
+    newArray.push(animals.find(animal => animal.id === ids[0]));
     return newArray;
   }
-  ids.forEach(id => animals.forEach(animal => {
-    animal.id === id ? newArray.push(animal) : null;
-  }));
+  ids.forEach(id => animals.forEach(animal => animal.id === id ? newArray.push(animal) : null));
   return newArray;
 }
 
