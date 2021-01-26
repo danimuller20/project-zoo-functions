@@ -203,15 +203,35 @@ function employeeCoverageList() {
 
 
 function employeeCoverage(idOrName) {
-  // if (typeof (idOrName) === 'undefined') {
-  //   return employeeCoverageList()
-  // }
+  if (typeof (idOrName) === 'undefined') {
+    return employeeCoverageList()
+  }
 
-  const listOfLists = []
-  
+  const employee = employees.find((employeeElement) => {
+    if (
+      employeeElement.id === idOrName ||
+      employeeElement.firstName === idOrName ||
+      employeeElement.lastName === idOrName
+    ) {
+
+      return employeeElement
+    }
+  });
+
+  const animalsIds = employee.responsibleFor
+
+  const animalsNames = animalsIds.map((animalId) => {
+    const found = animals.find((animal) => animal.id === animalId)
+
+    return found.name
+  })
+
+  return {
+    [`${employee.firstName} ${employee.lastName}`]: animalsNames
+  }
 }
 
-employeeCoverage()
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
