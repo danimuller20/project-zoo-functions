@@ -102,8 +102,8 @@ function animalMap(options = {}) {
 function createDayKeyAndHourValue(sourceObject, newObject) {
   sourceObject.forEach((dayData) => {
     const dayName = dayData[0];
-    const openHour = dayData[1].open > 12 ? `${dayData[1].open - 12}pm` : `${dayData[1].open}am`;
-    const closedHour = dayData[1].close > 12 ? `${dayData[1].close - 12}pm` : `${dayData[1].close}am`;
+    const openHour = `${dayData[1].open}am`;
+    const closedHour = `${dayData[1].close - 12}pm`;
     newObject[dayName] = dayName === 'Monday' ? 'CLOSED' : `Open from ${openHour} until ${closedHour}`;
   });
 }
