@@ -139,12 +139,12 @@ function animalMap(options) {
   return categorizedAnimals;
 }
 
-function formatDay(dayHours, dayName) {
-  const formatHour = hour =>  hour < 12 ? `${hour}am`: `${hour - 12}pm`;
+function formatDay(dayHours) {
+  const format12Hour = hour => hour < 12 ? `${hour}am` : `${hour - 12}pm`;
   if (dayHours.open === 0 && dayHours.close === 0) {
     return 'CLOSED';
   }
-  return `Open from ${formatHour(dayHours.open)} until ${formatHour(dayHours.close)}`
+  return `Open from ${format12Hour(dayHours.open)} until ${format12Hour(dayHours.close)}`;
 }
 
 function schedule(dayName) {
@@ -152,11 +152,11 @@ function schedule(dayName) {
   const scheduleHours = {};
   if (dayName) {
     const dayHours = hours[dayName];
-    scheduleHours[dayName] = formatDay(dayHours, dayName);
+    scheduleHours[dayName] = formatDay(dayHours);
     return scheduleHours;
   }
-  Object.keys(hours).forEach((dayName) => {
-    scheduleHours[dayName] = formatDay(hours[dayName], dayName);
+  Object.keys(hours).forEach((day) => {
+    scheduleHours[day] = formatDay(hours[day]);
   });
   return scheduleHours;
 }
