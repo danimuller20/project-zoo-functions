@@ -93,7 +93,6 @@ function employeeCoverage(idOrName) {
     return employeesObject;
   }, {});
 };
-}
 
 module.exports = {
   entryCalculator,
