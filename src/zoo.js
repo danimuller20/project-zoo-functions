@@ -31,9 +31,7 @@ function employeeByName(employeeName) {
   return employeeFound;
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  const { id, firstName, lastName } = personalInfo;
-  const { managers, responsibleFor } = associatedWith;
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
   return { id, firstName, lastName, managers, responsibleFor };
 }
 
@@ -64,13 +62,55 @@ function entryCalculator(entrants) {
     (prev + (prices[currentValue[0]] * currentValue[1])), 0);
 }
 
-function animalMap(options) {
+function populateAnimalNames(array) {
+  animals.forEach(animal =>
+    array[animal.location].push(({ [animal.name]:
+      animal.residents.map(resident => resident.name) })));
+  return array;
+}
+
+function populateSortedAnimalNames(array) {
+  animals.forEach(animal =>
+    array[animal.location].push(({ [animal.name]:
+      animal.residents.map(resident => resident.name).sort() })));
+  return array;
+}
+
+function populateAnimalFilterNotSorted(array, sex) {
+  animals.forEach(animal =>
+    array[animal.location].push(({ [animal.name]:
+      animal.residents.filter(element => element.sex === sex).map(resident => resident.name) })));
+  return array;
+}
+
+
+function populateSortedAnimalFilterSorted(array, sex) {
+  animals.forEach(animal =>
+    array[animal.location].push(({ [animal.name]:
+      animal.residents.filter(element => element.sex === sex)
+      .map(resident => resident.name).sort() })));
+  return array;
+}
+
+function animalMap(options = { includeNames: false, sorted: false, sex: false }) {
   const mapOfLocations = { NE: [], NW: [], SE: [], SW: [] };
-  if (!options) {
+  let mapOfAnimals;
+  if (!options.includeNames && !options.sex && !options.sorted) {
+    animals.forEach(element => mapOfLocations[element.location].push(element.name));
+    mapOfAnimals = mapOfLocations;
+  } else if (options.includeNames && !options.sorted && !options.sex) {
+    mapOfAnimals = populateAnimalNames(mapOfLocations);
+  } else if (options.includeNames && options.sorted && !options.sex) {
+    mapOfAnimals = populateSortedAnimalNames(mapOfLocations);
+  } else if (options.includeNames && options.sex && !options.sorted) { // not sort
+    mapOfAnimals = populateAnimalFilterNotSorted(mapOfLocations, options.sex);
+  } else if (options.includeNames && options.sex && options.sorted) { // sort
+    mapOfAnimals = populateSortedAnimalFilterSorted(mapOfLocations, options.sex);
+  } else if (!options.includeNames && (options.sex || options.sorted)) {
     animals.forEach(element => mapOfLocations[element.location].push(element.name));
     return mapOfLocations;
   }
-  return {};
+  return mapOfAnimals;
 }
 
 function schedule(dayName) {
@@ -109,12 +149,10 @@ function populateAndCleanEmployeesObject(array) {
 }
 
 function employeeCoverage(idOrName) {
-  if (!idOrName) {
-    return populateAndCleanEmployeesObject(employees);
-  }
-  const filteredEmployee = employees.filter((employee => employee.id === idOrName ||
-    employee.firstName === idOrName || employee.lastName === idOrName));
-  return populateAndCleanEmployeesObject(filteredEmployee);
+  const filteredEmployee = employees.filter((({ id, firstName, lastName }) =>
+  id === idOrName || firstName === idOrName || lastName === idOrName));
+  return idOrName ? populateAndCleanEmployeesObject(filteredEmployee) :
+    populateAndCleanEmployeesObject(employees);
 }
 
 module.exports = {
