@@ -1,16 +1,5 @@
-/*
-eslint no-unused-vars: [
-  "error"
-  {
-    "args": "none",
-    "vars": "local",
-    "varsIgnorePattern": "data"
-  }
-]
-*/
-const { employees, animals } = require('./data');
-const { data } = require('./data');
 
+const { employees, animals } = require('./data');
 function animalsByIds(...ids) {
   if (ids === undefined){
     return [];
@@ -27,43 +16,53 @@ function employeeByName(...employeeName) {
   return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
-function createEmployee(personalInfo, associatedWith) {
+function createEmployee() {
+  // personalInfo, associatedWith
   // seu código aqui
 }
 
-function isManager(id) {
+function isManager() {
+  // id
   // seu código aqui
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee() {
+  // id, firstName, lastName, managers, responsibleFor
   // seu código aqui
 }
 
-function animalCount(species) {
+function animalCount() {
+  // species
   // seu código aqui
 }
 
-function entryCalculator(entrants) {
+function entryCalculator() {
+  // entrants
   // seu código aqui
 }
 
-function animalMap(options) {
+function animalMap() {
+  // options
   // seu código aqui
 }
 
-function schedule(dayName) {
+function schedule() {
+  // dayName
   // seu código aqui
 }
 
-function oldestFromFirstSpecies(id) {
+function oldestFromFirstSpecies() {
+  // id
   // seu código aqui
 }
 
-function increasePrices(percentage) {
+function increasePrices() {
+  // percentage
   // seu código aqui
 }
 
-function employeeCoverage(idOrName) {
+function employeeCoverage() {
+  //idOrName
   // seu código aqui
 }
 
