@@ -13,22 +13,22 @@ const { animals, employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  return animals.filter(animal => ids.find(animalsIds => animal.id === animalsIds));
+  return animals.filter(animal => ids.find(animalId => animal.id === animalId));
 }
 
 function animalsOlderThan(animal, age) {
-  const animalSpecies = animals.find(animalFound => animalFound.name === animal);
+  const animalSpecies = animals.find(currentAnimal => currentAnimal.name === animal);
   return animalSpecies.residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
   return employees
-    .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+    .find(({firstName, lastName}) => firstName === employeeName || lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const newEmployee = ({ ...personalInfo, ...associatedWith });
+  const newEmployee = { ...personalInfo, ...associatedWith };
   return newEmployee;
 }
 
