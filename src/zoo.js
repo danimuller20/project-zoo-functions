@@ -32,15 +32,13 @@ function employeeByName(employeeName) {
   }
   return employees.find(e => e.firstName === employeeName || e.lastName === employeeName);
 }
-employeeByName();
-console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(element => element.managers[0]===id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
