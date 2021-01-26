@@ -16,7 +16,6 @@ function animalsByIds(...args) {
   return animals.filter(element => args.includes(element.id));
 }
 
-
 function animalsOlderThan(animal, age) {
   return animals.every((animalElement) => {
     if (animal === animalElement.name) {
@@ -46,8 +45,14 @@ function isManager(id) {
   return employees.some(element => element.managers[0] === id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  employees.push({
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
+  });
 }
 
 function animalCount(species) {
