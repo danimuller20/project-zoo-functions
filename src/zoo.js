@@ -126,7 +126,7 @@ function entryCalculator(entrants) {
 //     const filteredAnimalsByLocation = animals.filter((animal) => {
 //       return animal.location === location
 //     })
-    
+
 //     return filteredAnimalsByLocation
 //   })
 
@@ -157,7 +157,7 @@ function entryCalculator(entrants) {
 //     ...animalMap.SE,
 //     ...animalMap.SW,
 //   ];
-  
+
 //   const animalsAndTheResidents = everyTypeOfAnimal.map((animal) => {
 //     const currAnimal = animals.find((animalOfAnimals) => {
 //       return animalOfAnimals.name === animal
@@ -173,16 +173,15 @@ function entryCalculator(entrants) {
 
 // includeNames()
 
-// function animalMap(options) {
-//   // seu código aqui
-//   if (typeof (options) === 'undefined') {
-//     return animalMapByLocation()
-//   }
+function animalMap(options) {
+  // if (typeof (options) === 'undefined') {
+  //   return animalMapByLocation()
+  // }
 
-//   if (options.includeNames && options.includeNames === true) {
-//     const toBeReturned = includeNames()
-//   }
-// }
+  // if (options.includeNames && options.includeNames === true) {
+  //   const toBeReturned = includeNames()
+  // }
+}
 
 function scheduleList() {
   const scheduleObject = {};
