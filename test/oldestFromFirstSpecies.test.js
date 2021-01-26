@@ -7,7 +7,7 @@ describe('Implemente a função oldestFromFirstSpecies', () => {
     let expected = ['Vicky', 'female', 12];
     assert.deepStrictEqual(actual, expected);
 
-    actual = zoo.oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
+    actual = zoo.oldestFromFirstSpecies('533bebf3-6bbe-41d8-9cdf-46f7d13b62ae');
     expected = ['Margherita', 'female', 10];
     assert.deepStrictEqual(actual, expected);
   });

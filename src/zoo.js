@@ -79,20 +79,20 @@ function schedule(dayName) {
   if (!dayName) {
     return cronograma;
   }
-  const dia = {};
-  dia[dayName] = cronograma[dayName];
-  return dia;
+  if (dayName === 'Monday') { return {Monday: 'CLOSED'}}
+  return cronograma[dayName];
 }
 
 function oldestFromFirstSpecies(id) {
-  let animalSenio = [];
-  animals.find(elemento => elemento.id === id).residents
-  .forEach((elementoAge) => { animalSenio.push(elementoAge.age); });
   const { residents } = animals.find(elemento => elemento.id === id);
+  let animalSenio = [];
+  const idAnimal = data.employees.find(elemento => elemento.responsibleFor[0] === id);
+  animals.find(elementoId => elementoId.id === idAnimal.responsibleFor[0]).residents
+  .forEach((addAge) => animalSenio.push(addAge.age));
   animalSenio = Math.max(...animalSenio);
   animalSenio = residents.find(senio => senio.age === animalSenio);
   return Object.values(animalSenio);
-}
+}console.log(oldestFromFirstSpecies('533bebf3-6bbe-41d8-9cdf-46f7d13b62ae'));
 
 function increasePrices(percentage) {
   // seu código aqui
