@@ -16,7 +16,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find(({ name }) => name === animal).residents.every((reside) => reside.age > age);
+  return animals.find(({ name }) => name === animal).residents.every(reside => reside.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -66,7 +66,7 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const obj = {};
-  Object.keys(hours).forEach((day) => (hours[day].open > 0 ?
+  Object.keys(hours).forEach(day => (hours[day].open > 0 ?
     (obj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`) :
     (obj[day] = 'CLOSED')));
   return !dayName ? obj : { [dayName]: obj[dayName] };
