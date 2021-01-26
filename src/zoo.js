@@ -14,7 +14,7 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // verifica se o array está vazio
-  if (!Array.isArray(ids) || ids.length === 0) {
+  if (!ids) {
     return [];
   }
   return animals.filter(animal => ids.includes(animal.id));
@@ -36,8 +36,9 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+  return employees
+  .filter(associatedWith => associatedWith.managers && associatedWith.responsibleFor).employees.find(personalInfor => personalInfo.id && personalInfo.firstName && personalInfo.lastName);
+};
 
 function isManager(id) {
   // seu código aqui
