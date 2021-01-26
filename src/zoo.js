@@ -64,7 +64,6 @@ function animalMap(options) {
   // seu código aqui - ultimo
 }
 
-
 function schedule(dayName) {
   const objDay = {};
   Object.keys(hours).forEach((day) => {
