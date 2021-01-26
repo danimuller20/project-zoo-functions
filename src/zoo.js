@@ -69,19 +69,10 @@ function entryCalculator(entrants) {
   return entryTotal;
 }
 
-function emptyAnimalMap(myAnimalMap, animal) {
-  if (!myAnimalMap[animal.location]) {
-    myAnimalMap[animal.location] = [animal.name];
-  } else {
-    myAnimalMap[animal.location].push(animal.name);
-  }
-  return myAnimalMap;
-}
-
-function getResidentsBySpecies(species, genre = false) {
-  return species.residents.reduce((namesBySpeacies, animalName) => {
-    if (genre) {
-      if (animalName.sex === genre) {
+function getResidentsBySpecies(species, { sex = false, sorted = false }) {
+  const mySpeciesResidents = species.residents.reduce((namesBySpeacies, animalName) => {
+    if (sex) {
+      if (animalName.sex === sex) {
         namesBySpeacies[species.name].push(animalName.name);
       }
     } else {
@@ -89,35 +80,20 @@ function getResidentsBySpecies(species, genre = false) {
     }
     return namesBySpeacies;
   }, { [species.name]: [] });
-}
-
-function namesAnimalMap(genre) {
-  return animals.reduce((myAnimalMap, animal) => {
-    if (!myAnimalMap[animal.location]) {
-      myAnimalMap[animal.location] = [getResidentsBySpecies(animal, genre)];
-    } else {
-      myAnimalMap[animal.location].push(getResidentsBySpecies(animal, genre));
-    }
-    return myAnimalMap;
-  }, {});
+  if (sorted) mySpeciesResidents[species.name].sort();
+  return mySpeciesResidents;
 }
 
 function animalMap(options) {
-  if (!options || !options.includeNames) {
-    return animals.reduce(emptyAnimalMap, {});
-  }
-  let newAnimalMap = {};
-  if (options.includeNames === true) {
-    newAnimalMap = namesAnimalMap(options.sex);
-  }
-  if (options.sorted === true) {
-    Object.keys(newAnimalMap).forEach((region) => {
-      newAnimalMap[region].forEach((species) => {
-        species[Object.keys(species)[0]].sort();
-      });
-    });
-  }
-  return newAnimalMap;
+  if (!options) options = {};
+  return animals.reduce((myAnimalMap, animal) => {
+    if (!myAnimalMap[animal.location]) {
+      myAnimalMap[animal.location] = [];
+    }
+    options.includeNames ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal , options))
+    : myAnimalMap[animal.location].push(animal.name);
+    return myAnimalMap;
+  }, {});
 }
 
 function getSchedule(day) {
@@ -171,8 +147,10 @@ function employeeCoverage(idOrName) {
   }
 
   const { firstName, lastName, responsibleFor } = employees.find(
-    ({ firstName: employeeFirstName, lastName: employeeLastName, id }) =>
-      employeeFirstName === idOrName || employeeLastName === idOrName || id === idOrName,
+    employee =>
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName ||
+      employee.id === idOrName,
   );
   return {
     [`${firstName} ${lastName}`]: responsibleFor.map(
