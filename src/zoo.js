@@ -87,7 +87,12 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-
+  const employeesQuery = getEmployeesInfo(idOrName);
+  return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
+    employeesObject[`${firstName} ${lastName}`] = getAnimalsNamesByIds(responsibleFor);
+    return employeesObject;
+  }, {});
+};
 }
 
 module.exports = {
