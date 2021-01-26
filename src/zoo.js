@@ -80,8 +80,7 @@ function getResidentsBySpecies(species, { sex = false, sorted = false }) {
     }
     return namesBySpeacies;
   }, { [species.name]: [] });
-  if (sorted) mySpeciesResidents[species.name].sort();
-  return mySpeciesResidents;
+  return sorted ? mySpeciesResidents[species.name].sort() : mySpeciesResidents;
 }
 
 function animalMap(options) {
@@ -90,8 +89,9 @@ function animalMap(options) {
     if (!myAnimalMap[animal.location]) {
       myAnimalMap[animal.location] = [];
     }
-    options.includeNames ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal , options))
-    : myAnimalMap[animal.location].push(animal.name);
+    options.includeNames
+      ? myAnimalMap[animal.location].push(getResidentsBySpecies(animal, options))
+      : myAnimalMap[animal.location].push(animal.name);
     return myAnimalMap;
   }, {});
 }
