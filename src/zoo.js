@@ -158,33 +158,10 @@ function increasePrices(percentage) {
   });
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-  const newObject = {};
-  const Object = {};
-  const employee = employees.map((element) => {
-    return `${element.firstName} ${element.lastName}` 
-  })
-
-  const animalsId = employees.map((element) => {
-    return element.responsibleFor
-  })
-
-  const xablau =  animalsId.map((element) => {
-    return element.map((element) => {
-      return animalFind(element)
-    })
-  })
-  
-  employee.map((element, index) => {
-    return newObject[element] = xablau[index]
-  })
-
-  if (!idOrName) return newObject;
-
-  Object[findName(idOrName)] = newObject[findName(idOrName)];
-
-  return Object;
+function animalFind(id) {
+  return animals.find((element) => {
+    return element.id === id
+  }).name
 }
 
 function findName(id) {
@@ -194,13 +171,34 @@ function findName(id) {
   return `${employeesObject.firstName} ${employeesObject.lastName}`
 }
 
-function animalFind(id) {
-  return animals.find((element) => {
-    return element.id === id
-  }).name
-}
+function employeeCoverage(idOrName) {
+  // seu código aqui
+  const newObject = {};
+  const Object = {};
+  const employee = employees.map(element => {
+    return `${element.firstName} ${element.lastName}`;
+  });
 
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
+  const animalsId = employees.map(element => {
+    return element.responsibleFor;
+  });
+
+  const xablau = animalsId.map(element => {
+    return element.map(element2 => {
+      return animalFind(element2);
+    });
+  });
+  
+  employee.map((element, index) => {
+    return newObject[element] = xablau[index];
+  });
+
+  if (!idOrName) return newObject;
+
+  Object[findName(idOrName)] = newObject[findName(idOrName)];
+
+  return Object;
+}
 
 module.exports = {
   entryCalculator,
