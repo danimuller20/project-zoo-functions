@@ -77,7 +77,7 @@ function entryCalculator(entrants) {
   }
   const { prices } = data;
   const total = Object.entries(entrants).reduce(
-    (prev, [entrantType, quantity]) => prev + prices[entrantType] * quantity,
+    (prev, [entrantType, quantity]) => prev + (prices[entrantType] * quantity),
     0,
   );
   return total;
