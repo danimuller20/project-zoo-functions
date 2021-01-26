@@ -131,9 +131,9 @@ function schedule(dayName) {
     const readableSchedule = {};
     const hours = Object.keys(data.hours);
     hours.forEach((hour) => {
-      readableSchedule[hour] = `Open from ${allDays[hour].open}am until ${(allDays[hour].close) - 12}pm`
+      readableSchedule[hour] = `Open from ${allDays[hour].open}am until ${(allDays[hour].close) - 12}pm`;
       if (allDays[hour].open === 0) {
-        readableSchedule[hour] = `CLOSED`
+        readableSchedule[hour] = `CLOSED`;
       }
     });
     return readableSchedule;
@@ -150,6 +150,8 @@ function schedule(dayName) {
 
 // function oldestFromFirstSpecies(id) {
 //   // seu código aqui
+//   const employee = employees.find(employee => employee.id === id);
+//   const animal
 // }
 
 // function increasePrices(percentage) {
