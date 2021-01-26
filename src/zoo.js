@@ -83,7 +83,7 @@ function animalsPerRegionWithNames(regions, answer, options) {
     helper.forEach((animal) => {
       holder = {};
       const { residents } = data.animals.find(creature => creature.name === animal);
-      if (sex) { 
+      if (sex) {
         species = residents.filter(creature => creature.sex === sex)
           .map(creature => creature.name);
       } else species = residents.map(creature => creature.name);
