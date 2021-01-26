@@ -108,22 +108,18 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const result = {
-    Tuesday: `Open from ${hours.Tuesday.open}am until 6pm`,
-    Wednesday: `Open from ${hours.Wednesday.open}am until 6pm`,
-    Thursday: `Open from ${hours.Thursday.open}am until 8pm`,
-    Friday: `Open from ${hours.Friday.open}am until 8pm`,
-    Saturday: `Open from ${hours.Saturday.open}am until 10pm`,
-    Sunday: `Open from ${hours.Sunday.open}am until 8pm`,
-    Monday: 'CLOSED',
-  };
-  if (dayName === undefined) {
-    return result;
-  }
-  const sameDay = Object.entries(result).find(day => day.includes(dayName));
-  const result2 = {};
-  result2[sameDay[0]] = sameDay[1];
-  return result2;
+  const allDays = Object.keys(hours);
+  const result = {};
+
+  allDays.forEach((day) => {
+    const { open, close } = hours[day];
+    if (day === 'Monday') {
+      result[day] = 'CLOSED';
+    } else {
+      result[day] = `Open from ${open}am until ${close - 12}pm`;
+    }
+  });
+  return (!dayName) ? result : { [dayName]: result[dayName] };
 }
 
 function oldestFromFirstSpecies(identifier) {
