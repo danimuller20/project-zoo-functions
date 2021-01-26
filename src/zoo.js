@@ -83,7 +83,8 @@ function animalCount(species) {
     const quantity = animals.map(animal => animal.residents.length);
     const animalsAndQuantity = {};
     name.forEach(function (animal, index) {
-      return animalsAndQuantity[animal] = quantity[index]
+      animalsAndQuantity[animal] = quantity[index];
+      return animalsAndQuantity;
     });
     return animalsAndQuantity;
   }
@@ -91,11 +92,11 @@ function animalCount(species) {
   return spicieRequested.residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
-  if (entrants === undefined || entrants === {}) { return 0 };
-}
-console.log(entryCalculator({}));
+// function entryCalculator(entrants) {
+//   // seu código aqui
+//   if (entrants === undefined ||) { return 0 };
+// }
+// console.log(entryCalculator({}));
 
 // function animalMap(options) {
 //   // seu código aqui
