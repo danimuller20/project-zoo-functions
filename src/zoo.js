@@ -64,9 +64,12 @@ function createEmployee(personalInfo, associatedWith) {
   return newEmployee;
 }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  // seu código aqui
+  let idManagers = employees.map((employee) => employee.managers);
+  idManagers = idManagers.reduce((previous, current) => previous.concat(current),[]);
+  return idManagers.some((ids) => ids === id);
+}
 
 // function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 //   // seu código aqui
@@ -109,7 +112,7 @@ module.exports = {
   employeeByName,
   // employeeCoverage,
   // addEmployee,
-  // isManager,
+  isManager,
   animalsOlderThan,
   // oldestFromFirstSpecies,
   // increasePrices,
