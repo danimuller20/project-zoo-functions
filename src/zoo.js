@@ -180,8 +180,46 @@ function increasePrices(percentage) {
   return prices;
 }
 
+// Funcoes auxiliares de employeeCoverage
+
+function animalsEmployee(employee) {
+  const animalsArray = []
+  employee.responsibleFor.forEach(animalID => animalsArray.push(animals.find(animal => animal.id === animalID).name));
+  return animalsArray;
+}
+
+function putOnObject(findEmployee, employeeFinal, allEmployees) {
+  employeeFinal[`${findEmployee.firstName} ${findEmployee.lastName}`] = allEmployees[`${findEmployee.firstName} ${findEmployee.lastName}`];
+}
+
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const allEmployees = {};
+
+  Object.values(employees).forEach(employee => allEmployees[`${employee.firstName} ${employee.lastName}`] = animalsEmployee(employee));
+
+  if (idOrName === undefined) {
+    return allEmployees;
+  }
+
+  const employeeFinal = {};
+
+  if (employees.some(employee => employee.id === idOrName)) {
+    const findEmployee = employees.find(employee => employee.id === idOrName);
+    putOnObject(findEmployee, employeeFinal, allEmployees)
+  }
+
+  if (employees.some(employee => employee.firstName === idOrName)) {
+    const findEmployee = employees.find(employee => employee.firstName === idOrName);
+    putOnObject(findEmployee, employeeFinal, allEmployees)
+  }
+
+  if (employees.some(employee => employee.lastName === idOrName)) {
+    const findEmployee = employees.find(employee => employee.lastName === idOrName);
+    putOnObject(findEmployee, employeeFinal, allEmployees)
+  }
+
+  return employeeFinal;
 }
 
 module.exports = {
