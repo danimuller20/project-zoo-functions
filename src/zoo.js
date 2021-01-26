@@ -94,14 +94,14 @@ function animalLocation() {
   });
   return newObj;
 }
-// console.log(animalLocation())
+console.log(animalLocation())
 
 function includeAnimalNames() {
   // const animalLoc = animalLocation();
 
   const animalNamesObj = {};
   animals.forEach((animal) => {
-    animalNamesObj[animal.name] = Object.values(animal.residents).map((resident) => {
+    animalNamesObj[animal.name] = Object.values(animal.residents).map(resident => {
       return (resident.name);
     });
   });
@@ -112,7 +112,7 @@ function includeAnimalNames() {
   });
   return finalObj; */
 }
-// console.log(includeAnimalNames())
+console.log(includeAnimalNames())
 
 function animalMap(options) {
   /* if (!options) return animalLocation();
