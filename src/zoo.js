@@ -190,11 +190,11 @@ function schedule(dayName) {
 // console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(identifier) {
-   const animalId = employees.find(employee => employee.id === identifier).responsibleFor[0];
-   const oldest = animals
-    .find(animal => animal.id === animalId).residents
-    .reduce((oldest, resident) => (oldest.age < resident.age ? resident : oldest));
-    return Object.values(oldest);
+    const animalId = employees.find(employee => employee.id === identifier).responsibleFor[0];
+    const oldestAnimal = animals
+      .find(animal => animal.id === animalId).residents
+      .reduce((oldest, resident) => (oldest.age < resident.age ? resident : oldest));
+    return Object.values(oldestAnimal);
 }
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 // console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
