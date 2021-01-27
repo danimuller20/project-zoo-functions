@@ -152,15 +152,16 @@ function obj() {
 function employeeCoverage(idOrName) {
   let object = {};
   const array = [];
+  let employer;
   if (!idOrName) {
     object = obj();
     return object;
   }
-  const employer = employees.find((value) => {
+  employees.find((value) => {
     if (value.id === idOrName || value.firstName === idOrName || value.lastName === idOrName) {
-      return value;
+      employer = value;
     }
-    return value;
+    return employer;
   });
   employer.responsibleFor.forEach(value => animals.forEach((value2) => {
     if (value2.id === value) {
@@ -172,7 +173,7 @@ function employeeCoverage(idOrName) {
   return object;
 }
 
-console.log(employeeCoverage('Strauss'));
+console.log(employeeCoverage('Stephanie'));
 
 module.exports = {
   entryCalculator,
