@@ -145,13 +145,13 @@ function obj() {
     'Stephanie Strauss': ['giraffes', 'otters'],
     'Sharonda Spry': ['otters', 'frogs'],
     'Ardith Azevado': ['tigers', 'bears'],
-    'Emery Elser': ['elephants', 'bears', 'lions']
-  }
+    'Emery Elser': ['elephants', 'bears', 'lions'],
+  };
 }
 
 function employeeCoverage(idOrName) {
   let object = {};
-  let array = [];
+  const array = [];
   if (!idOrName) {
     object = obj();
     return object;
@@ -160,6 +160,7 @@ function employeeCoverage(idOrName) {
     if (value.id === idOrName || value.firstName === idOrName || value.lastName === idOrName) {
       return value;
     }
+    return value;
   });
   employer.responsibleFor.forEach(value => animals.forEach((value2) => {
     if (value2.id === value) {
