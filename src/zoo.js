@@ -119,7 +119,7 @@ function regionAndSpecies() {
 
 function includeName(sort = false) {
   const result = createObj();
-  data.animals.map((value) => {
+  data.animals.forEach((value) => {
     const objNames = { [`${value.name}`]: [] };
     value.residents.forEach((animal) => {
       objNames[`${value.name}`].push(`${animal.name}`);
@@ -134,10 +134,10 @@ function includeName(sort = false) {
 
 function sexNames(sex, sort = false) {
   const result = createObj();
-  data.animals.map((value) => {
+  data.animals.forEach((value) => {
     const objNames = { [`${value.name}`]: [] };
     value.residents.forEach((animal) => {
-      if ( animal.sex === sex) {
+      if (animal.sex === sex) {
         objNames[`${value.name}`].push(`${animal.name}`);
       }
     });
