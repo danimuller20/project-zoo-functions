@@ -84,7 +84,7 @@ function increasePrices(percentage) {
   // seu código aqui
   Object.keys(data.prices).forEach((category) => {
     data.prices[category] *= (1 + (percentage / 100));
-    data.prices[category] = Math.round(data.prices[category] *100) / 100;
+    data.prices[category] = Math.round(data.prices[category] * 100) / 100;
   });
 }
 
