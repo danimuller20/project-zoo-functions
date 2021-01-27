@@ -35,7 +35,7 @@ function employeeByName(employeeName) {
 console.log(employeeByName('Wishart'));
 
 function createEmployee(personalInfo, associatedWith) {
-  const newEmployeeInfo = { ...personalInfo, ...associatedWith };
+ /* const newEmployeeInfo = { ...personalInfo, ...associatedWith };
   data.employees.push(newEmployeeInfo);
   return employees.find(employee => employee[employee.length-1]);
 }
@@ -52,6 +52,8 @@ console.log(createEmployee({
     '89be95b3-47e4-4c5b-b687-1fabf2afa274',
     'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5'],
 }));
+*/
+}
 function isManager(id) {
   return employees.some(employee => employee.managers.includes(id));
 }
