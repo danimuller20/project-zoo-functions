@@ -40,14 +40,20 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  return data.employees.filter(employee =>
+  employee.managers.includes(id)).length > 0;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
   // seu código aqui
+  if (species) {
+    const foundAnimal = animals.find(animal => animal.name === species);
+    const amount = foundAnimal.residents.length;
+    return amount;
 }
 
 function entryCalculator(entrants) {
