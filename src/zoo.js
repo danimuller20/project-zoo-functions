@@ -94,23 +94,14 @@ function animalLocation() {
   });
   return newObj;
 }
-console.log(animalLocation())
+console.log(animalLocation());
 
 function includeAnimalNames() {
-  // const animalLoc = animalLocation();
+  // const animalNamesObj = {};
 
-  const animalNamesObj = {};
-  animals.forEach((animal) => {
-    animalNamesObj[animal.name] = Object.values(animal.residents).map(resident => {
-      return (resident.name);
-    });
-  });
-
-  /* const finalObj = {};
-  Object.entries(animalLoc).forEach(value => {
-    finalObj[value[0]] = (Object.keys(animalNamesObj))
-  });
-  return finalObj; */
+  const newArr = [];
+  animals.forEach(animal => newArr.push(animal.name));
+  return newArr;
 }
 console.log(includeAnimalNames())
 
@@ -120,19 +111,6 @@ function animalMap(options) {
   if (options = { sorted }) return includeAnimalNames(); */
 }
 // console.log(animalMap({ includeNames: true }))
-
-/* function daysOpen() {
-  // baseado na resolução do Daniel Frasano
-  const newObj = {};
-  Object.entries(hours).forEach((obj) => {
-    if (obj[1].open === 0) {
-      newObj[obj[0]] = 'CLOSED';
-    } else {
-      newObj[obj[0]] = `Open from ${obj[1].open}am until ${obj[1].close - 12}pm`;
-    }
-  });
-  return newObj;
-} */
 
 function schedule(dayName) {
   // baseado na resolução do Gabriel Oliva
@@ -150,16 +128,6 @@ function schedule(dayName) {
   if (!dayName) return newObj;
 
   return { [dayName]: newObj[dayName] };
-  /* if (!dayName) return daysOpen();
-
-  const daysObj = daysOpen();
-  const objAnsw = {};
-  Object.entries(daysObj).forEach((value) => {
-    if (value[0] === dayName) {
-      objAnsw[value[0]] = value[1];
-    }
-  });
-  return objAnsw; */
 }
 
 function olderAnimal(specie) {
