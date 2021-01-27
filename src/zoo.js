@@ -18,17 +18,15 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const filteredAnimals = animals.filter(animalFiltered => animalFiltered.name === animal);
-  const [filteredSpecie] = filteredAnimals;
-  return filteredSpecie.residents.every(filteredAnimal => filteredAnimal.age >= age);
+  const filteredAnimals = animals.find(animalFiltered => animalFiltered.name === animal);
+  return filteredAnimals.residents.every(filteredAnimal => filteredAnimal.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  const filteredEmployee = employees.filter(employee =>
+  const filteredEmployee = employees.find(employee =>
     (employee.firstName === employeeName || employee.lastName === employeeName));
-  const [employeeFound] = filteredEmployee;
-  return employeeFound;
+  return filteredEmployee;
 }
 
 function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
@@ -62,36 +60,35 @@ function entryCalculator(entrants) {
     (prev + (prices[currentValue[0]] * currentValue[1])), 0);
 }
 
-function populateAnimalNames(array, sort) {
+function populateAnimalNames(mockObject, sort) {
   animals.forEach(animal =>
-    array[animal.location].push(
+    mockObject[animal.location].push(
       { [animal.name]: (sort ?
       animal.residents.map(resident => resident.name).sort() :
       animal.residents.map(resident => resident.name)) },
     ),
   );
-  return array;
+  return mockObject;
 }
 
-function populateAnimalFilteredBySex(array, sort, sex) {
+function populateAnimalFilteredBySex(mockObject, sort, sex) {
   animals.forEach(animal =>
-    array[animal.location].push(
+    mockObject[animal.location].push(
       { [animal.name]: sort ?
         animal.residents.filter(element => element.sex === sex).map(resident => resident.name)
         .sort() :
         animal.residents.filter(element => element.sex === sex).map(resident => resident.name),
       }));
-  return array;
+  return mockObject;
 }
 
 function animalMap(options = { includeNames: false, sorted: false, sex: false }) {
-  const mapOfLocations = { NE: [], NW: [], SE: [], SW: [] };
+  let mapOfAnimals = { NE: [], NW: [], SE: [], SW: [] };
   const { includeNames, sorted, sex } = options;
-  let mapOfAnimals = mapOfLocations;
   if (includeNames && !sex) {
-    mapOfAnimals = populateAnimalNames(mapOfLocations, sorted);
+    mapOfAnimals = populateAnimalNames(mapOfAnimals, sorted);
   } else if (includeNames) {
-    mapOfAnimals = populateAnimalFilteredBySex(mapOfLocations, sorted, sex);
+    mapOfAnimals = populateAnimalFilteredBySex(mapOfAnimals, sorted, sex);
   } else if (!includeNames) {
     animals.forEach(element => mapOfAnimals[element.location].push(element.name));
   }
