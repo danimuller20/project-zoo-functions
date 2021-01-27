@@ -108,14 +108,28 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const funcionario = data.employees.find((employee) => {
+    return employee.id === id;
+  });
+
+  const species = data.animals.find((animal) => {
+    return animal.id === funcionario.responsibleFor[0];
+  });
+
+  const olderAnimal = species.residents.reduce((prev, cur) => {
+    if (prev.age < cur.age) {
+      prev = cur;
+    }
+    return prev;
+  });
+  return Object.values(olderAnimal);
 }
 
 function increasePrices(percentage) {
   Object.keys(data.prices).forEach((category) => {
     const actualPrice = data.prices[category];
     const increasedPrice = actualPrice + ((actualPrice * percentage) / 100);
-    data.prices[category] = parseFloat((increasedPrice + 0.005).toFixed(2));
+    data.prices[category] = parseFloat((increasedPrice + 0.001).toFixed(2));
   });
 }
 
