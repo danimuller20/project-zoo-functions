@@ -59,10 +59,10 @@ function animalCount(species) {
   // seu código aqui
 }
 
-function isEmptyObject(obj){
-    for(var prop in obj) {
-      if(obj.hasOwnProperty(prop))
-          return false;
+function isEmptyObject(obj) {
+  for (let prop in obj) {
+    if (obj.hasOwnProperty(prop))
+      return false;
   }
 
   return true;
@@ -71,11 +71,10 @@ function isEmptyObject(obj){
 function entryCalculator(entrants = {}) {
   if (isEmptyObject(entrants)) {
     return 0;
-  } else {
-    const { Adult, Child, Senior } = prices;
-    const { Adult: Adulte = 0, Child: Childe = 0, Senior: Seniore = 0  } = entrants;
-    return (Adult * Adulte) + (Child * Childe) + (Senior * Seniore);
   }
+  const { Adult, Child, Senior } = prices;
+  const { Adult: AdultE = 0, Child: ChildE = 0, Senior: SeniorE = 0 } = entrants;
+  return (Adult * AdultE) + (Child * ChildE) + (Senior * SeniorE);
 }
 
 function animalMap(options) {
