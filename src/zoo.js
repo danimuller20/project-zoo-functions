@@ -12,8 +12,8 @@ eslint no-unused-vars: [
 const { animals, employees } = require('./data');
 const data = require('./data');
 
-// console.table(animals);
-// console.table(employees);
+console.table(animals);
+console.table(employees);
 
 // const checkObj = objectChecked => {
 //   if (!objectChecked) {
@@ -66,14 +66,14 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const idFilter = data.employees.filter( haveId => haveId.id === id);
-  const managerFilter = idFilter.manager.find( haveManager => haveManager.managers === []);
+  const idFilter = data.employees.filter(haveId => haveId.id === id);
+  const managerFilter = idFilter.manager.find(haveManager => haveManager.managers === []);
   return managerFilter;
   // seu código aqui
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  employees.push({id, firstName, lastName, managers, responsibleFor});
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
   // seu código aqui
 }
 
