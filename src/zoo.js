@@ -60,11 +60,11 @@ function animalCount(species) {
 }
 
 function isEmptyObject(obj) {
-  for (let prop in obj) {
-    if (obj.hasOwnProperty(prop))
+  for (const propiedade in obj) {
+    if (obj.hasOwnProperty(propiedade)) {
       return false;
+    }
   }
-
   return true;
   // Function by 'https://pt.stackoverflow.com/questions/83588/em-javascript-como-verificar-que-um-objeto-est%C3%A1-vazio-sem-jquery'
 }
