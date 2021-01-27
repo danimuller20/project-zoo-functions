@@ -68,7 +68,7 @@ function isManager(id) {
         return true;
       }
       return undefined;
-    }
+    };
     employee.managers.forEach(verify);
     return undefined;
   });
