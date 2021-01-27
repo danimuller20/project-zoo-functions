@@ -102,10 +102,10 @@ function oldestFromFirstSpecies(identifier) {
   const animal = employeeRecord.responsibleFor[0];
   const animalsSameSpecies = animals
     .find(value => value.id === animal).residents
-    .reduce((acc, value) => (acc.age < value.age) ? value : acc);
+    .reduce((acc, value) => {(acc.age < value.age) ? value : acc});
   return Object.values(animalsSameSpecies);
 }
-  // For ao inves do reduce - 
+  // For ao inves do reduce -
   // let ageOfAnimal = 0;
   // let oldestAnimal = {}
   // for (let index = 0; index < animalsSameSpecies.length; index += 1) {
