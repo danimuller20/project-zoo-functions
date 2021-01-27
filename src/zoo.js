@@ -78,6 +78,70 @@ function entryCalculator(entrants) {
 // console.log(entryCalculator({}));
 
 function animalMap(options) {
+// A função recebe um objeto como parâmetro
+// A função retorna um objeto
+// Modelo do objeto:
+// chave === string com a localização
+// valor sem parâmetro === array de strings com as espécies
+// valor com parâmetro includeNames === array de objetos
+// valor com parâmetro sorted === array de objetos com as espécies e o nome delas ordenadas
+// valor com parâmetro sex === array de objetos com as espécies e o nome delas filtradas por sexo
+// valor com os parâmetros sorted e sex === array de objetos com as espécies e o nome delas ordenadas e filtradas por sexo
+// valor sem includeNames === array de strings com as espécies
+
+// 1. Recuperar as regiões que quero categorizar
+// 2. Quando tenho as regiões, filtro os animais dessa região
+// 3. Se não houver parâmetro de opções,
+      // retorna um array de strings com as espécies
+// 4. Se a opção includeNames estiver habilitada,
+      // retona um array de objetos com as espécies e os nomes delas
+// 5. Se a opção sorted estiver habilitada,
+      // retorna um array de objetos com as espécies e os nomes delas ordenados
+// 6. Se a opção sex estiver habilitada,
+      // retorna um array de objetos com as espécies e os nomes delas filtrados por sexo
+// 7. Se as opções sex e sorted estiverem habilitadas,
+      // retorna um array de objetos com as espécies e os nomes delas ordenados e filtrados por sexo
+// 8. Se não houver a opção includeNames,
+      // retorna um array de strings com as espécies
+  
+  const locations = retrieveLocations();
+  const { includeNames = false, sex, sorted = false } = options;
+  if (includeNames) {
+    return retrieveAnimalsByLocationWithName(locations);
+  }
+  return retrieveAnimalsByLocation(locations);
+}
+
+function retrieveLocations() {
+  return ['NE', 'NW', 'SE', 'SW'];
+}
+
+function retrieveAnimalsByLocation(locations) {
+  const animalsByLocation = {};
+  locations.forEach((location) => {
+    const filteredAnimals = animals
+      .filter((animal) => animal.location === location)
+      .map((animal) => animal.name);
+    // filter retona um array de objetos, map retorna um novo array de strings
+    animalsByLocation[location] = filteredAnimals;
+  });
+  return animalsByLocation;
+}
+
+function retrieveAnimalsByLocationWithName(locations, sorted, sex) {
+  const animalsByLocation = {};
+  locations.forEach((location) => {
+    const filteredAnimals = animals
+      .filter((animal) => animal.location === location)
+      .map((animal) => {
+        const nameKey = animal.name;
+        const nameValue = animals.residents
+          .map(resident => resident.name);
+        return { [nameKey]: nameValue };
+      });
+    animalsByLocation[location] = filteredAnimals;
+  });
+  return animalsByLocation;
 }
 
 function schedule(dayName) {
@@ -122,12 +186,23 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(prices).forEach((key) => {
+    prices[key] *= (1 + (percentage / 100));
+    prices[key] = Math.round(prices[key] * 100) / 100;
+  });
 }
+// increasePrices(20);
+console.log(prices);
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function employeeCoverage(id, firstName, lastName) {
+// Sem parâmetros, retorna um objeto com nome do funcionário e animais pelos quais ele é responsável
+// Com id, firstName ou lastName, retorna um objeto com nome do funcionário e animais pelos quais ele é responsável
+
 }
+// console.log(employeeCoverage());
+// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+// console.log(employeeCoverage('Stephanie'));
+// console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
