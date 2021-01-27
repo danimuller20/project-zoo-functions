@@ -30,7 +30,6 @@ function createEmployee(personalInfo,associatedWith) {
     responsibleFor: associatedWith.responsibleFor,
   }
   
-
 function isManager() {
   // id
   // seu código aqui
