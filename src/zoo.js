@@ -29,7 +29,7 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find(e => {
+  return employees.find((e) => {
     return e.firstName === employeeName || e.lastName === employeeName || e.id === employeeName;
   });
 }
@@ -58,13 +58,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-    
   if (species === undefined) {
     let objResult = {};
 
     animals.forEach(element => {
       const { name, residents } = element;
-      objResult[ name ] = residents.length; 
+      objResult[name] = residents.length; 
     });
     return objResult;
   }
@@ -73,7 +72,6 @@ function animalCount(species) {
 
 function isEmptyObject(obj) {
   return Object.keys(obj).length === 0;
-  // Function by 'https://qastack.com.br/programming/679915/how-do-i-test-for-an-empty-javascript-object'
 }
 
 function entryCalculator(entrants = {}) {
