@@ -40,14 +40,16 @@ eslint no-unused-vars: [
 const { animals } = require('./data');
 const data = require('./data');
 
-function animalsByIds(arrayAnimals, idsSearch) {
-  if (idsSearch.length === 0) {
+function animalsByIds(...ids) {
+  if (ids.length === 0) {
     return [];
   }
-  return arrayAnimals.filter((animal) => animal.id === idsSearch);
+  const idAnimal = animals.filter((animal) => animal.id === ids);
+
+  return idAnimal;
 }
 
-console.log(animalsByIds(animals, '0938aa23-f153-4937-9f88-4858b24d6bce'));
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
