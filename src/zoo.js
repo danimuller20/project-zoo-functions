@@ -64,7 +64,7 @@ function entryCalculator(entrants) {
   //  if (!entrants) return 0;
   //  if (entrants = {}) return 0;
   //  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  //  return (Adult * data.prices.Adult) + (Child * data.prices.Child) + 
+  //  return (Adult * data.prices.Adult) + (Child * data.prices.Child) +
   //  (Senior * data.prices.Senior);
 }
 
