@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
+const { prices } = require('./data');
 
 function animalsByIds(...ids) {
   return ids.map(id => animals.find(animal => id === animal.id));
@@ -55,13 +56,41 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (!entrants) {
+    return 0;
+  }
+  return Object.keys(entrants).reduce((sum, people) => { sum += entrants[people] * prices[people];
+    return sum;
+  }, 0);
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const location = retrieveAvailableLocations();
+  const { includeNames = false, sex, sorted = false } = options;
+  if (includeNames) {
+    return retrieveAnimalPerLocationWithName();
+  }
+  return retrieveAnimalPerLocation(locations);
 }
-
+function retrieveAnimalPerLocationWithName(locations) {
+}
+function retrieveAnimalPerLocation(locations) {
+  const animalsPerLocation = { };
+  locations.forEach((location) => {
+    const filteredAnimals = animals
+      .filter((animal) => animal.location === location)
+        .map((animal) => {
+          const nameKey = animal.name;
+          const names = animal.residents.map((resident) => resident.name);
+          return {[nameKey]: names };
+      });
+      animalsPerLocation[location] = filteredAnimals;
+        return animalsPerLocation;
+    });
+  }
+function retrieveAvailableLocations() {
+return ['NE', 'NW', 'SE', 'SW'];
+};
 function schedule(dayName) {
   // seu código aqui
 }
