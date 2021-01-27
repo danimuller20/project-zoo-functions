@@ -17,11 +17,11 @@ function animalsByIds(...ids) {
     return [];
   }
   return animals.filter((animal, index) => animal.id === ids[index]);
-
 }
 
 function animalsOlderThan(animal, age) {
-  animals.some((animalIndex) => animalIndex.residents.every((animalAtual) => animalAtual.name === animal && animalAtual.age > age));
+  animals.some(animalIndex => animalIndex.residents.every(
+    animalAtual => animalAtual.name === animal && animalAtual.age > age));
 }
 
 console.log(animalsOlderThan('lions', 7));
