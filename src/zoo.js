@@ -104,13 +104,16 @@ function animalMap(options) {
       // retorna um array de objetos com as espécies e os nomes delas ordenados e filtrados por sexo
 // 8. Se não houver a opção includeNames,
       // retorna um array de strings com as espécies
-/*
+
   const locations = retrieveLocations();
-  const { includeNames = false, sex, sorted = false } = options;
-  if (includeNames) {
-    return retrieveAnimalsByLocationWithName(locations);
+  if (!options) {
+    return retrieveAnimalsByLocation(locations);
   }
-  return retrieveAnimalsByLocation(locations);
+  const { includeNames, sex, sorted} = options;
+  if (!includeNames) {
+    return retrieveAnimalsByLocation(locations);
+  }
+  return retrieveAnimalsByLocationWithName(locations, sorted, sex);
 }
 
 function retrieveLocations() {
@@ -121,8 +124,8 @@ function retrieveAnimalsByLocation(locations) {
   const animalsByLocation = {};
   locations.forEach((location) => {
     const filteredAnimals = animals
-      .filter((animal) => animal.location === location)
-      .map((animal) => animal.name);
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
     // filter retona um array de objetos, map retorna um novo array de strings
     animalsByLocation[location] = filteredAnimals;
   });
@@ -131,19 +134,24 @@ function retrieveAnimalsByLocation(locations) {
 
 function retrieveAnimalsByLocationWithName(locations, sorted, sex) {
   const animalsByLocation = {};
+
   locations.forEach((location) => {
     const filteredAnimals = animals
-      .filter((animal) => animal.location === location)
+      .filter(animal => animal.location === location)
       .map((animal) => {
         const nameKey = animal.name;
-        const nameValue = animals.residents
+        const nameValue = animal.residents
+          .filter((resident) => {
+            const filtered = sex !== undefined;
+            return filtered ? resident.sex === sex : true;
+          })
           .map(resident => resident.name);
-        return { [nameKey]: nameValue };
+          if (sorted) nameValue.sort();
+          return { [nameKey]: nameValue };
       });
     animalsByLocation[location] = filteredAnimals;
   });
   return animalsByLocation;
-} */
 }
 
 function schedule(dayName) {
@@ -194,9 +202,9 @@ function increasePrices(percentage) {
   });
 }
 // increasePrices(20);
-console.log(prices);
+// console.log(prices);
 
-function employeeCoverage(id, firstName, lastName) {
+function employeeCoverage(idOrName) {
 }
 
 module.exports = {
