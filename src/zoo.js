@@ -21,10 +21,15 @@ function employeeByName(employeeName) {
     employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
-function createEmployee() {
-  // personalInfo, associatedWith
-  // seu código aqui
-}
+function createEmployee(personalInfo,associatedWith) {
+  return {
+    id : personalInfo.id,
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    managers: associatedWith.managers,
+    responsibleFor: associatedWith.responsibleFor,
+  }
+  
 
 function isManager() {
   // id
