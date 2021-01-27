@@ -137,15 +137,54 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const pricesOptions = Object.keys(data.prices);
   const priceRateToChange = 1 + (percentage / 100);
-  pricesOptions.forEach(proceOption =>
-  (data.prices[proceOption] =
-    (Math.round((data.prices[proceOption] * priceRateToChange) * 100)) / 100));
+  pricesOptions.forEach(priceOption =>
+  (data.prices[priceOption] =
+    (Math.round((data.prices[priceOption] * priceRateToChange) * 100)) / 100));
   console.log(data.prices);
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function getEmployeesNames() {
+  const employeesData = data.employees;
+  const employeesNames = employeesData.map(employeeData => `${employeeData.firstName} ${employeeData.lastName}`);
+  return employeesNames;
 }
+
+function getAnimalNameByAnimalId(animalID) {
+  const animalData = data.animals.find(animal => animal.id === animalID);
+  return animalData.name;
+}
+
+function getAnimalsResponsibles(employeeName) {
+  const employeeData = data.employees.find(employee => `${employee.firstName} ${employee.lastName}` === employeeName);
+  const animalsResponsible = employeeData.responsibleFor.map(animalID =>
+    getAnimalNameByAnimalId(animalID));
+  return animalsResponsible;
+}
+
+function getEmployeeNameById(id) {
+  const employeeData = data.employees.find(employee => employee.id === id);
+  return `${employeeData.firstName} ${employeeData.lastName}`;
+}
+
+function employeeCoverage(idOrName) {
+  // Sem parametro, retorna lista de funcionario e os animais responsaveis
+  const employeesNames = getEmployeesNames();
+  const employeesVsAnimalsResposables = employeesNames.reduce((accumulator, employeeName) => {
+    accumulator[employeeName] = getAnimalsResponsibles(employeeName);
+    return accumulator;
+  }, {});
+  function getSpeficicEmployee() {
+    const employee = {};
+    const employeeFullName = employeesNames.find(employeName =>
+      employeName.includes(idOrName)) || getEmployeeNameById(idOrName);
+    console.log(employeeFullName);
+    employee[employeeFullName] = employeesVsAnimalsResposables[employeeFullName];
+    return employee;
+  }
+  return idOrName ? getSpeficicEmployee() : employeesVsAnimalsResposables;
+}
+
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
