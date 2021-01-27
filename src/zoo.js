@@ -69,9 +69,9 @@ function schedule(dayName) {
   const schedules = {};
   allDays.forEach((day) => {
     function change24HoursFormatTo12Format(hour) {
-    const formattedHour = hour - 12;
-    return formattedHour < 0 ? hour : formattedHour;
-  }
+      const formattedHour = hour - 12;
+      return formattedHour < 0 ? hour : formattedHour;
+    }
     const { open, close } = hours[day];
 
     if (open === 0 && close === 0) {
@@ -97,7 +97,7 @@ function increasePrices(percentage) {
 // Questões resolvidas no plantão com Murilo e Bernardo
 function getAnimalListFromEmplyee(employee) {
   return employee.responsibleFor.map(
-    animalId => animals.find((animal) => animalId === animal.id).name);
+    animalId => animals.find(animal => animalId === animal.id).name);
   // ['id1', 'id2'] => ['lion', 'tinger']
 }
 function getEmployeeFullName(employee) {
