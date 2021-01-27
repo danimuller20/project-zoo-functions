@@ -29,9 +29,10 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return employees.find(e =>
-    e.firstName === employeeName || e.lastName === employeeName || e.id === employeeName;
-  );
+  return employees.find(e => {
+    const result = e.firstName === employeeName || e.lastName === employeeName || e.id === employeeName;
+    return result;
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {
