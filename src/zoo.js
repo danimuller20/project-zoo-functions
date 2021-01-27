@@ -10,13 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-// const {animals, employees, hours, prices} = data;
-
-// const teste2 = [5, 6, 7, 8];
-// const [cinco, seis, sete, oito] = teste2;
-// let teste3 = {...hours, ...prices}
-
-// console.log(teste3);
+ const {animals, employees, hours, prices} = data;
 
 function animalsByIds(...ids) {
   const foundAnimals = ids.map((actualId) => {
@@ -25,6 +19,7 @@ function animalsByIds(...ids) {
   });
   return foundAnimals;
 }
+
 
 function animalsOlderThan(animal, age) {
   return data.animals.some(objAnimal => objAnimal.residents.every(
@@ -45,9 +40,11 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
+
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers.some(manager => manager === id));
 }
+
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
