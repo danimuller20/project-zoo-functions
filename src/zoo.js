@@ -16,7 +16,7 @@ function animalsByIds(...ids) {
   // nenhum parametro? retornar array vazio
   // um unico parametro? retornar o objeto do animal referente ao ID apresentado
   // mais de um parametro? retornar array com todas as especies referentes aos IDs
-  const result = ids.map((actualId) => data.animals.find(animal => actualId === animal.id));
+  const result = ids.map(actualId => data.animals.find(animal => actualId === animal.id));
   return result;
 }
 
