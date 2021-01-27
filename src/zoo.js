@@ -62,8 +62,15 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   let result = false;
   employees.find((employee) => {
-    let verify = (manager) => manager === id ? result = true : undefined;
+    const verify = (manager) => {
+      if (manager === id) {
+        result = true;
+        return true;
+      }
+      return undefined;
+    }
     employee.managers.forEach(verify);
+    return undefined;
   });
   return result;
 }
