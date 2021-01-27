@@ -92,9 +92,9 @@ function schedule(dayName) {
   return { [dayName]: `Open from ${open}am until ${close - 12}pm` };
 }
 
-function getOlderAnimalFromSpecies(animalResident) {
-  return animalResident
-  .reduce((previousValue, currentValue) =>
+function getOlderAnimalFromSpecies(resident) {
+  return resident
+  .reduce((previousValue, currentValue) => 
   currentValue.age >= previousValue.age ? currentValue : previousValue);
 }
 
@@ -111,7 +111,7 @@ function increasePrices(percentage) {
 
 function getAnimalsFromEmployees(employee) {
   return employee.responsibleFor
-  .map(animalID => animals.find((animal) => animalID === animal.id).name);
+  .map(animalID => animals.find(animal => animalID === animal.id).name);
 }
 
 function constructEmployeeFullName(employee) {
@@ -123,19 +123,19 @@ function getAllEmployeesAndAnimals() {
     const animalList = getAnimalsFromEmployees(employee);
     accumulator[constructEmployeeFullName(employee)] = animalList;
     return (accumulator);
-  }, {} );
+  }, {});
 }
 
 function getEmployeeByNameOrId(idOrName) {
   return employees
-  .find((employee) =>
+  .find(employee =>
     idOrName === employee.firstName ||
-    idOrName === employee.lastName  ||
+    idOrName === employee.lastName ||
     idOrName === employee.id);
 }
 function employeeCoverage(idOrName) {
   if (!idOrName) return getAllEmployeesAndAnimals();
-const targetEmployee = getEmployeeByNameOrId (idOrName);
+  const targetEmployee = getEmployeeByNameOrId(idOrName);
   const animalList = getAnimalsFromEmployees(targetEmployee);
   return { [constructEmployeeFullName(targetEmployee)]: animalList };
 }
