@@ -27,12 +27,10 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const employeeFound = employees.find(employee => {
-    return employee.firstName === employeeName || employee.lastName === employeeName;
-  });
-  return employeeFound;
+  return employees.find(employee =>
+    (employee.firstName === employeeName || employee.lastName === employeeName)
+  );
 }
-employeeByName('Emery');
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
