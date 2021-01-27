@@ -222,48 +222,41 @@ function increasePrices(percentage) {
 // 13
 // Recebe id ou firsName ou lastName do employee como parametro
 // Retorna um objeto { nomeDoColaborador: ['specie1', 'specie2',...]}
-
 // Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis.
-function returnCompleteList() {
-  const result = {};
-  employees.forEach((employee) => {
-    result[`${employee.firstName} ${employee.lastName}`] = [];
-    employee.responsibleFor.forEach((idResp) => {
-      const getAnimals = animals.find(animal => animal.id === idResp);
-      result[`${employee.firstName} ${employee.lastName}`]
-      .push(getAnimals.name);
-    });
-  });
-  return result;
+
+function getAnimalListFromEmployee(employee) {
+  const list = employee.responsibleFor
+    .map(animalId => animals.find(animal => animalId === animal.id).name);
+  return list;
 }
 
-function returnListOfAnimals(employee) {
-  const completeName = `${employee.firstName} ${employee.lastName}`;
-  const result = {};
-  result[completeName] = [];
-  employee.responsibleFor.forEach((idResp) => {
-    const getAnimal = animals.find(animal => animal.id === idResp);
-    result[completeName].push(getAnimal.name);
-  });
-  console.log(result);
-  return result;
+function getEmployeeFullName(employee) {
+  const name = `${employee.firstName} ${employee.lastName}`;
+  return name;
 }
 
-function findEmployeeToReturn(idOrName) {
-  let result = {};
-  if (idOrName.length === 36) {
-    result = employees.find(employee => employee.id === idOrName);
-  } else {
-    result = employees
-    .find(employee =>
-      employee.firstName === idOrName || employee.lastName === idOrName);
-  }
-  return returnListOfAnimals(result);
+function getEmployeeByNameOrId(idOrName) {
+  return employees
+    .find(employee => employee.id === idOrName
+      || employee.firstName === idOrName || employee.lastName === idOrName);
+}
+
+function returnListAllEmployeesAndAnimals() {
+  return employees.reduce((object, employee) => {
+    animalList = getAnimalListFromEmployee(employee);
+    object[getEmployeeFullName(employee)] = animalList
+    return object
+  }, {});
 }
 
 function employeeCoverage(idOrName) {
-  if (!idOrName) return returnCompleteList();
-  return findEmployeeToReturn(idOrName);
+  if (!idOrName) {
+    return returnListAllEmployeesAndAnimals();
+  }
+  const targetEmployee = getEmployeeByNameOrId(idOrName);
+  const animalList = getAnimalListFromEmployee(targetEmployee);
+  const key = getEmployeeFullName(targetEmployee);
+  return { [key]: animalList };
 }
 
 //
