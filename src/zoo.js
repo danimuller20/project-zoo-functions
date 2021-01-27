@@ -32,14 +32,14 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  let employeeSearched = data.employees.find((currentEmployee) => 
+  const employeeSearched = data.employees.find((currentEmployee) =>
   currentEmployee.firstName === employeeName || currentEmployee.lastName === employeeName);
   return employeeSearched;
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
