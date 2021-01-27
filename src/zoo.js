@@ -95,7 +95,7 @@ function schedule(dayName) {
 function getOlderAnimalFromSpecies(resident) {
   return resident
   .reduce((previousValue, currentValue) => 
-  currentValue.age >= previousValue.age ? currentValue : previousValue);
+  (currentValue.age >= previousValue.age ? currentValue : previousValue));
 }
 
 function oldestFromFirstSpecies(id) {
