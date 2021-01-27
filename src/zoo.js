@@ -145,9 +145,12 @@ function oldestFromFirstSpecies(id) {
   return oldestAnimal;
 }
 
-
 function increasePrices(percentage) {
-  // seu código aqui
+  percentage = percentage / 100;
+  const pricesKeys = Object.keys(prices);
+  pricesKeys.forEach(key => {
+    prices[key] = parseFloat((prices[key] + (prices[key] * percentage) + 0.001).toFixed(2));
+  });
 }
 
 function employeeCoverage(idOrName) {
