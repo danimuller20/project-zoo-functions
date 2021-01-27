@@ -166,16 +166,15 @@ function roundToTwo(num) {
 function increasePrices(percentage) {
   // seu código aqui
   const increase = (percentage / 100) + 1;
-  for (const key in data.prices) {
-    if (Object.hasOwnProperty.call(data.prices, key)) {
-      data.prices[key] *= increase;
-      data.prices[key] = roundToTwo(data.prices[key]);
-    }
+  const atualPrices = Object.values(data.prices);
+  const keysOfPrices = Object.keys(data.prices);
+  const increasedPrices = atualPrices.map(price => roundToTwo(price *= increase));
+  for (let index = 0; index < increasedPrices.length; index++) {
+    const element = increasedPrices[index];
+    data.prices[keysOfPrices[index]] = element;
   }
   return 0;
 }
-
-
 // function employeeCoverage(idOrName) {
 //   // seu código aqui
 // }
