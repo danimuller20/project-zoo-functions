@@ -72,10 +72,10 @@ function animalCount(species) {
   if (species === undefined) {
     return animals.map(animal => animal);
   }
-  return animals.find(animalName => animalName.name === species).residents
-  .map(numberAnimals => numberAnimals.length);
+  return animals.find(animalName => animalName.name === species).residents.length;
 }
-console.log(animalCount('snakes'));
+console.log(animalCount('elephants'));
+
 function entryCalculator(entrants) {
   // seu código aqui
 }
