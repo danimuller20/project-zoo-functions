@@ -58,10 +58,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
-  let animalsObject = {}
-  animals.map((animal => animalsObject[animal.name] = animal.residents.length));
+  // seu código aqui  
   if (!species) {
+    let animalsObject = {};
+    animals.map((animal => animalsObject[animal.name] = animal.residents.length));
     return animalsObject;
   }
   return animals.filter(animal => animal.name === species)[0].residents.length;
