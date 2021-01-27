@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 // código jlfagundes
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -60,15 +60,16 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  //  seu código aqui
-  //  if (!entrants) return 0;
-  //  if (entrants = {}) return 0;
-  //  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  //  return (Adult * data.prices.Adult) + (Child * data.prices.Child) +
-  //  (Senior * data.prices.Senior);
+  // seu código aqui
+  if (entrants === undefined) { return 0; }
+  const { Adult = 0 } = entrants;
+  const { Child = 0 } = entrants;
+  const { Senior = 0 } = entrants;
+  const totalPrice = (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
+  return totalPrice;
 }
 
-function animalMap(options) {
+/* function animalMap(options) {
   // seu código aqui
   // a função retorna um objeto
   // a função recebe um objeto
@@ -82,7 +83,6 @@ function animalMap(options) {
     });
     return locations;
   }
-  
   function searchAnimalsByLocation(location) {
     const arrayOfAnimalsByLocation = animals
     .filter(animal => animal.location === location)
@@ -147,7 +147,7 @@ function animalMap(options) {
     }
     return (options.sorted ? sortNames(createObjectWithNames(options.sex))
     : createObjectWithNames(options.sex));
-  }
+  } */
 
 function schedule(dayName) {
   // seu código aqui
@@ -173,7 +173,7 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,
