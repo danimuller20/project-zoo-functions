@@ -13,6 +13,7 @@ const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 
 function animalsByIds(...ids) {
   return ids.map(id => animals.find(animal => id === animal.id));
@@ -59,41 +60,54 @@ function entryCalculator(entrants) {
   if (!entrants) {
     return 0;
   }
-  return Object.keys(entrants).reduce((sum, people) => { sum += entrants[people] * prices[people];
+  return Object.keys(entrants).reduce((sum, people) => {
+    sum += entrants[people] * prices[people];
     return sum;
   }, 0);
 }
 
 function animalMap(options) {
-  const location = retrieveAvailableLocations();
-  const { includeNames = false, sex, sorted = false } = options;
+  /* const { includeNames = false, sex, sorted = false } = options;
   if (includeNames) {
     return retrieveAnimalPerLocationWithName();
   }
+} */
+ /* function retrieveAnimalPerLocationWithName(locations) {
   return retrieveAnimalPerLocation(locations);
-}
-function retrieveAnimalPerLocationWithName(locations) {
-}
-function retrieveAnimalPerLocation(locations) {
+  } */
+ 
+ /* function retrieveAnimalPerLocation(locations) {
   const animalsPerLocation = { };
   locations.forEach((location) => {
     const filteredAnimals = animals
-      .filter((animal) => animal.location === location)
-        .map((animal) => {
-          const nameKey = animal.name;
-          const names = animal.residents.map((resident) => resident.name);
-          return {[nameKey]: names };
-      });
+    .filter((animal) => animal.location === location)
+    .map((animal) => {
+      const nameKey = animal.name;
+      const names = animal.residents.map((resident) => resident.name);
+      return {[nameKey]: names };
+    });
+    const location = retrieveAvailableLocations();
       animalsPerLocation[location] = filteredAnimals;
         return animalsPerLocation;
     });
-  }
-function retrieveAvailableLocations() {
-return ['NE', 'NW', 'SE', 'SW'];
+  } */
+ /* function retrieveAvailableLocations() {
+    return ['NE', 'NW', 'SE', 'SW'];
+    */
 };
 function schedule(dayName) {
-  // seu código aqui
-}
+  const newObject = {};
+  const objectValue = Object.keys(hours);
+  objectValue.forEach((calendar) => {
+    const { open, close } = hours[calendar];
+   if(calendar === 'Monday') {
+     return newObject[calendar] = 'CLOSED';
+    } return newObject[calendar] = `Open from ${open}am until ${close -12}pm`;
+  });
+  if (!dayName) {
+    return newObject;
+  } return { [dayName]: newObject[dayName] };
+  };
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
