@@ -37,12 +37,14 @@ function employeeByName(employeeName) {
 function createEmployee(personalInfo, associatedWith) {
   return {
     ...personalInfo,
-    ...associatedWith
+    ...associatedWith,
   };
 }
 
 function isManager(id) {
-  // seu código aqui
+  const result = employees.some(manager => manager.managers
+    .some(findmanager => findmanager === id));
+  return result;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
