@@ -143,6 +143,7 @@ function retrieveAnimalsByLocationWithName(locations, sorted, sex) {
   });
   return animalsByLocation;
 } */
+}
 
 function schedule(dayName) {
 // Ao chamar a função sem parâmetros: retorna um objeto com o cronograma inteiro
@@ -211,4 +212,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-}
+};
