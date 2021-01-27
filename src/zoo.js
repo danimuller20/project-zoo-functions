@@ -92,26 +92,52 @@ function schedule(dayName) {
   return { [dayName]: `Open from ${open}am until ${close - 12}pm` };
 }
 
+function getOlderAnimalFromSpecies(animalResident) {
+return animalResident
+.reduce((previousValue, currentValue) =>
+currentValue.age >= previousValue.age ? currentValue : previousValue);
+}
+
 function oldestFromFirstSpecies(id) {
-  const getEmployeeId = employees.find(value => value.id === id);
-  animalsByIds(getEmployeeId.responsibleFor[0])
-  .find((value) => {
-    const residentSpecies = value.residents;
-  });
-  const olderSpecie = residentSpecies.reduce((previousValue, currentValue) => {
-    if (currentValue.age >= previousValue.age) {
-      return currentValue;
-    } return previousValue;
-  });
-  return olderSpecie;
+  const getEmployeeId = employees.find(value => value.id === id).responsibleFor[0];
+  const animalResident = animals.find((value) => value.id === getEmployeeId).residents;
+  const olderSpecie = getOlderAnimalFromSpecies(animalResident);
+  return Object.values(olderSpecie);
 }
 
 function increasePrices(percentage) {
   // seu código aqui
 }
 
+function getAnimalsFromEmployees (employee) {
+ return employee.responsibleFor
+    .map((animalID) => animals.find((animal) => animalID === animal.id).name);
+}
+
+function constructEmployeeFullName (employee) {
+  return `${employee.firstName} ${employee.lastName}`;
+}
+
+function getAllEmployeesAndAnimals () {
+  return employees.reduce((accumulator, employee) => {
+    const animalList = getAnimalsFromEmployees(employee);
+    accumulator[constructEmployeeFullName(employee)] = animalList;
+    return (accumulator);
+  }, {} );
+}
+
+function getEmployeeByNameOrId (idOrName) {
+  return employees
+  .find((employee) => 
+    idOrName === employee.firstName ||
+    idOrName === employee.lastName  ||
+    idOrName === employee.id);
+}
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) return getAllEmployeesAndAnimals();
+const targetEmployee = getEmployeeByNameOrId (idOrName);
+  const animalList = getAnimalsFromEmployees(targetEmployee);
+  return { [constructEmployeeFullName(targetEmployee)]: animalList };
 }
 
 module.exports = {
