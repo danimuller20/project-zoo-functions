@@ -61,19 +61,30 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employObject = data.employees.find(employ => employ.id === id);
+  const animalObject = data.animals.find(animal => animal.id === employObject.responsibleFor[0]);
+  const { residents } = animalObject;
+  const newArray = residents.reduce((accumulator, currentValue) => {
+    if (accumulator.age > currentValue.age) {
+      return accumulator;
+    }
+    return currentValue;
+  });
+  return Object.values(newArray);
 }
+// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/values
+
 
 function increasePrices(percentage) {
   // seu código aqui
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+
 }
 
 module.exports = {
