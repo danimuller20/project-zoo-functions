@@ -82,7 +82,7 @@ function entryCalculator(entrants) {
     (entrants[people] * prices[people]), 0);
 }
 
-function animalLocation() {
+/* function animalLocation() {
   const newObj = {};
   animals.forEach((animal) => {
     if (!newObj[animal.location]) {
@@ -103,7 +103,7 @@ function includeAnimalNames() {
   animals.forEach(animal => newArr.push(animal.name));
   return newArr;
 }
-// console.log(includeAnimalNames());
+// console.log(includeAnimalNames()); */
 
 function animalMap(options) {
   /* if (!options) return animalLocation();
@@ -118,7 +118,10 @@ function schedule(dayName) {
   const newObj = {};
 
   daysOfWeek.forEach((day) => {
-    const { open, close } = hours[day];
+    const {
+      open,
+      close
+    } = hours[day];
     if (day === 'Monday') {
       newObj[day] = 'CLOSED';
     } else {
@@ -127,7 +130,9 @@ function schedule(dayName) {
   });
   if (!dayName) return newObj;
 
-  return { [dayName]: newObj[dayName] };
+  return {
+    [dayName]: newObj[dayName]
+  };
 }
 
 function olderAnimal(specie) {
@@ -159,14 +164,19 @@ function increasePrices(percentage) {
   return prices;
 }
 
+function factoryObjEmployeeAnimal(newObj, employee) {
+  newObj[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
+    .map(id => animals.find(animal => id === animal.id).name);
+}
+
 function employeesFullNamesWhithAnimalsNames() {
-   // pegar o nome e o sobrenome do funcionário
+  // pegar o nome e o sobrenome do funcionário
   // descobrir o id do animal no array de responsible for
   const newObj = {};
-  employees.forEach(employee => {
-    newObj[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
-      .map(id => animals.find(animal => id === animal.id).name)});
-  return newObj  
+  employees.forEach((employee) => {
+    factoryObjEmployeeAnimal(newObj, employee);
+  });
+  return newObj;
 }
 
 function findNamesOfEmployeeAndResponsiveAnimal(idOrName) {
@@ -174,9 +184,7 @@ function findNamesOfEmployeeAndResponsiveAnimal(idOrName) {
   const findEmployee = employees.find(employee => (idOrName === employee.id ||
     idOrName === employee.firstName || idOrName === employee.lastName));
 
-  newObj[`${findEmployee.firstName} ${findEmployee.lastName}`] = findEmployee.responsibleFor
-    .map(id => animals.find(animal => id === animal.id).name);
-
+  factoryObjEmployeeAnimal(newObj, findEmployee);
   return newObj;
 }
 
@@ -184,12 +192,11 @@ function employeeCoverage(idOrName) {
   // retornar uma LISTA de funcionarios e animais por qual eles são responsaveis
   // funcionários: [animal, animal];
 
-  if(!idOrName) {
+  if (!idOrName) {
     return employeesFullNamesWhithAnimalsNames();
   }
   return findNamesOfEmployeeAndResponsiveAnimal(idOrName);
 }
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
 
 module.exports = {
   entryCalculator,
