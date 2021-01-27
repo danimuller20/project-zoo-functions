@@ -152,25 +152,23 @@ function obj() {
 function employeeCoverage(idOrName) {
   let object = {};
   let array = [];
-  if (!idOrName){
+  if (!idOrName) {
     object = obj();
     return object;
   }
-  else {
-    const employer = employees.find((value) => {
-      if (value.id === idOrName || value.firstName === idOrName || value.lastName === idOrName) {
-        return value;
-      }
-    });
-    employer.responsibleFor.forEach(value => animals.forEach(value2 => {
-      if (value2.id === value) {
-        array.push(value2.name);
-      };
-      return array;
-    }));
-    object[`${employer.firstName} ${employer.lastName}`] = array;
-    return object;
-  }
+  const employer = employees.find((value) => {
+    if (value.id === idOrName || value.firstName === idOrName || value.lastName === idOrName) {
+      return value;
+    }
+  });
+  employer.responsibleFor.forEach(value => animals.forEach((value2) => {
+    if (value2.id === value) {
+      array.push(value2.name);
+    }
+    return array;
+  }));
+  object[`${employer.firstName} ${employer.lastName}`] = array;
+  return object;
 }
 
 console.log(employeeCoverage('Strauss'));
