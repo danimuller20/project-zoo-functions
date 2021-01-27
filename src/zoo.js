@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data; //Desestruturada
+const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   return ids.map(animal => animals.find(element => element.id === animal));
@@ -38,10 +38,10 @@ function createEmployee(personalInfo, associatedWith) {
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   };
 }
-
+// Solução conforme aprendizagem curso GoStack da Rocketseat
 
 function isManager(id) {
   // seu código aqui
