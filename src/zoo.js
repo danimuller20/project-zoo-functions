@@ -85,16 +85,18 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // };
   // employees.push(employee);
 }
-animalCount();
+
 function animalCount(species) {
   if (species === undefined) {
     const animalsObj = {};
-    animals.forEach(animal => animalsObj[animal.name] = animal.residents.length);
+    animals.forEach((animal) => {
+      animalsObj[animal.name] = animal.residents.length;
+      return undefined;
+    });
     return animalsObj;
-  } else {
-    const specie = animals.find(animal => animal.name === species);
-    return specie.residents.length;
   }
+  const specie = animals.find(animal => animal.name === species);
+    return specie.residents.length;
 }
 
 function entryCalculator(entrants) {
