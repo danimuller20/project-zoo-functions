@@ -63,7 +63,7 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   // seu código aqui
 }
-
+// exercicio abaixo através do plantão do Oliva
 function schedule(dayName) {
   const hours = data.hours;
   const allDays = Object.keys(hours);
