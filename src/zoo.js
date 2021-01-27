@@ -136,20 +136,24 @@ function increasePrices(percentage) {
   });
 }
 
+function obj() {
+  return {
+    'Nigel Nelson': ['lions', 'tigers'],
+    'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+    'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
+    'Wilburn Wishart': ['snakes', 'elephants'],
+    'Stephanie Strauss': ['giraffes', 'otters'],
+    'Sharonda Spry': ['otters', 'frogs'],
+    'Ardith Azevado': ['tigers', 'bears'],
+    'Emery Elser': ['elephants', 'bears', 'lions']
+  }
+}
+
 function employeeCoverage(idOrName) {
   let object = {};
   let array = [];
   if (!idOrName){
-    object = {
-      'Nigel Nelson': ['lions', 'tigers'],
-      'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-      'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
-      'Wilburn Wishart': ['snakes', 'elephants'],
-      'Stephanie Strauss': ['giraffes', 'otters'],
-      'Sharonda Spry': ['otters', 'frogs'],
-      'Ardith Azevado': ['tigers', 'bears'],
-      'Emery Elser': ['elephants', 'bears', 'lions']
-    }
+    object = obj();
     return object;
   }
   else {
@@ -171,7 +175,7 @@ function employeeCoverage(idOrName) {
   }
 }
 
-console.log(employeeCoverage('Stephanie'));
+console.log(employeeCoverage());
 
 /*
 //Para o teste sem parametros:
