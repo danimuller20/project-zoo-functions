@@ -16,7 +16,7 @@ const { animals, employees, prices, hours } = data;
 function animalsByIds(...ids) {
   // seu código aqui
   const animalsFind = [];
-  ids.forEach(id => animalsFind.push(animals.find(animal => animal.id === id)));
+  ids.forEach(id => animalsFind.push(animals.find(({ id: animalId }) => animalId === id)));
   return animalsFind;
 }
 
@@ -29,21 +29,13 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // seu código aqui
   if (!employeeName) { return {}; }
-  return employees.find(person => person.firstName === employeeName ||
-  person.lastName === employeeName);
+  return employees.find(({ firstName, lastName }) => firstName === employeeName ||
+  lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const { id, firstName, lastName } = personalInfo;
-  const { managers, responsibleFor } = associatedWith;
-  return {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  };
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -70,14 +62,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
-  if (species) {
-    const specieArray = animals.find(animal => animal.name === species);
-    return specieArray.residents.length;
-  }
   const animalsCount = {};
-  animals.forEach(animal => (animalsCount[animal.name] = animal.residents.length));
-  return animalsCount;
+  animals.forEach(({ name, residents}) => (animalsCount[name] = residents.length));
+  return species ? animalsCount[species] : animalsCount;
 }
 
 const sumIfNotUndefined = (adult, child, senior) => {
@@ -101,7 +88,8 @@ function entryCalculator(entrants) {
 const withOutParameters = (locations, animalLocation) => {
   locations.forEach(function (location) {
     const animalTemp = animals.filter(animal => animal.location === location);
-    animalTemp.forEach(animal => animalLocation[location].push(animal.name));
+    animalTemp.forEach( ({ name }) => animalLocation[location].push(name));
+    // animalTemp.forEach(animal => animalLocation[location].push(animal.name));
   });
 };
 
