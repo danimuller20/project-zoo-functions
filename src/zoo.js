@@ -8,9 +8,10 @@ function animalsByIds(...ids) {
   return animals.filter(zooAnimal => ids.some(id => id === zooAnimal.id));
 }
 
-function animalsOlderThan() {
-  // animal, age
-  // seu código aqui
+function animalsOlderThan(animal, age) {
+
+  const species = animals.find(item  => item.name === animal).residents; // array de obj
+  return species.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
