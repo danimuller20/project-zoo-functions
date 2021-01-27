@@ -16,19 +16,13 @@ function animalsByIds(...ids) {
   // nenhum parametro? retornar array vazio
   // um unico parametro? retornar o objeto do animal referente ao ID apresentado
   // mais de um parametro? retornar array com todas as especies referentes aos IDs
-  const result = ids.map((actualId) => {
-    return data.animals.find((animal) => {
-      return actualId === animal.id;
-    });
-  });
+  const result = ids.map((actualId) => data.animals.find(animal => actualId === animal.id));
   return result;
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const findAnimal = data.animals.find((actualAnimal) => {
-    return actualAnimal.name === animal;
-  });
+  const findAnimal = data.animals.find(actualAnimal => actualAnimal.name === animal);
   return findAnimal.residents.every(residents => residents.age > age);
 }
 
