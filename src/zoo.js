@@ -169,7 +169,7 @@ function increasePrices(percentage) {
   const atualPrices = Object.values(data.prices);
   const keysOfPrices = Object.keys(data.prices);
   const increasedPrices = atualPrices.map(price => roundToTwo(price *= increase));
-  for (let index = 0; index < increasedPrices.length; index++) {
+  for (let index = 0; index < increasedPrices.length; index += 1) {
     const element = increasedPrices[index];
     data.prices[keysOfPrices[index]] = element;
   }
