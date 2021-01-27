@@ -80,7 +80,7 @@ function schedule(dayName) {
       return close - 12;
     }
     return close;
-  } 
+  }
   allDays.forEach((day) => {
     const { open, close } = hours[day];
     if (day === 'Monday') {
