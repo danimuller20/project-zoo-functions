@@ -103,7 +103,7 @@ function animalMap(options) {
       // retorna um array de objetos com as espécies e os nomes delas ordenados e filtrados por sexo
 // 8. Se não houver a opção includeNames,
       // retorna um array de strings com as espécies
-/*  
+/*
   const locations = retrieveLocations();
   const { includeNames = false, sex, sorted = false } = options;
   if (includeNames) {
@@ -215,4 +215,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-};
+}
