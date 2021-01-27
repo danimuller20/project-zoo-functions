@@ -196,10 +196,6 @@ console.log(prices);
 
 function employeeCoverage(id, firstName, lastName) {
 }
-// console.log(employeeCoverage());
-// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
-// console.log(employeeCoverage('Stephanie'));
-// console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
