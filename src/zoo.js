@@ -162,53 +162,18 @@ function employeeCoverage(idOrName) {
         return value;
       }
     });
-    employer.responsibleFor.forEach(value => {
-      animals.forEach(value2 => {
-        if (value2.id === value) {
-          array.push(value2.name)
-        }
-        return array;
-      })
-    });
+    employer.responsibleFor.forEach(value => animals.forEach(value2 => {
+      if (value2.id === value) {
+        array.push(value2.name);
+      };
+      return array;
+    }));
     object[`${employer.firstName} ${employer.lastName}`] = array;
     return object;
   }
 }
 
-console.log(employeeCoverage());
-
-/*
-//Para o teste sem parametros:
-  let object = {};
-  let array = [];
-  if (!idOrName){
-    object = {
-      'Nigel Nelson': ['lions', 'tigers'],
-      'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-      'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
-      'Wilburn Wishart': ['snakes', 'elephants'],
-      'Stephanie Strauss': ['giraffes', 'otters'],
-      'Sharonda Spry': ['otters', 'frogs'],
-      'Ardith Azevado': ['tigers', 'bears'],
-      'Emery Elser': ['elephants', 'bears', 'lions']
-    }
-    return object;
-  }
-  else {
-    const employerId = employees.find(({ id, firstName, lastName }) => id === idOrName || firstName === idOrName || lastName === idOrName).responsibleFor;
-    const employerAll = employees.find(({ id, firstName, lastName }) => id === idOrName || firstName === idOrName || lastName === idOrName);
-    employerId.forEach(value => {
-      animals.forEach(value2 => {
-        if (value2.id === value) {
-          array.push(value2.name)
-        }
-        return array;
-      })
-    });
-    object[`${employerAll.firstName} ${employerAll.lastName}`] = array;
-    return object;
-  }
-*/
+console.log(employeeCoverage('Strauss'));
 
 module.exports = {
   entryCalculator,
