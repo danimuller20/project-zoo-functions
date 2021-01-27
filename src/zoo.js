@@ -8,31 +8,33 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals } = require('./data');
-const { employees } = require('./data');
-const data = require('./data');
+const { animals } = require("./data");
+const { employees } = require("./data");
+const data = require("./data");
 
 function animalsByIds(...ids) {
   // verifica se o array está vazio
   if (!ids) {
     return [];
   }
-  return animals.filter(animal => ids.includes(animal.id));
+  return animals.filter((animal) => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
   // find: busca por animal / every: analisa a idade e compara se for maior dar falso.
   return animals
-    .find(buscAnimal => buscAnimal.name === animal)
-    .residents.every(idade => idade.age >= age);
+    .find((buscAnimal) => buscAnimal.name === animal)
+    .residents.every((idade) => idade.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  return employees
-  .find(names => names.firstName === employeeName || names.lastName === employeeName);
+  return employees.find(
+    (names) =>
+      names.firstName === employeeName || names.lastName === employeeName
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -63,11 +65,33 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const hours = data.hours;
+  const allDays = Object.keys(hours);
+  const schedule = {};
+
+  allDays.forEach((day) => {
+    const { open, close } = hours[day];
+
+    if (open === 0 && close ===0) {
+      schedule[day] = "CLOSED";
+    } else {
+      schedule[day] = `Open from ${open}am until ${change24HoursFormatTo12Format(close)}pm`;
+    }
+  });
+  if (dayName === undefined) {
+    return schedule;
+  }
+  return { [dayName]: schedule[dayName]}
 }
+schedule('Tuesday');
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+}
+
+function change24HoursFormatTo12Format(hour) {
+  const formattedHour = hour -12;
+  return formattedHour < 0 ? hour : formattedHour;
 }
 
 function increasePrices(percentage) {
@@ -75,9 +99,10 @@ function increasePrices(percentage) {
 }
 // Questões resolvidas no plantão com Murilo e Bernardo
 function getAnimalListFromEmplyee(employee) {
-  return employee.responsibleFor
-    .map(animalId => animals.find(animal => animalId === animal.id).name);
-    // ['id1', 'id2'] => ['lion', 'tinger']
+  return employee.responsibleFor.map(
+    (animalId) => animals.find((animal) => animalId === animal.id).name
+  );
+  // ['id1', 'id2'] => ['lion', 'tinger']
 }
 function getEmployeeFullName(employee) {
   return `${employee.firstName} ${employee.lastName}`;
@@ -91,15 +116,18 @@ function getAllEmployeesAndAnimals() {
   }, {});
 }
 function getEmployeedByNameOrId(idOrName) {
-  return employees
-  .find(employee => employee.id === idOrName
-    || employee.firstName === idOrName || employee.lastName === idOrName);
+  return employees.find(
+    (employee) =>
+      employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName
+  );
 }
 
 function employeeCoverage(idOrName) {
   // Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais são responsáveis
   if (!idOrName) {
-  // firstName, lastName de employees, responsibleFor
+    // firstName, lastName de employees, responsibleFor
     return getAllEmployeesAndAnimals();
   }
   const targetEmployee = getEmployeedByNameOrId(idOrName);
@@ -107,7 +135,6 @@ function employeeCoverage(idOrName) {
   const key = getEmployeeFullName(targetEmployee);
   return { [key]: animalList };
 }
-
 
 module.exports = {
   entryCalculator,
