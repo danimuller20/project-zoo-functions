@@ -13,7 +13,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 // get animals key in data object
-const { animals, employees } = data;
+const { animals, employees, hours } = data;
 
 // animalsByIds grabs the required ids as spread array
 // animals array is then filtered by :
@@ -76,8 +76,17 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function schedule(dayName = '') {
+  const askedSchedule = { };
+  const evaluate = (day) => {
+    if (day[0] === 'Monday') {
+      askedSchedule[day[0]] = 'CLOSED';
+    } else {
+      askedSchedule[day[0]] = `Open from ${day[1].open}am until ${(day[1].close) - 12}pm`;
+    }
+  };
+  Object.entries(hours).forEach(day => evaluate(day));
+  return (dayName === '') ? askedSchedule : { [dayName]: askedSchedule[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
