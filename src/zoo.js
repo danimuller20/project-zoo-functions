@@ -37,7 +37,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const employeedId = ({ ...personalInfo, ...associatedWith});
+  const employeedId = ({ ...personalInfo, ...associatedWith });
   return employeedId;
   // return employees
   // .filter(associatedWith => associatedWith.managers && associatedWith.
