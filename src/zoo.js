@@ -160,15 +160,17 @@ function oldestFromFirstSpecies(id) {
   const valuesOfOldestAnimal = Object.values(managedAnimal.residents[0]);
   return valuesOfOldestAnimal;
 }
-function roundToTwo(num) {    
+function roundToTwo(num) {
   return Math.round((num + Number.EPSILON) * 100) / 100;
 }
 function increasePrices(percentage) {
   // seu código aqui
-  const increase = (percentage/100) + 1;
+  const increase = (percentage / 100) + 1;
   for (const key in data.prices) {
-    data.prices[key] *= increase;
-    data.prices[key] = roundToTwo(data.prices[key]);
+    if (Object.hasOwnProperty.call(data.prices, key)) {
+      data.prices[key] *= increase;
+      data.prices[key] = roundToTwo(data.prices[key]);
+    }
   }
   return 0;
 }
