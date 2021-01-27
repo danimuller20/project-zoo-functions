@@ -61,7 +61,7 @@ function animalCount(species) {
 
 function isEmptyObject(obj) {
   for (const propiedade in obj) {
-    if (obj.hasOwnProperty(propiedade)) {
+    if (obj.hasOwnProperty({propiedade})) {
       return false;
     }
   }
