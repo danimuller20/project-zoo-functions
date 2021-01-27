@@ -14,10 +14,7 @@ const data = require('./data');
 const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
-  // seu código aqui
-  const animalsFind = [];
-  ids.forEach(id => animalsFind.push(animals.find(({ id: animalId }) => animalId === id)));
-  return animalsFind;
+  return ids.map((id) => animals.find(({ id: animalId }) => animalId === id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -63,7 +60,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   const animalsCount = {};
-  animals.forEach(({ name, residents}) => (animalsCount[name] = residents.length));
+  animals.forEach(({ name, residents }) => (animalsCount[name] = residents.length));
   return species ? animalsCount[species] : animalsCount;
 }
 
@@ -88,7 +85,7 @@ function entryCalculator(entrants) {
 const withOutParameters = (locations, animalLocation) => {
   locations.forEach(function (location) {
     const animalTemp = animals.filter(animal => animal.location === location);
-    animalTemp.forEach( ({ name }) => animalLocation[location].push(name));
+    animalTemp.forEach(({ name }) => animalLocation[location].push(name));
     // animalTemp.forEach(animal => animalLocation[location].push(animal.name));
   });
 };
