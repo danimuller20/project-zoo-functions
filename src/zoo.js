@@ -20,9 +20,9 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const animalUnix = animals.some((animalIndex) => animalIndex.residents);
-  const animalTest = animalUnix.every(animalAtual => animalAtual.name === animal && animalAtual.age > age);
-  return animalTest;
+  const animalIndex = animals.some((animalResid) => animalResid.residents.every(
+    (residents) => residents.name === animal && residents.age >= age));
+    return animalIndex;
 }
 
 console.log(animalsOlderThan('lions', 7));
