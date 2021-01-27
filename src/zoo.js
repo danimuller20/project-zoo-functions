@@ -60,15 +60,12 @@ function animalCount(species) {
 }
 
 function isEmptyObject(obj) {
-  for (const propiedade in obj) {
-    if (obj.hasOwnProperty({propiedade})) {
-      return false;
-    }
-  }
-  return true;
-  // Function by 'https://pt.stackoverflow.com/questions/83588/em-javascript-como-verificar-que-um-objeto-est%C3%A1-vazio-sem-jquery'
+  return Object.keys(obj).length === 0;
+  // Function by 'https://qastack.com.br/programming/679915/how-do-i-test-for-an-empty-javascript-object'
 }
+
 function entryCalculator(entrants = {}) {
+  console.log(isEmptyObject({}));
   if (isEmptyObject(entrants)) {
     return 0;
   }
@@ -76,6 +73,8 @@ function entryCalculator(entrants = {}) {
   const { Adult: AdultE = 0, Child: ChildE = 0, Senior: SeniorE = 0 } = entrants;
   return (Adult * AdultE) + (Child * ChildE) + (Senior * SeniorE);
 }
+
+console.log(entryCalculator());
 
 function animalMap(options) {
   // seu código aqui
