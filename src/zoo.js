@@ -60,7 +60,12 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  let result = false;
+  employees.find((employee) => {
+    let verify = (manager) => manager === id ? result = true : undefined;
+    employee.managers.forEach(verify);
+  });
+  return result;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
