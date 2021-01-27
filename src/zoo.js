@@ -24,13 +24,10 @@ function animalsOlderThan(animal, age) {
   //4. Verificar se essa idade é superior ao parâmetro passado
   //5. Retornar true se todos os animais atenderem aos critérios, senão retorna false
 
-  const allAnimals = data.animals
+  const findSpecies = animals.find(item => item.name === animal).residents
 
-  return allAnimals.find((animal) => animal === 'lions');
- 
+  return findSpecies.every((element) => element.age > age)
 }
-
-animalsOlderThan('lions', 4)
 
 function employeeByName(employeeName) {
   // seu código aqui
