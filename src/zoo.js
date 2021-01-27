@@ -119,21 +119,38 @@ function animalMap(options) {
   if (options && options.sex) {
     sex = options.sex;
   }
-  if (!options || !options.includeNames || options.includeNames === false) {
-    return animalsByLocation(locations);
+  if (options && options.includeNames === true) {
+    return animalsByLocationWithname(locations, sorted, sex);
   }
-  return animalsByLocationWithname(locations, sorted, sex);
+  return animalsByLocation(locations);
 }
-//   let teste = {
-//     includeNames: true,
-//     sorted: true,
-//     sex: 'male'
-//   };
-//  animalMap(teste);
+function notADayName() {
+  const objOfDays = { };
+  Object.keys(data.hours).forEach((day) => {
+    if (day === 'Monday') {
+      objOfDays[day] = 'CLOSED';
+    } else {
+      objOfDays[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
+    }
+  });
+  return objOfDays;
+}
+
+function withDayName(day) {
+  if (day === 'Monday') {
+    return { [day]: 'CLOSED' };
+  }
+  return { [day]: `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm` };
+}
 
 function schedule(dayName) {
-  // seu código aqui
+  if (dayName) {
+    const day = dayName;
+    return withDayName(day);
+  }
+  return notADayName();
 }
+
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
