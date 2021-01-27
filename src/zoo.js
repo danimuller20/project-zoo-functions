@@ -27,15 +27,16 @@ console.log(animalsOlderThan('otters', 7));
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
-  } 
-    return employees.find(employee => employee.firstName === employeeName
+  }
+  return employees.find(employee => employee.firstName === employeeName
   || employee.lastName === employeeName);
 }
 
 console.log(employeeByName('Wishart'));
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newEmployee = data.employees.push(...personalInfo, ...associatedWith);
+  return newEmployee;
 }
 
 function isManager(id) {
