@@ -61,8 +61,17 @@ function animalCount(species) {
   }, {});
 }
 
+const invalidEntry = entrants =>
+  (!entrants) || (Object.keys(entrants).length === 0);
+
 function entryCalculator(entrants) {
   // seu código aqui
+  if (invalidEntry(entrants)) return 0;
+  const prices = data.prices;
+  const total = Object.entries(entrants)
+  .reduce((acc, [kindOfTicket, amount]) => acc + (prices[kindOfTicket] * amount), 0);
+
+  return total;
 }
 
 function animalMap(options) {
