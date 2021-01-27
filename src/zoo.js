@@ -133,14 +133,16 @@ function schedule(dayName) {
     hours.forEach((hour) => {
       readableSchedule[hour] = `Open from ${allDays[hour].open}am until ${(allDays[hour].close) - 12}pm`;
       if (allDays[hour].open === 0) {
-        readableSchedule[hour] = `CLOSED`;
+        const closed = `CLOSED`;
+        readableSchedule[hour] = closed;
       }
     });
     return readableSchedule;
   }
   if (allDays[dayName].open === 0) {
+    const closed = `CLOSED`;
     const mondaySchedule = {};
-    mondaySchedule[dayName] = `CLOSED`;
+    mondaySchedule[dayName] = closed;
     return mondaySchedule;
   }
   scheduleObj[dayName] = `Open from ${allDays[dayName].open}am until ${(allDays[dayName].close) - 12}pm`;
