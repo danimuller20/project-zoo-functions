@@ -80,8 +80,7 @@ function entryCalculator(entrants = undefined) {
   if (entrants === undefined) {
     return 0;
   }
-  Object.keys(entrants).forEach((key) =>
-  {fullPrice += data.prices[key] * entrants[key]});
+  Object.keys(entrants).forEach((key) => { fullPrice += data.prices[key] * entrants[key] });
   return fullPrice;
 }
 
