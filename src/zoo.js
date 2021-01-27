@@ -178,9 +178,9 @@ function increasePrices(percentage) {
   const arrayOfPricesKeys = Object.keys(data.prices);
   const numPerCent = percentage / 100;
   arrayOfPricesKeys.forEach((key) => {
-    let calculo =  Math.round(((data.prices[key] * numPerCent) + data.prices[key]) * 100)
+    const calculo = Math.round(((data.prices[key] * numPerCent) + data.prices[key]) * 100);
     data.prices[key] = calculo / 100;
-  }) 
+  });
 }
 function employeeCoverage(idOrName) {
   // seu código aqui
