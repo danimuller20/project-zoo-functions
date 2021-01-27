@@ -135,9 +135,9 @@ function schedule(dayName) {
 }
 
   // A função recebe um id de um funcionario como paramentro
-  // A função buscar o primeiro animal gerenciado pelo funcionario 
+  // A função buscar o primeiro animal gerenciado pelo funcionario
   // A função deve retornar um array.
-  // Esse array deve conter informações como o nome, sexo e idade do animal 
+  // Esse array deve conter informações como o nome, sexo e idade do animal
   // O animal encontrado deve ser o mais velho de sua especie mais velho dessa especie
 
 function oldestFromFirstSpecies(id) {
@@ -150,20 +150,18 @@ function oldestFromFirstSpecies(id) {
   // 6. Retornar esse array -- OK
 
   // CÓDIGO .JS
-  const employer = data.employees.find(employer =>
-    (employer.id === id));
+  const employer = data.employees.find(especificEmployer =>
+    (especificEmployer.id === id));
   const idFirstAnimalResposible = employer.responsibleFor[0];
-  const objFirstAnimal = data.animals.find((animal) =>
+  const objFirstAnimal = data.animals.find(animal =>
     (animal.id === idFirstAnimalResposible));
-  const animalOldest =  objFirstAnimal.residents.reduce((previusValue, currentValue) => {
+  const animalOldest = objFirstAnimal.residents.reduce((previusValue, currentValue) => {
     if (previusValue.age > currentValue.age) {
       return previusValue;
-    } else {
-      return currentValue;
     }
+    return currentValue;
   }, 0);
- let result = Object.values(animalOldest);
-  return result;
+  return Object.values(animalOldest);
 }
 function increasePrices(percentage) {
   // seu código aqui
