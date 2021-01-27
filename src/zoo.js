@@ -138,7 +138,8 @@ function increasePrices(percentage) {
   const pricesOptions = Object.keys(data.prices);
   const priceRateToChange = 1 + (percentage / 100);
   pricesOptions.forEach(proceOption =>
-  (data.prices[proceOption] = Math.round(data.prices[proceOption] * priceRateToChange)));
+  (data.prices[proceOption] =
+    (Math.round((data.prices[proceOption] * priceRateToChange) * 100)) / 100));
   console.log(data.prices);
 }
 
