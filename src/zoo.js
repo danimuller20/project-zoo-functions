@@ -243,9 +243,9 @@ function getEmployeeByNameOrId(idOrName) {
 
 function returnListAllEmployeesAndAnimals() {
   return employees.reduce((object, employee) => {
-    animalList = getAnimalListFromEmployee(employee);
-    object[getEmployeeFullName(employee)] = animalList
-    return object
+    const animalList = getAnimalListFromEmployee(employee);
+    object[getEmployeeFullName(employee)] = animalList;
+    return object;
   }, {});
 }
 
