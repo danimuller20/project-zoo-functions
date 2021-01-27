@@ -88,32 +88,38 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
+function compare() {
   const objResult = {};
   const objEntries = Object.entries(hours);
 
-  if (dayName === undefined) {
-
-    for (const key in objEntries) {
-      const objTarget = objEntries[key];
-      if(objTarget[1].open - objTarget[1].close === 0){
-        objResult[ objTarget[0] ] = 'CLOSED';
-      } else {
-        objResult[ objTarget[0] ] = `Open from ${objTarget[1].open}am until ${objTarget[1].close - 12}pm`;
-      }
+  for (const key in objEntries) {
+    const objTarget = objEntries[key];
+    if(objTarget[1].open - objTarget[1].close === 0){
+      objResult[ objTarget[0] ] = 'CLOSED';
+    } else {
+      objResult[ objTarget[0] ] = `Open from ${objTarget[1].open}am until ${objTarget[1].close - 12}pm`;
     }
+  }
+  return objResult;
+}
+
+function schedule(dayName) {
+  const objResult = {};
+  const objEntries = Object.entries(hours);
+  const dayTarget = objEntries.find((e) => e[0] === dayName);
+
+  if (dayName === undefined) {
+    return compare();
+  }
+  if(dayName === 'Monday'){
+    objResult[ dayTarget[0] ] = 'CLOSED';
     return objResult;
   }
-  const dayTarget = objEntries.find((e) => e[0] === dayName);
-  if(dayTarget[1].open - dayTarget[1].close === 0){
-    objResult[ dayTarget[0] ] = 'CLOSED';
-  } else {
-    objResult[ dayTarget[0] ] = `Open from ${dayTarget[1].open}am until ${dayTarget[1].close - 12}pm`;
-  }
+  objResult[ dayTarget[0] ] = `Open from ${dayTarget[1].open}am until ${dayTarget[1].close - 12}pm`;
 
   return objResult;
 }
-console.log(schedule('Monday'));
+console.log(schedule('Sunday'));
 
 function oldestFromFirstSpecies(id) {
   const firtSpecieId = employees.find(e => e.id === id).responsibleFor[0];
