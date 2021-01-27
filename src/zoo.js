@@ -163,10 +163,25 @@ function oldestFromFirstSpecies(id) {
   }, 0);
   return Object.values(animalOldest);
 }
-function increasePrices(percentage) {
-  // seu código aqui
-}
 
+  // A função receb um número como parametro
+  // Esse número representa a porcetagem do almento
+  // O objeto prices deve ser alterado com osnovos preços
+
+function increasePrices(percentage) {
+  // CÓDIGO PT-BR
+  // 1. Recuperar os preços originais -- OK
+  // 2. Fazer a conta do almento do preco
+  // 3. Alterar o objeto orignal com os novos preços
+
+  // CÓDIGO JS
+  const arrayOfPricesKeys = Object.keys(data.prices);
+  const numPerCent = percentage / 100;
+  arrayOfPricesKeys.forEach((key) => {
+    let calculo =  Math.round(((data.prices[key] * numPerCent) + data.prices[key]) * 100)
+    data.prices[key] = calculo / 100;
+  }) 
+}
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
