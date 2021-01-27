@@ -103,31 +103,6 @@ function entryCalculator(entrants) {
   return result;
 }
 
-function includeName(sort = false) {
-  const result = createObj;
-  data.animals.map((value) => {
-    
-  });
-  return result;
-}
-
-function sexNames(sex, sort = false) {
-  const result = createObj;
-  data.animals.map((value) => {
-    const objNames = { [`${value.name}`]: [] };
-    value.residents.forEach((animal) => {
-      if ( animal.sex === sex) {
-        objNames[`${value.name}`].push(`${animal.name}`);
-      }
-    });
-    if (sort === true) {
-      objNames[`${value.name}`].sort();
-    }
-    result[`${value.location}`].push(objNames);
-  });
-  return result;
-}
-
 function animalMap(options) {
   // seu código aqui
   const result = data.animals.reduce((objResult, currentValue) => {
