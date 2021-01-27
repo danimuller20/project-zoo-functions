@@ -30,9 +30,10 @@ function createEmployee(personalInfo, associatedWith) {
   };
 }
 
-function isManager() {
-  // id
-  // seu código aqui
+function isManager(id) {
+  // Verificar através de um id se a pessoa é gerente
+  // retorna true ou false 
+  return employees.some(item => item.managers.includes(id))
 }
 
 function addEmployee() {
