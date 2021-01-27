@@ -152,14 +152,13 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const employee = employees.find(employee => employee.id === id);
-  const idManagedAnimal = employee.responsibleFor[0];
+  const employeeThatIsResponsible = employees.find(employee => employee.id === id);
+  const idManagedAnimal = employeeThatIsResponsible.responsibleFor[0];
   const managedAnimal = animals.find(animal => animal.id === idManagedAnimal);
-  //ordena em ordem do maior para o menor
-  managedAnimal.residents.sort((a,b) => b.age - a.age);
+  // ordena em ordem do maior para o menor
+  managedAnimal.residents.sort((a, b) => b.age - a.age);
   const valuesOfOldestAnimal = Object.values(managedAnimal.residents[0]);
   return valuesOfOldestAnimal;
-
 }
 
 // function increasePrices(percentage) {
