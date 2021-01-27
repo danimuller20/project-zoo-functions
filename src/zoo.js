@@ -98,9 +98,27 @@ function animalCount(species) {
   const specie = animals.find(animal => animal.name === species);
   return specie.residents.length;
 }
-
+entryCalculator({Adult: 10, Child: 5});
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  let total = 0;
+  let entrantsArray = Object.entries(entrants);
+  entrantsArray.forEach((entrant) => {
+    switch (entrant[0]) {
+      case 'Adult':
+        total += data.prices.Adult * entrant[1];
+        break;
+      case 'Child':
+        total += data.prices.Child * entrant[1];
+        break;
+      case 'Senior':
+        total += data.prices.Senior * entrant[1];
+        break;
+    }
+  });
+  return total;
 }
 
 function animalMap(options) {
