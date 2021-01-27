@@ -103,7 +103,7 @@ function animalMap(options) {
       // retorna um array de objetos com as espécies e os nomes delas ordenados e filtrados por sexo
 // 8. Se não houver a opção includeNames,
       // retorna um array de strings com as espécies
-  
+/*  
   const locations = retrieveLocations();
   const { includeNames = false, sex, sorted = false } = options;
   if (includeNames) {
@@ -142,7 +142,7 @@ function retrieveAnimalsByLocationWithName(locations, sorted, sex) {
     animalsByLocation[location] = filteredAnimals;
   });
   return animalsByLocation;
-}
+} */
 
 function schedule(dayName) {
 // Ao chamar a função sem parâmetros: retorna um objeto com o cronograma inteiro
@@ -195,9 +195,6 @@ function increasePrices(percentage) {
 console.log(prices);
 
 function employeeCoverage(id, firstName, lastName) {
-// Sem parâmetros, retorna um objeto com nome do funcionário e animais pelos quais ele é responsável
-// Com id, firstName ou lastName, retorna um objeto com nome do funcionário e animais pelos quais ele é responsável
-
 }
 // console.log(employeeCoverage());
 // console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
