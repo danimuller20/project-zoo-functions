@@ -103,7 +103,7 @@ function includeAnimalNames() {
   animals.forEach(animal => newArr.push(animal.name));
   return newArr;
 }
-console.log(includeAnimalNames())
+console.log(includeAnimalNames());
 
 function animalMap(options) {
   /* if (!options) return animalLocation();
