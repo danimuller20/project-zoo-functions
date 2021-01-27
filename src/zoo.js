@@ -86,7 +86,7 @@ function oldestFromFirstSpecies(id) {
     (resident.age > acc ? resident.age : acc), 0);
   const animalOldesResidents = animalResidents.find(animal => animal.age === animalOldesAge);
   const { name, sex, age } = animalOldesResidents;
-  return [ name, sex, age ];
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
