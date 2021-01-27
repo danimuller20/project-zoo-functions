@@ -134,10 +134,37 @@ function schedule(dayName) {
   return { [dayName]: objResult[dayName] };
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+  // A função recebe um id de um funcionario como paramentro
+  // A função buscar o primeiro animal gerenciado pelo funcionario 
+  // A função deve retornar um array.
+  // Esse array deve conter informações como o nome, sexo e idade do animal 
+  // O animal encontrado deve ser o mais velho de sua especie mais velho dessa especie
 
+function oldestFromFirstSpecies(id) {
+  // PSEUDO CÓDIGO
+  // 1. Buscar o funciorio do respectivo id -- OK
+  // 2. Recuperar o id do primeiro animal gerenciado por ele -- OK
+  // 3. Buscar o animal do respectivo id -- OK
+  // 4. Recuperar o animal mais velho da especie -- OK
+  // 5. Empurrar as informações como nome, sexo e idade do animal -- OK
+  // 6. Retornar esse array -- OK
+
+  // CÓDIGO .JS
+  const employer = data.employees.find(employer =>
+    (employer.id === id));
+  const idFirstAnimalResposible = employer.responsibleFor[0];
+  const objFirstAnimal = data.animals.find((animal) =>
+    (animal.id === idFirstAnimalResposible));
+  const animalOldest =  objFirstAnimal.residents.reduce((previusValue, currentValue) => {
+    if (previusValue.age > currentValue.age) {
+      return previusValue;
+    } else {
+      return currentValue;
+    }
+  }, 0);
+ let result = Object.values(animalOldest);
+  return result;
+}
 function increasePrices(percentage) {
   // seu código aqui
 }
