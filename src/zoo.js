@@ -34,16 +34,17 @@ function animalsOlderThan(animal, age) {
   .residents.every(resident => resident.age >= age);
   return result;
 }
-employeeByName('Nelson')
+
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
   const fullName = employeeName.split(' ');
-  const person = data.employees.find((employee)=>{
-    if (employee.firstName === fullName[0] || employee.lastName === fullName[fullName.length - 1]){
+  const person = employees.find((employee) => {
+    if (employee.firstName === fullName[0] || employee.lastName === fullName[fullName.length - 1]) {
       return employee;
     }
+    return undefined;
   });
   return person;
 }
