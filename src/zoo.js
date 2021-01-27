@@ -65,7 +65,6 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   employeeAdded.managers = managers;
   employeeAdded.responsibleFor = responsibleFor;
   data.employees.push(employeeAdded);
-  return data.employees;
 }
 
 function animalCount(species) {
