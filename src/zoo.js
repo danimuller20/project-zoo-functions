@@ -103,30 +103,58 @@ function entryCalculator(entrants) {
   return result;
 }
 
+function createObj() {
+  const result = data.animals.reduce((objResult, currentValue) => {
+    objResult[`${currentValue.location}`] = [];
+    return objResult;
+  }, {});
+  return result;
+}
+
+function regionAndSpecies() {
+  const result = createObj();
+  data.animals.map(value => result[`${value.location}`].push(value.name));
+  return result;
+}
+
+function includeName(sort = false) {
+  const result = createObj();
+  data.animals.map((value) => {
+    const objNames = { [`${value.name}`]: [] };
+    value.residents.forEach((animal) => {
+      objNames[`${value.name}`].push(`${animal.name}`);
+    });
+    if (sort === true) {
+      objNames[`${value.name}`].sort();
+    }
+    result[`${value.location}`].push(objNames);
+  });
+  return result;
+}
+
+function sexNames(sex, sort = false) {
+  const result = createObj();
+  data.animals.map((value) => {
+    const objNames = { [`${value.name}`]: [] };
+    value.residents.forEach((animal) => {
+      if ( animal.sex === sex) {
+        objNames[`${value.name}`].push(`${animal.name}`);
+      }
+    });
+    if (sort === true) {
+      objNames[`${value.name}`].sort();
+    }
+    result[`${value.location}`].push(objNames);
+  });
+  return result;
+}
+
 function animalMap(options) {
   // seu código aqui
-  const result = data.animals.reduce((objResult, currentValue) => {
-    if (options === undefined || options.includeNames !== true) {
-      objResult[`${currentValue.location}`].push(currentValue.name);
-    } else {
-      const objNames = { [`${currentValue.name}`]: [] };
-      currentValue.residents.forEach((animal) => { 
-        if (options.sex !== undefined) {
-          if ( options.sex === animal.sex) {
-            objNames[`${currentValue.name}`].push(`${animal.name}`);
-          }
-        } else {
-          objNames[`${currentValue.name}`].push(`${animal.name}`);
-        }
-      });
-      if (options.sorted === true) {
-        objNames[`${currentValue.name}`].sort();
-      }
-      objResult[`${currentValue.location}`].push(objNames);
-    }
-    return objResult;
-  }, { NE: [], NW: [], SE: [], SW: [] });
-  return result;
+  if (options === undefined || options.includeNames !== true) return regionAndSpecies();
+  if (options.sex !== undefined) return sexNames(options.sex, options.sorted);
+  if (options.sorted) return includeName(options.sorted);
+  return includeName();
 }
 
 function schedule(dayName) {
