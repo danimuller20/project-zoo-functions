@@ -101,9 +101,9 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
   // firstName, lastName de employees, responsibleFor
     return getAllEmployeesAndAnimals();
-}
+  }
   const targetEmployee = getEmployeedByNameOrId(idOrName);
-    const animalList = getAnimalListFromEmplyee(targetEmployee);
+  const animalList = getAnimalListFromEmplyee(targetEmployee);
   const key = getEmployeeFullName(targetEmployee);
   return { [key]: animalList };
 }
