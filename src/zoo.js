@@ -68,8 +68,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species = undefined) {
   // seu código aqui
+  let list = {};
   if (species === undefined) {
-    data.animals.forEach(currentValue => currentValue.name + currentValue.residents.length);
+    data.animals.forEach(currentValue => list[currentValue.name] = currentValue.residents.length);
+    return list;
   }
   return data.animals.find(currentValue => currentValue.name === species).residents.length;
 }
