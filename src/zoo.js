@@ -70,7 +70,7 @@ function entryCalculator(entrants) {
 }
 function animalMap(options) {
   // seu código aqui
-  }
+}
 
 function schedule(dayName) {
   // seu código aqui
@@ -96,7 +96,7 @@ module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
   employeeCoverage,
