@@ -11,10 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals } = data;
-const { employees } = data;
-const { prices } = data;
-const { hours } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   const filteredAnimals = [];
@@ -87,7 +84,7 @@ function detailedAnimalsList(gender = undefined) {
 function sortAnimalsNames(list) {
   Object.values(list).forEach((group) => {
     group.forEach((dict) => {
-      Object.entries(dict).forEach(pair => pair[1].sort());
+      Object.values(dict).forEach(arrAnimals => arrAnimals.sort());
     });
   });
 }
