@@ -14,12 +14,11 @@ const data = require('./data');
 const { animals, employees, hours, prices } = data;
 
 // console.logs incluídos apenas para o CodeClimate não reclamar
-console.log(employees);
-console.log(hours);
-console.log(prices);
+// console.log(employees);
+// console.log(hours);
+// console.log(prices);
 
 function animalsByIds(...ids) {
-  // seu código aqui
   if (ids === undefined) {
     return [];
   }
@@ -32,7 +31,9 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const speciesInfos = animals.filter(infos => infos.name === animal);
+  const { residents } = speciesInfos[0];
+  return residents.every(check => check.age > age);
 }
 
 function employeeByName(employeeName) {
