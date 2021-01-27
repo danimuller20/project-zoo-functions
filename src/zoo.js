@@ -95,12 +95,24 @@ function schedule(dayName) {
     return returnObject;
   } return { [dayName]: returnObject[dayName] };
 }
-console.log(schedule('Monday'));
 
-function oldestFromFirstSpecies(id) {
+function oldestFromFirstSpecies(identifier) {
   // seu código aqui
+  const employeeRecord = employees.find(value => identifier === value.id);
+  const animal = employeeRecord.responsibleFor[0];
+  const animalsSameSpecies = animals.find(value => value.id === animal).residents;
+  let ageOfAnimal = 0;
+  let oldestAnimal = {}
+  for (let index = 0; index < animalsSameSpecies.length; index += 1) {
+    if (animalsSameSpecies[index].age > ageOfAnimal) {
+      ageOfAnimal = animalsSameSpecies[index].age;
+      oldestAnimal = animalsSameSpecies[index];
+    }
+  }  
+  return Object.values(oldestAnimal);
 }
 
+  console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 function increasePrices(percentage) {
   const percentageValue = percentage / 100;
   const entrantAge = Object.keys(prices); // Retorna ["Adult", "Senior", "Child"]
