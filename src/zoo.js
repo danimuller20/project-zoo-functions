@@ -37,7 +37,9 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // return employees
-  // .filter(associatedWith => associatedWith.managers && associatedWith.responsibleFor).employees.find(personalInfor => personalInfo.id && personalInfo.firstName && personalInfo.lastName);
+  // .filter(associatedWith => associatedWith.managers && associatedWith.
+  // responsibleFor).employees.find(personalInfor => personalInfo.id && personal
+  // Info.firstName && personalInfo.lastName);
 }
 
 function isManager(id) {
@@ -74,7 +76,7 @@ function increasePrices(percentage) {
 // Questões resolvidas no plantão com Murilo e Bernardo
 function getAnimalListFromEmplyee(employee) {
   return employee.responsibleFor
-    .map(animalId => animals.find((animal) => animalId === animal.id).name);
+    .map(animalId => animals.find(animal => animalId === animal.id).name);
     // ['id1', 'id2'] => ['lion', 'tinger']
 }
 function getEmployeeFullName(employee) {
@@ -82,7 +84,7 @@ function getEmployeeFullName(employee) {
 }
 
 function getAllEmployeesAndAnimals() {
-  return employees.reduce(accumulator, employee => {
+  return employees.reduce((accumulator, employee) => {
     const animalList = getAnimalListFromEmplyee(employee);
     accumulator[getEmployeeFullName(employee)] = animalList;
     return accumulator;
@@ -99,7 +101,7 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
   // firstName, lastName de employees, responsibleFor
     return getAllEmployeesAndAnimals();
-  }
+}
   const targetEmployee = getEmployeedByNameOrId(idOrName);
     const animalList = getAnimalListFromEmplyee(targetEmployee);
   const key = getEmployeeFullName(targetEmployee);
