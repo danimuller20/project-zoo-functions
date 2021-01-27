@@ -20,14 +20,14 @@ function employeeByName(employeeName) {
     employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
-function createEmployee(personalInfo,associatedWith) {
+function createEmployee(personalInfo, associatedWith) {
   return {
-    id : personalInfo.id,
+    id: personalInfo.id,
     firstName: personalInfo.firstName,
     lastName: personalInfo.lastName,
     managers: associatedWith.managers,
     responsibleFor: associatedWith.responsibleFor,
-  }
+  };
 }
 
 function isManager() {
