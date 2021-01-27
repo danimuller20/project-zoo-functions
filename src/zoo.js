@@ -28,6 +28,7 @@ function createEmployee(personalInfo,associatedWith) {
     managers: associatedWith.managers,
     responsibleFor: associatedWith.responsibleFor,
   }
+}
 
 function isManager() {
   // id
@@ -73,7 +74,7 @@ function employeeCoverage() {
   // idOrName
   // seu código aqui
 }
-}
+
 module.exports = {
   entryCalculator,
   schedule,
