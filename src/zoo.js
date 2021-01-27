@@ -13,98 +13,97 @@ const data = require('./data');
 
 const { animals, employees, hours, prices } = data;
 
-/* animalsByIds */
-
+/*
+ * animalsByIds
+ Esta função é responsável pela busca das espécies de animais por id. Ela
+ retorna um array contendo as espécies referentes aos ids passados como
+ parâmetro, podendo receber um ou mais ids.
+ */
 function animalsByIds(...ids) {
   return ids.map(idValue => animals.find(animalValue => animalValue.id === idValue));
 }
 
-/* animalsOlderThan */
-
-function checkAge(ageArray, age) {
-  return ageArray.every(value => value.age >= age);
-}
-
-function checkAnimal(animalValue, animal) {
-  return animalValue === animal;
-}
-
+/*
+ * animalsOlderThan
+ Esta função, a partir do nome de uma espécie e uma idade mínima, verifica se
+ todos os animais daquela espécie possuem a idade mínima especificada
+ */
 function animalsOlderThan(animal, age) {
-  return animals.some(value => checkAnimal(value.name, animal) && checkAge(value.residents, age));
-
-  // const find
-  // return every
+  return animals.find(({ name }) => name === animal).residents.every(element => element.age >= age);
 }
 
-/* employeeByName */
-
-function checkEmployee(firstName, lastName, name) {
-  return firstName === name || lastName === name;
-}
-
+/*
+ * employeeByName
+ Esta função é responsável pela busca das pessoas colaboradoras através do
+ primeiro ou do último nome delas
+ */
 function employeeByName(employeeName) {
-  let result = {};
+  if (employeeName === undefined) return {};
 
-  result = employees.find(value => checkEmployee(value.firstName, value.lastName, employeeName));
-
-  if (result === undefined) result = {};
-
-  return result;
-
-  // desestruturar find({firstName,lastName})
-  // !emplyessName return {}
-  // find
+  return employees
+    .find(({ firstName, lastName }) => firstName === employeeName || lastName === employeeName);
 }
 
-/* createEmployee */
-
+/*
+ * createEmployee
+ A função, a partir de informações recebidas nos parâmetros, é capaz de criar
+ um objeto equivalente ao de uma pessoa colaboradora, retornando-o
+ */
 function createEmployee(personalInfo, associatedWith) {
   return (Object.assign(personalInfo, associatedWith));
 }
 
-/* isManager */
-
+/*
+ * isManager
+ Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de
+ gerência.
+ */
 function isManager(id) {
   return employees.some(employee => employee.managers.some(manager => manager === id));
 }
 
-/* addEmployee */
-
+/*
+ * addEmployee
+ A função irá adicionar uma nova pessoa colaboradora ao array `employees`,
+ presente no arquivo `data.js`.
+ */
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-/* animalCount */
-
+/*
+ * animalCount
+ Esta função é responsável por contabilizar a quantidade de animais.
+ */
 function animalCount(species) {
   if (species === undefined) {
     const animalsObject = {};
-    animals.forEach((value) => {
-      animalsObject[value.name] = value.residents.length;
+
+    animals.forEach(({ name, residents }) => {
+      animalsObject[name] = residents.length;
     });
+
     return animalsObject;
   }
 
   return animals.find(value => value.name === species).residents.length;
 }
 
-/* entryCalculator */
-
-function checkEntrants(amount, clientType) {
-  const objectPrices = Object.entries(prices);
-
-  return amount * objectPrices.find(price => clientType === price[0])[1];
-}
-
+/*
+ * entryCalculator
+ A partir da quantidade de visitantes e a faixa etária de cada um, esta função
+ é responsável por retornar o preço total a ser cobrado
+ */
 function entryCalculator(entrants) {
-  if (typeof entrants === 'undefined' || entrants === null) {
-    return 0;
-  }
+  if (typeof entrants === 'undefined' || entrants === null) return 0;
 
-  const keys = Object.keys(entrants);
-  const values = Object.values(entrants);
+  const keysEntrants = Object.keys(entrants);
+  const valuesEntrants = Object.values(entrants);
+  const entriesEntrants = Object.entries(prices);
 
-  return keys.reduce((total, entrant, index) => total + checkEntrants(values[index], entrant), 0);
+  return keysEntrants
+    .reduce((total, entrant, index) => total + (valuesEntrants[index] * entriesEntrants
+      .find(price => entrant === price[0])[1]), 0);
 }
 
 /* animalMap */
@@ -120,15 +119,17 @@ function animalMap(options) {
 // console.log(animalMap({ sex: 'female' })['NE'][0]);
 // console.log(animalMap({ sex: 'female', sorted: true })['NE'][0]);
 
-/* schedule */
+/*
+ * schedule
+ A função é responsável por disponibilizar as informações de horário para uma
+ consulta, que pode querer ter acesso a todo o cronograma da semana ou apenas o
+ cronograma de um dia específico
+ */
+function createSchedule(openClose) {
+  const open = openClose.open;
+  const close = (openClose.close) - 12;
 
-function createSchedule(arrayOpenClose) {
-  const open = arrayOpenClose.open;
-  const close = (arrayOpenClose.close) - 12;
-
-  if (open === 0 && close === -12) {
-    return 'CLOSED';
-  }
+  if (open === 0 && close === -12) return 'CLOSED';
 
   return `Open from ${open}am until ${close}pm`;
 }
@@ -149,75 +150,47 @@ function schedule(dayName) {
   return result;
 }
 
-/* oldestFromFirstSpecies */
-
-function ageAnimals(arrayAnimals, responsible) {
-  return responsible.map((id) => {
-    const residents = animals.find(animal => animal.id === id).residents;
-    const maxAge = Math.max(...Object.values(residents).map(resident => resident.age));
-
-    const arrayResidents = Object.values(residents);
-
-    arrayAnimals.push(Object.values(arrayResidents.find(animal => animal.age === maxAge)));
-
-    return maxAge;
-  });
-}
-
+/*
+ * oldestFromFirstSpecies
+ A função busca por informações do animal mais velho da primeira espécie
+ gerenciada pela pessoa colaboradora do parâmetro
+ */
 function oldestFromFirstSpecies(id) {
-  const responsible = employees.find(employee => employee.id === id).responsibleFor;
-  const arrayAnimals = [];
+  const arrayMaxNumber = employees.find(employee => employee.id === id).responsibleFor
+    .map((animalID) => {
+      const resident = animals.find(animal => animal.id === animalID).residents;
+      const maxAge = Math.max(...resident.map(animal => animal.age));
 
-  const arrayAgeAnimals = ageAnimals(arrayAnimals, responsible);
+      return resident.filter(animal => animal.age === maxAge);
+    });
 
-  return arrayAnimals[arrayAgeAnimals.indexOf(Math.max(...arrayAgeAnimals))];
+  const maxIndex = Math.max(...arrayMaxNumber.map(animal => animal[0].age));
+
+  return Object.values((arrayMaxNumber[0].filter(ageNumber => ageNumber.age === maxIndex))[0]);
 }
 
-/* increasePrices */
-
+/*
+ * increasePrices
+ A função é responsável por aumentar o preço das visitas, com base no valor de
+ aumento recebido no parâmetro, em porcentagem
+ */
 function increasePrices(percentage) {
   Object.keys(prices).forEach((index) => {
-    const ticket = (prices[index]) * ((percentage / 100) + 1);
-    prices[index] = Math.round(ticket * 100) / 100;
+    prices[index] = Math.round((prices[index]) * ((percentage / 100) + 1) * 100) / 100;
   });
 
   return prices;
 }
 
-/* employeeCoverage */
-
-function findAnimals(arrayIdAnimals) {
-  const arrayNameAnimals = [];
-
-  arrayIdAnimals.forEach((id) => {
-    arrayNameAnimals.push(animals.find(animal => animal.id === id).name);
-  });
-
-  return arrayNameAnimals;
-}
-
-function employeeData(arrayEmployee) {
-  const objEmployee = {};
-
-  arrayEmployee.forEach((value) => {
-    const employee = employees.find((element) => {
-      const { id, firstName, lastName } = element;
-      return id === value || firstName === value || lastName === value;
-    });
-
-    const { firstName, lastName, responsibleFor } = employee;
-    const animalsResponsible = findAnimals(responsibleFor);
-
-    objEmployee[`${firstName} ${lastName}`] = animalsResponsible;
-
-    return objEmployee;
-  });
-
-  return objEmployee;
-}
-
+/*
+ * employeeCoverage
+ A função é responsável por consultar as espécies pela qual a pessoa
+ colaborada, recebida no parâmetro através de seu `id`, `firstName` ou
+ `lastName`, é responsável
+ */
 function employeeCoverage(idOrName) {
   const arrayEmployee = [];
+  const objEmployee = {};
 
   if (idOrName === undefined) {
     employees.forEach((value) => {
@@ -227,7 +200,22 @@ function employeeCoverage(idOrName) {
     arrayEmployee.push(idOrName);
   }
 
-  return employeeData(arrayEmployee);
+  arrayEmployee.forEach((value) => {
+    const arrayNameAnimals = [];
+
+    const { firstName, lastName, responsibleFor } = employees
+      .find(e => e.id === value || e.firstName === value || e.lastName === value);
+
+    responsibleFor.forEach((id) => {
+      arrayNameAnimals.push(animals.find(animal => animal.id === id).name);
+    });
+
+    objEmployee[`${firstName} ${lastName}`] = arrayNameAnimals;
+
+    return objEmployee;
+  });
+
+  return objEmployee;
 }
 
 module.exports = {
