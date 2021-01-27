@@ -72,8 +72,8 @@ const getNamesAnimalsForLocation = (accumulator, currentValue) => {
 const sortedNamesOrGetForSex = (accAnimal, currentAnimal, sex, sorted) => {
   const objAnimal = {};
   const animalForSex = currentAnimal.residents
-    .filter((resident) => (sex === '' ? true : resident.sex === sex))
-    .map((resident) => resident.name);
+    .filter(resident => (sex === '' ? true : resident.sex === sex))
+    .map(resident => resident.name);
   objAnimal[currentAnimal.name] = animalForSex;
   if (sorted) {
     objAnimal[currentAnimal.name].sort();
