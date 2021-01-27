@@ -32,7 +32,7 @@ function employeeByName(employeeName) {
     return {};
   }
   return employees
-  .find( names => names.firstName === employeeName
+  .find(names => names.firstName === employeeName
   || names.lastName === employeeName);
 }
 
@@ -68,10 +68,10 @@ function schedule(dayName) {
   const allDays = Object.keys(hours);
   const schedules = {};
   allDays.forEach((day) => {
-  function change24HoursFormatTo12Format(hour) {
-  const formattedHour = hour -12;
+    function change24HoursFormatTo12Format(hour) {
+    const formattedHour = hour - 12;
     return formattedHour < 0 ? hour : formattedHour;
-    }
+  }
     const { open, close } = hours[day];
 
     if (open === 0 && close === 0) {
@@ -91,16 +91,13 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
-
-
 function increasePrices(percentage) {
   // seu código aqui
 }
 // Questões resolvidas no plantão com Murilo e Bernardo
 function getAnimalListFromEmplyee(employee) {
   return employee.responsibleFor.map(
-    (animalId) => animals.find((animal) => animalId === animal.id).name
-  );
+    animalId => animals.find((animal) => animalId === animal.id).name);
   // ['id1', 'id2'] => ['lion', 'tinger']
 }
 function getEmployeeFullName(employee) {
@@ -116,11 +113,10 @@ function getAllEmployeesAndAnimals() {
 }
 function getEmployeedByNameOrId(idOrName) {
   return employees.find(
-    (employee) =>
+    employee =>
       employee.id === idOrName ||
       employee.firstName === idOrName ||
-      employee.lastName === idOrName
-  );
+      employee.lastName === idOrName);
 }
 
 function employeeCoverage(idOrName) {
