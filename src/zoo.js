@@ -86,7 +86,8 @@ function animalMap(options) {
 // valor com parâmetro includeNames === array de objetos
 // valor com parâmetro sorted === array de objetos com as espécies e o nome delas ordenadas
 // valor com parâmetro sex === array de objetos com as espécies e o nome delas filtradas por sexo
-// valor com os parâmetros sorted e sex === array de objetos com as espécies e o nome delas ordenadas e filtradas por sexo
+// valor com os parâmetros sorted e sex === 
+    // array de objetos com as espécies e o nome delas ordenadas e filtradas por sexo
 // valor sem includeNames === array de strings com as espécies
 
 // 1. Recuperar as regiões que quero categorizar
