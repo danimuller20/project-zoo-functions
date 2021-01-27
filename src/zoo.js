@@ -13,7 +13,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 // get animals key in data object
-const { animals, employees, hours } = data;
+const { animals, employees, hours, prices } = data;
 
 // animalsByIds grabs the required ids as spread array
 // animals array is then filtered by :
@@ -99,7 +99,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return Object.keys(prices)
+  .forEach(priceTag => prices[priceTag] = Math.round((prices[priceTag] + (prices[priceTag] * (percentage / 100))) * 100) / 100);
 }
 
 function employeeCoverage(idOrName) {
