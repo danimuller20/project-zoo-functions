@@ -75,7 +75,7 @@ function animalMap(options) {
  /* function retrieveAnimalPerLocationWithName(locations) {
   return retrieveAnimalPerLocation(locations);
   } */
- 
+
  /* function retrieveAnimalPerLocation(locations) {
   const animalsPerLocation = { };
   locations.forEach((location) => {
@@ -94,20 +94,21 @@ function animalMap(options) {
  /* function retrieveAvailableLocations() {
     return ['NE', 'NW', 'SE', 'SW'];
     */
-};
+}
+
 function schedule(dayName) {
   const newObject = {};
   const objectValue = Object.keys(hours);
   objectValue.forEach((calendar) => {
     const { open, close } = hours[calendar];
-   if(calendar === 'Monday') {
-     return newObject[calendar] = 'CLOSED';
-    } return newObject[calendar] = `Open from ${open}am until ${close -12}pm`;
+    if (calendar === 'Monday') {
+      newObject[calendar] = 'CLOSED';
+   } newObject[calendar] = `Open from ${open}am until ${close - 12}pm`;
   });
   if (!dayName) {
     return newObject;
   } return { [dayName]: newObject[dayName] };
-  };
+}
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
