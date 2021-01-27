@@ -62,6 +62,7 @@ function animalCount(species) {
   const animalsObject = {};
   animals.map((animal) => {
     animalsObject[animal.name] = animal.residents.length;
+    return animalsObject;
   });
   if (!species) {
     return animalsObject;
