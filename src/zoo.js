@@ -35,7 +35,7 @@ function employeeByName(employeeName) {
 console.log(employeeByName('Wishart'));
 
 function createEmployee(personalInfo, associatedWith) {
-  const newEmployee = data.employees.push(...personalInfo, ...associatedWith);
+  const newEmployee = [...personalInfo, ...associatedWith];
   return newEmployee;
 }
 
