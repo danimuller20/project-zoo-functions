@@ -98,13 +98,13 @@ function animalCount(species) {
   const specie = animals.find(animal => animal.name === species);
   return specie.residents.length;
 }
-entryCalculator({Adult: 10, Child: 5});
+
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
   let total = 0;
-  let entrantsArray = Object.entries(entrants);
+  const entrantsArray = Object.entries(entrants);
   entrantsArray.forEach((entrant) => {
     switch (entrant[0]) {
       case 'Adult':
@@ -115,6 +115,8 @@ function entryCalculator(entrants) {
         break;
       case 'Senior':
         total += data.prices.Senior * entrant[1];
+        break;
+      default:
         break;
     }
   });
