@@ -68,9 +68,68 @@ function entryCalculator(entrants) {
   return valueToPay;
 }
 
-function animalMap(options) {
-  // seu código aqui
+function requireLocation() {
+  return ['NW', 'NE', 'SW', 'SE'];
 }
+
+function animalsByLocation(locations) {
+  const objOfAnimals = { };
+  locations.forEach((location) => {
+    const animalsFiltered = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    objOfAnimals[location] = animalsFiltered;
+  });
+  return objOfAnimals;
+}
+
+function animalsByLocationWithname(locations, sorted, sex) {
+  const objOfAnimals = { };
+  locations.forEach((location) => {
+    const animalsFiltered = data.animals
+      .filter(animal => animal.location === location)
+      .map((animal) => {
+        let nameKey;
+        let keyValue;
+        if (sex) {
+          nameKey = animal.name;
+          keyValue = animal.residents.filter(animalPerSex => animalPerSex.sex === sex)
+            .map(resident => resident.name);
+        } else {
+          nameKey = animal.name;
+          keyValue = animal.residents.map(resident => resident.name);
+        }
+        if (sorted === true) {
+          return { [nameKey]: keyValue.sort() };
+        }
+        return { [nameKey]: keyValue };
+      });
+    objOfAnimals[location] = animalsFiltered;
+  });
+  return objOfAnimals;
+}
+
+function animalMap(options) {
+  const locations = requireLocation();
+  let sorted = false;
+  let sex = false;
+  if (options && options.sorted) {
+    sorted = options.sorted;
+  }
+  if (options && options.sex) {
+    sex = options.sex;
+  }
+  if (!options || !options.includeNames || options.includeNames === false) {
+    return animalsByLocation(locations);
+  }
+  return animalsByLocationWithname(locations, sorted, sex);
+}
+//   let teste = {
+//     includeNames: true,
+//     sorted: true,
+//     sex: 'male'
+//   };
+//  animalMap(teste);
 
 function schedule(dayName) {
   // seu código aqui
