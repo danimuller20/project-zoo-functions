@@ -103,51 +103,16 @@ function entryCalculator(entrants) {
   return result;
 }
 
-function regionAndSpecies() {
-  const result = data.animals.reduce((objResult, currentValue) => {
-    objResult[`${currentValue.location}`] = [];
-    return objResult;
-  }, {});
-  data.animals.map((value) => result[`${value.location}`].push(value.name));
-  return result;
-}
-
-function includeName() {
-  const result = data.animals.reduce((objResult, currentValue) => {
-    objResult[`${currentValue.location}`] = [];
-    return objResult;
-  }, {});
+function includeName(sort = false) {
+  const result = createObj;
   data.animals.map((value) => {
-    const objNames = { [`${value.name}`]: [] };
-    value.residents.forEach((animal) => {
-      objNames[`${value.name}`].push(`${animal.name}`);
-    });
-    result[`${value.location}`].push(objNames);
+    
   });
   return result;
 }
 
-function sortNames() {
-  const result = data.animals.reduce((objResult, currentValue) => {
-    objResult[`${currentValue.location}`] = [];
-    return objResult;
-  }, {});
-  data.animals.map((value) => {
-    const objNames = { [`${value.name}`]: [] };
-    value.residents.forEach((animal) => {
-      objNames[`${value.name}`].push(`${animal.name}`);
-    });
-    objNames[`${value.name}`].sort();
-    result[`${value.location}`].push(objNames);
-  });
-  return result;
-}
-
-function sexNames(sex) {
-  const result = data.animals.reduce((objResult, currentValue) => {
-    objResult[`${currentValue.location}`] = [];
-    return objResult;
-  }, {});
+function sexNames(sex, sort = false) {
+  const result = createObj;
   data.animals.map((value) => {
     const objNames = { [`${value.name}`]: [] };
     value.residents.forEach((animal) => {
@@ -155,24 +120,9 @@ function sexNames(sex) {
         objNames[`${value.name}`].push(`${animal.name}`);
       }
     });
-    result[`${value.location}`].push(objNames);
-  });
-  return result;
-}
-
-function sexAndSort(sex) {
-  const result = data.animals.reduce((objResult, currentValue) => {
-    objResult[`${currentValue.location}`] = [];
-    return objResult;
-  }, {});
-  data.animals.map((value) => {
-    const objNames = { [`${value.name}`]: [] };
-    value.residents.forEach((animal) => {
-      if ( animal.sex === sex) {
-        objNames[`${value.name}`].push(`${animal.name}`);
-      }
-    });
-    objNames[`${value.name}`].sort();
+    if (sort === true) {
+      objNames[`${value.name}`].sort();
+    }
     result[`${value.location}`].push(objNames);
   });
   return result;
@@ -180,20 +130,27 @@ function sexAndSort(sex) {
 
 function animalMap(options) {
   // seu código aqui
-  let result;
-  if (options === undefined) {
-    result = regionAndSpecies();
-  } else if (options.includeNames && options.sorted && options.sex !== undefined) {
-    result = sexAndSort(options.sex);
-  } else if (options.includeNames && options.sorted) {
-    result = sortNames();
-  } else if (options.includeNames && options.sex !== undefined) {
-    result = sexNames(options.sex);
-  } else if (options.includeNames) {
-    result = includeName();
-  } else {
-    result = regionAndSpecies();
-  }
+  const result = data.animals.reduce((objResult, currentValue) => {
+    if (options === undefined || options.includeNames !== true) {
+      objResult[`${currentValue.location}`].push(currentValue.name);
+    } else {
+      const objNames = { [`${currentValue.name}`]: [] };
+      currentValue.residents.forEach((animal) => { 
+        if (options.sex !== undefined) {
+          if ( options.sex === animal.sex) {
+            objNames[`${currentValue.name}`].push(`${animal.name}`);
+          }
+        } else {
+          objNames[`${currentValue.name}`].push(`${animal.name}`);
+        }
+      });
+      if (options.sorted === true) {
+        objNames[`${currentValue.name}`].sort();
+      }
+      objResult[`${currentValue.location}`].push(objNames);
+    }
+    return objResult;
+  }, { NE: [], NW: [], SE: [], SW: [] });
   return result;
 }
 
