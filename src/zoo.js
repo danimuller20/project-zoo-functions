@@ -25,8 +25,10 @@ function animalsOlderThan(animal, age) {
 console.log(animalsOlderThan('otters', 7));
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  return employees.find(employee => employee.firstName === employeeName
+  || employee.lastName === employeeName);
 }
+console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
@@ -35,8 +37,8 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   return employees.some(employee => employee.managers.includes(id));
 }
-
 console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
