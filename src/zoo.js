@@ -93,14 +93,14 @@ function schedule(dayName) {
 }
 
 function getOlderAnimalFromSpecies(animalResident) {
-return animalResident
-.reduce((previousValue, currentValue) =>
-currentValue.age >= previousValue.age ? currentValue : previousValue);
+  return animalResident
+  .reduce((previousValue, currentValue) =>
+  currentValue.age >= previousValue.age ? currentValue : previousValue);
 }
 
 function oldestFromFirstSpecies(id) {
   const getEmployeeId = employees.find(value => value.id === id).responsibleFor[0];
-  const animalResident = animals.find((value) => value.id === getEmployeeId).residents;
+  const animalResident = animals.find(value => value.id === getEmployeeId).residents;
   const olderSpecie = getOlderAnimalFromSpecies(animalResident);
   return Object.values(olderSpecie);
 }
@@ -109,16 +109,16 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
-function getAnimalsFromEmployees (employee) {
- return employee.responsibleFor
-    .map((animalID) => animals.find((animal) => animalID === animal.id).name);
+function getAnimalsFromEmployees(employee) {
+  return employee.responsibleFor
+  .map(animalID => animals.find((animal) => animalID === animal.id).name);
 }
 
-function constructEmployeeFullName (employee) {
+function constructEmployeeFullName(employee) {
   return `${employee.firstName} ${employee.lastName}`;
 }
 
-function getAllEmployeesAndAnimals () {
+function getAllEmployeesAndAnimals() {
   return employees.reduce((accumulator, employee) => {
     const animalList = getAnimalsFromEmployees(employee);
     accumulator[constructEmployeeFullName(employee)] = animalList;
@@ -126,9 +126,9 @@ function getAllEmployeesAndAnimals () {
   }, {} );
 }
 
-function getEmployeeByNameOrId (idOrName) {
+function getEmployeeByNameOrId(idOrName) {
   return employees
-  .find((employee) => 
+  .find((employee) =>
     idOrName === employee.firstName ||
     idOrName === employee.lastName  ||
     idOrName === employee.id);
