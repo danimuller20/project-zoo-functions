@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const { animals } = require('./data');
+const { employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -23,8 +24,15 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+  const employeeFound = employees.find(employee => {
+    return employee.firstName === employeeName || employee.lastName === employeeName
+  });
+  return employeeFound;
 }
+employeeByName('Emery');
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
