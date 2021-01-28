@@ -110,7 +110,7 @@ function schedule(dayName = undefined) {
     list[lastDay] = ('CLOSED');
     return list;
   }
-
+return list
 }
 
 function oldestFromFirstSpecies(id) {
@@ -119,12 +119,11 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  const { prices } = data;
   const arrayOptions = Object.keys(prices);
   const porcentagem = 1 + (percentage / 100);
   arrayOptions.forEach((currentValue) => {
-    prices[currentValue] = (Math.round((prices[currentValue] * porcentagem) * 100)) / 100;});
-
+    prices[currentValue] = (Math.round((prices[currentValue] * porcentagem) * 100)) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
