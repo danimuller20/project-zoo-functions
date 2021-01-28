@@ -71,20 +71,30 @@ function isManager(id) {
   /*
   Verificar por meio do ID do funcionário se ocupa cargo de gerência.
 
-  1 - Acessar o objeto employess e localizar por meio do id o funcionário;
-  2 - Verificar se o profissional encontrado possui cargo de gerente (se a chave manager tiver 1 item). 
+  1 - Acessar o objeto employess e localizar por meio do id;
+  2 - Verificar se o profissional encontrado possui cargo de gerente;
+  Obs.: Se a chave manager tiver 1 item é gerente.
   */
 
-  const findEmployeeById = employees.find(employee => employee.id === id)
+  const findEmployeeById = employees.find(employee => employee.id === id);
 
   if (findEmployeeById.managers.length === 1) {
-    return true
-  } 
-  return false 
+    return true;
+  }
+  return false;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  /*
+  Irá adicionar um novo colaborar ao Objeto employees no arquivo Data.
+
+  1 - Criar um objeto com os parâmetros passados na função;
+  2 - Inserir esse objeto como chave ao final do objeto employees no arquivo Data.
+  */
+
+  const newEmployee = { id, firstName, lastName, managers, responsibleFor };
+
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {
