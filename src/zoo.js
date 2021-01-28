@@ -70,7 +70,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const animalQuantity = {};
   if (species === undefined) {
-    animals.forEach((animal) => { animalQuantity[animal.name] = animal.residents.length });
+    animals.forEach((animal) => { animalQuantity[animal.name] = animal.residents.length; });
     return animalQuantity;
   }
   return animals.find(animalName => animalName.name === species).residents.length;
