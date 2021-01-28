@@ -140,71 +140,67 @@ function entryCalculator(entrants) {
 }
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
-function locationAnimals() {
-  return ['NE', 'NW', 'SE', 'SW'];
-}
+// function locationAnimals() {
+//   return ['NE', 'NW', 'SE', 'SW'];
+// }
 
-function animalPorLocalidades(locais) {
+// function animalPorLocalidades(locais) {
 
-  const obj = { };
-  locais.forEach((local) => {
-   const animaisFiltrados = animals
-    .filter((animal) => animal.location === local)
-    .map((animal) => animal.name);
-    obj[local] = animaisFiltrados;
-  });
+//   const obj = { };
+//   locais.forEach((local) => {
+//    const animaisFiltrados = animals
+//     .filter((animal) => animal.location === local)
+//     .map((animal) => animal.name);
+//     obj[local] = animaisFiltrados;
+//   });
 
-  return obj;
-}
+//   return obj;
+// }
 
-function animaisPorSexo(animais, sexo) {
-  const animalPorSex = animais.filter((value) => value.sex === sexo)
-  .map((animal) => animal.name);
-  return animalPorSex;
-}
+// function animaisPorSexo(animais, sexo) {
+//   const animalPorSex = animais.filter((value) => value.sex === sexo)
+//   .map((animal) => animal.name);
+//   return animalPorSex;
+// }
 
-function animalPorLocalidadeComNome(locais, sortear, sexo) {
-  const obj = { };
-  locais.forEach((local) => {
-    const animaisFiltrados = animals
-      .filter((animal) => animal.location === local)
-      .map((animal) => {
-        const nomeAnimais = animal.name;
-        let tiposDeAnimais = animal.residents;
+// function animalPorLocalidadeComNome(locais, sortear, sexo) {
+//   const obj = { };
+//   locais.forEach((local) => {
+//     const animaisFiltrados = animals
+//       .filter((animal) => animal.location === local)
+//       .map((animal) => {
+//         const nomeAnimais = animal.name;
+//         let tiposDeAnimais = animal.residents;
 
-          if (sexo !== undefined) {
-            tiposDeAnimais = animaisPorSexo(tiposDeAnimais, sexo);
-          } else {
-            tiposDeAnimais = tiposDeAnimais.map(resident => resident.name);
-          }
+//           if (sexo !== undefined) {
+//             tiposDeAnimais = animaisPorSexo(tiposDeAnimais, sexo);
+//           } else {
+//             tiposDeAnimais = tiposDeAnimais.map(resident => resident.name);
+//           }
 
-          if (sortear) {
-            tiposDeAnimais.sort();
-          }
+//           if (sortear) {
+//             tiposDeAnimais.sort();
+//           }
 
-        return { [nomeAnimais]: tiposDeAnimais };
-      });
+//         return { [nomeAnimais]: tiposDeAnimais };
+//       });
 
-    obj[local] = animaisFiltrados;
-  });
+//     obj[local] = animaisFiltrados;
+//   });
 
-  return obj;
-}
+//   return obj;
+// }
 
-// a funcao retorna um objeto
-// esse objeto possui a seguinte entrada
-// chave: string, essa string e a localuzacao
-// valor: array, esse array tem os animais
 function animalMap(options) {
-  const locations = locationAnimals();
-  if (!options) {
-    return animalPorLocalidades(locations);
-  } else {
-    const { includeNames = false, sorted, sex } = options;
-    if (includeNames) {
-      return animalPorLocalidadeComNome(locations, sorted, sex);
-    }
-  }
+  // const locations = locationAnimals();
+  // if (!options) {
+  //   return animalPorLocalidades(locations);
+  // } else {
+  //   const { includeNames = false, sorted, sex } = options;
+  //   if (includeNames) {
+  //     return animalPorLocalidadeComNome(locations, sorted, sex);
+  //   }
+  // }
 }
 // console.log(animalMap());
 // console.log(animalMap({ includeNames: true }));
@@ -236,9 +232,12 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const trabalhor = employees.find((employ) => employ.id === id).responsibleFor[0];
-  const animalDoTrabalhor = animals.find((animal) => animal.id === trabalhor);
-  const animaisMaisVelhoComDados = animalDoTrabalhor.residents.reduce((previusAnimal, currentAnimal) => previusAnimal.age > currentAnimal.age ? previusAnimal : currentAnimal);
+  const trabalhor = employees.find(employ => employ.id === id).responsibleFor[0];
+  const animalDoTrabalhor = animals.find(animal => animal.id === trabalhor);
+  const animaisMaisVelhoComDados = animalDoTrabalhor.residents
+    .reduce((previusAnimal, currentAnimal) => {
+      previusAnimal.age > currentAnimal.age ? previusAnimal : currentAnimal
+    });
 
   return Object.values(animaisMaisVelhoComDados);
 }
