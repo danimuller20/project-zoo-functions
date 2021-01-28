@@ -14,7 +14,7 @@ const data = require('./data');
 const { animals, employees, hours, prices } = data;
 
 // console.logs incluídos apenas para o CodeClimate não reclamar
-// console.log(hours);
+console.log(hours);
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -98,9 +98,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const increase = 1 + (percentage/100);
+  const increase = 1 + (percentage / 100);
   const ages = Object.keys(data.prices);
-  ages.forEach(age => data.prices[age] = Math.round(increase * data.prices[age] * 100) / 100);
+  ages.forEach(age => (data.prices[age] = Math.round(increase * data.prices[age] * 100) / 100));
 }
 
 function employeeCoverage(idOrName) {
