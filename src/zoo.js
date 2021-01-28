@@ -72,7 +72,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // skipped
+
 }
 
 const editedGmtSchedule = {
@@ -107,9 +107,9 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   Object.keys(prices).forEach((risePrices) => {
-  prices[risePrices] = (Math.round(prices[risePrices] * percentage) +
-  (prices[risePrices] * 100)) / 100;
-});
+    prices[risePrices] = (Math.round(prices[risePrices] * percentage) +
+    (prices[risePrices] * 100)) / 100;
+  });
 }
 
 function getAnimalsFromEmployees(employee) {
