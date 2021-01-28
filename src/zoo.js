@@ -32,9 +32,8 @@ function employeeByName(employeeName) {
   const compare = employees.find(employ =>
     employ.firstName === employeeName || employ.lastName === employeeName);
   return compare;
-};
+}
 
-console.log(employeeByName('Emery'))
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
