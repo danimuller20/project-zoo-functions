@@ -66,7 +66,7 @@ function entryCalculator(entrants) {
   }, 0);
 }
 
-function animalMap(options) { 
+function animalMap(options) {
 }
 
 function schedule(dayName) {
@@ -89,10 +89,10 @@ function oldestFromFirstSpecies(id) {
   const oldestAnimal = animals.find((findAnimal => findAnimal.id === animalId));
   const residentInfo = oldestAnimal.residents
   .reduce((accumulador, currentValue) => {
-   if (accumulador.age > currentValue.age) {
-    return accumulador;
-  }
-    return currentValue;
+    if (accumulador.age > currentValue.age) {
+     return accumulador;
+   }
+     return currentValue;
   }, 0);
   return Object.values(residentInfo);
 }
