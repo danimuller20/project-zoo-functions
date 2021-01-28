@@ -111,7 +111,7 @@ function animalCount(species) {
 
   if (species === undefined) {
     const allAnimals = {};
-    animals.map(animal => allAnimals[animal.name] = (animal.residents.length));
+    animals.map(animal => (allAnimals[animal.name] = (animal.residents.length)));
 
     return allAnimals;
   }
