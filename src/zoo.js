@@ -115,12 +115,44 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  Object.keys(prices).forEach((index) => {
+    prices[index] = Math.round((prices[index]) * ((percentage / 100) + 1) * 100) / 100;
+  });
+
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const arrayEmployee = [];
+  const objEmployee = {};
+
+  if (idOrName === undefined) {
+    employees.forEach((value) => {
+      arrayEmployee.push(value.id);
+    });
+  } else {
+    arrayEmployee.push(idOrName);
+  }
+
+  arrayEmployee.forEach((value) => {
+    const arrayNameAnimals = [];
+
+    const { firstName, lastName, responsibleFor } = employees
+      .find(e => e.id === value || e.firstName === value || e.lastName === value);
+
+    responsibleFor.forEach((id) => {
+      arrayNameAnimals.push(animals.find(animal => animal.id === id).name);
+    });
+
+    objEmployee[`${firstName} ${lastName}`] = arrayNameAnimals;
+
+    return objEmployee;
+  });
+
+  return objEmployee;
 }
-console.log(employeeCoverage());
+
 
 module.exports = {
   entryCalculator,
