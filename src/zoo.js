@@ -75,20 +75,38 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  const keys = Object.keys(hours);
+  const values = Object.values(hours);
+  const result = {};
+
+  if (dayName === undefined) {
+    keys.forEach((day, index) => {
+      result[day] = createSchedule(values[index]);
+    });
+  } else {
+    result[dayName] = createSchedule(values[keys.indexOf(dayName)]);
+  }
+
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const responsible = employees.find(employee => employee.id === id).responsibleFor;
-  const arrayAnimals = [];
+  const arrayMaxNumber = employees.find(employee => employee.id === id).responsibleFor
+    .map((animalID) => {
+      const resident = animals.find(animal => animal.id === animalID).residents;
+      const maxAge = Math.max(...resident.map(animal => animal.age));
 
-  const arrayAgeAnimals = ageAnimals(arrayAnimals, responsible);
+      return resident.filter(animal => animal.age === maxAge);
+    });
 
-  return arrayAnimals[arrayAgeAnimals.indexOf(Math.max(...arrayAgeAnimals))];
+  const maxIndex = Math.max(...arrayMaxNumber.map(animal => animal[0].age));
+
+  return Object.values((arrayMaxNumber[0].filter(ageNumber => ageNumber.age === maxIndex))[0]);
 }
 
 function increasePrices(percentage) {
-
+  // seu código aqui
 }
 
 function employeeCoverage(idOrName) {
