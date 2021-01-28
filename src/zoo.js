@@ -98,7 +98,27 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  /*
+  Deverá contabilizar a quantidade de animais considerando:
+  - Sem parâmetro: Retorna um objeto com chave animal: quantidade.
+  - Com a espécie: Retorna a quantidade.
+
+  0 - Criar um objeto vazio para a lista de animais
+  1 - Verificar se o parâmetro é undefined. 
+  - Se sim: Retornar um objeto com todos os nomes e quantidades;
+  - Se não: Fazer um find que acesse a chave e retorne a quantidade.
+  */
+  const allAnimals = {};
+
+  if (species === undefined) {
+    animals.map(animal => allAnimals[animal.name] = animal.residents.length);
+
+    return allAnimals;
+  }
+
+  const especificSpecieNumber = animals.find(animal => animal.name === species).residents.length;
+
+  return especificSpecieNumber;
 }
 
 function entryCalculator(entrants) {
