@@ -35,14 +35,15 @@ function createEmployee(personalInfo, associatedWith) {
   return Object.assign(personalInfo, associatedWith);
 }
 
+function listManagers() {
+  return data.employees
+    .map(employee => employee.managers)
+    .reduce((acc, val) => acc.concat(val), []);
+}
+
 function isManager(id) {
   const managersList = listManagers();
   return managersList.some(idManager => idManager === id);
-}
-function listManagers () {
-  return managers = data.employees
-    .map(employee => employee.managers)
-    .reduce((acc, val) => acc.concat(val), []);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
