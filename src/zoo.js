@@ -98,7 +98,7 @@ function entryCalculator(entrants = {}) {
 
 
 function animalMap(options) {
-  /*if (!options) {
+  /* if (!options) {
     const NE = animals.filter(animal => animal.location === 'NE')
     return NE
   }*/
