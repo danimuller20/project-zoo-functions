@@ -35,15 +35,14 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-
-const employeeNew = {
+  const employeeNew = {
   id,
   firstName,
   lastName,
   managers,
   responsibleFor,
-}
-return employees.push(employeeName)
+};
+  return employees.push(employeeNew);
 }
 
 function animalCount() {
