@@ -99,21 +99,20 @@ function schedule(dayName = undefined) {
   const { hours } = data;
   const days = Object.keys(hours);
   const cronogram = {};
-  
   days.forEach((day) => {
     if (day === 'Monday') {
       cronogram[day] = 'CLOSED';
     } else {
-    const open = hours[day].open;
-    const close = hours[day].close -12;
-    
-    cronogram[day] = `Open from ${open}am until ${close}pm`;
+      const open = hours[day].open;
+      const close = hours[day].close - 12;
+      cronogram[day] = `Open from ${open}am until ${close}pm`;
     }
     return cronogram;
-  })
+  });
   if (dayName === undefined) {
     return cronogram;
-  } else {
+  }
+  {
     return { [dayName]: cronogram[dayName] };
   }
 }
