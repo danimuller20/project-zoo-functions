@@ -48,7 +48,7 @@ function isManager(id) {
   if (confirmManager.managers.length === 1) {
     return true;
   }
-    return false;
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
