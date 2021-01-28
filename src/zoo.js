@@ -42,9 +42,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some((employee) => employee.managers
-  .some((managerId) => managerId === id))
-};
+  return employees.some(employee => employee.managers
+  .some(managerId => managerId === id));
+}
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
