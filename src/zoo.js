@@ -23,8 +23,8 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const specieNameAndAge = animals.filter(specieNameAndAge => specieNameAndAge.name === animal);
-  return specieNameAndAge.residents.every(value2 => value2.age > age);
+  const speciesNameAndAge = animals.filter(specieNameAndAge => specieNameAndAge.name === animal);
+  return speciesNameAndAge.residents.every(value2 => value2.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -43,7 +43,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const ifIsManager = employees.find(ifIsManager =>  ifIsManager.managers.find(valuID => valuID === id));
+  const ifIsManager = (employees.find(ifIsManager => 
+    ifIsManager.managers.find(valuID => valuID === id)));
   return ifIsManager;
   // seu código aqui
 }
