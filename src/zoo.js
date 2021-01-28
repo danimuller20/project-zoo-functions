@@ -68,7 +68,19 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  /*
+  Verificar por meio do ID do funcionário se ocupa cargo de gerência.
+
+  1 - Acessar o objeto employess e localizar por meio do id o funcionário;
+  2 - Verificar se o profissional encontrado possui cargo de gerente (se a chave manager tiver 1 item). 
+  */
+
+  const findEmployeeById = employees.find(employee => employee.id === id)
+
+  if (findEmployeeById.managers.length === 1) {
+    return true
+  } 
+  return false 
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
