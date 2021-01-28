@@ -44,7 +44,11 @@ function createEmployee(personalInfo, associatedWith) {
 // Solução conforme aprendizagem curso GoStack da Rocketseat
 
 function isManager(id) {
-  // seu código aqui
+  const confirmManager = employees.find(value => value.id === id);
+  if (confirmManager.managers.length === 1) {
+    return true;
+  }
+    return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
