@@ -9,7 +9,12 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
+const {
+  animals,
+  employees,
+  prices,
+  hours
+} = require('./data');
 const data = require('./data');
 
 function animalsByIds(...args) {
@@ -44,6 +49,7 @@ function createEmployee(personalInfo, associatedWith) {
     responsibleFor: associatedWith.responsibleFor,
   };
 }
+
 function isManager(id) {
   return employees.some(element => element.managers[0] === id);
 }
@@ -63,7 +69,10 @@ function animalCount(species) {
     const objResult = {};
 
     animals.forEach((element) => {
-      const { name, residents } = element;
+      const {
+        name,
+        residents
+      } = element;
       objResult[name] = residents.length;
     });
     return objResult;
@@ -79,8 +88,16 @@ function entryCalculator(entrants = {}) {
   if (isEmptyObject(entrants)) {
     return 0;
   }
-  const { Adult, Child, Senior } = prices;
-  const { Adult: AdultE = 0, Child: ChildE = 0, Senior: SeniorE = 0 } = entrants;
+  const {
+    Adult,
+    Child,
+    Senior
+  } = prices;
+  const {
+    Adult: AdultE = 0,
+    Child: ChildE = 0,
+    Senior: SeniorE = 0
+  } = entrants;
   return (Adult * AdultE) + (Child * ChildE) + (Senior * SeniorE);
 }
 
@@ -88,38 +105,39 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function compare() {
-  const objResult = {};
-  const objEntries = Object.entries(hours);
+function getElement(target) {
+  const objEntries = Object.entries(target);
+  const result = {};
 
   for (const key in objEntries) {
-    const objTarget = objEntries[key];
-    if(objTarget[1].open - objTarget[1].close === 0){
-      objResult[ objTarget[0] ] = 'CLOSED';
+    let objTarget = objEntries[key];
+    console.log();
+
+    if (objTarget[0] != 'Monday') {
+      result[objTarget[0]] = `Open from ${objTarget[1].open}am until ${objTarget[1].close - 12}pm`;
     } else {
-      objResult[ objTarget[0] ] = `Open from ${objTarget[1].open}am until ${objTarget[1].close - 12}pm`;
+      result[objTarget[0]] = 'CLOSED';
     }
   }
-  return objResult;
+  return result;
 }
 
 function schedule(dayName) {
-  const objResult = {};
-  const objEntries = Object.entries(hours);
-  const dayTarget = objEntries.find((e) => e[0] === dayName);
-
+  const obj = getElement(hours);
   if (dayName === undefined) {
-    return compare();
+    return obj;
   }
-  if(dayName === 'Monday'){
-    objResult[ dayTarget[0] ] = 'CLOSED';
-    return objResult;
+  for (const key in obj) {
+    if (Object.hasOwnProperty.call(obj, key)) {
+      if (key === dayName) {
+        const elementContent = obj[key];
+        const result = {[key] : elementContent};
+        return result;
+      }
+    }
   }
-  objResult[ dayTarget[0] ] = `Open from ${dayTarget[1].open}am until ${dayTarget[1].close - 12}pm`;
-
-  return objResult;
 }
-console.log(schedule('Sunday'));
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   const firtSpecieId = employees.find(e => e.id === id).responsibleFor[0];
