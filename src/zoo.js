@@ -110,8 +110,10 @@ function getElement(target) {
   const result = {};
 
   for (const key in objEntries) {
-    const objTarget = objEntries[key];
-    if (Object.prototype.hasOwnProperty.call(objEntries, key))
+    if (Object.prototype.hasOwnProperty.call(objEntries, key)){
+      
+      const objTarget = objEntries[key];
+      console.log();
   
       if (objTarget[0] !== 'Monday') {
         result[objTarget[0]] = `Open from ${objTarget[1].open}am until ${objTarget[1].close - 12}pm`;
@@ -119,9 +121,9 @@ function getElement(target) {
         result[objTarget[0]] = 'CLOSED';
       }
     }
-    return result;
   }
-
+  return result;
+}
 
 function schedule(dayName) {
   const obj = getElement(hours);
