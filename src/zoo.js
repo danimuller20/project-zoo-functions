@@ -82,8 +82,53 @@ function entryCalculator(entrants) {
   return result;
 }
 
+// Funções auxiliares: animalMap()
+function returnLocations() {
+  return ['NE', 'NW', 'SE', 'SW'];
+}
+
+function animalsByLocation(locations) {
+  const result = {};
+  locations.forEach((location) => {
+    const animalsSpecies = animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    result[location] = animalsSpecies;
+  });
+  return result;
+}
+
+function animalsName(locations, options) {
+  const result = {};
+  locations.forEach((location) => {
+    const animalValue = data.animals
+      .filter(animal => animal.location === location)
+      .map((animal) => {
+        const animalSpecie = animal.name;
+        const animalName = animal.residents
+          .map(resident => resident.name);
+        const animalFilter = animal.residents
+          .filter(valueFilter => valueFilter.sex === options.sex)
+          .map(value => value.name);
+        if (options.sex && options.sorted) {
+          return { [animalSpecie]: animalFilter.sort() };
+        } else if (options.sex) {
+          return { [animalSpecie]: animalFilter };
+        } else if (options.sorted) {
+          return { [animalSpecie]: animalName.sort() };
+        } return { [animalSpecie]: animalName };
+      });
+    result[location] = animalValue;
+  });
+  return result;
+}
+/* ----------------------------------------------------------------------- */
+
 function animalMap(options) {
   // seu código aqui
+  const locations = returnLocations();
+  if (!options || !options.includeNames) return animalsByLocation(locations);
+  return animalsName(locations, options);
 }
 
 function schedule(dayName) {
