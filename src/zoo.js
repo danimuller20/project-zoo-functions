@@ -34,7 +34,7 @@ function isManager(id) {
   return employees.some(item => item.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const employeeNew = {
     id,
     firstName,
