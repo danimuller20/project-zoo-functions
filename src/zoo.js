@@ -98,6 +98,11 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  Object.keys(prices)
+    .forEach(key => prices[key] = parseFloat(Math
+    .fround(prices[key] * (percentage / 100 + 1)
+    .toFixed(2))
+    .toPrecision(4)));
 }
 
 function employeeCoverage(idOrName) {
