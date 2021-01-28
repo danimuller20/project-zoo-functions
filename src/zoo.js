@@ -23,9 +23,6 @@ function animalsByIds(ids) {
 //2 IMPLEMENTE A FUNÇÃO animalsOlderThan
 //Esta função, a partir do nome de uma espécie e uma idade mínima, verifica se todos os animais daquela espécie possuem a idade mínima especificada
 
-//
-
-
 function animalsOlderThan(animal, age) {
   const animalBySpecie = animals.find(({ name }) => {
     return name === animal;
@@ -52,10 +49,20 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
-function animalCount(species) {
-  // seu código aqui
-}
 
+//7. IMPLEMENTE A FUNÇÃO animalCount: Esta função é responsável por contabilizar a quantidade de animais.
+
+function animalCount(species) {
+  const allAnimals = animals.reduce((previousAnimal, currentAnimal) => {
+    previousAnimal[currentAnimal.name] = currentAnimal.residents.length;
+    return previousAnimal
+  } , {});
+  
+    return species ? allAnimals[species] : allAnimals;
+  }
+
+
+  
 function entryCalculator(entrants) {
   // seu código aqui
 }
