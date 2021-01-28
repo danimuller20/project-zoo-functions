@@ -103,7 +103,7 @@ function schedule(dayName) {
     const { open, close } = hours[calendar];
     if (calendar === 'Monday') {
       newObject[calendar] = 'CLOSED';
-   } newObject[calendar] = `Open from ${open}am until ${close - 12}pm`;
+    } newObject[calendar] = `Open from ${open}am until ${close - 12}pm`;
   });
   if (!dayName) {
     return newObject;
@@ -111,9 +111,22 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+ const employee = employees.find((employeeById) => employeeById.id === id); 
+ const animalId = employee.responsibleFor[0];
+ const oldestAnimal =  animals.find((findAnimal => findAnimal.id === animalId));
+ const residentInfo = oldestAnimal.residents
+ .reduce((accumulador, currentValue) => { 
+  if (accumulador.age > currentValue.age) {
+    return accumulador;
+  }
+  return currentValue;
+ }, 0);
+  return Object.values(residentInfo);
 
+  //passa o ID do funcionario e encontra a primeira especie de animal gerenciada pelo func.
+  //retorna um array com NOME, SEXO E IDADE desse animal mais velho
+}
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
   // seu código aqui
 }
