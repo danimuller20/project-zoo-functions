@@ -110,7 +110,7 @@ function getElement(target) {
   const result = {};
 
   for (const key in objEntries) {
-    if (Object.prototype.hasOwnProperty.call(objEntries, key)){
+    if (Object.prototype.hasOwnProperty.call(objEntries, key)) {
       const objTarget = objEntries[key];
       console.log();
       if (objTarget[0] !== 'Monday') {
@@ -128,7 +128,7 @@ function schedule(dayName) {
   for (const key in obj) {
     if (key === dayName) {
       const elementContent = obj[key];
-      const result = { [ key ]:elementContent };
+      const result = { [key]:elementContent };
       return result;
     }
   }
