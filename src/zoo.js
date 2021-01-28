@@ -14,8 +14,8 @@ const data = require('./data');
 const { animals, employees, hours, prices } = data;
 
 // console.logs incluídos apenas para o CodeClimate não reclamar
-console.log(hours);
-console.log(prices);
+// console.log(hours);
+// console.log(prices);
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -51,7 +51,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const managerCheck = employees.map(staff => staff.managers.some(manager => manager === id));
+  return managerCheck.some(check => check);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
