@@ -103,7 +103,8 @@ function schedule(dayName) {
   const newObj = {};
   Object.keys(hours).forEach((day) => {
     newObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
-    if (!hours[day].open) newObj[day] = 'CLOSED'});
+    if (!hours[day].open) newObj[day] = 'CLOSED';
+  });
 
   return newObj;
 }
@@ -126,26 +127,35 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   if (idOrName) {
+    // return listEmployeeResponsabilities(idOrName);
     const responsibilitiesList = employees.find(({ id, firstName, lastName }) =>
-      (id === idOrName || firstName === idOrName || lastName === idOrName));
+    (id === idOrName || firstName === idOrName || lastName === idOrName));
 
     const { firstName, lastName, responsibleFor } = responsibilitiesList;
 
     const newArray = [];
-    responsibleFor.forEach(item => animals.find(({ id, name }) => {
-        if (id === item) newArray.push(name);
+    responsibleFor.forEach(animalId => animals.find(({ id, name }) => {
+      if (id === animalId) newArray.push(name);
     }));
 
     const newObj = {
       [`${firstName} ${lastName}`]: newArray,
-    }
+    };
 
     return newObj;
-  }
+  } else {
+    // return listAllEmployeesResponsabilities();
+    const completeResponsabilityList = {};
+    employees.forEach(({ firstName, lastName, responsibleFor }) => {
+      const animalsList = responsibleFor.map((animalId) =>
+        animals.find((animal) => animalId === animal.id).name);
 
-
-
+      completeResponsabilityList[`${firstName} ${lastName}`] = animalsList;
+    });
+    return completeResponsabilityList;
+  };
 }
+
 console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 console.log(employeeCoverage());
 
