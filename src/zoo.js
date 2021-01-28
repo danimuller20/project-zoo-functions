@@ -105,36 +105,21 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function getElement(target) {
-  const objEntries = Object.entries(target);
-  const result = {};
-
-  for (const key in objEntries) {
-    if (Object.prototype.hasOwnProperty.call(objEntries, key)) {
-      const objTarget = objEntries[key];
-      console.log();
-      if (objTarget[0] !== 'Monday') {
-        result[objTarget[0]] = `Open from ${objTarget[1].open}am until ${objTarget[1].close - 12}pm`;
-      } else {
-        result[objTarget[0]] = 'CLOSED';
-      }
-    }
-  }
-  return result;
-}
-
 function schedule(dayName) {
-  const obj = getElement(hours);
-  for (const key in obj) {
-    if (key === dayName) {
-      const elementContent = obj[key];
-      const result = { [key]:elementContent };
-      return result;
-    }
+  const arrayOfDays = {};
+  Object.keys(hours).forEach((element) => {
+    arrayOfDays[element] = `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
+  })
+  arrayOfDays.Monday =  'CLOSED';
+  if (dayName === 'Monday') {
+    return { Monday : 'CLOSED'};
   }
-  return obj;
+  if (dayName === undefined) {
+    return arrayOfDays;
+  }
+  return { [dayName] : arrayOfDays[dayName] };
 }
-console.log(schedule('Monday'));
+console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   const firtSpecieId = employees.find(e => e.id === id).responsibleFor[0];
