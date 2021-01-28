@@ -76,15 +76,13 @@ function entryCalculator(entrants) {
   if (!entrants) return 0;
   let entrantTotal = 0;
   Object.keys(prices)
-    .forEach((key => {
+    .forEach((key) => {
       if (key in entrants) {
         entrantTotal += prices[key] * entrants[key];
       }
-    }))
+    });
   return entrantTotal;
 }
-
-
 
 function animalMap(options) {
   // seu código aqui
