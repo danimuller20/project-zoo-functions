@@ -71,20 +71,19 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  let allAnimals = {};
+  const allAnimals = {};
   if (!species) {
-    animals.forEach(animal => {
-      allAnimals[animal.name] = animal.residents.length
-    })
+    animals.forEach((animal) => {
+      allAnimals[animal.name] = animal.residents.length;
+    });
     return allAnimals;
   }
-  return animals.find(animal => animal.name === species).residents.length
-
+  return animals.find(animal => animal.name === species).residents.length;
 }
 
 
 function entryCalculator(entrants = {}) {
-  let emptyObj = Object.keys(entrants).length
+  const emptyObj = Object.keys(entrants).length;
   if (emptyObj === 0) return 0;
 
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
@@ -93,18 +92,17 @@ function entryCalculator(entrants = {}) {
   precoTotal = Adult * prices.Adult;
   precoTotal += Child * prices.Child;
   precoTotal += Senior * prices.Senior;
-  console.log(precoTotal)
+  console.log(precoTotal);
   return precoTotal;
 }
 
 
-function animalMap(options) {
-  if(!options) {
-    const NE = animals.filter( animal => animal.location === 'NE')
+/*function animalMap(options) {
+  if (!options) {
+    const NE = animals.filter(animal => animal.location === 'NE')
     return NE
   }
-
-}
+}*/
 console.log(animalMap());
 function schedule(dayName) {
   // seu código aqui
@@ -136,4 +134,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-}
+};
