@@ -40,9 +40,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
- const comparar = employees.some((employee) => 
-  employee.managers.some((manager) => manager === id));
- return comparar;
+  const comparar = employees.some(employee =>
+    employee.managers.some(manager => manager === id));
+  return comparar;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
