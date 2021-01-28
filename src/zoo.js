@@ -134,7 +134,8 @@ function employeeCoverage(idOrName) {
 
     const newArray = [];
     responsibleFor.forEach(animalId => animals.find(({ id, name }) => {
-      return (id === animalId) ? newArray.push(name) : ''}));
+      return (id === animalId) ? newArray.push(name) : '';
+    }));
 
     const newObj = {
       [`${firstName} ${lastName}`]: newArray,
