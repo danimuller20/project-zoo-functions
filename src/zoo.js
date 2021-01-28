@@ -77,7 +77,7 @@ function schedule(dayName) {
     if (calendar === 'Monday') {
       newObject[calendar] = 'CLOSED';
     } else {
-    newObject[calendar] = `Open from ${open}am until ${close - 12}pm`;
+      newObject[calendar] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
   if (!dayName) {
