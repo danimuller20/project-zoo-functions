@@ -80,12 +80,24 @@ function oldestFromFirstSpecies(id) {
 
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const adulto = prices.Adult + (prices.Adult * (percentage / 100));
+  const crianca = prices.Child + (prices.Child * (percentage / 100));
+  const idoso = prices.Senior + (prices.Senior * (percentage / 100));
+  prices.Adult = Math.round(adulto * 100) / 100;
+  prices.Child = Math.round(crianca * 100) / 100;
+  prices.Senior = Math.round(idoso * 100) / 100;
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
 
 }
+
+// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+
 
 module.exports = {
   entryCalculator,
