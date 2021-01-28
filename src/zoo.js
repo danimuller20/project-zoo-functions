@@ -35,7 +35,8 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const spread = {...personalInfo, ...associatedWith};
+  return spread;
 }
 
 function isManager(id) {
