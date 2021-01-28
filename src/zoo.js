@@ -106,18 +106,83 @@ function entryCalculator(entrants) {
       .find(price => entrant === price[0])[1]), 0);
 }
 
-/* animalMap */
+/*
+ * animalMap
+ A função é responsável pelo mapeamento geográfico das espécies e seus animais,
+ podendo ainda filtrá-los por ordem alfabética e gênero, por exemplo
+ */
+function locationsZoo() {
+  const arrayLocations = [];
+
+  animals.forEach((animal) => {
+    if (arrayLocations.length === 0 || arrayLocations
+      .every(location => animal.location !== location)) {
+      arrayLocations.push(animal.location);
+    }
+  });
+
+  return arrayLocations;
+}
+
+function animalsSpeciesLocationsZoo(arrayLocations) {
+  const locationsAnimals = {};
+
+  arrayLocations.forEach((location) => {
+    const animalsList = animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+
+    locationsAnimals[location] = animalsList;
+  });
+
+  return locationsAnimals;
+}
+
+function animalsNamesLocationsZoo(arrayLocations, includesName = false, sorted = false, sex) {
+  const locationsAnimals = {};
+  console.log(sex);
+
+  if (includesName) {
+    arrayLocations.forEach((location) => {
+      const animalsList = animals.filter(animal => animal.location === location).map((animal) => {
+        const animalName = animal.name;
+        let residentsName = '';
+
+        if (sex) {
+          residentsName = animal.residents
+            .filter(resident => resident.sex === sex).map(animalSex => animalSex.name);
+        } else {
+          residentsName = animal.residents.map(resident => resident.name);
+        }
+
+        const animalsObject = { [animalName]: residentsName };
+
+        if (sorted) residentsName.sort();
+
+        return animalsObject;
+      });
+
+      locationsAnimals[location] = animalsList;
+    });
+  }
+
+  return locationsAnimals;
+}
 
 function animalMap(options) {
-  // seu código aqui
+  if (!options) {
+    options = { includeNames: false, sex: '', sorted: false };
+  }
+
+  const { includeNames = false, sex, sorted = false } = options;
+  const locations = locationsZoo();
+
+  if (includeNames) {
+    return animalsNamesLocationsZoo(locations, includeNames, sorted, sex);
+  }
+
+  return animalsSpeciesLocationsZoo(locations);
 }
-// console.log(animalMap());
-// console.log(animalMap({ includeNames: true }));
-// console.log(animalMap({ includeNames: true, sorted: true }));
-// console.log(animalMap({ includeNames: true, sex: 'female' }));
-// console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
-// console.log(animalMap({ sex: 'female' })['NE'][0]);
-// console.log(animalMap({ sex: 'female', sorted: true })['NE'][0]);
 
 /*
  * schedule
