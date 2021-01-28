@@ -70,12 +70,12 @@ function animalCount(species) {
 } // concluido
 
 function entryCalculator(entrants) {
-  if (!entrants || Object.keys(entrants).length == 0) {
+  if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
   const reducer = (accumulator, currentValue) => {
     let result;
-    Object.keys(prices).forEach(price => {
+    Object.keys(prices).forEach((price) => {
       if (price === currentValue) {
         result = prices[price] * entrants[currentValue];
       }
