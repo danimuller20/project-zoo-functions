@@ -35,7 +35,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const spread = {...personalInfo, ...associatedWith};
+  const spread = { ...personalInfo, ...associatedWith };
   return spread;
 }
 
