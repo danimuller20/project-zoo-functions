@@ -14,8 +14,8 @@ const data = require('./data');
 const { animals, employees, hours, prices } = data;
 
 // console.logs incluídos apenas para o CodeClimate não reclamar
-// console.log(hours);
-// console.log(prices);
+console.log(hours);
+console.log(prices);
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
