@@ -43,6 +43,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
+  const ifIsManager = employees.find(ifIsManager =>  ifIsManager.managers.find(valuID => valuID === id));
+  return ifIsManager;
   // seu código aqui
 }
 
