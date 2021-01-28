@@ -145,8 +145,8 @@ function locationAnimals() {
 }
 
 function animaisPorSexo(animais, sexo) {
-  const animalPorSex = animais.filter((value) => value.sex === sexo)
-  .map((animal) => animal.name);
+  const animalPorSex = animais.filter(value => value.sex === sexo)
+  .map(animal => animal.name);
   return animalPorSex;
 }
 
@@ -154,20 +154,20 @@ function animalPorLocalidadeComNome(locais, sortear, sexo) {
   const obj = { };
   locais.forEach((local) => {
     const animaisFiltrados = animals
-      .filter((animal) => animal.location === local)
+      .filter(animal => animal.location === local)
       .map((animal) => {
         const nomeAnimais = animal.name;
         let tiposDeAnimais = animal.residents;
 
-          if (sexo !== undefined) {
-            tiposDeAnimais = animaisPorSexo(tiposDeAnimais, sexo);
-          } else {
-            tiposDeAnimais = tiposDeAnimais.map(resident => resident.name);
-          }
+        if (sexo !== undefined) {
+          tiposDeAnimais = animaisPorSexo(tiposDeAnimais, sexo);
+        } else {
+          tiposDeAnimais = tiposDeAnimais.map(resident => resident.name);
+        }
 
-          if (sortear) {
-            tiposDeAnimais.sort();
-          }
+        if (sortear) {
+          tiposDeAnimais.sort();
+        }
 
         return { [nomeAnimais]: tiposDeAnimais };
       });
@@ -181,9 +181,9 @@ function animalPorLocalidadeComNome(locais, sortear, sexo) {
 function animalPorLocalidades(locais) {
   const obj = { };
   locais.forEach((local) => {
-   const animaisFiltrados = animals
-    .filter((animal) => animal.location === local)
-    .map((animal) => animal.name);
+    const animaisFiltrados = animals
+      .filter(animal => animal.location === local)
+      .map(animal => animal.name);
     obj[local] = animaisFiltrados;
   });
 
@@ -195,15 +195,13 @@ function animalMap(options) {
 
   if (!options) {
     return animalPorLocalidades(locations);
-  } else {
+  }
     const { includeNames = false, sorted, sex } = options;
 
     if (includeNames) {
       return animalPorLocalidadeComNome(locations, sorted, sex);
-    } else {
-      return animalPorLocalidades(locations, sorted, sex);
     }
-  }
+      return animalPorLocalidades(locations, sorted, sex);
 }
 // console.log(animalMap());
 // console.log(animalMap({ sex: 'female' })['NE'][0]);
