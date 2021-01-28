@@ -39,15 +39,12 @@ function employeeByName(employeeName) {
 function createEmployee(personalInfo, associatedWith) {
   const employeedId = ({ ...personalInfo, ...associatedWith });
   return employeedId;
-  // return employees
-  // .filter(associatedWith => associatedWith.managers && associatedWith.
-  // responsibleFor).employees.find(personalInfor => personalInfo.id && personal
-  // Info.firstName && personalInfo.lastName);
 }
 
 function isManager(id) {
-  // seu código aqui
-}
+  return employees.some((employee) => employee.managers
+  .some((managerId) => managerId === id))
+};
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
