@@ -109,15 +109,15 @@ function schedule(dayName) {
   const arrayOfDays = {};
   Object.keys(hours).forEach((element) => {
     arrayOfDays[element] = `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
-  })
-  arrayOfDays.Monday =  'CLOSED';
+  });
+  arrayOfDays.Monday = 'CLOSED';
   if (dayName === 'Monday') {
-    return { Monday : 'CLOSED'};
+    return { Monday: 'CLOSED' };
   }
   if (dayName === undefined) {
     return arrayOfDays;
   }
-  return { [dayName] : arrayOfDays[dayName] };
+  return { [dayName]: arrayOfDays[dayName] };
 }
 console.log(schedule());
 
