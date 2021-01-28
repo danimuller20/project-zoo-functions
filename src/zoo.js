@@ -39,16 +39,26 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-
-  // seu código aqui
+ // seu código aqui
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  const infEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  }
+  employees.push(infEmployee)
 }
 
 function animalCount(species) {
   // seu código aqui
+  if(species === undefined) {
+    return {name, popularity} = animals
+  }
 }
 
 function entryCalculator(entrants) {
