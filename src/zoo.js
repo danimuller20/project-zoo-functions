@@ -13,7 +13,7 @@ const {
   animals,
   employees,
   prices,
-  hours
+  hours,
 } = require('./data');
 const data = require('./data');
 
@@ -71,7 +71,7 @@ function animalCount(species) {
     animals.forEach((element) => {
       const {
         name,
-        residents
+        residents,
       } = element;
       objResult[name] = residents.length;
     });
@@ -91,7 +91,7 @@ function entryCalculator(entrants = {}) {
   const {
     Adult,
     Child,
-    Senior
+    Senior,
   } = prices;
   const {
     Adult: AdultE = 0,
@@ -128,12 +128,10 @@ function schedule(dayName) {
     return obj;
   }
   for (const key in obj) {
-    if (Object.hasOwnProperty.call(obj, key)) {
-      if (key === dayName) {
-        const elementContent = obj[key];
-        const result = {[key] : elementContent};
-        return result;
-      }
+    if (key === dayName) {
+      const elementContent = obj[key];
+      const result = {[key] : elementContent};
+      return result;
     }
   }
 }
