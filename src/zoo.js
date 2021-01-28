@@ -15,7 +15,6 @@ const { animals, employees, hours, prices } = data;
 
 // console.logs incluídos apenas para o CodeClimate não reclamar
 console.log(hours);
-console.log(prices);
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -75,7 +74,15 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined) {
+    return 0;
+  }
+  if (Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
+  const total = (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
+  return total;
 }
 
 function animalMap(options) {
