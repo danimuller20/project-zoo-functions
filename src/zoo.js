@@ -72,6 +72,18 @@ function entryCalculator(entrants = {}) {
 
 function animalMap(options) {
   // seu código aqui
+  if (!options) {
+    options = { includeNames: false, sex: '', sorted: false };
+  }
+
+  const { includeNames = false, sex, sorted = false } = options;
+  const locations = locationsZoo();
+
+  if (includeNames) {
+    return animalsNamesLocationsZoo(locations, includeNames, sorted, sex);
+  }
+
+  return animalsSpeciesLocationsZoo(locations);
 }
 function createSchedule(openClose) {
   const open = openClose.open;
