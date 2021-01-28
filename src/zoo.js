@@ -39,8 +39,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   let result = false;
   employees.forEach((employee) => {
-    let idIsManager;
-    idIsManager = employee.managers.some((managerId) => managerId === id);
+    const idIsManager = employee.managers.some(managerId => managerId === id);
     if (idIsManager) {
       result = true;
     }
