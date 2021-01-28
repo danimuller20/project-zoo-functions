@@ -54,7 +54,17 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  /*
+  A função deverá receber dois objetos e consolidá-los.
+  Retornar ao usuário como return.
+
+  1 - Consolidar os parâmetros e criar o objeto
+  2 - Retornar ao usuário o objeto criado
+  */
+
+  const newEmployee = { ...personalInfo, ...associatedWith };
+
+  return newEmployee;
 }
 
 function isManager(id) {
