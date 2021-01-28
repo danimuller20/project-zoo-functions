@@ -17,13 +17,12 @@ function animalsByIds(...args) {
 
   const array = [];
 
-  args.forEach((cadaItem) => {
-    return animals.map((item) => {
-      if (item.id === cadaItem) {
+  args.forEach((cadaElemento) =>  animals.map((item) => {
+      if (item.id === cadaElemento) {
         array.push(item);
       }
-    });
-  });
+    })
+  );
 
   return array;
 }
