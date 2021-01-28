@@ -59,8 +59,8 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     id,
     firstName,
     lastName,
-    managers : [],
-    responsibleFor : [],
+    managers: [],
+    responsibleFor: [],
   };
   if (managers !== undefined) { newEmployee.managers = managers; }
   if (responsibleFor !== undefined) { newEmployee.responsibleFor = responsibleFor; }
@@ -106,10 +106,8 @@ function schedule(dayName = undefined) {
     }
     list[lastDay] = ('CLOSED');
     return list;
-
   }
-
-  return list[dayName] = seila
+// return list[dayName] = seila
 }
 console.log(schedule());
 function oldestFromFirstSpecies(id) {
