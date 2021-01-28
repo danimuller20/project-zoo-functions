@@ -59,16 +59,17 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     id,
     firstName,
     lastName,
-    managers,
-    responsibleFor,
+    managers : [],
+    responsibleFor : [],
   };
+  if (managers !== undefined) { newEmployee.managers = managers; }
+  if (responsibleFor !== undefined) { newEmployee.responsibleFor = responsibleFor; }
   data.employees.push(newEmployee);
-  return newEmployee;
 }
 
 function animalCount(species = undefined) {
   // seu código aqui
-  let list = {};
+  const list = {};
   if (species === undefined) {
     data.animals.forEach(currentValue => list[currentValue.name] = currentValue.residents.length);
     return list;
@@ -76,7 +77,7 @@ function animalCount(species = undefined) {
   return data.animals.find(currentValue => currentValue.name === species).residents.length;
 }
 
-function entryCalculator(entrants = undefined) {
+function entryCalculator(entrants) {
   // seu código aqui
   let fullPrice = 0;
   if (entrants === undefined) {
@@ -90,10 +91,27 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
+function schedule(dayName = undefined) {
   // seu código aqui
-}
+  const list = {};
+  const { hours } = data;
+  const objectSize = Object.keys(hours).length - 1;
+  const lastDay = Object.keys(hours)[objectSize];
+  if (dayName === undefined) {
+    for (let index = 0; index < (Object.keys(hours).length - 1); index += 1) {
+      const day = Object.keys(hours)[index];
+      const inicialHour = Object.values(Object.values(hours)[index])[0];
+      const finalHour = Object.values(Object.values(hours)[index])[1];
+      list[day] = (`open from ${inicialHour}am until ${finalHour}pm`);
+    }
+    list[lastDay] = ('CLOSED');
+    return list;
 
+  }
+
+  return list[dayName] = seila
+}
+console.log(schedule());
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
