@@ -29,12 +29,12 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const compare = employees.find((employ) => 
+  const compare = employees.find(employ =>
     employ.firstName === employeeName || employ.lastName === employeeName);
   return compare;
-}
-console.log(employeeByName('Emery'));
+};
 
+console.log(employeeByName('Emery'))
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
