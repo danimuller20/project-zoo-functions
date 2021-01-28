@@ -30,14 +30,19 @@ function employeeByName(employeeName) {
   });
   return result;
 }
-employeeByName('Emery');
 
 function createEmployee(personalInfo, associatedWith) {
   return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
-  // seu código aqui
+  const managersList = listManagers();
+  return managersList.some(idManager => idManager === id);
+}
+function listManagers () {
+  return managers = data.employees
+    .map(employee => employee.managers)
+    .reduce((acc, val) => acc.concat(val), []);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
