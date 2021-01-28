@@ -146,7 +146,7 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-if (!dayName) {
+  if (!dayName) {
     return Object.keys(hours).reduce((defaultObject, current) => {
       if (hours[current].open === 0) {
         defaultObject[current] = 'CLOSED';
