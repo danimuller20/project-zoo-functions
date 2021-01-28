@@ -66,34 +66,7 @@ function entryCalculator(entrants) {
   }, 0);
 }
 
-function animalMap(options) {
-  /* const { includeNames = false, sex, sorted = false } = options;
-  if (includeNames) {
-    return retrieveAnimalPerLocationWithName();
-  }
-} */
- /* function retrieveAnimalPerLocationWithName(locations) {
-  return retrieveAnimalPerLocation(locations);
-  } */
-
- /* function retrieveAnimalPerLocation(locations) {
-  const animalsPerLocation = { };
-  locations.forEach((location) => {
-    const filteredAnimals = animals
-    .filter((animal) => animal.location === location)
-    .map((animal) => {
-      const nameKey = animal.name;
-      const names = animal.residents.map((resident) => resident.name);
-      return {[nameKey]: names };
-    });
-    const location = retrieveAvailableLocations();
-      animalsPerLocation[location] = filteredAnimals;
-        return animalsPerLocation;
-    });
-  } */
- /* function retrieveAvailableLocations() {
-    return ['NE', 'NW', 'SE', 'SW'];
-    */
+function animalMap(options) { 
 }
 
 function schedule(dayName) {
@@ -111,22 +84,19 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
- const employee = employees.find((employeeById) => employeeById.id === id); 
- const animalId = employee.responsibleFor[0];
- const oldestAnimal =  animals.find((findAnimal => findAnimal.id === animalId));
- const residentInfo = oldestAnimal.residents
- .reduce((accumulador, currentValue) => { 
-  if (accumulador.age > currentValue.age) {
+  const employee = employees.find((employeeById => employeeById.id === id));
+  const animalId = employee.responsibleFor[0];
+  const oldestAnimal = animals.find((findAnimal => findAnimal.id === animalId));
+  const residentInfo = oldestAnimal.residents
+  .reduce((accumulador, currentValue) => {
+   if (accumulador.age > currentValue.age) {
     return accumulador;
   }
-  return currentValue;
- }, 0);
+    return currentValue;
+  }, 0);
   return Object.values(residentInfo);
-
-  //passa o ID do funcionario e encontra a primeira especie de animal gerenciada pelo func.
-  //retorna um array com NOME, SEXO E IDADE desse animal mais velho
 }
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+
 function increasePrices(percentage) {
   // seu código aqui
 }
