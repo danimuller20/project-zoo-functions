@@ -107,7 +107,7 @@ function schedule(dayName = undefined) {
     list[lastDay] = ('CLOSED');
     return list;
   }
-  return 'ainda nao acabei'
+  return 'ainda nao acabei';
 }
 console.log(schedule());
 function oldestFromFirstSpecies(id) {
