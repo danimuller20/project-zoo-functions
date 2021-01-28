@@ -64,15 +64,15 @@ function animalCount(species) {
   // seu código aqui
   // sem parámmetros retorna u objeto com todos os animais e a quantidade de cada espéie.
   const allAnimals = animals.reduce((previouAnimal, currentAnimal) => {
-    previouAnimal[currentAnimal.name]  = currentAnimal.residents.length;
+    previouAnimal[currentAnimal.name] = currentAnimal.residents.length;
     return previouAnimal;
-  },  {});
+  }, {});
 
-  if (species){
+  if (!species) {
     allAnimals[species];
   }
 
-return allAnimals;
+  return allAnimals;
 
   // se recebermos o nome de uma especie, devemos retornar a qantidade de animais desta especie
 }
