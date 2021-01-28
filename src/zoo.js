@@ -70,7 +70,19 @@ function animalCount(species) {
 } // concluido
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (!entrants || Object.keys(entrants).length == 0) {
+    return 0;
+  }
+  const reducer = (accumulator, currentValue) => {
+    let result;
+    Object.keys(prices).forEach(price => {
+      if (price === currentValue) {
+        result = prices[price] * entrants[currentValue];
+      }
+    });
+    return accumulator + result;
+  };
+  return Object.keys(entrants).reduce(reducer, 0);
 }
 
 function animalMap(options) {
@@ -109,7 +121,7 @@ function increasePrices(percentage) {
     const result = Math.ceil(prices[item] * (percentage + 100)) / 100;
     prices[item] = result;
   });
-}
+} // concluido
 
 function employeeCoverage(idOrName) {
   // seu código aqui
