@@ -196,12 +196,12 @@ function animalMap(options) {
   if (!options) {
     return animalPorLocalidades(locations);
   }
-    const { includeNames = false, sorted, sex } = options;
+  const { includeNames = false, sorted, sex } = options;
 
-    if (includeNames) {
-      return animalPorLocalidadeComNome(locations, sorted, sex);
-    }
-      return animalPorLocalidades(locations, sorted, sex);
+  if (includeNames) {
+    return animalPorLocalidadeComNome(locations, sorted, sex);
+  }
+  return animalPorLocalidades(locations, sorted, sex);
 }
 // console.log(animalMap());
 // console.log(animalMap({ sex: 'female' })['NE'][0]);
