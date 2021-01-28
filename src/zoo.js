@@ -11,8 +11,8 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals } = data;
-const { employees } = data;
+const { animals, employees, prices } = data;
+
 
 function animalsByIds(...ids) {
   if (!ids) {
@@ -70,24 +70,42 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   return addedEmployee;
 }
 
-function animalCount(species) { }
-/*  let allSpecies = {};
-if (!species) {
-    return animals.forEach( animal => {
-        allSpecies.name = animal.name;
+function animalCount(species) {
+  let allAnimals = {};
+  if (!species) {
+    animals.forEach(animal => {
+      allAnimals[animal.name] = animal.residents.length
     })
+    return allAnimals;
+  }
+  return animals.find(animal => animal.name === species).residents.length
+
 }
-console.log(animalCount());*/
 
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = {}) {
+  let emptyObj = Object.keys(entrants).length
+  if (emptyObj === 0) return 0;
+
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  let precoTotal = 0;
+
+  precoTotal = Adult * prices.Adult;
+  precoTotal += Child * prices.Child;
+  precoTotal += Senior * prices.Senior;
+  console.log(precoTotal)
+  return precoTotal;
 }
+
 
 function animalMap(options) {
-  // seu código aqui
-}
+  if(!options) {
+    const NE = animals.filter( animal => animal.location === 'NE')
+    return NE
+  }
 
+}
+console.log(animalMap());
 function schedule(dayName) {
   // seu código aqui
 }
@@ -118,4 +136,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-};
+}
