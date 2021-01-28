@@ -34,10 +34,18 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
-}
+} // concluido
 
 function isManager(id) {
-  // seu código aqui
+  let result = false;
+  employees.forEach((employee) => {
+    let idIsManager;
+    idIsManager = employee.managers.some((managerId) => managerId === id);
+    if (idIsManager) {
+      result = true;
+    }
+  });
+  return result;
 }
 
 function addEmployee(...person) {
