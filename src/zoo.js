@@ -34,7 +34,7 @@ function animalsOlderThan(animal, age) {
   let returnSearch = false;
   animals.find((especie) => {
     if (especie.name === animal) {
-      returnSearch = especie.residents.some(apelido => apelido.age < age);
+      returnSearch = especie.residents.some(resident => resident.age < age);
     }
     return returnSearch;
   });
@@ -71,7 +71,6 @@ function isManager(id) {
   return boo;
 }
 // console.log(isManager('b0dc644a-5335-489b-8a2c-4e086c7819a2'));
-
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   const newObj = {};
@@ -141,10 +140,76 @@ function entryCalculator(entrants) {
 }
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
+function locationAnimals() {
+  return ['NE', 'NW', 'SE', 'SW'];
+}
+
+function animalPorLocalidades(locais) {
+
+  const obj = { };
+  locais.forEach((local) => {
+   const animaisFiltrados = animals
+    .filter((animal) => animal.location === local)
+    .map((animal) => animal.name);
+    obj[local] = animaisFiltrados;
+  });
+
+  return obj;
+}
+
+function animaisPorSexo(animais, sexo) {
+  const animalPorSex = animais.filter((value) => value.sex === sexo)
+  .map((animal) => animal.name);
+  return animalPorSex;
+}
+
+function animalPorLocalidadeComNome(locais, sortear, sexo) {
+  const obj = { };
+  locais.forEach((local) => {
+    const animaisFiltrados = animals
+      .filter((animal) => animal.location === local)
+      .map((animal) => {
+        const nomeAnimais = animal.name;
+        let tiposDeAnimais = animal.residents;
+
+          if (sexo !== undefined) {
+            tiposDeAnimais = animaisPorSexo(tiposDeAnimais, sexo);
+          } else {
+            tiposDeAnimais = tiposDeAnimais.map(resident => resident.name);
+          }
+
+          if (sortear) {
+            tiposDeAnimais.sort();
+          }
+
+        return { [nomeAnimais]: tiposDeAnimais };
+      });
+
+    obj[local] = animaisFiltrados;
+  });
+
+  return obj;
+}
+
+// a funcao retorna um objeto
+// esse objeto possui a seguinte entrada
+// chave: string, essa string e a localuzacao
+// valor: array, esse array tem os animais
 function animalMap(options) {
-  // seu código aqui
+  const locations = locationAnimals();
+  if (!options) {
+    return animalPorLocalidades(locations);
+  } else {
+    const { includeNames = false, sorted, sex } = options;
+    if (includeNames) {
+      return animalPorLocalidadeComNome(locations, sorted, sex);
+    }
+  }
 }
 // console.log(animalMap());
+// console.log(animalMap({ includeNames: true }));
+// console.log(animalMap({ includeNames: true, sorted: true }));
+// console.log(animalMap({ includeNames: true, sex: 'female' }));
 
 function schedule(dayName) {
   const newObj = {};
@@ -171,7 +236,13 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const trabalhor = employees.find((employ) => employ.id === id).responsibleFor[0];
+  const animalDoTrabalhor = animals.find((animal) => animal.id === trabalhor);
+  const animaisMaisVelhoComDados = animalDoTrabalhor.residents.reduce((previusAnimal, currentAnimal) => previusAnimal.age > currentAnimal.age ? previusAnimal : currentAnimal);
+
+  return Object.values(animaisMaisVelhoComDados);
 }
+// console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function increasePrices(percentage) {
   // seu código aqui
