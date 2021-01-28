@@ -90,9 +90,9 @@ function oldestFromFirstSpecies(id) {
   const residentInfo = oldestAnimal.residents
   .reduce((accumulador, currentValue) => {
     if (accumulador.age > currentValue.age) {
-     return accumulador;
-   }
-     return currentValue;
+      return accumulador;
+    }
+      return currentValue;
   }, 0);
   return Object.values(residentInfo);
 }
