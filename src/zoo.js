@@ -79,39 +79,22 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const responsible = employees.find(employee => employee.id === id).responsibleFor;
+  const arrayAnimals = [];
+
+  const arrayAgeAnimals = ageAnimals(arrayAnimals, responsible);
+
+  return arrayAnimals[arrayAgeAnimals.indexOf(Math.max(...arrayAgeAnimals))];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-  function getEmployeesInfo(employeeInfo) {
-    let employeesQuery;
-    if (employeeInfo) {
-      employeesQuery = [employeeByName(employeeInfo)];
-    } else {
-      employeesQuery = employees;
-    }
-    return employeesQuery;
-  }
-  const getEmployeesInfo = (employeeInfo) => {
-    let employeesQuery;
-    if (employeeInfo) {
-      employeesQuery = [employeeByName(employeeInfo)];
-    } else {
-      employeesQuery = employees;
-    }
-    return employeesQuery;
-  };
-  const getAnimalsNamesByIds = animalsIds => animalsByIds(...animalsIds).map(animal => animal.name);
-  const employeesQuery = getEmployeesInfo(idOrName);
-  return employeesQuery.reduce((employeesObject, { firstName, lastName, responsibleFor }) => {
-    employeesObject[`${firstName} ${lastName}`] = getAnimalsNamesByIds(responsibleFor);
-    return employeesObject;
-  }, {});
 }
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
