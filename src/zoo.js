@@ -11,7 +11,8 @@ eslint no-unused-vars: [
 
 // commit inicial
 
-const { animals, employees } = require('./data');
+const data = require('./data');
+const { animals, employees } = data;
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(id => id === animal.id));
@@ -43,12 +44,22 @@ function isManager(searchId) {
   return employees.find(employee => employee.id === searchId).managers.length === 1;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  let newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  }
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {
   // seu código aqui
+  if (species) {
+    return animals.find(animal => animal.name === species).residents.length;
+  }
 }
 
 function entryCalculator(entrants) {
