@@ -13,17 +13,17 @@ const { animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...args) {
-  (args.length === 0) ? [] : args.length;
+  if (args.length === 0) return [];
 
   const array = [];
 
   args.forEach((cadaItem) => {
-    animals.map((item) => {
+    return animals.map((item) => {
       if (item.id === cadaItem) {
         array.push(item);
       }
-    })
-  })
+    });
+  });
 
   return array;
 }
