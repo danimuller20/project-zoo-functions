@@ -109,7 +109,7 @@ function schedule(dayName = undefined) {
   }
   return 'ainda nao acabei';
 }
-//console.log(schedule());
+console.log(schedule());
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
@@ -120,7 +120,7 @@ function increasePrices(percentage) {
   const finalPrice = prices.Adult * ((percentage / 100) + 1);
   return finalPrice;
 }
-console.log(increasePrices(30))
+console.log(increasePrices(30));
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
