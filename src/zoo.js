@@ -92,7 +92,7 @@ function oldestFromFirstSpecies(id) {
     if (accumulador.age > currentValue.age) {
       return accumulador;
     }
-      return currentValue;
+    return currentValue;
   }, 0);
   return Object.values(residentInfo);
 }
