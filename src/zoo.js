@@ -112,9 +112,7 @@ function schedule(dayName = undefined) {
   if (dayName === undefined) {
     return cronogram;
   }
-  {
     return { [dayName]: cronogram[dayName] };
-  }
 }
 
 function oldestFromFirstSpecies(id) {
