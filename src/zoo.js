@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
+const { hours } = data;
 
 
 function animalsByIds(...ids) {
@@ -72,9 +73,16 @@ function entryCalculator(entrants = {}) {
 function animalMap(options) {
   // seu código aqui
 }
+function createSchedule(openClose) {
+  const open = openClose.open;
+  const close = (openClose.close) - 12;
+
+  if (open === 0 && close === -12) return 'CLOSED';
+
+  return `Open from ${open}am until ${close}pm`;
+}
 
 function schedule(dayName) {
-  // seu código aqui
   const keys = Object.keys(hours);
   const values = Object.values(hours);
   const result = {};
