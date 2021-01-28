@@ -104,7 +104,7 @@ function increasePrices(percentage) {
     .fround(prices[key] * ((percentage / 100) + 1)
     .toFixed(2))
     .toPrecision(4));
-  });
+    });
 }
 
 function employeeCoverage(idOrName) {
