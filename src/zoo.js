@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -104,25 +104,42 @@ function animalCount(species) {
   - Com a espécie: Retorna a quantidade.
 
   0 - Criar um objeto vazio para a lista de animais
-  1 - Verificar se o parâmetro é undefined. 
+  1 - Verificar se o parâmetro é undefined.
   - Se sim: Retornar um objeto com todos os nomes e quantidades;
   - Se não: Fazer um find que acesse a chave e retorne a quantidade.
   */
-  const allAnimals = {};
 
   if (species === undefined) {
-    animals.map(animal => allAnimals[animal.name] = animal.residents.length);
+    const allAnimals = {};
+    animals.map(animal => allAnimals[animal.name] = (animal.residents.length));
 
     return allAnimals;
   }
 
-  const especificSpecieNumber = animals.find(animal => animal.name === species).residents.length;
+  const especificSpecieNumber = animals.find(animal => animal.name === species);
 
-  return especificSpecieNumber;
+  return especificSpecieNumber.residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  /*
+  Calcular o valor total a ser cobrado dos visitantes considerando:
+  - Adult paga 49.99;
+  - Child paga 20.99: e
+  - Senior paga 24.99.
+
+  1 - Resgatar os valores do arquivo data conforme tipo de visitante;
+  2 - Multiplicar quantidade de visitantes pelo valor e somar retornando o total;
+  3 - Exceções:
+  - Se nenhum argumento for passado retorne 0;
+  - Se um objeto vazio for passado retorne 0.
+  */
+  if (entrants === undefined || entrants.length === 0) {
+    return 0;
+  }
+  const alterar = prices.length;
+
+  return alterar;
 }
 
 function animalMap(options) {
