@@ -97,13 +97,13 @@ function entryCalculator(entrants = {}) {
 }
 
 
-/*function animalMap(options) {
-  if (!options) {
+function animalMap(options) {
+  /*if (!options) {
     const NE = animals.filter(animal => animal.location === 'NE')
     return NE
-  }
-}*/
-console.log(animalMap());
+  }*/
+}
+
 function schedule(dayName) {
   // seu código aqui
 }
