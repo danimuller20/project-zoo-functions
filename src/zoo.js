@@ -68,8 +68,80 @@ function entryCalculator(entrants) {
   const totalPrice = (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
   return totalPrice;
 }
+
+function returnLocations() {
+  const locations = [];
+  animals.forEach((element) => {
+    if (!locations.includes(element.location)) {
+      locations.push(element.location);
+    }
+  });
+  return locations;
+}
+
+function searchAnimalsByLocation(location) {
+  const arrayOfAnimalsByLocation = animals
+  .filter(animal => animal.location === location)
+  .map(element => element.name);
+  return arrayOfAnimalsByLocation;
+}
+
+function searchResidentsNamesByEspecie(especieName) {
+  return animals.reduce((residents, animal) => {
+    if (animal.name === especieName) {
+      residents[especieName] = animal.residents.map(resident => resident.name);
+    }
+    return residents;
+  }, {});
+}
+
+function sortNames(object) {
+  Object.keys(object).forEach((location) => {
+    object[location].forEach((especie) => {
+      especie[Object.keys(especie)[0]].sort();
+    });
+  });
+  return object;
+}
+function separateAnimalsBySex(animalName, sex) {
+  const arrayAnimalBySex = animals.reduce((arrayAnimalBySexConstruction, element) => {
+    if (element.name === animalName) {
+      arrayAnimalBySexConstruction.push(element.residents
+        .filter(resident => resident.sex === sex));
+    }
+    return arrayAnimalBySexConstruction;
+  }, []);
+  return arrayAnimalBySex[0].map(value => value.name);
+}
+const arrayOfLocations = returnLocations();
+function createDefaultObject() {
+  return arrayOfLocations.reduce((defaultObject, location) => {
+    defaultObject[location] = searchAnimalsByLocation(location);
+    return defaultObject;
+  }, {});
+}
+function createObjectWithNames(optionSex = false) {
+  const objectWithNames = arrayOfLocations.reduce((objectWithNamesByEspecie, location) => {
+    const arrayWithNames = searchAnimalsByLocation(location).map(searchResidentsNamesByEspecie);
+    objectWithNamesByEspecie[location] = arrayWithNames;
+    return objectWithNamesByEspecie;
+  }, {});
+  if (optionSex) {
+    Object.keys(objectWithNames).forEach((location) => {
+      objectWithNames[location].forEach((animal) => {
+        animal[Object.keys(animal)[0]] = separateAnimalsBySex(Object.keys(animal)[0], optionSex);
+      });
+    });
+    return objectWithNames;
+  }
+  return objectWithNames;
+}
 function animalMap(options) {
-  // seu código aqui
+  if (!options || !options.includeNames) {
+    return createDefaultObject();
+  }
+  return (options.sorted ? sortNames(createObjectWithNames(options.sex))
+  : createObjectWithNames(options.sex));
 }
 
 function schedule(dayName) {
@@ -90,6 +162,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  
 }
 
 module.exports = {
