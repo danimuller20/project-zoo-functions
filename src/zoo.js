@@ -137,6 +137,7 @@ function employeeCoverage(idOrName) {
       if (id === animalId) {
         newArray.push(name);
       }
+      return newArray;
     }));
 
     const newObj = {
