@@ -127,7 +127,7 @@ function schedule(dayName) {
   for (const key in obj) {
     if (key === dayName) {
       const elementContent = obj[key];
-      const result = {[key] : elementContent};
+      const result = { [key] : elementContent };
       return result;
     }
   }
