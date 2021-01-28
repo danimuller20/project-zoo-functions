@@ -96,7 +96,7 @@ function entryCalculator(entrants = {}) {
   const {
     Adult: AdultE = 0,
     Child: ChildE = 0,
-    Senior: SeniorE = 0
+    Senior: SeniorE = 0,
   } = entrants;
   return (Adult * AdultE) + (Child * ChildE) + (Senior * SeniorE);
 }
@@ -110,10 +110,10 @@ function getElement(target) {
   const result = {};
 
   for (const key in objEntries) {
-    let objTarget = objEntries[key];
+    const objTarget = objEntries[key];
     console.log();
 
-    if (objTarget[0] != 'Monday') {
+    if (objTarget[0] !== 'Monday') {
       result[objTarget[0]] = `Open from ${objTarget[1].open}am until ${objTarget[1].close - 12}pm`;
     } else {
       result[objTarget[0]] = 'CLOSED';
@@ -124,9 +124,6 @@ function getElement(target) {
 
 function schedule(dayName) {
   const obj = getElement(hours);
-  if (dayName === undefined) {
-    return obj;
-  }
   for (const key in obj) {
     if (key === dayName) {
       const elementContent = obj[key];
@@ -134,6 +131,7 @@ function schedule(dayName) {
       return result;
     }
   }
+  return obj;
 }
 console.log(schedule('Monday'));
 
