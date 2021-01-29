@@ -135,8 +135,24 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  // const mainObject = employees.reduce((acc, curr) => {
+  //   let key = (`${curr.firstName} ${curr.lastName}`);
+  //   let animalsName = curr.responsibleFor.
+  //   acc[key] = animalsName;
+  //   // console.log(curr.responsibleFor);
+  //   return acc;
+  //   }, {});
+  // console.log(mainObject); << funcao gera objeto chave nome e value id dos animais 
 }
+// function animalsByIds(...ids) {
+//   // seu código aqui
+//   const objectAnimal = animals.filter(value => ids.includes(value.id).name); <= Por que da
+//   indifined quando adiciono o .name se sem ele o return eh um array com objetos que tem chave Name
+// }
+// console.log(animalsByIds('bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5',
+// 'baa6e93a-f295-44e7-8f70-2bcdc6f6948d'));
 
+employeeCoverage();
 module.exports = {
   entryCalculator,
   schedule,
