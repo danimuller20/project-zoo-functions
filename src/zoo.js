@@ -13,10 +13,23 @@ const data = require('./data');
 
 const { animals, employees, prices, hours } = data;
 
+// Esta função serve para busca das espécies de animais por id.
+// Deve retornar um array de objeto com as informações dos animais.
+// Aceita mais de um parâmetro em sua chamada
+// Caso receba nenhum parâmetro, necessário retornar um array vazio
 function animalsByIds(...ids) {
-  return animals.filter((value, index) => value.id === ids[index]);
+  // PESEUDOCÓDIGO
+  // 1. Acessar animals e conferir parâmetro está de acordo com algum id
+  // 2. Capturar o objeto do animal
+  // 3. Enviar objeto para um array
+  const array = [];
+  animals.forEach((value) => {
+    if (ids.includes(value.id)) {
+      array.push(value);
+    }
+  });
+  return array;
 }
-
 function animalsOlderThan(animal, age) {
   return animals.find(value => value.name === animal).residents.every(idade => idade.age > age);
 }
