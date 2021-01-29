@@ -45,7 +45,7 @@ function isManager(id) {
     }
   });
   return result;
-}
+} // concluido
 
 function addEmployee(...person) {
   const [id, firstName, lastName, managers = [], responsibleFor = []] = person;
@@ -108,8 +108,6 @@ const createBusinessHoursMessage = (day, operation) => {
   return `Open from ${operation.open}am until ${operation.close - 12}pm`;
 };
 
-// console.log(createBusinessHoursMessage('Tuesday', { open: 8, close: 6 }));
-
 function schedule(dayName) {
   const businessHours = {};
 
@@ -149,7 +147,20 @@ function increasePrices(percentage) {
 } // concluido
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const queryAll = {};
+  const querySingle = {};
+  employees.forEach((employee) => {
+    const { id, firstName, lastName, responsibleFor } = employee;
+    const speciesArray = responsibleFor.map((speciesId) => {
+      return animals.find((animal) => animal.id === speciesId).name;
+    });
+    if (idOrName === id || idOrName === firstName || idOrName === lastName) {
+      querySingle[`${firstName} ${lastName}`] = speciesArray;
+    } else {
+      queryAll[`${firstName} ${lastName}`] = speciesArray;
+    }
+  });
+  return !idOrName ? queryAll : querySingle;
 }
 
 module.exports = {
