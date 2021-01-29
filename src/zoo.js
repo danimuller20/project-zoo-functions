@@ -134,6 +134,10 @@ function entryCalculator(entrants) {
   - Se um objeto vazio for passado retorne 0.
   */
 
+  if (!entrants) {
+    return 0;
+  }
+
   const { Child = 0, Adult = 0, Senior = 0 } = entrants;
 
   const totalEntryRevenues =
@@ -143,7 +147,6 @@ function entryCalculator(entrants) {
 
   return totalEntryRevenues;
 }
-
 
 function animalMap(options) {
   // seu código aqui
