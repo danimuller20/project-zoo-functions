@@ -43,7 +43,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (!species) {
-    animals.reduce((accumulator, currentValue) => {
+    return animals.reduce((accumulator, currentValue) => {
       accumulator[currentValue.name] = currentValue.residents.length;
       return accumulator;
     }, {});
@@ -67,8 +67,8 @@ function schedule(dayName) {
   const scheduleReturn = {};
 
   Object.keys(hours).forEach(day => ((hours[day].open !== hours[day].close) ?
-  (scheduleReturn[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`)
-  : (scheduleReturn[day] = 'CLOSED')));
+  (scheduleReturn[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`) :
+  (scheduleReturn[day] = 'CLOSED')));
 
   return dayName ? { [dayName]: scheduleReturn[dayName] } : scheduleReturn;
 }
