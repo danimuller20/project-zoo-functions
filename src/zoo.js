@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
+
 function animalsByIds(...ids) {
   return animals.filter((animal, index) => ids[index] === animal.id);
 }
@@ -134,20 +135,26 @@ function entryCalculator(entrants) {
   - Se nenhum argumento for passado retorne 0;
   - Se um objeto vazio for passado retorne 0.
   */
-  if (entrants === undefined || entrants.length === 0) {
-    return 0;
-  }
-  const alterar = prices.length;
 
-  return alterar;
+  const { Child = 0, Adult = 0, Senior = 0 } = entrants;
+
+  const totalEntryRevenues =
+    (Child * prices.Child) +
+    (Adult * prices.Adult) +
+    (Senior * prices.Senior);
+
+  return totalEntryRevenues;
 }
+
 
 function animalMap(options) {
   // seu código aqui
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  /*
+  Deve disponibilizar os dias e horário de funcionamento conforme pesquisa do usuário.
+  */
 }
 
 function oldestFromFirstSpecies(id) {
@@ -155,7 +162,21 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  /*
+  Atualizar os preços dos ingressos por meio de percentual.
+  Deverá receber um numero inteiro que representa um percentual de reajuste.
+  O valor retornado deverá ter arredendamento de valor.
+
+  1 - Acessar os valores dos ingressos no objeto prices do data;
+  2 - Multiplicar os values das chaves pelo input dado pelo usuário;
+  3 - Arredondar os valores obtidos; e
+  4 - Atualizar o objeto prices do data
+  */
+
+  Object.keys(prices).forEach(increase =>
+    (prices[increase] =
+      (Math.round(prices[increase] * percentage) +
+      (prices[increase] * 100)) / 100));
 }
 
 function employeeCoverage(idOrName) {
