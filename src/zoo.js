@@ -84,13 +84,21 @@ function employeeByName(employeeName) {
 
 
 //*********************************************************
-//4. IMPLEMENTE A FUNÇÃO createEmployee
+//4. IMPLEMENTE A FUNÇÃO createEmployee  [OOOOKKK]
 //A função, a partir de informações recebidas nos parâmetros, é capaz de criar um objeto equivalente ao de uma pessoa colaboradora, retornando-o
+//Como o exercicio deve receber parametros que são iguais elementos (objetos) do meu data.employees 
+//Eu passo eles (os Arrays) como parametro e retorno eles mesmos no .spread
+
 
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return {
+    ...personalInfo ,
+    ...associatedWith ,
+  };
 }
+  // seu código aqui
+
 
 //*********************************************************
 //5. IMPLEMENTE A FUNÇÃO isManager
