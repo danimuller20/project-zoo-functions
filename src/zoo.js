@@ -26,14 +26,16 @@ function employeeByName(employeeName) {
   employees.find((eachEmployee) => {
     if (employeeName === eachEmployee.firstName) {
       result = eachEmployee;
+      return result;
     }
     if (employeeName === eachEmployee.lastName) {
       result = eachEmployee;
+      return result;
     }
   });
   return result;
 }
-
+// console.log(employeeByName());
 function createEmployee(personalInfo, associatedWith) {
   const newObject = { ...personalInfo, ...associatedWith };
   return newObject;
