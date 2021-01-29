@@ -47,11 +47,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     managers,
     responsibleFor };
   data.employees.push(newEmployee);
-  console.log(newEmployee);
 }
 
 function animalCount(species) {
-  return species ? getResidentNumber(species) : getNumbersOfEachAnimal();
 }
 
 function entryCalculator(entrants = 0) {
@@ -60,12 +58,9 @@ function entryCalculator(entrants = 0) {
   const totalPrice = pricesCategories.reduce((accumulator, priceCategory) => {
     const priceToAdd =
     entrants[priceCategory] ? entrants[priceCategory] * pricesData[priceCategory] : 0;
-
     const priceToPay = accumulator + priceToAdd;
     return priceToPay;
   }, 0);
-  console.log(...pricesCategories);
-  console.log(totalPrice);
   return totalPrice;
 }
 
@@ -95,7 +90,6 @@ function increasePrices(percentage) {
   pricesOptions.forEach(priceOption =>
   (data.prices[priceOption] =
     (Math.round((data.prices[priceOption] * priceRateToChange) * 100)) / 100));
-  console.log(data.prices);
 }
 
 function employeeCoverage(idOrName) {
