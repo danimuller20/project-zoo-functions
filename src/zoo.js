@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
   return animals.filter(animal => ids.some(id => id === animal.id));
 }
 
-animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46');
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
@@ -111,15 +111,32 @@ function increasePrices(percentage) {
   Object.keys(prices)
     .forEach((key) => {
       prices[key] = parseFloat(Math
-    .fround(prices[key] * ((percentage / 100) + 1)
+    .fround(prices[key] * ((percentage / 100) + 1))
     .toFixed(2))
-    .toPrecision(4));
     });
 }
 
 function employeeCoverage(idOrName) {
   // seu codigo aqui
+  let coverageList = {};
+  if(!idOrName) {
+    const employeeRespectiveAnimals = employees
+      .map(employee => employee.responsibleFor
+      .map(animalId => animals
+      .find(animal => animal.id === animalId).name));
+    employees
+      .forEach(({ firstName, lastName }, index) =>
+      coverageList[`${firstName} ${lastName}`] = employeeRespectiveAnimals[index]);
+    return coverageList;
+  }
+
+  const { firstName, lastName, responsibleFor } = employees.find(employee => employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName);
+
+  return { [`${firstName} ${lastName}`]: responsibleFor.map(animalId => animals.find(animal => animal.id === animalId).name) }
+
 }
+
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
