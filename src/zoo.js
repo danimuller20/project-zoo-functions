@@ -83,20 +83,29 @@ function increasePrices(percentage) {
   return prices;
 }
 
+function getAnimalsListFromEmployee(employee) {
+  return employee.responsibleFor
+    .map((animalId) => animals.find(specie => animalId === specie.id).name);
+}
+
+function getEmployeeFullName(employee) {
+  return `${employee.firstName} ${employee.lastName}`;
+}
+
 function employeeCoverage(idOrName) {
   if (!idOrName) {
     return employees.reduce((acc, employee) => {
-      const animalsList = employee.responsibleFor
-        .map((animalId) => animals.find((specie) => animalId === specie.id).name);
-      const key = `${employee.firstName} ${employee.lastName}`;
-      acc[key] = animalsList;
+      const animalsList = getAnimalsListFromEmployee(employee)
+      acc[getEmployeeFullName(employee)] = animalsList;
       return acc;
     }, {});
   }
-  const foundEmployee = employees.find(employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
-  const animalsList = foundEmployee.responsibleFor
-    .map((animalId) => animals.find((specie) => animalId === specie.id).name);
-  const fullName = `${foundEmployee.firstName} ${foundEmployee.lastName}`
+  const foundEmployee = employees
+    .find(employee => employee.id === idOrName
+      || employee.firstName === idOrName
+      || employee.lastName === idOrName);
+  const animalsList = getAnimalsListFromEmployee(foundEmployee);
+  const fullName = getEmployeeFullName(foundEmployee);
   return { [fullName]: animalsList };
 }
 
