@@ -85,7 +85,7 @@ function increasePrices(percentage) {
 
 function getAnimalsListFromEmployee(employee) {
   return employee.responsibleFor
-    .map((animalId) => animals.find(specie => animalId === specie.id).name);
+    .map(animalId => animals.find(specie => animalId === specie.id).name);
 }
 
 function getEmployeeFullName(employee) {
@@ -95,7 +95,7 @@ function getEmployeeFullName(employee) {
 function employeeCoverage(idOrName) {
   if (!idOrName) {
     return employees.reduce((acc, employee) => {
-      const animalsList = getAnimalsListFromEmployee(employee)
+      const animalsList = getAnimalsListFromEmployee(employee);
       acc[getEmployeeFullName(employee)] = animalsList;
       return acc;
     }, {});
