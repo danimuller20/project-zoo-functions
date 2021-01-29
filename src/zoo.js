@@ -209,7 +209,32 @@ function increasePrices(percentage) {
 // console.log(prices);
 
 function employeeCoverage(idOrName) {
+  if (!idOrName) {
+    let coverage = {};
+    let employeeRespectiveAnimals = employees
+      .map(employee => employee.responsibleFor
+      .map(animalId => animals
+      .find(animal => animal.id === animalId).name));
+    employees
+      .forEach(({ firstName, lastName }, index) => {
+        coverage[`${firstName} ${lastName}`] = employeeRespectiveAnimals[index];
+      });
+    return coverage;
+  }
+
+  const { firstName, lastName, responsibleFor } = employees
+    .find(employee => employee.id === idOrName || 
+      employee.firstName === idOrName || 
+      employee.lastName === idOrName);
+
+  return {[`${firstName} ${lastName}`]: responsibleFor
+    .map(animalId => animals
+    .find(animal => animal.id === animalId).name)};
 }
+// console.log(employeeCoverage());
+// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+// console.log(employeeCoverage('Stephanie'));
+// console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
