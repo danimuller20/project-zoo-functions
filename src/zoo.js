@@ -78,28 +78,27 @@ function animalMap(...options) {
 function schedule(dayName) {
   switch (dayName) {
     case 'Tuesday':
-      return { 'Tuesday': 'Open from 8am until 6pm' };
+      return { Tuesday: 'Open from 8am until 6pm' };
     case 'Wednesday':
-      return { 'Wednesday': 'Open from 8am until 6pm' };
+      return { Wednesday: 'Open from 8am until 6pm' };
     case 'Thursday':
-      return { 'Thursday': 'Open from 10am until 8pm' };
+      return { Thursday: 'Open from 10am until 8pm' };
     case 'Friday':
-      return { 'Friday': 'Open from 10am until 8pm' };
+      return { Friday: 'Open from 10am until 8pm' };
     case 'Saturday':
-      return { 'Saturday': 'Open from 8am until 10pm' };
+      return { Saturday: 'Open from 8am until 10pm' };
     case 'Sunday':
-      return { 'Sunday': 'Open from 8am until 8pm' };
+      return { Sunday: 'Open from 8am until 8pm' };
     case 'Monday':
-      return { 'Monday': 'CLOSED' };
-    default:
-      return {
-        'Tuesday': 'Open from 8am until 6pm',
-        'Wednesday': 'Open from 8am until 6pm',
-        'Thursday': 'Open from 10am until 8pm',
-        'Friday': 'Open from 10am until 8pm',
-        'Saturday': 'Open from 8am until 10pm',
-        'Sunday': 'Open from 8am until 8pm',
-        'Monday': 'CLOSED'
+      return { Monday: 'CLOSED' };
+    default: return {
+        Tuesday: 'Open from 8am until 6pm',
+        Wednesday: 'Open from 8am until 6pm',
+        Thursday: 'Open from 10am until 8pm',
+        Friday: 'Open from 10am until 8pm',
+        Saturday: 'Open from 8am until 10pm',
+        Sunday: 'Open from 8am until 8pm',
+        Monday: 'CLOSED',
       };
   }
 }
