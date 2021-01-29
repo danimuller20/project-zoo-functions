@@ -106,12 +106,12 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   const emplSearch = employees.find(staff =>
     staff.id === idOrName || staff.firstName === idOrName || staff.lastName === idOrName);
-  const animalList = (entry) => entry.responsibleFor.map(animalId =>
+  const animalList = entry => entry.responsibleFor.map(animalId =>
     animals.find(animal => animal.id === animalId).name);
   const employeesList = {};
   if (emplSearch === undefined) {
     employees.forEach(employee =>
-      employeesList[`${employee.firstName} ${employee.lastName}`] = animalList(employee));
+      (employeesList[`${employee.firstName} ${employee.lastName}`] = animalList(employee)));
     return employeesList;
   }
   employeesList[`${emplSearch.firstName} ${emplSearch.lastName}`] = animalList(emplSearch);
