@@ -193,10 +193,28 @@ function schedule(dayName) {
   return { [dayName]: scheduleOfWeek[dayName] };
 }
 
-// `${}: Open from ${}am until ${}pm`
-
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  /*
+  Ao receber um ID de funcionário deverá trazer a idade do animal mais velho da primeira espécia.
+
+  Implementação
+  1 - Deverá acessar o objeto employees do arquivo data;
+  2 - Com ID ccessar os animais pelos quais o funcionário é responsável e pegar o id do primeiro;
+  3 - Deverá acessar o objeto animals e identificar a espécie do animal pelo id;
+  4 - Filtrar os animais por idade e retornar o nome, sexo e idade do animal.
+  */
+
+  const getObjectEmployeeById = employees.find(employeeName => employeeName.id === id);
+
+  const getIdOFAnimal = getObjectEmployeeById.responsibleFor[0];
+
+  const oldestAnimal = animals
+    .find(specie => specie.id === getIdOFAnimal).residents
+    .sort((value1, value2) => value2.age - value1.age);
+
+  const { name, age, sex } = oldestAnimal[0];
+
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
