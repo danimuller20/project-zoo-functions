@@ -13,9 +13,6 @@ const data = require('./data');
 
 const { animals, employees, hours, prices } = data;
 
-// console.logs incluídos apenas para o CodeClimate não reclamar
-console.log(hours);
-
 function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
@@ -92,7 +89,7 @@ function animalMap(options) {
 function schedule(dayName) {
   const days = Object.keys(hours);
   const legibleSchedule = {};
-  days.forEach(day => {
+  days.forEach((day) => {
     const { open, close } = hours[day];
     if (open === 0 && close === 0) {
       legibleSchedule[day] = 'CLOSED';
@@ -102,7 +99,7 @@ function schedule(dayName) {
   });
   const daySchedule = {};
   daySchedule[dayName] = legibleSchedule[dayName];
-  return typeof(dayName) !== 'string' ? legibleSchedule : daySchedule;
+  return typeof dayName !== 'string' ? legibleSchedule : daySchedule;
 }
 
 function oldestFromFirstSpecies(id) {
