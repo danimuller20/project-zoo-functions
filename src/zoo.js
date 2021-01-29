@@ -90,7 +90,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const days = Object.keys(hours);
+  const legibleSchedule = {};
+  days.forEach(day => {
+    const { open, close } = hours[day];
+    if (open === 0 && close === 0) {
+      legibleSchedule[day] = 'CLOSED';
+    } else {
+      legibleSchedule[day] = `Open from ${open}am until ${close - 12}pm`;
+    }
+  });
+  const daySchedule = {};
+  daySchedule[dayName] = legibleSchedule[dayName];
+  return typeof(dayName) !== 'string' ? legibleSchedule : daySchedule;
 }
 
 function oldestFromFirstSpecies(id) {
