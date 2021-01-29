@@ -9,9 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices } = require('./data');
-const data = require('./data');
-
+const { animals, employees, hours, prices } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter((animal, index) => ids[index] === animal.id);
@@ -154,8 +152,45 @@ function animalMap(options) {
 function schedule(dayName) {
   /*
   Deve disponibilizar os dias e horário de funcionamento conforme pesquisa do usuário.
+  O usuário poderá ter acesso:
+  - A apenas um dia específico se indicar na entrada da função; ou
+  - Cronograma da semana inteira se não colocar nenhum parâmetro.
+  Os valores retornados deverão ser legíveis para humanos.
+
+  Implementação:
+  - Acessar o objeto hours do arquivo data e resgatar os dias da semana e seu conteúdo;
+  - Deverá criar uma string interpolada com a mensagem legível para humanos; e
+  - Deverá retornar essa mensagem.
   */
+
+  const allDays = Object.keys(hours);
+  const scheduleOfWeek = { };
+
+  const adjustHoursTo12Format = (hour) => {
+    if (hour % 12 === 0) {
+      return 12;
+    }
+    return (hour % 12);
+  };
+
+  allDays.forEach((day) => {
+    const { open, close } = hours[day];
+
+    if (day === 'Monday') {
+      scheduleOfWeek[day] = 'CLOSED';
+    } else {
+      scheduleOfWeek[day] = `Open from ${open}am until ${adjustHoursTo12Format(close)}pm`;
+    }
+  });
+
+  if (dayName === undefined) {
+    return scheduleOfWeek;
+  }
+
+  return { [dayName]: scheduleOfWeek[dayName] };
 }
+
+// `${}: Open from ${}am until ${}pm`
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
