@@ -25,7 +25,7 @@ function employeeByName(employeeName) {
   let result = {};
   employees.find(eachEmployee => {
     if (employeeName === eachEmployee.firstName) {
-      return result = eachEmployee;
+      result = eachEmployee;
     }
     if (employeeName === eachEmployee.lastName) {
       result = eachEmployee;
