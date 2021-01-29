@@ -264,8 +264,8 @@ function trabalhadores() {
 
   employees.map(employe => employe.responsibleFor)
     .forEach((idList, index) => {
-      const mapeando = idList.map((id) => {
-        const primeiroAnimal = animals.find(animal => animal.id === id);
+      const mapeando = idList.map((idFuncionarioAnimal) => {
+        const primeiroAnimal = animals.find(animal => animal.id === idFuncionarioAnimal);
         return primeiroAnimal.name;
       });
       trabalhadoresComAnimais[listaTrabalhodores[index]] = mapeando;
@@ -283,12 +283,13 @@ function employeeCoverage(idOrName) {
       employe.lastName === idOrName) {
       return employe;
     }
+    return undefined;
   });
 
   const idsDosAnimais = funcionario.responsibleFor;
 
-  const value = idsDosAnimais.map((id) => {
-    const primeiroAnimal = animals.find(animal => animal.id === id);
+  const value = idsDosAnimais.map((idDoAnimal) => {
+    const primeiroAnimal = animals.find(animal => animal.id === idDoAnimal);
     return primeiroAnimal.name;
   });
   const fullName = `${funcionario.firstName} ${funcionario.lastName}`;
