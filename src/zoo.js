@@ -84,11 +84,49 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const employee = data.employees.find(curr => curr.id === id);
+  const firstSpeciesName = employee.responsibleFor[0];
+  const allFromFirst = animals.find(animal =>
+    firstSpeciesName.includes(animal.id)).residents;
+  const oldestAnimalObj = allFromFirst.sort((a, b) =>
+    b.age - a.age)[0];
+  const { name, sex, age } = oldestAnimalObj;
+
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
   // seu código aqui
+  const prices = data.prices;
+  const increase = percentage / 100;
+  Object.entries(prices).forEach(([ticketType, price]) => {
+    const updatedPrice = price * (increase + 1);
+    data.prices[ticketType] = Math.round(updatedPrice * 100) / 100;
+  });
 }
+
+const employeeObj = idOrName => data.employees.find(
+  ({ id, firstName, lastName }) =>
+    id === idOrName || firstName === idOrName || lastName === idOrName);
+
+const fullName = ({ firstName, lastName }) => `${firstName} ${lastName}`;
+
+const filterSpeciesResp = ({ responsibleFor }) => responsibleFor
+  .map(animalId => animals.find(animal => animal.id === animalId).name);
+
+const withIdOrName = (idOrName) => {
+  const employee = employeeObj(idOrName);
+
+  const returnObj = {};
+  returnObj[fullName(employee)] = filterSpeciesResp(employee);
+  return returnObj;
+};
+
+const withoutIdOrName = () => data.employees
+  .reduce((acc, employee) => {
+    acc[fullName(employee)] = filterSpeciesResp(employee);
+    return acc;
+  }, {});
 
 function employeeCoverage(idOrName) {
   // seu código aqui
