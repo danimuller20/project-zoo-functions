@@ -60,7 +60,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   return Object.keys(entrants)
-  .reduce((sum, key) => (sum += (entrants[key] * prices[key])),0);
+  .reduce((sum, key) => (sum += (entrants[key] * prices[key])), 0);
 }
 
 function animalMap(options) {
@@ -76,7 +76,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  Object.keys(prices).forEach((price) => (prices[price] = Math.ceil(prices[price] * (100 + percentage))/100));
+  Object.keys(prices).forEach(price => (prices[price] = Math
+    .ceil(prices[price] * (100 + percentage)) / 100));
   return prices;
 }
 
