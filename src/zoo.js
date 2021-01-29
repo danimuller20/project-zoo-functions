@@ -34,14 +34,14 @@ function employeeByName(employeeName) {
   return employeerNames[0];
 }
 
-function createEmployee(personalInfo, associatedWith ) {
+function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
 
 function isManager(id) {
   // seu código aqui
-  const compare = employees.some(employees => employees.managers.some(maneger => maneger === id));
-  return compare
+  const compare = employees.some(employe => employe.managers.some(maneger => maneger === id));
+  return compare;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
