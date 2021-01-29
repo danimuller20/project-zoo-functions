@@ -288,7 +288,7 @@ function employeeCoverage(idOrName) {
 
   const idsDosAnimais = funcionario.responsibleFor;
 
-  const value = idsDosAnimais.map((idDoAnimal) => {
+  const value = idsDosAnimais.map(function(idDoAnimal) {
     const primeiroAnimalId = animals.find(animal1 => animal1.id === idDoAnimal);
     return primeiroAnimalId.name;
   });
