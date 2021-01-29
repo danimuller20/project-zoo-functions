@@ -39,14 +39,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // const idFilter = employees.managers.find((manager) => manager === id );
-  // const idFilter = employees.some(({managers}) => (managers === id));
-  // const managerFilter = idFilter.find(haveManager => haveManager.managers === id);
-  // return managerFilter;
-  // return idFilter;
+  return employees.some( ({managers}) =>
+  (managers.some( (manager) => manager === id )));
 }
-
-// console.table(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
@@ -59,8 +54,8 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  return Object.keys(entrants)
-  .reduce((sum, key) => (sum += (entrants[key] * prices[key])), 0);
+  return entrants ? Object.keys(entrants)
+  .reduce((sum, key) => (sum += (entrants[key] * prices[key])), 0) : 0;
 }
 
 function animalMap(options) {
