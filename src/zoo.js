@@ -92,6 +92,8 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  if (!idOrName) return withoutIdOrName();
+  return withIdOrName(idOrName);
 }
 
 module.exports = {
