@@ -50,6 +50,9 @@ function animalCount(species) {
   animals.forEach(animal => {
     listAnimal[animal.nome] = animal.residents.length;
   });
+  if(!species) {
+    return {}
+  }
   return listAnimal;
 }
 
