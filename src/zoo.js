@@ -9,33 +9,15 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
-// console.table(animals);
-// console.table(employees);
-
-// const checkObj = objectChecked => {
-//   if (!objectChecked) {
-//     return {};
-//   }
-// }
-
-// const checkTwoVar = (varChecked1, varChecked2) => {
-//   if(varChecked1) {
-//     return varChecked1;
-//   }
-//   return varChecked2
-// }
-
 function animalsByIds(...ids) {
-  if (!ids) { return undefined; }
-  return data.animals.filter(animal => ids.find(id => animal.id === id));
+  return ids ? animals.filter(animal => ids.find(id => animal.id === id)) : undefined;
 }
 
 function animalsOlderThan(animal, age) {
-  return data
-    .animals.find(typeName => typeName.name === animal)
+  return animals.find(({ name }) => (name === animal))
     .residents.every(oltherThan => oltherThan.age >= age);
 
   // base de modelagem
@@ -44,20 +26,11 @@ function animalsOlderThan(animal, age) {
   // return ageAnimalFilter;
 }
 
-console.table(animalsOlderThan('lions', 7));
-
 function employeeByName(employeeName) {
-  let findEmployeeName = {};
-  if (!employeeName) {
-    return findEmployeeName;
-  }
-  findEmployeeName = data.employees.find(employee => employee
-    .firstName === employeeName || employee.lastName === employeeName);
-  return findEmployeeName;
-  // seu código aqui
+  const findEmployeeName = employees.find(({ firstName, lastName }) => (
+    firstName === employeeName || lastName === employeeName));
+  return employeeName ? findEmployeeName : {};
 }
-
-console.log(employeeByName('Wilburn'));
 
 function createEmployee(personalInfo, associatedWith) {
   const newObject = {};
@@ -66,15 +39,17 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const idFilter = data.employees.filter(haveId => haveId.id === id);
-  const managerFilter = idFilter.manager.find(haveManager => haveManager.managers === []);
-  return managerFilter;
-  // seu código aqui
+  // const idFilter = employees.managers.find((manager) => manager === id );
+  // const idFilter = employees.some(({managers}) => (managers === id));
+  // const managerFilter = idFilter.find(haveManager => haveManager.managers === id);
+  // return managerFilter;
+  // return idFilter;
 }
+
+// console.table(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
-  // seu código aqui
 }
 
 function animalCount(species) {
@@ -84,7 +59,8 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  return Object.keys(entrants)
+  .reduce((sum, key) => (sum += (entrants[key] * prices[key])),0);
 }
 
 function animalMap(options) {
@@ -92,7 +68,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+
 }
 
 function oldestFromFirstSpecies(id) {
