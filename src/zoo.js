@@ -26,7 +26,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  let newObject = { ...personalInfo, ...associatedWith };
+  const newObject = { ...personalInfo, ...associatedWith };
   return newObject;
 }
 
