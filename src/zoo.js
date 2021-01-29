@@ -146,14 +146,14 @@ function increasePrices(percentage) {
   });
 } // concluido
 
+const mapSpecies = speciesId => animals.find(animal => animal.id === speciesId).name;
+
 function employeeCoverage(idOrName) {
   const queryAll = {};
   const querySingle = {};
   employees.forEach((employee) => {
     const { id, firstName, lastName, responsibleFor } = employee;
-    const speciesArray = responsibleFor.map((speciesId) => {
-      return animals.find((animal) => animal.id === speciesId).name;
-    });
+    const speciesArray = responsibleFor.map(mapSpecies);
     if (idOrName === id || idOrName === firstName || idOrName === lastName) {
       querySingle[`${firstName} ${lastName}`] = speciesArray;
     } else {
