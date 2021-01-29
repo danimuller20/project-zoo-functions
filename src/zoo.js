@@ -58,7 +58,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  if(!species) {
+  if (!species) {
     return animals.reduce((acumulator, currentValue) => {
       acumulator[currentValue.name] = currentValue.residents.length;
       return acumulator;
