@@ -140,10 +140,10 @@ function employeeCoverage(idOrName) {
   const result = {};
 
   if (!idOrName) {
-    employees.forEach(selectEmp => {
+    employees.forEach((selectEmp) => {
       const animalsName = [];
-      selectEmp.responsibleFor.forEach(selectIDanimal => {
-        let animalResponByEmp = animals.find(selectAnim => selectAnim.id === selectIDanimal);
+      selectEmp.responsibleFor.forEach((selectIDanimal) => {
+        const animalResponByEmp = animals.find(selectAnim => selectAnim.id === selectIDanimal);
         animalsName.push(animalResponByEmp.name);
         return animalsName;
       });
@@ -154,14 +154,14 @@ function employeeCoverage(idOrName) {
 
   const employe = employees.find(selectid => selectid.id === idOrName)
     || employees.find(selectfisrtname => selectfisrtname.firstName === idOrName)
-    || employees.find(selectedlastname => selectedlastname.lastName === idOrName)
+    || employees.find(selectedlastname => selectedlastname.lastName === idOrName);
 
-  employe.responsibleFor.forEach(specieidrespon => {
-    let selectedAnimal = animals.find(selectedAnimal => selectedAnimal.id === specieidrespon)
+  employe.responsibleFor.forEach((specieidrespon) => {
+    const selectedAnimal = animals.find(selectAnm => selectAnm.id === specieidrespon);
     animalsRespon.push(selectedAnimal.name);
     return animalsRespon;
   });
-  result[`${employe.firstName} ${employe.lastName}`] = animalsRespon
+  result[`${employe.firstName} ${employe.lastName}`] = animalsRespon;
   return result;
 }
 
