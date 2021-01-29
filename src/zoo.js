@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { employees, prices } = require('./data');
+const { employees, prices, animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -90,7 +90,20 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-
+  if (idOrName === undefined) {
+    return data.employees.reduce((accumulator, currentValue) => {
+      accumulator[`${currentValue.firstName} ${currentValue.lastName}`] = currentValue.responsibleFor
+      .map(animalId => (animals.find(animal => animal.id === animalId).name));
+      return accumulator;
+    }, {});
+  }
+  const emp = data.employees.find(employ => idOrName === employ.id
+  || idOrName === employ.firstName
+  || idOrName === employ.lastName);
+  const fullName = `${emp.firstName} ${emp.lastName}`;
+  return { [fullName]: emp.responsibleFor
+    .map(animalIds => data.animals
+    .find(animal => animal.id === animalIds).name) };
 }
 
 // Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
