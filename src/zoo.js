@@ -37,7 +37,6 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers=[], responsibleFor=[]) {
-
   const createANewEmploye = {
     id,
     firstName,
