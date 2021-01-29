@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   return ids.map(id => animals.find(animal => animal.id === id));
@@ -30,13 +30,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {
-    id: personalInfo.id,
-    firstName: personalInfo.firstName,
-    lastName: personalInfo.lastName,
-    managers: associatedWith.managers,
-    responsibleFor: associatedWith.responsibleFor,
-  };
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -44,19 +38,12 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const newEmployee = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  };
-  return employees.push(newEmployee);
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
   if (!species) {
-    return animals.reduce((accumulator, currentValue) => {
+    animals.reduce((accumulator, currentValue) => {
       accumulator[currentValue.name] = currentValue.residents.length;
       return accumulator;
     }, {});
@@ -65,7 +52,6 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // if (!entrants || Object.keys(entrants).length === 0) return 0;
   return (!entrants || Object.keys(entrants).length === 0) ? 0 :
   Object.keys(entrants).reduce((accumulator, currentPerson) => {
     accumulator += prices[currentPerson] * entrants[currentPerson];
@@ -78,7 +64,13 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const scheduleReturn = {};
+
+  Object.keys(hours).forEach(day => ((hours[day].open !== hours[day].close) ?
+  (scheduleReturn[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`)
+  : (scheduleReturn[day] = 'CLOSED')));
+
+  return dayName ? { [dayName]: scheduleReturn[dayName] } : scheduleReturn;
 }
 
 function oldestFromFirstSpecies(id) {
