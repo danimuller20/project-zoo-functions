@@ -36,7 +36,7 @@ function isManager(id) {
   function isManegerHere(employe, compareID) {
     return employe.managers.some(manegerId => manegerId === compareID);
   }
-  return employees.some(employe => isManegerHere(employe, id));
+  return data.employees.some(employe => isManegerHere(employe, id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
