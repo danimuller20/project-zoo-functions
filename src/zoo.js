@@ -267,14 +267,14 @@ function findEmployee(idOrName) {
 }
 
 function getAllResponsabilities(employe, employee, name) {
-  employe[name] = employee.responsibleFor.map((animalId) => {
-    return animals.find((animal) => {
+  employe[name] = employee.responsibleFor.map(animalId => (
+    animals.find((animal) => {
       if (animal.id === animalId) {
         return animal.name;
       }
-      return;
-    }).name;
-  });
+      return undefined;
+    }).name
+  ));
   return employe;
 }
 
