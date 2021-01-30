@@ -76,21 +76,21 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // let employee = {}
-  // let newMan = [];
-  // let newResp = [];
-  // if (managers === undefined) {
-  //   managers = newMan;
-  // }
-  // if (responsibleFor === undefined) {
-  //   responsibleFor = newResp;
-  // }
-  // employee.id = id;
-  // employee.firstName = firstName;
-  // employee.lastName = lastName;
-  // employee.managers = managers;
-  // employee.responsibleFor = responsibleFor;
-  // data.employees.push(employee);
+  if (managers === undefined) {
+    managers = [];
+  }
+  if (responsibleFor === undefined) {
+    responsibleFor = [];
+  }
+  let employee = {
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
+  }
+  data.employees.push(employee);
+  return employee;
 }
 
 function animalCount(species) {
