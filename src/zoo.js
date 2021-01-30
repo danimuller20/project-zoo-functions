@@ -126,15 +126,15 @@ function entryCalculator(entrants) {
 function createList(newObj, animal) {
   if (newObj[animal.location] === undefined) {
     newObj[animal.location] = [];
-  };
+  }
   return newObj;
 }
 
 function mapAnimal(newObject, animal, ordered) {
-  let index = Object.values(newObject[animal.location]).length - 1;
-  newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
-    return resident.name;
-  });
+  const index = Object.values(newObject[animal.location]).length - 1;
+  let obj = newObject[animal.location][index][animal.name];
+  obj = animal.residents.map(resident => resident.name);
+  newObject[animal.location][index][animal.name] = obj;
   if (ordered) {
     newObject[animal.location][index][animal.name].sort();
   }
@@ -144,7 +144,7 @@ function mapAnimal(newObject, animal, ordered) {
 function stepOne() {
   let newObject = {};
   animals.forEach((animal) => {
-    newObjects = createList(newObject, animal);
+    newObject = createList(newObject, animal);
     newObject[animal.location].push(animal.name);
   });
   return newObject;
@@ -153,7 +153,7 @@ function stepOne() {
 function stepTwo() {
   let newObject = {};
   animals.forEach((animal) => {
-    newObjects = createList(newObject, animal);
+    newObject = createList(newObject, animal);
     newObject[animal.location].push({});
     newObject = mapAnimal(newObject, animal, false);
   });
@@ -171,17 +171,18 @@ function stepThree() {
 }
 
 function mapAnimalBySex(newObject, animal, sex) {
-  let index = Object.values(newObject[animal.location]).length - 1;
+  const index = Object.values(newObject[animal.location]).length - 1;
   newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
     if (resident.sex === sex) {
       return resident.name;
-    };
+    }
+    return undefined;
   });
   let count = 0;
   Object.values(newObject[animal.location][index][animal.name]).forEach((name, indexOf) => {
     if (name === undefined) {
       indexOf -= count;
-      let arr = newObject[animal.location][index][animal.name];
+      const arr = newObject[animal.location][index][animal.name];
       arr.splice(indexOf, 1);
       newObject[animal.location][index][animal.name] = arr;
       count += 1;
@@ -205,9 +206,9 @@ function stepFive(sex) {
   animals.forEach((animal) => {
     newObject = createList(newObject, animal);
     newObject[animal.location].push({});
-    let index = Object.values(newObject[animal.location]).length - 1;
+    const index = Object.values(newObject[animal.location]).length - 1;
     newObject = mapAnimalBySex(newObject, animal, sex);
-    let ordered = Object.values(newObject[animal.location][index][animal.name]).sort();
+    const ordered = Object.values(newObject[animal.location][index][animal.name]).sort();
     newObject[animal.location][index][animal.name] = ordered;
   });
   return newObject;
@@ -266,9 +267,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined) {
-    
-  }
+  //
 }
 
 module.exports = {
