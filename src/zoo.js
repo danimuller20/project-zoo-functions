@@ -123,12 +123,28 @@ function entryCalculator(entrants) {
   return total;
 }
 
+function createList(newObj, animal) {
+  if (newObj[animal.location] === undefined) {
+    newObj[animal.location] = [];
+  };
+  return newObj;
+}
+
+function mapAnimal(newObject, animal, ordered) {
+  let index = Object.values(newObject[animal.location]).length - 1;
+  newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
+    return resident.name;
+  });
+  if (ordered) {
+    newObject[animal.location][index][animal.name].sort();
+  }
+  return newObject;
+}
+
 function stepOne() {
   let newObject = {};
   animals.forEach((animal) => {
-    if (newObject[animal.location] === undefined) {
-      newObject[animal.location] = [];
-    };
+    newObjects = createList(newObject, animal);
     newObject[animal.location].push(animal.name);
   });
   return newObject;
@@ -137,14 +153,9 @@ function stepOne() {
 function stepTwo() {
   let newObject = {};
   animals.forEach((animal) => {
-    if (newObject[animal.location] === undefined) {
-      newObject[animal.location] = [];
-    }
+    newObjects = createList(newObject, animal);
     newObject[animal.location].push({});
-    let index = Object.values(newObject[animal.location]).length - 1;
-    newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
-      return resident.name;
-    });
+    newObject = mapAnimal(newObject, animal, false);
   });
   return newObject;
 }
@@ -152,14 +163,29 @@ function stepTwo() {
 function stepThree() {
   let newObject = {};
   animals.forEach((animal) => {
-    if (newObject[animal.location] === undefined) {
-      newObject[animal.location] = [];
-    }
+    newObject = createList(newObject, animal);
     newObject[animal.location].push({});
-    let index = Object.values(newObject[animal.location]).length - 1;
-    newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
+    newObject = mapAnimal(newObject, animal, true);
+  });
+  return newObject;
+}
+
+function mapAnimalBySex(newObject, animal, sex) {
+  let index = Object.values(newObject[animal.location]).length - 1;
+  newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
+    if (resident.sex === sex) {
       return resident.name;
-    }).sort();
+    };
+  });
+  let count = 0;
+  Object.values(newObject[animal.location][index][animal.name]).forEach((name, indexOf) => {
+    if (name === undefined) {
+      indexOf -= count;
+      let arr = newObject[animal.location][index][animal.name];
+      arr.splice(indexOf, 1);
+      newObject[animal.location][index][animal.name] = arr;
+      count += 1;
+    }
   });
   return newObject;
 }
@@ -167,26 +193,9 @@ function stepThree() {
 function stepFour(sex) {
   let newObject = {};
   animals.forEach((animal) => {
-    if (newObject[animal.location] === undefined) {
-      newObject[animal.location] = [];
-    }
+    newObject = createList(newObject, animal);
     newObject[animal.location].push({});
-    let index = Object.values(newObject[animal.location]).length - 1;
-    newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
-      if (resident.sex === sex) {
-        return resident.name;
-      };
-    });
-    let count = 0;
-    Object.values(newObject[animal.location][index][animal.name]).forEach((name, indexOf) => {
-      if (name === undefined) {
-        indexOf -= count;
-        let arr = newObject[animal.location][index][animal.name];
-        arr.splice(indexOf, 1);
-        newObject[animal.location][index][animal.name] = arr;
-        count += 1;
-      }
-    });
+    newObject = mapAnimalBySex(newObject, animal, sex);
   });
   return newObject;
 }
@@ -194,26 +203,10 @@ function stepFour(sex) {
 function stepFive(sex) {
   let newObject = {};
   animals.forEach((animal) => {
-    if (newObject[animal.location] === undefined) {
-      newObject[animal.location] = [];
-    }
+    newObject = createList(newObject, animal);
     newObject[animal.location].push({});
     let index = Object.values(newObject[animal.location]).length - 1;
-    newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
-      if (resident.sex === sex) {
-        return resident.name;
-      };
-    });
-    let count = 0;
-    Object.values(newObject[animal.location][index][animal.name]).forEach((name, indexOf) => {
-      if (name === undefined) {
-        indexOf -= count;
-        let arr = newObject[animal.location][index][animal.name];
-        arr.splice(indexOf, 1);
-        newObject[animal.location][index][animal.name] = arr;
-        count += 1;
-      }
-    });
+    newObject = mapAnimalBySex(newObject, animal, sex);
     let ordered = Object.values(newObject[animal.location][index][animal.name]).sort();
     newObject[animal.location][index][animal.name] = ordered;
   });
@@ -223,28 +216,28 @@ function stepFive(sex) {
 function stepSix() {
   let newObject = {};
   animals.forEach((animal) => {
-    if (newObject[animal.location] === undefined) {
-      newObject[animal.location] = [];
-    }
+    newObject = createList(newObject, animal);
     newObject[animal.location].push(animal.name);
   });
   return newObject;
 }
 
 function animalMap(options) {
+  let result = null;
   if (options === undefined) {
-    return stepOne();
+    result = stepOne();
   } else if (options.includeNames && !options.sorted && options.sex === undefined) {
-    return stepTwo();
+    result = stepTwo();
   } else if (options.includeNames && options.sorted && options.sex === undefined) {
-    return stepThree();
+    result = stepThree();
   } else if (options.includeNames && !options.sorted && options.sex !== undefined) {
-    return stepFour(options.sex);
+    result = stepFour(options.sex);
   } else if (options.includeNames && options.sorted && options.sex !== undefined) {
-    return stepFive(options.sex);
+    result = stepFive(options.sex);
   } else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
-    return stepSix();
+    result = stepSix();
   }
+  return result;
 }
 
 function schedule(dayName) {
