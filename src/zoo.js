@@ -209,15 +209,13 @@ function animalMapContinue(options) {
 
 function animalMap(options) {
   let result = null;
-  if (options === undefined) {
+  if (options === undefined || !options.includeNames && (options.sex !== undefined || options.sorted)) {
     result = stepOne();
   } else if (options.includeNames && !options.sorted && options.sex === undefined) {
     result = reapeater(false);
   } else if (options.includeNames && options.sorted && options.sex === undefined) {
     result = reapeater(true);
-  }else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
-    result = stepOne();
-  } else {
+  }else {
     result = animalMapContinue(options);
   }
   return result;
