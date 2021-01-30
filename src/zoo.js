@@ -82,13 +82,12 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   if (responsibleFor === undefined) {
     responsibleFor = [];
   }
-  let employee = {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
-  }
+  const employee = {}
+  employee['id'] = id;
+  employee['firstName'] = firstName;
+  employee['lastName'] = lastName;
+  employee['managers'] = managers;
+  employee['responsibleFor'] = responsibleFor;
   data.employees.push(employee);
   return employee;
 }
