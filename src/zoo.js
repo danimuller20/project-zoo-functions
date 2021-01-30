@@ -89,9 +89,9 @@ function entryCalculator(entrants) {
 
 function allLocations() {
   const locations = [];
-  animals.forEach(animal => {
+  animals.forEach((animal) => {
     if (!locations.includes(animal.location)) locations.push(animal.location);
-  })
+  });
 
   return locations;
 }
@@ -99,19 +99,19 @@ function allLocations() {
 // Obrigado Oliva por reduzir meu código a 10 linhas :)
 function animalsByLocation() {
   const animalsByLocationList = {};
-  allLocations().forEach(location => {
+  allLocations().forEach((location) => {
     const listByLocation = animals
       .filter(animal => animal.location === location)
-      .map((animal) => animal.name);
+      .map(animal => animal.name);
 
     animalsByLocationList[location] = listByLocation;
-  })
+  });
   return animalsByLocationList;
 }
 
 function speciesAndNameByLocation(options) {
   const speciesAndNameByLocationList = {};
-  allLocations().forEach(location => {
+  allLocations().forEach((location) => {
     const listByLocation = animals
       .filter(animal => animal.location === location)
       .map((animal) => {
@@ -127,7 +127,7 @@ function speciesAndNameByLocation(options) {
 
         return { [animal.name]: arrayNames };
       });
-      speciesAndNameByLocationList[location] = listByLocation;
+    speciesAndNameByLocationList[location] = listByLocation;
   });
   return speciesAndNameByLocationList;
 }
@@ -139,9 +139,9 @@ function animalMap(options) {
 
   if (!options.includeNames) {
     return animalsByLocation();
-  } else {
-    return speciesAndNameByLocation(options);
   }
+
+  return speciesAndNameByLocation(options);
 }
 
 function schedule(dayName) {
