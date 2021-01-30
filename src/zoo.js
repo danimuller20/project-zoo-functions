@@ -61,7 +61,7 @@ function entryCalculator(entrants) {
   } else if (Object.keys(entrants).length === 0) {
     return 0;
   }
-  Object.keys(entrants).forEach((item) => result += entrants[item]*prices[item]);
+  Object.keys(entrants).forEach(item => { result += entrants[item] * prices[item]; });
   return result;
 }
 
