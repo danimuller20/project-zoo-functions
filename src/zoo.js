@@ -50,8 +50,33 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const { includeNames = false, sex, sorted = false } = options || {};
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  const animalsObj = {};
+
+  const animalsByLocation = position => animals
+  .filter(({ location }) => location === position);
+
+  locations.forEach((location) => {
+    if (!includeNames) {
+      animalsObj[location] = animalsByLocation(location).map(({ name }) => name);
+    };
+    if (includeNames) {
+      animalsObj[location] = animalsByLocation(location)
+      .map(({ name, residents }) => ({[name]: residents
+        .filter(animal => animal.sex === sex || !sex)
+        .map(({ name }) => name)}));
+    }
+    if (includeNames && sorted) {
+      animalsObj[location] = animalsByLocation(location)
+      .map(({ name, residents }) =>({[name]: residents
+        .filter(animal => animal.sex === sex || !sex)
+        .map(({ name }) => name).sort()}));
+    }
+  });
+  return animalsObj;
 }
+// console.log(animalMap({ includeNames: true }))
 
 function schedule(dayName) {
   const schedObj = {};
