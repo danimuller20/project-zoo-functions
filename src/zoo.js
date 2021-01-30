@@ -45,12 +45,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(employeeNew);
 }
 
-
-
 function animalCount(species) {
   const animalsObj = {};
-  animals.forEach(bicho => animalsObj[bicho.name] = bicho.residents.length);
-  if(species){
+  animals.forEach((bicho) => animalsObj[bicho.name] = bicho.residents.length);
+  if (species) {
     return animalsObj[species];
   }
   return animalsObj;
