@@ -46,8 +46,7 @@ function employeeByName(employeeName) {
   }
   const findOnObj = data.employees.find(
     element =>
-      element.firstName === employeeName || element.lastName === employeeName
-  );
+      element.firstName === employeeName || element.lastName === employeeName);
   return findOnObj;
 }
 
@@ -70,17 +69,17 @@ function isManager(id) {
 
 function addEmployee(
   id = [], 
-  firstName = [], 
+  firstName =[], 
   lastName = [], 
   managers = [], 
-  responsibleFor = []
+  responsibleFor = [], 
 ) {   
   const newEmployee = { 
-    id: id, 
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
+    id, 
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   };
   return data.employees.push(newEmployee);
 }
