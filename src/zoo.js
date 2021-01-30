@@ -170,8 +170,25 @@ function increasePrices(percentage) {
   });
 }
 
+// Obs.: auxílio da aula guiada com Bernardo e Murilo
 function employeeCoverage(idOrName) {
   // seu código aqui
+  if (!idOrName) {
+    return employees.reduce((accumulator, employee) => {
+      const animalList = employee.responsibleFor
+      .map(animalId => animals.find(animal => animalId === animal.id).name);
+      const key = `${employee.firstName} ${employee.lastName}`;
+      accumulator[key] = animalList;
+      return accumulator;
+    }, {});
+  }
+  const targetEmployee = employees
+  .find(employee => employee.id === idOrName
+  || employee.firstName === idOrName || employee.lastName === idOrName);
+  const animalList = targetEmployee.responsibleFor
+  .map(animalId => animals.find(animal => animalId === animal.id).name);
+  const key = `${targetEmployee.firstName} ${targetEmployee.lastName}`;
+  return { [key]: animalList };
 }
 
 module.exports = {
