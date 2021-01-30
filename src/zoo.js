@@ -197,26 +197,27 @@ function stepFive(sex) {
   return newObject;
 }
 
-function animalMapContinue(options) {
-  let result = null;
+function animalMapContinue(options, result) {
   if (options.includeNames && !options.sorted && options.sex !== undefined) {
     result = reapeater(false, options.sex);
   } else if (options.includeNames && options.sorted && options.sex !== undefined) {
     result = stepFive(options.sex);
+  } else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
+    result = stepOne();
   }
   return result;
 }
 
 function animalMap(options) {
   let result = null;
-  if (options === undefined || !options.includeNames && (options.sex !== undefined || options.sorted)) {
+  if (options === undefined) {
     result = stepOne();
   } else if (options.includeNames && !options.sorted && options.sex === undefined) {
     result = reapeater(false);
   } else if (options.includeNames && options.sorted && options.sex === undefined) {
     result = reapeater(true);
-  }else {
-    result = animalMapContinue(options);
+  } else {
+    result = animalMapContinue(options, result);
   }
   return result;
 }
