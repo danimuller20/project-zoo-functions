@@ -197,7 +197,7 @@ function stepFive(sex) {
   return newObject;
 }
 
-function animalMap(options) {
+function ofIfsMap(options) {
   let result = null;
   if (options === undefined) {
     result = stepOne();
@@ -213,6 +213,10 @@ function animalMap(options) {
     result = stepOne();
   }
   return result;
+}
+
+function animalMap(options) {
+  return ofIfsMap(options);
 }
 
 function schedule(dayName) {
