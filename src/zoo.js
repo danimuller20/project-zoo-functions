@@ -50,7 +50,7 @@ function animalCount(species) {
   if (species !== undefined) {
     result = animals.find(eachSpecies => eachSpecies.name === species).residents.length;
   } else {
-    animals.forEach(eachSpecies => {
+    animals.forEach((eachSpecies) => {
       result[eachSpecies.name] = eachSpecies.residents.length;
     });
   }
