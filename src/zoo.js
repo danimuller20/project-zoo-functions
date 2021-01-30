@@ -95,8 +95,8 @@ function animalCount(species) {
     }
     return objNameNum;
   }
-    const findAnimal = data.animals.find(element => element.name === species);
-    return findAnimal.residents.length;
+  const findAnimal = data.animals.find(element => element.name === species);
+  return findAnimal.residents.length;
 }
 
 function entryCalculator(entrants) {
