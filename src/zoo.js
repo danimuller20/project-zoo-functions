@@ -63,7 +63,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (!species) {
+  if (species) {
     return animals.find(currentAnimal =>
       currentAnimal.name === species).residents.length;
   }
@@ -74,6 +74,7 @@ function animalCount(species) {
   });
   return newObj;
 }
+console.log(animalCount());
 
 function entryCalculator(entrants) {
   let total = 0;
