@@ -27,7 +27,7 @@ function employeeByName(employeeName) {
   if (!employeeObject) {
     return {};
   } return employeeObject;
-  }
+}
 
 function createEmployee(personalInfo, associatedWith) {
   const newEmployee = Object.assign(personalInfo, associatedWith);
@@ -91,14 +91,14 @@ function schedule(dayName) {
   } return { [dayName]: returnObject[dayName] };
 }
 
-  function oldestFromFirstSpecies(identifier) {
-    const employeeRecord = employees.find(value => identifier === value.id);
-    const animal = employeeRecord.responsibleFor[0];
-    const animalsSameSpecies = animals
-    .find(value => value.id === animal).residents
-    .reduce((acc, value) => (acc.age < value.age ? value : acc));
-    return Object.values(animalsSameSpecies);
-  }
+function oldestFromFirstSpecies(identifier) {
+  const employeeRecord = employees.find(value => identifier === value.id);
+  const animal = employeeRecord.responsibleFor[0];
+  const animalsSameSpecies = animals
+  .find(value => value.id === animal).residents
+  .reduce((acc, value) => (acc.age < value.age ? value : acc));
+  return Object.values(animalsSameSpecies);
+}
   // For ao inves do reduce -
   // let ageOfAnimal = 0;
   // let oldestAnimal = {}
@@ -137,14 +137,14 @@ function employeeCoverage(idOrName) {
     employees
       .forEach(({ firstName, lastName }, index) => {
         employeAnimalsList[`${firstName} ${lastName}`] = employeeRespectiveAnimals[index];
-        });
+      });
     return employeAnimalsList;
-  } const employeeInfo = employees.find (employee => employee.id === idOrName ||
+  } const employeeInfo = employees.find(employee => employee.id === idOrName ||
       employee.firstName === idOrName ||
       employee.lastName === idOrName);
-    const responsableForAnimalNames = employeeInfo.responsibleFor
-      .map(animalId => animals.find(animal => animal.id === animalId).name);
-    return { [`${employeeInfo.firstName} ${employeeInfo.lastName}`]: responsableForAnimalNames };
+  const responsableForAnimalNames = employeeInfo.responsibleFor
+    .map(animalId => animals.find(animal => animal.id === animalId).name);
+  return { [`${employeeInfo.firstName} ${employeeInfo.lastName}`]: responsableForAnimalNames };
 }
 console.log(employeeCoverage());
 //   const data = require('./data');
