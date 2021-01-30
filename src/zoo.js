@@ -17,25 +17,15 @@ const data = require('./data');  //recuperando o arquivo data para usar aqui nes
 //1 IMPLEMENTE A FUNÇÃO animalsByIds
 //Esta função é responsável pela busca das espécies de animais por id. Ela retorna um array contendo as espécies referentes aos ids passados como parâmetro, podendo receber um ou mais ids.
 
-function animalsByIds(ids) {
+function animalsByIds(...ids) {
   // seu código aqui
 
 
 //Se não tiver parametro, Retorna Array vazio.   [ok]
 
-  const emptyArray = [];
-  if (typeof (ids) === 'undefined') {
-    return emptyArray;
-  }
+ if (!ids) return [];
 
-//Se receber um único ID, Retorna Array da Espécie
-
-  const specieInfos = animals.find((idValue) => { 
-    return ids === idValue.id;
-
-  })
-
-  console.log(specieInfos);
+ return data.animals.filter(animal => ids.includes(animal.id));
 
 }   //fim da função animalByIds
 
