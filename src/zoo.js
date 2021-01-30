@@ -125,7 +125,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  
+  //
 }
 
 function schedule(dayName) {
