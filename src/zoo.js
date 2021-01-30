@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return animals.find(({ name }) => name === animal)
-  .residents.every(specie => specie.age >= age);
+  .residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -26,8 +26,8 @@ function employeeByName(employeeName) {
   Object.values(employee).includes(employeeName)) : {};
 }
 
-function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
-  return { id, firstName, lastName, managers, responsibleFor };
+function createEmployee(personalInfo, associatedWith) {
+  return { ...personalInfo,  ...associatedWith };
 }
 
 function isManager(id) {
@@ -76,7 +76,6 @@ function animalMap(options) {
   });
   return animalsObj;
 }
-// console.log(animalMap({ includeNames: true }))
 
 function schedule(dayName) {
   const schedObj = {};
