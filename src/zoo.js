@@ -103,7 +103,6 @@ function increasePrices(percentage) {
   prices.Adult = Number((prices.Adult * percent) + 0.001).toFixed(2);
   prices.Senior = Number((prices.Senior * percent) + 0.001).toFixed(2);
   prices.Child = Number((prices.Child * percent) + 0.001).toFixed(2);
-  
 }
 
 
