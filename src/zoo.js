@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, hours, prices } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -103,7 +103,6 @@ function increasePrices(percentage) {
 }
 console.log(increasePrices(50));
 */
- const hours;
 }
 function employeeCoverage(idOrName) {
   // seu código aqui
