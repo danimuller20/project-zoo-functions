@@ -17,10 +17,7 @@ function animalsByIds(...ids) {
 
   if (ids.length === 0) {
     return [];
-  }
-
-  // 2- Se o parâmetro é um único id, retorna um array com a espécie referente à esse id:
-  else if (ids.length === 1) {
+  } else if (ids.length === 1) {
     const findIdOnMap = idsListMap.find(element => element === ids[0]);
     const idsOnObj = data.animals.find(element => element.id === findIdOnMap);
     return [idsOnObj];
