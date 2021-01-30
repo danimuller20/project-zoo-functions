@@ -197,20 +197,20 @@ function stepFive(sex) {
   return newObject;
 }
 
-function animalMapContinue(options, result) {
-  if (options.includeNames && !options.sorted && options.sex !== undefined) {
-    result = reapeater(false, options.sex);
-  } else {
-    return result = animalMapCont(options, result);
-  }
-  return result;
-}
-
 function animalMapCont(options, result) {
   if (options.includeNames && options.sorted && options.sex !== undefined) {
     result = stepFive(options.sex);
   } else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
     result = stepOne();
+  }
+  return result;
+}
+
+function animalMapContinue(options, result) {
+  if (options.includeNames && !options.sorted && options.sex !== undefined) {
+    result = reapeater(false, options.sex);
+  } else {
+    return result = animalMapCont(options, result);
   }
   return result;
 }
