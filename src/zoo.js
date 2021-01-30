@@ -16,7 +16,7 @@ function animalsByIds(...ids) {
   let zooArray = [];
   if (ids) {
     zooArray = ids
-    .map((codigo) => animals.find(animal => animal.id === codigo));
+    .map(codigo => animals.find(animal => animal.id === codigo));
   } else {
     return [];
   }
@@ -79,8 +79,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   const animalObj = {};
-  let countSpecies = 0;
-  animals.forEach(animal => animalObj[animal.name] = animal.residents.length);
+  // let countSpecies = 0;
+  animals.forEach((animal) => {
+  animalObj[animal.name] = animal.residents.length
+});
 
   if (species) {
     return animalObj[species];
@@ -226,8 +228,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // const { Adult, Senior, Child } = data.prices;
   const percent = percentage / 100;
+  // const { Adult, Senior, Child } = data.prices;
   // const NewPriceAdult = Adult + (Adult * percent);
   // const NewPriceSenior = Senior + (Senior * percent);
   // const NewPriceChild = Child + (Child * percent);
@@ -236,8 +238,8 @@ function increasePrices(percentage) {
   // data.prices.Child = Math.round(NewPriceChild * 100) / 100;
 
   Object.keys(prices).forEach((key) => {
-    const somaComPorcentage = prices[key] + (prices[key] * percent);
-    prices[key] = Math.round(somaComPorcentage * 100) /100;
+    const somaComPorcentage = prices[ key ] + (prices[key] * percent);
+    prices[ key ] = Math.round(somaComPorcentage * 100) /100;
   });
   return prices;
 }
