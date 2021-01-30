@@ -26,6 +26,7 @@ function animalsByIds(args) {
   // return array;
 }
 
+// OK
 function animalsOlderThan(especie, age) {
   const bixo = data.animals.find(animal => animal.name === especie);
   const idade = bixo.residents.map(item => item.age >= age);
@@ -36,6 +37,7 @@ function animalsOlderThan(especie, age) {
   } return resultado;
 }
 
+// OK
 function employeeByName(...args) {
   const objetoVazio = {};
   let empregado = data.employees.find(funcionario => funcionario.firstName === args[0]);
@@ -48,6 +50,7 @@ function employeeByName(...args) {
   return empregado;
 }
 
+// OK
 function createEmployee(personalInfo, associatedWith) {
   let usuarioCompleto = {};
 
@@ -55,8 +58,9 @@ function createEmployee(personalInfo, associatedWith) {
   return usuarioCompleto;
 }
 
+// DESENVOLVIMENTO
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some(item => item.managers.some(gerente => gerente === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
