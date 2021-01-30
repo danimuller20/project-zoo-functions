@@ -63,7 +63,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (species !== undefined) {
+  if (!species) {
     return animals.find(currentAnimal =>
       currentAnimal.name === species).residents.length;
   }
@@ -87,9 +87,61 @@ function entryCalculator(entrants) {
   return total;
 }
 
+function allLocations() {
+  const locations = [];
+  animals.forEach(animal => {
+    if (!locations.includes(animal.location)) locations.push(animal.location);
+  })
+
+  return locations;
+}
+
+// Obrigado Oliva por reduzir meu código a 10 linhas :)
+function animalsByLocation() {
+  const animalsByLocationList = {};
+  allLocations().forEach(location => {
+    const listByLocation = animals
+      .filter(animal => animal.location === location)
+      .map((animal) => animal.name);
+
+    animalsByLocationList[location] = listByLocation;
+  })
+  return animalsByLocationList;
+}
+
+function speciesAndNameByLocation(options) {
+  const speciesAndNameByLocationList = {};
+  allLocations().forEach(location => {
+    const listByLocation = animals
+      .filter(animal => animal.location === location)
+      .map((animal) => {
+        let arrayNames;
+        if (options.sex) {
+          arrayNames = animal.residents.filter(resident => resident.sex === options.sex)
+            .map(resident => resident.name);
+        } else {
+          arrayNames = animal.residents.map(resident => resident.name);
+        }
+
+        if (options.sorted) arrayNames.sort();
+
+        return { [animal.name]: arrayNames };
+      });
+      speciesAndNameByLocationList[location] = listByLocation;
+  });
+  return speciesAndNameByLocationList;
+}
+
 function animalMap(options) {
-  // const contentByLocation = { NE: [], NW: [], SE: [], SW: [] };
-  // const { NE, NW, SE, SW } = contentByLocation;
+  if (!options) {
+    return animalsByLocation();
+  }
+
+  if (!options.includeNames) {
+    return animalsByLocation();
+  } else {
+    return speciesAndNameByLocation(options);
+  }
 }
 
 function schedule(dayName) {
