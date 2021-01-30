@@ -123,8 +123,128 @@ function entryCalculator(entrants) {
   return total;
 }
 
+function stepOne() {
+  let newObject = {};
+  animals.forEach((animal) => {
+    if (newObject[animal.location] === undefined) {
+      newObject[animal.location] = [];
+    };
+    newObject[animal.location].push(animal.name);
+  });
+  return newObject;
+}
+
+function stepTwo() {
+  let newObject = {};
+  animals.forEach((animal) => {
+    if (newObject[animal.location] === undefined) {
+      newObject[animal.location] = [];
+    }
+    newObject[animal.location].push({});
+    let index = Object.values(newObject[animal.location]).length - 1;
+    newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
+      return resident.name;
+    });
+  });
+  return newObject;
+}
+
+function stepThree() {
+  let newObject = {};
+  animals.forEach((animal) => {
+    if (newObject[animal.location] === undefined) {
+      newObject[animal.location] = [];
+    }
+    newObject[animal.location].push({});
+    let index = Object.values(newObject[animal.location]).length - 1;
+    newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
+      return resident.name;
+    }).sort();
+  });
+  return newObject;
+}
+
+function stepFour(sex) {
+  let newObject = {};
+  animals.forEach((animal) => {
+    if (newObject[animal.location] === undefined) {
+      newObject[animal.location] = [];
+    }
+    newObject[animal.location].push({});
+    let index = Object.values(newObject[animal.location]).length - 1;
+    newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
+      if (resident.sex === sex) {
+        return resident.name;
+      };
+    });
+    let count = 0;
+    Object.values(newObject[animal.location][index][animal.name]).forEach((name, indexOf) => {
+      if (name === undefined) {
+        indexOf -= count;
+        let arr = newObject[animal.location][index][animal.name];
+        arr.splice(indexOf, 1);
+        newObject[animal.location][index][animal.name] = arr;
+        count += 1;
+      }
+    });
+  });
+  return newObject;
+}
+
+function stepFive(sex) {
+  let newObject = {};
+  animals.forEach((animal) => {
+    if (newObject[animal.location] === undefined) {
+      newObject[animal.location] = [];
+    }
+    newObject[animal.location].push({});
+    let index = Object.values(newObject[animal.location]).length - 1;
+    newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
+      if (resident.sex === sex) {
+        return resident.name;
+      };
+    });
+    let count = 0;
+    Object.values(newObject[animal.location][index][animal.name]).forEach((name, indexOf) => {
+      if (name === undefined) {
+        indexOf -= count;
+        let arr = newObject[animal.location][index][animal.name];
+        arr.splice(indexOf, 1);
+        newObject[animal.location][index][animal.name] = arr;
+        count += 1;
+      }
+    });
+    let ordered = Object.values(newObject[animal.location][index][animal.name]).sort();
+    newObject[animal.location][index][animal.name] = ordered;
+  });
+  return newObject;
+}
+
+function stepSix() {
+  let newObject = {};
+  animals.forEach((animal) => {
+    if (newObject[animal.location] === undefined) {
+      newObject[animal.location] = [];
+    }
+    newObject[animal.location].push(animal.name);
+  });
+  return newObject;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  if (options === undefined) {
+    return stepOne();
+  } else if (options.includeNames && !options.sorted && options.sex === undefined) {
+    return stepTwo();
+  } else if (options.includeNames && options.sorted && options.sex === undefined) {
+    return stepThree();
+  } else if (options.includeNames && !options.sorted && options.sex !== undefined) {
+    return stepFour(options.sex);
+  } else if (options.includeNames && options.sorted && options.sex !== undefined) {
+    return stepFive(options.sex);
+  } else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
+    return stepSix();
+  }
 }
 
 function schedule(dayName) {
@@ -153,7 +273,9 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (idOrName === undefined) {
+    
+  }
 }
 
 module.exports = {
