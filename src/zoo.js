@@ -63,8 +63,9 @@ function isManager(id) {
     if (arrayManagers[index].some(element => element === id)) {
       return true;
     }
-      return false;
   }
+      return false;
+
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
