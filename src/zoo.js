@@ -45,15 +45,15 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(employeeNew);
 }
 
+
+
 function animalCount(species) {
-  const listAnimal = {};
-  animals.forEach((animal) => {
-    listAnimal[animal.nome] = animal.residents.length;
-  });
-  if (!species) {
-    return {};
+  const animalsObj = {};
+  animals.forEach(bicho => animalsObj[bicho.name] = bicho.residents.length);
+  if(species){
+    return animalsObj[species];
   }
-  return listAnimal;
+  return animalsObj;
 }
 
 function entryCalculator() {
@@ -71,7 +71,7 @@ function schedule() {
   // seu código aqui
 }
 
-function oldestFromFirstSpecies() {
+function oldestFromFirstspecies() {
   // id
   // seu código aqui
 }
@@ -97,7 +97,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstSpecies,
+  oldestFromFirstspecies,
   increasePrices,
   createEmployee,
 };
