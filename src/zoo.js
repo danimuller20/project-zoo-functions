@@ -11,6 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+// FALHA
 function animalsByIds(args) {
   // if (args.length === 0) return [];
 
@@ -58,14 +59,18 @@ function createEmployee(personalInfo, associatedWith) {
   return usuarioCompleto;
 }
 
-// DESENVOLVIMENTO
+// OK
 function isManager(id) {
   return data.employees.some(item => item.managers.some(gerente => gerente === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+// DESENVOLVIMENTO
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return data.employees.push({id: id, firstName: firstName, lastName: lastName, managers: managers, responsibleFor: responsibleFor});
 }
+
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'))
+
 
 function animalCount(species) {
   // seu código aqui
