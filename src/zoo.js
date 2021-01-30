@@ -57,7 +57,7 @@ function entryCalculator(entrants) {
 // https://pt.stackoverflow.com/questions/83588/em-javascript-como-verificar-que-um-objeto-est%C3%A1-vazio-sem-jquery
 
 function animalMap(options) {
-  // seu código aqui
+
 }
 
 function schedule(dayName) {
@@ -105,12 +105,6 @@ function employeeCoverage(idOrName) {
     .map(animalIds => data.animals
     .find(animal => animal.id === animalIds).name) };
 }
-
-// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
-// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
-// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-
 
 module.exports = {
   entryCalculator,
