@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 const { animals } = require('./data');
 const { employees } = require('./data');
-const {prices} = require('./data');
+const { prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -61,12 +61,13 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-
   if (!entrants) {
     return 0;
   }
-  // Object.entries() retorna um array cujos elementos são também arrays correspondentes aos pares de propriedades [key, value];
-  return Object.entries(entrants).reduce((accPrices, [ticketPersonKey, pricesVal]) => (
+  //  Object.entries() retorna um array cujos elementos são também arrays
+  // correspondentes aos pares de propriedades [key, value];
+  return Object.entries(entrants).reduce((accPrices,
+    [ticketPersonKey, pricesVal]) => (
     accPrices + (prices[ticketPersonKey] * pricesVal)
   ), 0);
 }
