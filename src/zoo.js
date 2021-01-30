@@ -83,7 +83,6 @@ function entryCalculator(entrants) {
     return 0;
   }
   Object.keys(entrants).forEach((index) => { soma += entrants[index] * prices[index]; });
-  return soma;
 }
 
 function animalMap(options) {
