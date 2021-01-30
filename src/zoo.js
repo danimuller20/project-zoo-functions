@@ -81,8 +81,8 @@ function animalCount(species) {
   const animalObj = {};
   // let countSpecies = 0;
   animals.forEach((animal) => {
-  animalObj[animal.name] = animal.residents.length
-});
+    animalObj[animal.name] = animal.residents.length;
+  });
 
   if (species) {
     return animalObj[species];
@@ -238,8 +238,8 @@ function increasePrices(percentage) {
   // data.prices.Child = Math.round(NewPriceChild * 100) / 100;
 
   Object.keys(prices).forEach((key) => {
-    const somaComPorcentage = prices[ key ] + (prices[key] * percent);
-    prices[ key ] = Math.round(somaComPorcentage * 100) /100;
+    const somaComPorcentage = prices[key] + (prices[key] * percent);
+    prices[key] = Math.round(somaComPorcentage * 100) / 100;
   });
   return prices;
 }
