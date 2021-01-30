@@ -45,8 +45,8 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  return entrants ? Object.keys(entrants).reduce((sum, ageGroup) =>
-  (sum += entrants[ageGroup] * prices[ageGroup]), 0) : 0;
+  return entrants ? Object.keys(entrants).reduce((sum, key) =>
+  (sum += entrants[key] * prices[key]), 0) : 0;
 }
 
 function animalMap(options) {
