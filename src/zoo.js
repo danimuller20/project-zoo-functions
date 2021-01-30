@@ -203,8 +203,6 @@ function animalMapContinue(options) {
     result = reapeater(false, options.sex);
   } else if (options.includeNames && options.sorted && options.sex !== undefined) {
     result = stepFive(options.sex);
-  } else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
-    result = stepOne();
   }
   return result;
 }
@@ -217,6 +215,8 @@ function animalMap(options) {
     result = reapeater(false);
   } else if (options.includeNames && options.sorted && options.sex === undefined) {
     result = reapeater(true);
+  }else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
+    result = stepOne();
   } else {
     result = animalMapContinue(options);
   }
