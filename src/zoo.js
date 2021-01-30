@@ -31,13 +31,13 @@ function animalsByIds(...ids) {
   }
   return arrayAux;
 }
-animalsByIds(
-  '0938aa23-f153-4937-9f88-4858b24d6bce',
-  'baa6e93a-f295-44e7-8f70-2bcdc6f6948d',
-);
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  // Ao passar o nome de espécie e idade, testa se todos os animais desta espécie tem a idade mínima 
+  const getAnimal = data.animals.find(element => element.name === animal)
+  const ages = (getAnimal.residents.map(element => element.age))
+  const verifyAge = ages.every(element => element > age)
+  return verifyAge
 }
 
 function employeeByName(employeeName) {
