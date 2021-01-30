@@ -210,7 +210,7 @@ function animalMapContinue(options, result) {
   if (options.includeNames && !options.sorted && options.sex !== undefined) {
     result = reapeater(false, options.sex);
   } else {
-    return result = animalMapCont(options, result);
+    result = animalMapCont(options, result);
   }
   return result;
 }
