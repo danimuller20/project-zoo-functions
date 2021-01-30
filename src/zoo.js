@@ -49,7 +49,7 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   if (!managers) { managers = []; }
   if (!responsibleFor) { responsibleFor = []; }
-  employees.push({ id, firstName, lastName, managers, responsibleFor} );
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
