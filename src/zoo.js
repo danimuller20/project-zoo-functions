@@ -267,11 +267,12 @@ function findEmployee(idOrName) {
 }
 
 function getAllResponsabilities(employe, employee, name) {
-  employe[name] = employee.responsibleFor.map((animalId)=>{
+  employe[name] = employee.responsibleFor.map((animalId) => {
     return animals.find((animal) => {
       if (animal.id === animalId) {
         return animal.name;
       }
+      return;
     }).name;
   });
   return employe;
@@ -282,18 +283,17 @@ function getAllEmployees(employe) {
     const complete = `${employee.firstName} ${employee.lastName}`;
     employe = getAllResponsabilities(employe, employee, complete);
   });
-  return employe
+  return employe;
 }
 
-employeeCoverage('Stephanie');
 function employeeCoverage(idOrName) {
-  let employe = {}
+  let employe = {};
   if (idOrName === undefined) {
     getAllEmployees(employe);
-  }else {
-    let data = findEmployee(idOrName);
-    let name = `${data.firstName} ${data.lastName}`;
-    employe = getAllResponsabilities(employe, data, name);
+  } else {
+    const dataOfEmployee = findEmployee(idOrName);
+    const name = `${dataOfEmployee.firstName} ${dataOfEmployee.lastName}`;
+    employe = getAllResponsabilities(employe, dataOfEmployee, name);
   }
   return employe;
 }
