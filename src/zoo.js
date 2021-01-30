@@ -86,6 +86,17 @@ function addEmployee(
 
 function animalCount(species) {
   // seu código aqui
+  if (typeof species === 'undefined') {
+    const arrayAnimalsName = data.animals.map(element => element.name);
+    const arrayAnimalsNumbers = data.animals.map(element => element.residents.length);
+    const objNameNum = {};
+    for (let index = 0; index < arrayAnimalsName.length; index += 1 ){
+      objNameNum[arrayAnimalsName[index]] = arrayAnimalsNumbers[index];
+    }
+    return objNameNum;
+  } 
+    const findAnimal = data.animals.find(element => element.name === species);
+    return findAnimal.residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -126,4 +137,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-};
+}; 
