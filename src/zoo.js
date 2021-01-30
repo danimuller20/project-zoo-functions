@@ -60,12 +60,12 @@ function isManager(id) {
   // seu código aqui
   const arrayManagers = data.employees.map(element => element.managers);
   for (let index = 0; index < arrayManagers.length; index += 1) {
-    if (arrayManagers[index].some(element => element === id))
-    return true;
-  } 
-  return false;
+    if (arrayManagers[index].some(element => element === id)) {
+      return true;
+    }
+      return false;
+  }
 }
-isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83')
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
