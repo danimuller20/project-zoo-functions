@@ -76,14 +76,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // let employee = {
-  //   id: id,
-  //   firstName: firstName,
-  //   lastName: lastName,
-  //   managers: managers,
-  //   responsibleFor: responsibleFor,
-  // };
-  // employees.push(employee);
+  //
 }
 
 function animalCount(species) {
@@ -106,18 +99,12 @@ function entryCalculator(entrants) {
   let total = 0;
   const entrantsArray = Object.entries(entrants);
   entrantsArray.forEach((entrant) => {
-    switch (entrant[0]) {
-      case 'Adult':
-        total += data.prices.Adult * entrant[1];
-        break;
-      case 'Child':
-        total += data.prices.Child * entrant[1];
-        break;
-      case 'Senior':
-        total += data.prices.Senior * entrant[1];
-        break;
-      default:
-        break;
+    if (entrant[0] === 'Adult') {
+      total += data.prices.Adult * entrant[1];
+    } else if (entrant[0] === 'Child') {
+      total += data.prices.Child * entrant[1];
+    } else if (entrant[0] === 'Senior') {
+      total += data.prices.Senior * entrant[1];
     }
   });
   return total;
