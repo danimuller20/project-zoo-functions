@@ -34,7 +34,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   const getAnimal = data.animals.find(element => element.name === animal);
-  const ages = (getAnimal.residents.map(element => element.age));
+  const ages = getAnimal.residents.map(element => element.age);
   const verifyAge = ages.every(element => element > age);
   return verifyAge;
 }
@@ -46,7 +46,8 @@ function employeeByName(employeeName) {
   }
   const findOnObj = data.employees.find(
     element =>
-      element.firstName === employeeName || element.lastName === employeeName);
+      element.firstName === employeeName || element.lastName === employeeName
+  );
   return findOnObj;
 }
 
@@ -67,8 +68,21 @@ function isManager(id) {
   return false;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(
+  id = [], 
+  firstName = [], 
+  lastName = [], 
+  managers = [], 
+  responsibleFor = []
+) {   
+  const newEmployee = { 
+    id: id, 
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
+  };
+  return data.employees.push(newEmployee);
 }
 
 function animalCount(species) {
