@@ -49,7 +49,10 @@ function employeeByName(...args) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  let usuarioCompleto = {};
+
+  usuarioCompleto = Object.assign(usuarioCompleto, personalInfo, associatedWith);
+  return usuarioCompleto;
 }
 
 function isManager(id) {
