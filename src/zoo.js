@@ -141,33 +141,41 @@ function mapAnimal(newObject, animal, ordered) {
   return newObject;
 }
 
-function stepOne() {
-  let newObject = {};
-  animals.forEach((animal) => {
-    newObject = createList(newObject, animal);
-    newObject[animal.location].push(animal.name);
-  });
-  return newObject;
+function stepOne(options) {
+  if (options === undefined) {
+    let newObject = {};
+    animals.forEach((animal) => {
+      newObject = createList(newObject, animal);
+      newObject[animal.location].push(animal.name);
+    });
+    return newObject;
+  }
+  return null;
 }
 
-function stepTwo() {
+function reapeater(sorted) {
   let newObject = {};
   animals.forEach((animal) => {
     newObject = createList(newObject, animal);
     newObject[animal.location].push({});
-    newObject = mapAnimal(newObject, animal, false);
+    newObject = mapAnimal(newObject, animal, sorted);
   });
-  return newObject;
 }
 
-function stepThree() {
-  let newObject = {};
-  animals.forEach((animal) => {
-    newObject = createList(newObject, animal);
-    newObject[animal.location].push({});
-    newObject = mapAnimal(newObject, animal, true);
-  });
-  return newObject;
+function stepTwo(options) {
+  if (options.includeNames && !options.sorted && options.sex === undefined) {
+    reapeater(false);
+    return newObject;
+  }
+  return null;
+}
+
+function stepThree(options) {
+  if (options.includeNames && options.sorted && options.sex === undefined) {
+    reapeater(true);
+    return newObject;
+  }
+  return null;
 }
 
 function mapAnimalBySex(newObject, animal, sex) {
@@ -191,52 +199,55 @@ function mapAnimalBySex(newObject, animal, sex) {
   return newObject;
 }
 
-function stepFour(sex) {
-  let newObject = {};
-  animals.forEach((animal) => {
-    newObject = createList(newObject, animal);
-    newObject[animal.location].push({});
-    newObject = mapAnimalBySex(newObject, animal, sex);
-  });
-  return newObject;
+function stepFour(options) {
+  if (options.includeNames && !options.sorted && options.sex !== undefined) {
+    let newObject = {};
+    animals.forEach((animal) => {
+      newObject = createList(newObject, animal);
+      newObject[animal.location].push({});
+      newObject = mapAnimalBySex(newObject, animal, options.sex);
+    });
+    return newObject;
+  }
+  return null;
 }
 
-function stepFive(sex) {
-  let newObject = {};
-  animals.forEach((animal) => {
-    newObject = createList(newObject, animal);
-    newObject[animal.location].push({});
-    const index = Object.values(newObject[animal.location]).length - 1;
-    newObject = mapAnimalBySex(newObject, animal, sex);
-    const ordered = Object.values(newObject[animal.location][index][animal.name]).sort();
-    newObject[animal.location][index][animal.name] = ordered;
-  });
+function stepFive(options) {
+  if (options.includeNames && options.sorted && options.sex !== undefined) {
+    let newObject = {};
+    animals.forEach((animal) => {
+      newObject = createList(newObject, animal);
+      newObject[animal.location].push({});
+      const index = Object.values(newObject[animal.location]).length - 1;
+      newObject = mapAnimalBySex(newObject, animal, options.sex);
+      const ordered = Object.values(newObject[animal.location][index][animal.name]).sort();
+      newObject[animal.location][index][animal.name] = ordered;
+    });
   return newObject;
+  }
+  return null;
 }
 
-function stepSix() {
-  let newObject = {};
-  animals.forEach((animal) => {
-    newObject = createList(newObject, animal);
-    newObject[animal.location].push(animal.name);
-  });
-  return newObject;
+function stepSix(options) {
+  if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
+    let newObject = {};
+    animals.forEach((animal) => {
+      newObject = createList(newObject, animal);
+      newObject[animal.location].push(animal.name);
+    });
+    return newObject;
+  }
+  return null;
 }
 
 function animalMap(options) {
   let result = null;
-  if (options === undefined) {
-    result = stepOne();
-  } else if (options.includeNames && !options.sorted && options.sex === undefined) {
-    result = stepTwo();
-  } else if (options.includeNames && options.sorted && options.sex === undefined) {
-    result = stepThree();
-  } else if (options.includeNames && !options.sorted && options.sex !== undefined) {
-    result = stepFour(options.sex);
-  } else if (options.includeNames && options.sorted && options.sex !== undefined) {
-    result = stepFive(options.sex);
-  } else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
-    result = stepSix();
+    stepOne(options) !== null ? result = stepOne(options) : null;
+    stepTwo(options) !== null ? result = stepTwo(options) : null;
+    stepThree(options) !== null ? result = stepThree(options) : null;
+    stepFour(options) !== null ? result = stepFour(options) : null;
+    stepFive(options) !== null ? result = stepFive(options.sex) : null;
+    stepSix(options) !== null ? result = stepSix() : null;
   }
   return result;
 }
