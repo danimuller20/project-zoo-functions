@@ -47,9 +47,11 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  if (!managers) {managers = []};
+  if (!responsibleFor) {responsibleFor = []};
+  employees.push({ id, firstName, lastName, managers, responsibleFor});
 }
-
+//addEmployee('id kkk', 'mii', 'alves', 'gerente', 'respond');
 function animalCount(species) {
   // seu código aqui
 }
