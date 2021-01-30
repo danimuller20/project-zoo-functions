@@ -33,11 +33,10 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // Ao passar o nome de espécie e idade, testa se todos os animais desta espécie tem a idade mínima 
-  const getAnimal = data.animals.find(element => element.name === animal)
-  const ages = (getAnimal.residents.map(element => element.age))
-  const verifyAge = ages.every(element => element > age)
-  return verifyAge
+  const getAnimal = data.animals.find(element => element.name === animal);
+  const ages = (getAnimal.residents.map(element => element.age));
+  const verifyAge = ages.every(element => element > age);
+  return verifyAge;
 }
 
 function employeeByName(employeeName) {
