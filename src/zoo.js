@@ -1,4 +1,4 @@
-const { employees, animals } = require('./data');
+const { employees, animals, prices } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -54,9 +54,15 @@ function animalCount(species) {
   return animalsObj;
 }
 
-function entryCalculator() {
-  // entrants
-  // seu código aqui
+function entryCalculator(entrants) {
+  let result = 0;
+  if (!entrants) {
+    return 0;
+  } else if (Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  Object.keys(entrants).forEach((item) => result += entrants[item]*prices[item]);
+  return result;
 }
 
 function animalMap() {
