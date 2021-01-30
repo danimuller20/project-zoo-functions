@@ -64,8 +64,7 @@ function isManager(id) {
       return true;
     }
   }
-      return false;
-
+   return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
