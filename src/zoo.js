@@ -103,7 +103,7 @@ function increasePrices(percentage) {
 }
 console.log(increasePrices(50));
 */
-}
+hours}
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
