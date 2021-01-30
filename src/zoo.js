@@ -110,7 +110,7 @@ function entryCalculator(entrants) {
   });
   return total;
 }
-animalMap();
+
 function animalMap(options) {
   let result = null;
   if (options === undefined) {
