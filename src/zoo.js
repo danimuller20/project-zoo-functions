@@ -254,8 +254,48 @@ function increasePrices(percentage) {
   data.prices.Senior = Math.round((data.prices.Senior *= percent) * 100) / 100;
 }
 
+function findEmployee(idOrName) {
+  let result = null;
+  result = employees.find(employee => employee.id === idOrName);
+  if (result === undefined) {
+    result = employees.find(employee => employee.firstName === idOrName);
+  }
+  if (result === undefined) {
+    result = employees.find(employee => employee.lastName === idOrName);
+  }
+  return result;
+}
+
+function getAllResponsabilities(employe, employee, name) {
+  employe[name] = employee.responsibleFor.map((animalId)=>{
+    return animals.find((animal) => {
+      if (animal.id === animalId) {
+        return animal.name;
+      }
+    }).name;
+  });
+  return employe;
+}
+
+function getAllEmployees(employe) {
+  employees.forEach((employee) => {
+    const complete = `${employee.firstName} ${employee.lastName}`;
+    employe = getAllResponsabilities(employe, employee, complete);
+  });
+  return employe
+}
+
+employeeCoverage('Stephanie');
 function employeeCoverage(idOrName) {
-  //
+  let employe = {}
+  if (idOrName === undefined) {
+    getAllEmployees(employe);
+  }else {
+    let data = findEmployee(idOrName);
+    let name = `${data.firstName} ${data.lastName}`;
+    employe = getAllResponsabilities(employe, data, name);
+  }
+  return employe;
 }
 
 module.exports = {
