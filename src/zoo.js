@@ -17,21 +17,34 @@ function animalsByIds(...args) {
 
   const array = [];
 
-  args.forEach(cadaElemento => animals.map((item) => {
-    if (item.id === cadaElemento) {
-      array.push(item)
-    }
-  }));
+  args.forEach((cadaElemento) => {
+    return animals.map((item) => {
+      if (item.id === cadaElemento) {
+        array.push(item);
+      }
+    })});
 
   return array;
 }
 
-// animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce')
-// animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46')
+function animalsOlderThan(especie, age) {
+  let bixo = data.animals.find((animal) => {
+    return animal.name === especie;
+  });
 
+  let idade = bixo.residents.map((idade) => {
+    return idade.age >= age;
+  });
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+  let resultado = idade.find((item) => {
+    return item === false;
+  });
+
+  if (resultado === undefined) {
+    return true;
+  } else {
+    return resultado;
+  };
 }
 
 function employeeByName(employeeName) {
