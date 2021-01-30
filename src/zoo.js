@@ -43,8 +43,11 @@ function employeeByName(employeeName) {
   // seu código aqui
   if (typeof employeeName === 'undefined') {
     return {};
-  } 
-  const findOnObj = data.employees.find(element => element.firstName === employeeName || element.lastName === employeeName);
+  }
+  const findOnObj = data.employees.find(
+    element => 
+    element.firstName === employeeName || element.lastName === employeeName
+  );
   return findOnObj;
 }
 
