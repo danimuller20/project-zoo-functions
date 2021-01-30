@@ -52,12 +52,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const personal = ({ id, firstName, lastName } = personalInfo);
-  const managersInfo = {
-    managers: associatedWith.managers,
-    responsibleFor: associatedWith.responsibleFor,
-  };
-  const parr = { ...personal, ...managersInfo };
+  const parr = { ...personalInfo, ...associatedWith };
   return parr;
 }
 
