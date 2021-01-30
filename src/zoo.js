@@ -37,13 +37,13 @@ function animalsOlderThan(especie, age) {
 }
 
 function employeeByName(...args) {
-  let objetoVazio = {};
+  const objetoVazio = {};
   let empregado = data.employees.find(funcionario => funcionario.firstName === args[0]);
 
   if (args.length === 0) return objetoVazio;
   if (empregado === undefined) {
     empregado = data.employees.find(funcionario => funcionario.lastName === args[0]);
-  };
+  }
 
   return empregado;
 }
