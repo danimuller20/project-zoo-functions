@@ -197,15 +197,9 @@ function stepFive(sex) {
   return newObject;
 }
 
-function ofIfsMap(options) {
+function animalMapContinue(options) {
   let result = null;
-  if (options === undefined) {
-    result = stepOne();
-  } else if (options.includeNames && !options.sorted && options.sex === undefined) {
-    result = reapeater(false);
-  } else if (options.includeNames && options.sorted && options.sex === undefined) {
-    result = reapeater(true);
-  } else if (options.includeNames && !options.sorted && options.sex !== undefined) {
+  if (options.includeNames && !options.sorted && options.sex !== undefined) {
     result = reapeater(false, options.sex);
   } else if (options.includeNames && options.sorted && options.sex !== undefined) {
     result = stepFive(options.sex);
@@ -216,7 +210,17 @@ function ofIfsMap(options) {
 }
 
 function animalMap(options) {
-  return ofIfsMap(options);
+  let result = null;
+  if (options === undefined) {
+    result = stepOne();
+  } else if (options.includeNames && !options.sorted && options.sex === undefined) {
+    result = reapeater(false);
+  } else if (options.includeNames && options.sorted && options.sex === undefined) {
+    result = reapeater(true);
+  } else {
+    result = animalMapContinue(options);
+  }
+  return result;
 }
 
 function schedule(dayName) {
