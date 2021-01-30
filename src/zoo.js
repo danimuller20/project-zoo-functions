@@ -18,8 +18,6 @@ function animalsByIds(...ids) {
   return animals.filter(animal => ids.some(id => id === animal.id));
 }
 
-// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
-
 function animalsOlderThan(animal, age) {
   // seu código aqui
   return animals.some(currentAnimal =>
@@ -130,10 +128,13 @@ function employeeCoverage(idOrName) {
     return coverageList;
   }
 
-  const { firstName, lastName, responsibleFor } = employees.find(employee => employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName);
+  const { firstName, lastName, responsibleFor } = employees
+    .find(employee =>
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName ||
+      employee.id === idOrName);
 
-  return { [`${firstName} ${lastName}`]: responsibleFor.map(animalId => animals.find(animal => animal.id === animalId).name) }
-
+  return { [`${firstName} ${lastName}`]: responsibleFor.map(animalId => animals.find(animal => animal.id === animalId).name) };
 }
 
 console.log(employeeCoverage())
