@@ -101,7 +101,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 //*********************************************************
 //*********************************************************
-//5. IMPLEMENTE A FUNÇÃO isManager  [falta terminarr olhar plantao]
+//5. IMPLEMENTE A FUNÇÃO isManager  [falta terminarr [OOOKKK]
 //Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
 //*********************************************************
 //*********************************************************
@@ -115,9 +115,13 @@ function isManager(id) {
 
 };
   
+
 //console.log(data.employees);
 console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+
+// ----> ---> aSSIM DA PRA DEIXAR NUMA LINHA SOH
+// --> --> return employees.some(employee => employee.managers.includes(id));
 
 //*********************************************************
 //*********************************************************
@@ -125,9 +129,27 @@ console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 //A função irá adicionar uma nova pessoa colaboradora ao array `employees`, presente no arquivo `data.js`.
 //*********************************************************
 //*********************************************************
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+
+//Add uma nova pessoa (objeto)
+
+
+
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployye = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+
+  const admittedEmployee = data.employees.push(newEmployye);
+
+  return admittedEmployee;
+  
 }
+console.log(addEmployee());
 
 //*********************************************************
 //*********************************************************
