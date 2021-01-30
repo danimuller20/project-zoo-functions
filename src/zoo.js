@@ -11,6 +11,7 @@ eslint no-unused-vars: [
 
 const { animals, employees } = require('./data');
 const data = require('./data');
+const extension = require('./zoo-extension');
 
 function animalsByIds(...ids) {
   const newArray = [];
@@ -109,109 +110,17 @@ function entryCalculator(entrants) {
   });
   return total;
 }
-
-function createList(newObj, animal) {
-  if (newObj[animal.location] === undefined) {
-    newObj[animal.location] = [];
-  }
-  return newObj;
-}
-
-function mapAnimal(newObject, animal, ordered) {
-  const index = Object.values(newObject[animal.location]).length - 1;
-  let obj = newObject[animal.location][index][animal.name];
-  obj = animal.residents.map(resident => resident.name);
-  newObject[animal.location][index][animal.name] = obj;
-  if (ordered) {
-    newObject[animal.location][index][animal.name].sort();
-  }
-  return newObject;
-}
-
-function stepOne() {
-  let newObject = {};
-  animals.forEach((animal) => {
-    newObject = createList(newObject, animal);
-    newObject[animal.location].push(animal.name);
-  });
-  return newObject;
-}
-
-function mapAnimalBySex(newObject, animal, sex) {
-  const index = Object.values(newObject[animal.location]).length - 1;
-  newObject[animal.location][index][animal.name] = animal.residents.map((resident) => {
-    if (resident.sex === sex) {
-      return resident.name;
-    }
-    return undefined;
-  });
-  let count = 0;
-  Object.values(newObject[animal.location][index][animal.name]).forEach((name, indexOf) => {
-    if (name === undefined) {
-      indexOf -= count;
-      const arr = newObject[animal.location][index][animal.name];
-      arr.splice(indexOf, 1);
-      newObject[animal.location][index][animal.name] = arr;
-      count += 1;
-    }
-  });
-  return newObject;
-}
-
-function reapeater(sorted, sex) {
-  let newObject = {};
-  animals.forEach((animal) => {
-    newObject = createList(newObject, animal);
-    newObject[animal.location].push({});
-    newObject = mapAnimal(newObject, animal, sorted);
-    if (sex !== undefined) {
-      newObject = mapAnimalBySex(newObject, animal, sex);
-    }
-  });
-  return newObject;
-}
-
-function stepFive(sex) {
-  let newObject = {};
-  animals.forEach((animal) => {
-    newObject = createList(newObject, animal);
-    newObject[animal.location].push({});
-    const index = Object.values(newObject[animal.location]).length - 1;
-    newObject = mapAnimalBySex(newObject, animal, sex);
-    const ordered = Object.values(newObject[animal.location][index][animal.name]).sort();
-    newObject[animal.location][index][animal.name] = ordered;
-  });
-  return newObject;
-}
-
-function animalMapCont(options, result) {
-  if (options.includeNames && options.sorted && options.sex !== undefined) {
-    result = stepFive(options.sex);
-  } else if (!options.includeNames && (options.sex !== undefined || options.sorted)) {
-    result = stepOne();
-  }
-  return result;
-}
-
-function animalMapContinue(options, result) {
-  if (options.includeNames && !options.sorted && options.sex !== undefined) {
-    result = reapeater(false, options.sex);
-  } else {
-    result = animalMapCont(options, result);
-  }
-  return result;
-}
-
+animalMap();
 function animalMap(options) {
   let result = null;
   if (options === undefined) {
-    result = stepOne();
+    result = extension.stepOne();
   } else if (options.includeNames && !options.sorted && options.sex === undefined) {
-    result = reapeater(false);
+    result = extension.reapeater(false);
   } else if (options.includeNames && options.sorted && options.sex === undefined) {
-    result = reapeater(true);
+    result = extension.reapeater(true);
   } else {
-    result = animalMapContinue(options, result);
+    result = extension.animalMapContinue(options, result);
   }
   return result;
 }
