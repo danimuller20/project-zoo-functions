@@ -46,8 +46,7 @@ function employeeByName(employeeName) {
   }
   const findOnObj = data.employees.find(
     element =>
-    element.firstName === employeeName || element.lastName === employeeName);
-    
+    element.firstName === employeeName || element.lastName === employeeName); 
   return findOnObj;
 }
 
