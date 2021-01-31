@@ -59,9 +59,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (!species) {
     const objVazio = {};
-      animals.forEach((animal) => {
-      objVazio[animal.name] = animal.residents.length;
-    });
+    animals.forEach((animal) => {
+        objVazio[animal.name] = animal.residents.length;
+      });
     return objVazio;
   }
   const contador = animals.find(animal => animal.name === species).residents.length;
@@ -69,8 +69,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  objVazio = {};
-  if (entrants === objVazio || !entrants) {
+  if (entrants === {} || !entrants) {
     const zero = 0;
     return zero;
   }
@@ -82,7 +81,6 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const monday = {}
   const listDays = {
     'Tuesday': 'Open from 8am until 6pm',
     'Wednesday': 'Open from 8am until 6pm',
@@ -95,8 +93,12 @@ function schedule(dayName) {
   if (!dayName) {
     return listDays;
   }
-  listDays.find((daysOpen) => {
-    daysOpen === dayName})
+  if (dayName === 'Monday') {
+    const monday = { Monday: 'CLOSED' }
+    return monday;
+  }
+  const result = { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
