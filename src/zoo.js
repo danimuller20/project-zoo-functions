@@ -62,7 +62,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  // sem parámmetros retorna u objeto com todos os animais e a quantidade de cada espéie.
   const allAnimals = animals.reduce((previouAnimal, currentAnimal) => {
     previouAnimal[currentAnimal.name] = currentAnimal.residents.length;
     return previouAnimal;
@@ -73,8 +72,6 @@ function animalCount(species) {
   }
 
   return allAnimals;
-
-  // se recebermos o nome de uma especie, devemos retornar a qantidade de animais desta especie
 }
 
 function entryCalculator(entrants) {
