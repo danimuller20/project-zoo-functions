@@ -145,7 +145,9 @@ function schedule(dayName) {
 schedule('Tuesday');
 
 function oldestFromFirstSpecies(id) {
+  // resgatando o id do funcionário
   const employeesId = employees.find(employee => employee.id === id);
+  // encontrando a primeira especie de animal gerenciado por um funcionário
   const [animalFirstForEmployees] = employeesId.responsibleFor;
   const animalList = animals.find(currAnimal => currAnimal.id === animalFirstForEmployees);
   const animalOld = animalList.residents.reduce((accAge, curAge) => (
