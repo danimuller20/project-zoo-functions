@@ -20,13 +20,11 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
- 
   const animalsFiltred = animals.find(({ name }) => name === animal);
   return animalsFiltred.residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
- 
   if (!employeeName) return {};
   return employees.find(
     ({ firstName, lastName }) =>
@@ -42,13 +40,12 @@ function isManager(idEmployee) {
   return employees.some(
     ({ managers }, i) => managers[i] === idEmployee);
 }
-
+ 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
- 
   if (!species) {
     return animals.reduce((acr, current) => {
       acr[current.name] = current.residents.length;
@@ -59,13 +56,11 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
- 
   if (!entrants) return 0;
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
 
-// auxiliary function of animalMap()
 const getNamesAnimalsForLocation = (accumulator, currentValue) => {
   accumulator[currentValue.location] = animals
     .filter(({ location }) => location === currentValue.location)
@@ -73,7 +68,6 @@ const getNamesAnimalsForLocation = (accumulator, currentValue) => {
   return accumulator;
 };
 
-// auxiliary function of animalMap()
 const sortedNamesOrGetForSex = (accAnimal, currentAnimal, sex, sorted) => {
   const objAnimal = {};
   const animalForSex = currentAnimal.residents
@@ -88,7 +82,6 @@ const sortedNamesOrGetForSex = (accAnimal, currentAnimal, sex, sorted) => {
 };
 
 function animalMap(options) {
- 
   if (!options || !options.includeNames) {
     return animals.reduce(getNamesAnimalsForLocation, {});
   }
@@ -104,7 +97,6 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-
 }
 
 function oldestFromFirstSpecies(idEmployee) {
@@ -120,7 +112,6 @@ function oldestFromFirstSpecies(idEmployee) {
 }
 
 function increasePrices(percentage) {
- 
   Object.keys(prices).forEach((key) => {
     prices[key] = (Math.round(prices[key] * percentage) + (prices[key] * 100)) / 100;
   });
@@ -128,7 +119,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
- 
 }
 
 module.exports = {
