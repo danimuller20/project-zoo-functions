@@ -90,21 +90,22 @@ function entryCalculator(entrants = {}) {
 }
 
 function zooLocations() {
-  let locations = [];
+  const locations = [];
   animals.forEach((animal) => {
-    if (!locations.includes(animal.location)){
-      locations.push(animal.location)
-    }})
+    if (!locations.includes(animal.location)) {
+      locations.push(animal.location);
+    }
+  })
   return locations;
 }
 
 function getAnimalsByLocation(location) {
   const result = {};
   location.forEach((direction) => {
-  const filteredAnimals = animals
-  .filter((element) => element.location === direction )
-  .map((iteratedAnimal) => iteratedAnimal.name )
-  result[direction] = filteredAnimals;
+    const filteredAnimals = animals
+    .filter(element => element.location === direction)
+    .map(iteratedAnimal => iteratedAnimal.name);
+    result[direction] = filteredAnimals;
   });
   return result;
 }
@@ -113,17 +114,17 @@ function animalMappingwithNames(location, sex) {
   const mappedAnimals = {};
   location.forEach((direction) => {
     const filteredAnimals = animals
-    .filter((element) => element.location === direction )
+    .filter(element => element.location === direction)
     .map((iteratedAnimal) => {
       const species = iteratedAnimal.name;
       const speciesNames = iteratedAnimal.residents
-      .filter((creature) => creature.sex === sex || !sex)
-      .map((resident) => resident.name);
-      return { [species] : speciesNames, }
+      .filter(creature => creature.sex === sex || !sex)
+      .map(resident => resident.name);
+      return { [species]: speciesNames };
     });
 
     mappedAnimals[direction] = filteredAnimals;
-    });
+  });
 
   return mappedAnimals;
 }
@@ -132,38 +133,37 @@ function animalMappingwithNamesSorted(location, sex) {
   const mappedAnimals = {};
   location.forEach((direction) => {
     const filteredAnimals = animals
-    .filter((element) => element.location === direction )
+    .filter(element => element.location === direction)
     .map((iteratedAnimal) => {
       const species = iteratedAnimal.name;
       const speciesNames = iteratedAnimal.residents
-      .filter((creature) => creature.sex === sex || !sex)
-      .map((resident) => resident.name).sort();
-      return { [species] : speciesNames, }
+      .filter(creature => creature.sex === sex || !sex)
+      .map(resident => resident.name).sort();
+      return { [species]: speciesNames };
     });
 
     mappedAnimals[direction] = filteredAnimals;
-    });
+  });
 
   return mappedAnimals;
 }
 
 function animalMap(options) {
-
   const locations = zooLocations();
   const { includeNames = false, sex, sorted = false } = options || {};
 
-    if(!includeNames) {
-      return getAnimalsByLocation(locations);
-    }
+  if (!includeNames) {
+    return getAnimalsByLocation(locations);
+  }
 
-    if (includeNames) {
-      
-      if (sorted) {
-        return animalMappingwithNamesSorted(locations, sex);
-      }
-      return animalMappingwithNames(locations, sex);
+  if (includeNames) {
+    if (sorted) {
+      return animalMappingwithNamesSorted(locations, sex);
     }
+    return animalMappingwithNames(locations, sex);
+  }
 }
+
 
 function schedule(dayName = 0) {
   const day = {};
