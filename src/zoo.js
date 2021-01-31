@@ -11,25 +11,22 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { prices, hours } = require('./data');
-const { animals } = require('./data');
-const { employees } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return animals.filter(({ id }, index) => id === ids[index]);
+  return data.filter(({ id }, index) => id === ids[index]);
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const animalsFiltred = animals.find(({ name }) => name === animal);
+  const animalsFiltred = data.find(({ name }) => name === animal);
   return animalsFiltred.residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
   if (!employeeName) return {};
-  return employees.find(
+  return data.find(
     ({ firstName, lastName }) =>
       firstName === employeeName || lastName === employeeName);
 }
@@ -39,28 +36,25 @@ function createEmployee(personalInfo, associatedWith) {
   return Object.assign(personalInfo, associatedWith);
 }
 
-function isManager(id) {
   // seu código aqui
 function isManager(idEmployee) {
-  return employees.some(
+  return data.some(
     ({ managers }, index) => managers[index] === idEmployee);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return employees.push({ id, firstName, lastName, managers, responsibleFor });
+  return data.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
   // seu código aqui
   if (!species) {
-    return animals.reduce((acc, current) => {
-      acc[current.name] = current.residents.length;
-      return acc;
+    return data.reduce((acr, current) => {
+      acr[current.name] = current.residents.length;
+      return acr;
     }, { });
   }
-  return animals.find(({ name }) => name === species).residents.length;
+  return data.find(({ name }) => name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
