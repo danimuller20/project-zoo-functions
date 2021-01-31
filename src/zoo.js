@@ -80,13 +80,13 @@ function schedule(dayName) {
     const { open, close } = val;
     acumulador[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acumulador;
-    }, {});
-    if (typeof dayName === 'string' && dayName.length !== 0) {
-    return {
-    [dayName]: result[dayName],
+  }, {});
+  if (typeof dayName === 'string' && dayName.length !== 0) {
+   return {
+   [dayName]: result[dayName],
     };
     }
-    return result;  
+    return result;
 }
 
 function oldestFromFirstSpecies(id) {
