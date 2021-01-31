@@ -91,10 +91,13 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
+  const scheduleObject = {};
   if ( dayName === 'Monday') {
-    return `'Monday' : 'CLOSED'`;
+    scheduleObject[day] = dayName;
+    scheduleObject[hours] = `Open from ${hours[dayName].open} am until ${hours[dayName].close} pm`
+    return scheduleObject;
   } 
-  return `'${dayName}': 'Open from ${hours[dayName].open} am until ${hours[dayName].close} pm'`;
+  return `{'${dayName}': 'Open from ${hours[dayName].open} am until ${hours[dayName].close} pm'}`;
 }
 console.log(schedule('Tuesday'));
 
