@@ -71,11 +71,55 @@ function entryCalculator(entrants) {
     accPrices + (prices[ticketPersonKey] * pricesVal)
   ), 0);
 }
-
+// exercicios abaixos feitos assistindo os plantões do Oliva
 function animalMap(options) {
-  // seu código aqui
+  const locations = retrieveAvailableLocations();
+
+  const {includeNames = false, sex, sorted = false } = options;
+
+  if (includeNames) {
+    return retrieveAnimalsPerLocationWithName(locations);
+  }
+
+  return retrieveAnimalPerLocation(locations)
+
 }
-// exercicio abaixo feito através do plantão do Oliva
+
+function retrieveAnimalsPerLocationWithName(locations, sorted, sex) {
+  const animalsPerLocation = {};
+
+  locations.forEach(location => {
+    const filteredAnimals = animals
+    .filter(animal => animal.location === location)
+    .map(animal => {
+      const nameKey = animal.name;
+      const nameValue = animal.residents
+      .map( resident => resident.name);
+      if (sorted) {
+        nameValue.sort()
+      }
+      return { [nameKey]: nameValue }
+    });
+    animalsPerLocation[location] = filteredAnimals;
+  });
+  return animalsPerLocation;
+}
+
+function retrieveAnimalPerLocation(locations) {
+  const animalsPerLocation = {};
+
+  locations.forEach(location => {
+    const filteredAnimals = animals
+    .filter(animal => animal.location === location)
+    .map(animal => animal.name);
+    animalsPerLocation[location] = filteredAnimals;
+  });
+  return animalsPerLocation;
+}
+function retrieveAvailableLocations() {
+  return ['NE', 'NW', 'SE', 'SW'];
+}
+
 function schedule(dayName) {
   const hours = data.hours;
   const allDays = Object.keys(hours);
@@ -101,8 +145,15 @@ function schedule(dayName) {
 schedule('Tuesday');
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employeesId = employees.find(employee => employee.id === id);
+  const [animalFirstForEmployees] = employeesId.responsibleFor;
+  const animalList = animals.find(currAnimal => currAnimal.id === animalFirstForEmployees);
+  const animalOld = animalList.residents.reduce((accAge, curAge) => (
+    curAge.age > accAge.age ? curAge : accAge
+  ));
+  return Object.values(animalOld);
 }
+
 
 function increasePrices(percentage) {
   // seu código aqui
