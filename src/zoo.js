@@ -15,10 +15,10 @@ const data = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
   if (!ids) {
-    return []
+    return [];
   }
   return animals.filter(animal => ids.includes(animal.id));
-  }
+}
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
