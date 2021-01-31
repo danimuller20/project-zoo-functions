@@ -32,7 +32,6 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
- 
   return Object.assign(personalInfo, associatedWith);
 }
 
@@ -40,7 +39,7 @@ function isManager(idEmployee) {
   return employees.some(
     ({ managers }, i) => managers[i] === idEmployee);
 }
- 
+
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
