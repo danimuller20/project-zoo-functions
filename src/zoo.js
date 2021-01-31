@@ -113,7 +113,7 @@ function increasePrices(percentage) {
   // seu código aqui
 
   function getSomaComPercentage(value) {
-    return Math.round((value + ((percentage / 100) * value) * 100)) / 100;
+    return (Math.round(value + (((percentage / 100) * value) * 100))) / 100;
   }
   prices.Adult = getSomaComPercentage(prices.Adult);
   prices.Child = getSomaComPercentage(prices.Child);
@@ -131,7 +131,7 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   const funcionarios = {};
   if (!idOrName) {
-    employees.map((employee) => {
+    employees.forEach((employee) => {
       const { name, specie } = getFuncionarioESpecie(employee);
       funcionarios[name] = specie;
     });
@@ -146,7 +146,7 @@ function employeeCoverage(idOrName) {
     const { name, specie } = getFuncionarioESpecie(achaFuncionarioName);
     funcionarios[name] = specie;
   }
-  const achaFuncionarioLast = employees.find(funcionario => funcionario.lastName === idOrName)
+  const achaFuncionarioLast = employees.find(funcionario => funcionario.lastName === idOrName);
   if (achaFuncionarioLast) {
     const { name, specie } = getFuncionarioESpecie(achaFuncionarioLast);
     funcionarios[name] = specie;
