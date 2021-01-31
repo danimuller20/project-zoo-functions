@@ -115,9 +115,13 @@ function oldestFromFirstSpecies(id) {
   const animalCode = employees.find(employee => employee.id === id).responsibleFor[0];
   const animalMaisVelho = animals.find(animal => animal.id === animalCode)
   .residents.sort((age1, age2) => age2.age - age1.age)[0];
-  console.log(animalMaisVelho);
+  const {name, sex, age} = animalMaisVelho;
+
+  return [name, sex, age]
+  
 }
 oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
+
 function increasePrices(percentage) {
   const percent = 1 + (percentage / 100);
   prices.Adult = parseFloat(((prices.Adult * percent) + 0.001).toFixed(2));
