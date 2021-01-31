@@ -73,51 +73,51 @@ function entryCalculator(entrants) {
 }
 // exercicios abaixos feitos assistindo os plantões do Oliva
 function animalMap(options) {
-  const locations = retrieveAvailableLocations();
+//   const locations = retrieveAvailableLocations();
 
-  const {includeNames = false, sex, sorted = false } = options;
+//   const {includeNames = false, sex, sorted = false } = options;
 
-  if (includeNames) {
-    return retrieveAnimalsPerLocationWithName(locations);
-  }
+//   if (includeNames) {
+//     return retrieveAnimalsPerLocationWithName(locations);
+//   }
 
-  return retrieveAnimalPerLocation(locations)
+//   return retrieveAnimalPerLocation(locations)
 
-}
+// }
 
-function retrieveAnimalsPerLocationWithName(locations, sorted, sex) {
-  const animalsPerLocation = {};
+// function retrieveAnimalsPerLocationWithName(locations, sorted, sex) {
+//   const animalsPerLocation = {};
 
-  locations.forEach(location => {
-    const filteredAnimals = animals
-    .filter(animal => animal.location === location)
-    .map(animal => {
-      const nameKey = animal.name;
-      const nameValue = animal.residents
-      .map( resident => resident.name);
-      if (sorted) {
-        nameValue.sort()
-      }
-      return { [nameKey]: nameValue }
-    });
-    animalsPerLocation[location] = filteredAnimals;
-  });
-  return animalsPerLocation;
-}
+//   locations.forEach(location => {
+//     const filteredAnimals = animals
+//     .filter(animal => animal.location === location)
+//     .map(animal => {
+//       const nameKey = animal.name;
+//       const nameValue = animal.residents
+//       .map( resident => resident.name);
+//       if (sorted) {
+//         nameValue.sort()
+//       }
+//       return { [nameKey]: nameValue }
+//     });
+//     animalsPerLocation[location] = filteredAnimals;
+//   });
+//   return animalsPerLocation;
+// }
 
-function retrieveAnimalPerLocation(locations) {
-  const animalsPerLocation = {};
+// function retrieveAnimalPerLocation(locations) {
+//   const animalsPerLocation = {};
 
-  locations.forEach(location => {
-    const filteredAnimals = animals
-    .filter(animal => animal.location === location)
-    .map(animal => animal.name);
-    animalsPerLocation[location] = filteredAnimals;
-  });
-  return animalsPerLocation;
-}
-function retrieveAvailableLocations() {
-  return ['NE', 'NW', 'SE', 'SW'];
+//   locations.forEach(location => {
+//     const filteredAnimals = animals
+//     .filter(animal => animal.location === location)
+//     .map(animal => animal.name);
+//     animalsPerLocation[location] = filteredAnimals;
+//   });
+//   return animalsPerLocation;
+// }
+// function retrieveAvailableLocations() {
+//   return ['NE', 'NW', 'SE', 'SW'];
 }
 
 function schedule(dayName) {
