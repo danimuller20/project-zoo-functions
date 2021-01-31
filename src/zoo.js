@@ -128,7 +128,6 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
   const getScheduleKeys = Object.keys(data.hours);
   const getScheduleValues = Object.values(data.hours);
   const newObj = {};
@@ -142,9 +141,9 @@ function schedule(dayName) {
     newObj[getScheduleKeys[index]] = `Open from ${auxArray[pos]}am until ${
       auxArray[pos + 1] - 12
     }pm`;
-    pos = pos + 2;
+    pos += 2;
   }
-    newObj.Monday = 'CLOSED';
+  newObj.Monday = 'CLOSED';
   if (typeof dayName === 'undefined') {
     return newObj;
   }
