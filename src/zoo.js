@@ -91,26 +91,29 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const scheduleObject = {};
-  const daysWeek = ['Tuesday', 'Wednesday', 'Thrusday', 'Fryday', 'Saturday', 'Sunday'];
-  if (dayName ==='') {
-    for (let i = 0; i < 6; i+=1){
-    scheduleObject[daysWeek[i]] = `Open from ${hours[daysWeek[i]].open}am until ${hours[daysWeek[i]].close -12}pm`;
-    }
-    return scheduleObject;
- }else if (dayName === 'Monday') {
+ /* const scheduleObject = {};
+  if (dayName === '') {
+    Object.keys(hours).forEach((hour) => {
+      scheduleObject[hours.hour] = `Open from ${hours.hour.open}am until ${hours.hour.close - 12}pm`;
+    });
+  } else if (dayName === 'Monday') {
     scheduleObject[dayName] = 'CLOSED';
-    return scheduleObject;
   }
-  scheduleObject[dayName] = `Open from ${Object.hours[dayName].open}am until ${Object.hours[dayName].close -12}pm`;
+  Object.keys(hours).find((hour) => {
+    if (hour === dayName) {
+     return  scheduleObject[hours.hour] = `Open from ${hours.hour.open}am until ${hours.hour.close - 12}pm`;
+    }
+  });
   return scheduleObject;
+*/
 }
 console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  return Object.keys(employees).find(employee => employee.id === id).responsibleFor[0];
+  
 }
-
+oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
 function increasePrices(percentage) {
   const percent = 1 + (percentage / 100);
   prices.Adult = parseFloat(((prices.Adult * percent) + 0.001).toFixed(2));
