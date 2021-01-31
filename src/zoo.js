@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices} = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -91,17 +91,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
- /* const scheduleObject = {};
+  /* const scheduleObject = {};
   if (dayName === '') {
     Object.keys(hours).forEach((hour) => {
-      scheduleObject[hours.hour] = `Open from ${hours.hour.open}am until ${hours.hour.close - 12}pm`;
+      scheduleObject[hours.hour] = `Open from ${hours.hour.open}am until
+      ${hours.hour.close - 12}pm`;
     });
   } else if (dayName === 'Monday') {
     scheduleObject[dayName] = 'CLOSED';
   }
   Object.keys(hours).find((hour) => {
     if (hour === dayName) {
-     return  scheduleObject[hours.hour] = `Open from ${hours.hour.open}am until ${hours.hour.close - 12}pm`;
+     return  scheduleObject[hours.hour] = `Open from ${hours.hour.open}am
+     until ${hours.hour.close - 12}pm`;
     }
   });
   return scheduleObject;
@@ -110,8 +112,10 @@ function schedule(dayName) {
 console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
-  return Object.keys(employees).find(employee => employee.id === id).responsibleFor[0];
-  
+  const animalCode = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalMaisVelho = animals.find(animal => animal.id === animalCode)
+  .residents.sort((age1, age2) => age2.age - age1.age)[0];
+  console.log(animalMaisVelho);
 }
 oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
 function increasePrices(percentage) {
