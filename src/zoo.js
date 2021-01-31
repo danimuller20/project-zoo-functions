@@ -147,8 +147,7 @@ function schedule(dayName) {
   if (typeof dayName === 'undefined') {
     return newObj;
   }
-  const convertedObj = Object.entries(newObj);
-  const findDay = convertedObj.find(element => element[0] === dayName);
+  const findDay = Object.entries(newObj).find(element => element[0] === dayName);
   const key = findDay[0];
   const value = findDay[1];
   const objAgain = {};
