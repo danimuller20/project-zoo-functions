@@ -107,17 +107,20 @@ function entryCalculator(entrants) {
     return 0;
   }
   let totalValue = 0;
-  let objectKeys = Object.keys(entrants)
+  const objectKeys = Object.keys(entrants)
+  const adultValue = entrants.Adult * 49.99;
+  const childValue = entrants.Child * 20.99;
+  const seniorValue = entrants.Senior * 24.99;
   if (objectKeys.some(element => element === 'Adult')) {
-    const adultValue = entrants.Adult * 49.99;
+    adultValue;
     totalValue += adultValue;
   }
   if (objectKeys.some(element => element === 'Child')) {
-    const childValue = entrants.Child * 20.99;
+    childValue;
     totalValue += childValue;
   }
   if (objectKeys.some(element => element === 'Senior')) {
-    const seniorValue = entrants.Senior * 24.99;
+    seniorValue;
     totalValue += seniorValue;
   }
   return totalValue;
