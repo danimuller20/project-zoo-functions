@@ -16,17 +16,17 @@ const { employees } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return animals.filter(({ id }, index) => id === ids[index]);
+  return animals.filter(({ id }, i) => id === ids[i]);
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+ 
   const animalsFiltred = animals.find(({ name }) => name === animal);
   return animalsFiltred.residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+ 
   if (!employeeName) return {};
   return employees.find(
     ({ firstName, lastName }) =>
@@ -34,13 +34,13 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+ 
   return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(idEmployee) {
   return employees.some(
-    ({ managers }, index) => managers[index] === idEmployee);
+    ({ managers }, i) => managers[i] === idEmployee);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -48,18 +48,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+ 
   if (!species) {
-    return animals.reduce((acc, current) => {
-      acc[current.name] = current.residents.length;
-      return acc;
+    return animals.reduce((acr, current) => {
+      acr[current.name] = current.residents.length;
+      return acr;
     }, { });
   }
   return animals.find(({ name }) => name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+ 
   if (!entrants) return 0;
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
@@ -88,7 +88,7 @@ const sortedNamesOrGetForSex = (accAnimal, currentAnimal, sex, sorted) => {
 };
 
 function animalMap(options) {
-  // seu código aqui
+ 
   if (!options || !options.includeNames) {
     return animals.reduce(getNamesAnimalsForLocation, {});
   }
@@ -120,7 +120,7 @@ function oldestFromFirstSpecies(idEmployee) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+ 
   Object.keys(prices).forEach((key) => {
     prices[key] = (Math.round(prices[key] * percentage) + (prices[key] * 100)) / 100;
   });
@@ -128,7 +128,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+ 
 }
 
 module.exports = {
