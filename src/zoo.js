@@ -80,11 +80,18 @@ function oldestFromFirstspecies() {
   // seu código aqui
 }
 
-function increasePrices() {
-  // percentage
-  // seu código aqui
-}
+function increasePrices(percentage) {
+ // valor das visitas vai aumentar de acordo com o parâmetro
+ // se o parâmetro é 20, o aumento será de 20%
+ // Sobrescreve o valor de prices no arquivo data
 
+// localizar o prices
+Object.keys(prices).forEach((item) => { 
+  prices[item] = Math.round((prices[item] + prices[item]*(percentage/100))*100)/100 })
+//ValorAtualizado = valorAtual + valorAtual*(percent/100)
+}
+//increasePrices(20)
+//console.log(prices)
 function employeeCoverage() {
   // idOrName
   // seu código aqui
