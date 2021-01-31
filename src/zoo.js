@@ -57,13 +57,13 @@ function animalMap(options) {
   .filter(({ location }) => location === position);
 
   locations.forEach((location) => {
-    includeNames ? animalsObj[location] = animalsByLocation(location)
+    includeNames ? (animalsObj[location] = animalsByLocation(location)
     .map(({ name, residents }) => ({ [name]: sorted ? residents
       .filter(animal => animal.sex === sex || !sex)
       .map(resident => resident.name).sort()
       : residents
       .filter(animal => animal.sex === sex || !sex)
-      .map(resident => resident.name) }))
+      .map(resident => resident.name) })))
 
       : animalsObj[location] = animalsByLocation(location).map(({ name }) => name);
   });
