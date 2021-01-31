@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { prices, hours } = require('./data');
+const { prices } = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 
@@ -125,12 +125,6 @@ function increasePrices(percentage) {
     prices[key] = (Math.round(prices[key] * percentage) + (prices[key] * 100)) / 100;
   });
   return prices;
-}
-
-// auxiliary function of employeeCoverage()
-function getListOfSpeciesPerEmployee(employeer) {
-  return employeer.responsibleFor.map(
-    idAnimal => animals.find(({ id }) => id === idAnimal).name);
 }
 
 function employeeCoverage(idOrName) {
