@@ -91,8 +91,22 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
+  const {open, close} = data.hours.dayName;
   console.log(Object.keys(hours));
+  console.log(dayName.open);
+  if ( dayName === 'Monday') {
+    return `'Monday' : 'CLOSED'`
+  }
+ 
+ 
+ 
+  Object.keys(hours).find(hour => {
+    if (hours.hour === dayName) {
+      return `'${hours.hour}' `//: 'Open from ${dayName} until ${dayName}'`
+    }
+  })
 }
+console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
