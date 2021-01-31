@@ -60,8 +60,8 @@ function animalCount(species) {
   if (!species) {
     const objVazio = {};
     animals.forEach((animal) => {
-        objVazio[animal.name] = animal.residents.length;
-      });
+      objVazio[animal.name] = animal.residents.length;
+    });
     return objVazio;
   }
   const contador = animals.find(animal => animal.name === species).residents.length;
@@ -81,20 +81,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const listDays = {
-    'Tuesday': 'Open from 8am until 6pm',
-    'Wednesday': 'Open from 8am until 6pm',
-    'Thursday': 'Open from 10am until 8pm',
-    'Friday': 'Open from 10am until 8pm',
-    'Saturday': 'Open from 8am until 10pm',
-    'Sunday': 'Open from 8am until 8pm',
-    'Monday': 'CLOSED'
-  };
   if (!dayName) {
-    return listDays;
+    return {
+      'Tuesday': 'Open from 8am until 6pm',
+      'Wednesday': 'Open from 8am until 6pm',
+      'Thursday': 'Open from 10am until 8pm',
+      'Friday': 'Open from 10am until 8pm',
+      'Saturday': 'Open from 8am until 10pm',
+      'Sunday': 'Open from 8am until 8pm',
+      'Monday': 'CLOSED'
+    };
   }
   if (dayName === 'Monday') {
-    const monday = { Monday: 'CLOSED' }
+    const monday = { Monday: 'CLOSED' };
     return monday;
   }
   const result = { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
