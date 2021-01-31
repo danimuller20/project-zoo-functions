@@ -87,15 +87,15 @@ function animalMap(options) {
 
 }
 
-function setTimeFormat(hour) {
-  return (hour < 12) ? hour : hour - 12;
-}
-
 function schedule(dayName) {
+  function getTimeFormat(hour) {
+    return (hour < 12) ? hour : hour - 12;
+  }
+
   const result = {};
 
   Object.keys(data.hours).forEach((weekday) => {
-    result[weekday] = `Open from ${data.hours[weekday].open}am until ${setTimeFormat(data.hours[weekday].close)}pm`;
+    result[weekday] = `Open from ${data.hours[weekday].open}am until ${getTimeFormat(data.hours[weekday].close)}pm`;
 
     if (weekday === 'Monday') {
       result[weekday] = 'CLOSED';
@@ -109,13 +109,10 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const funcionario = data.employees.find(employee => employee.id === id);
-
   const species = data.animals.find(animal => animal.id === funcionario.responsibleFor[0]);
 
   const olderAnimal = species.residents.reduce((prev, cur) => {
-    if (prev.age < cur.age) {
-      prev = cur;
-    }
+    if (prev.age < cur.age) prev = cur;
     return prev;
   });
   return Object.values(olderAnimal);
@@ -130,7 +127,28 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const result = {};
+
+  if (!idOrName) {
+    data.employees.forEach((employee) => {
+      const fullName = `${employee.firstName} ${employee.lastName}`;
+      result[fullName] = employee.responsibleFor
+        .map(animalId => animalsByIds(animalId)[0].name);
+    });
+    return result;
+  }
+
+  const getEmployee = term => data.employees
+    .find(employee => employee.id === term ||
+      employee.firstName === term ||
+      employee.lastName === term);
+
+  const employee = getEmployee(idOrName);
+  const fullName = `${employee.firstName} ${employee.lastName}`;
+  result[fullName] = employee.responsibleFor
+    .map(animalId => animalsByIds(animalId)[0].name);
+
+  return result;
 }
 
 module.exports = {
