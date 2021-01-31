@@ -89,31 +89,80 @@ function entryCalculator(entrants = {}) {
   return total;
 }
 
+function zooLocations() {
+  let locations = [];
+  animals.forEach((animal) => {
+    if (!locations.includes(animal.location)){
+      locations.push(animal.location)
+    }})
+  return locations;
+}
+
+function getAnimalsByLocation(location) {
+  const result = {};
+  location.forEach((direction) => {
+  const filteredAnimals = animals
+  .filter((element) => element.location === direction )
+  .map((iteratedAnimal) => iteratedAnimal.name )
+  result[direction] = filteredAnimals;
+  });
+  return result;
+}
+
+function animalMappingwithNames(location, sex) {
+  const mappedAnimals = {};
+  location.forEach((direction) => {
+    const filteredAnimals = animals
+    .filter((element) => element.location === direction )
+    .map((iteratedAnimal) => {
+      const species = iteratedAnimal.name;
+      const speciesNames = iteratedAnimal.residents
+      .filter((creature) => creature.sex === sex || !sex)
+      .map((resident) => resident.name);
+      return { [species] : speciesNames, }
+    });
+
+    mappedAnimals[direction] = filteredAnimals;
+    });
+
+  return mappedAnimals;
+}
+
+function animalMappingwithNamesSorted(location, sex) {
+  const mappedAnimals = {};
+  location.forEach((direction) => {
+    const filteredAnimals = animals
+    .filter((element) => element.location === direction )
+    .map((iteratedAnimal) => {
+      const species = iteratedAnimal.name;
+      const speciesNames = iteratedAnimal.residents
+      .filter((creature) => creature.sex === sex || !sex)
+      .map((resident) => resident.name).sort();
+      return { [species] : speciesNames, }
+    });
+
+    mappedAnimals[direction] = filteredAnimals;
+    });
+
+  return mappedAnimals;
+}
+
 function animalMap(options) {
-  // A função faz o mapeamento geográfico das espécies e seus animais,
-  // podendo ainda filtrá-los por ordem alfabética e gênero, por exemplo
 
-  // O parâmetro da função é um objeto com uma ou mais chaves
-  // O retorno da função é um objeto com a estrutura:
-  // chave: string(localização)
-  // valor: array de strings com as espécies
-  //
-  // Com o parâmetro 'includeNames: true' o valor das chaves será
-  // um array de objetos, cada objeto com os nomes dos animais
-  // organizados por espécies;
-  //
-  // com o parâmetro 'sorted: true' o valor das chaves será um
-  // array de objetos com os nomes dos animais organizados por
-  // espécies de forma ordenada;
-  //
-  // Com o parâmetro 'sex:male/female' o valor das chaves será um
-  // array de objetos com os nomes dos animais organizados por espécies
-  // e do gênero especificado
-  //
-  // Os parâmetro 'sorted' e 'sex' só funcionarão se o parâmetro
-  // 'includeNames' estiver incluso
+  const locations = zooLocations();
+  const { includeNames = false, sex, sorted = false } = options || {};
 
+    if(!includeNames) {
+      return getAnimalsByLocation(locations);
+    }
 
+    if (includeNames) {
+      
+      if (sorted) {
+        return animalMappingwithNamesSorted(locations, sex);
+      }
+      return animalMappingwithNames(locations, sex);
+    }
 }
 
 function schedule(dayName = 0) {
