@@ -68,10 +68,9 @@ function animalCount(species) {
   }, {});
 
   if (!species) {
-    allAnimals[species];
+   return allAnimals[species];
   }
 
-  return allAnimals;
 }
 
 function entryCalculator(entrants) {
