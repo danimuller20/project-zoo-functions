@@ -58,21 +58,22 @@ function animalMap(options) {
   .filter(({ location }) => location === position);
 
   locations.forEach((location) => {
-    if (!includeNames) {
-      animalsObj[location] = animalsByLocation(location).map(({ name }) => name);
-    }
-    if (includeNames) {
-      animalsObj[location] = animalsByLocation(location)
-      .map(({ name, residents }) => ({ [name]: residents
-        .filter(animal => animal.sex === sex || !sex)
-        .map(resident => resident.name) }));
-    }
-    if (includeNames && sorted) {
-      animalsObj[location] = animalsByLocation(location)
-      .map(({ name, residents }) => ({ [name]: residents
-        .filter(animal => animal.sex === sex || !sex)
-        .map(resident => resident.name).sort() }));
-    }
+    // if (!includeNames) {
+    //   animalsObj[location] = animalsByLocation(location).map(({ name }) => name);
+    // }
+    // if (includeNames) {
+
+    // }
+
+    includeNames ? animalsObj[location] = animalsByLocation(location)
+    .map(({ name, residents }) => ({ [name]: sorted ? residents
+      .filter(animal => animal.sex === sex || !sex)
+      .map(resident => resident.name).sort()
+      : residents
+      .filter(animal => animal.sex === sex || !sex)
+      .map(resident => resident.name) }))
+
+      : animalsObj[location] = animalsByLocation(location).map(({ name }) => name);
   });
   return animalsObj;
 }
