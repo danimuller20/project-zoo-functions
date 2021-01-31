@@ -101,7 +101,27 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (typeof entrants === 'undefined') {
+    return 0;
+  } else if (Object.entries(entrants).length === 0) {
+    return 0;
+  }
+  let totalValue = 0;
+  if (Object.keys(entrants).some(element => element === 'Adult')) {
+    const adultValue = entrants.Adult * 49.99;
+    totalValue += adultValue;
+  }
+  if (Object.keys(entrants).some(element => element === 'Child')) {
+    const childValue = entrants.Child * 20.99;
+    totalValue += childValue;
+  }
+  if (Object.keys(entrants).some(element => element === 'Senior')) {
+    const seniorValue = entrants.Senior * 24.99;
+    totalValue += seniorValue;
+  }
+  return totalValue;
 }
+entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })
 
 function animalMap(options) {
   // seu código aqui
