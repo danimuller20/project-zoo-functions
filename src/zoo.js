@@ -113,7 +113,7 @@ function increasePrices(percentage) {
   // seu código aqui
 
   function getSomaComPercentage(value) {
-    return (Math.round(value + (((percentage / 100) * value) * 100))) / 100;
+    return (Math.round((value + ((percentage / 100) * value)) * 100)) / 100;
   }
   prices.Adult = getSomaComPercentage(prices.Adult);
   prices.Child = getSomaComPercentage(prices.Child);
