@@ -75,10 +75,10 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  if (!entrants) { return 0; }
-  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  const result = (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
-  if (!result) { return 0; }
+  if (!entrants) return 0;
+  const { Adult: numOfAdults = 0, Child: numOfChild = 0, Senior: numOfSenior = 0 } = entrants;
+  const { Adult, Senior, Child } = data.prices;
+  const result = (Adult * numOfAdults) + (Child * numOfChild) + (Senior * numOfSenior);
   return result;
 }
 
@@ -175,10 +175,11 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   if (!idOrName) {
     return employees.reduce((accumulator, employee) => {
-      const animalList = employee.responsibleFor
-      .map(animalId => animals.find(animal => animalId === animal.id).name);
+      const animalList = employee.responsibleFor;
+      const idAnimal = animalList.map(animalId => animals
+        .find(animal => animalId === animal.id).name);
       const key = `${employee.firstName} ${employee.lastName}`;
-      accumulator[key] = animalList;
+      accumulator[key] = idAnimal;
       return accumulator;
     }, {});
   }
