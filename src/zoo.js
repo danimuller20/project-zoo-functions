@@ -128,9 +128,15 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const info = {}
+  const animalsEmployee = employees.find(employee => employee.id === idOrName ||
+  employee.firstName === idOrName || employee.lastName === idOrName).responsibleFor;
+  const infoAnimals = animals.forEach((infoAnimal) => infoAnimal.id === animalsEmployee).residents.name;
+  
+  console.log(infoAnimals);
+  console.log(animalsEmployee);
 }
-
+employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
 module.exports = {
   entryCalculator,
   schedule,
