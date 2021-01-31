@@ -10,22 +10,25 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { prices } = require('./data');
+const { animals } = require('./data');
+const { employees } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return data.filter(({ id }, index) => id === ids[index]);
+  return animals.filter(({ id }, index) => id === ids[index]);
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const animalsFiltred = data.find(({ name }) => name === animal);
+  const animalsFiltred = animals.find(({ name }) => name === animal);
   return animalsFiltred.residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
   if (!employeeName) return {};
-  return data.find(
+  return employees.find(
     ({ firstName, lastName }) =>
       firstName === employeeName || lastName === employeeName);
 }
@@ -36,35 +39,35 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(idEmployee) {
-  return data.some(
+  return employees.some(
     ({ managers }, index) => managers[index] === idEmployee);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return data.push({ id, firstName, lastName, managers, responsibleFor });
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
   // seu código aqui
   if (!species) {
-    return data.reduce((acc, current) => {
+    return animals.reduce((acc, current) => {
       acc[current.name] = current.residents.length;
       return acc;
     }, { });
   }
-  return data.find(({ name }) => name === species).residents.length;
+  return animals.find(({ name }) => name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
   if (!entrants) return 0;
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  return (Adult * data.Adult) + (Child * data.Child) + (Senior * data.Senior);
+  return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
 
 // auxiliary function of animalMap()
 const getNamesAnimalsForLocation = (accumulator, currentValue) => {
-  accumulator[currentValue.location] = data
+  accumulator[currentValue.location] = animals
     .filter(({ location }) => location === currentValue.location)
     .map(animal => animal.name);
   return accumulator;
@@ -87,11 +90,11 @@ const sortedNamesOrGetForSex = (accAnimal, currentAnimal, sex, sorted) => {
 function animalMap(options) {
   // seu código aqui
   if (!options || !options.includeNames) {
-    return data.reduce(getNamesAnimalsForLocation, {});
+    return animals.reduce(getNamesAnimalsForLocation, {});
   }
   const { sorted = false, sex = '' } = options;
-  return data.reduce((acc, current) => {
-    acc[current.location] = data
+  return animals.reduce((acc, current) => {
+    acc[current.location] = animals
       .filter(({ location }) => location === current.location)
       .reduce(
         (accAnimal, currentAnimal) =>
@@ -105,8 +108,8 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(idEmployee) {
-  const idAnimalResponsable = data.find(({ id }) => id === idEmployee).responsibleFor[0];
-  const specie = data.find(({ id }) => id === idAnimalResponsable);
+  const idAnimalResponsable = employees.find(({ id }) => id === idEmployee).responsibleFor[0];
+  const specie = animals.find(({ id }) => id === idAnimalResponsable);
   const agesOfResidentsOfSpecieFind = specie.residents
     .map(animal => animal.age)
     .sort((a, b) => a - b);
@@ -118,10 +121,10 @@ function oldestFromFirstSpecies(idEmployee) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  Object.keys(data).forEach((key) => {
-    data[key] = (Math.round(data[key] * percentage) + (data[key] * 100)) / 100;
+  Object.keys(prices).forEach((key) => {
+    prices[key] = (Math.round(prices[key] * percentage) + (prices[key] * 100)) / 100;
   });
-  return data;
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
