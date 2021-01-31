@@ -61,7 +61,7 @@ function entryCalculator(entrants = {}) {
   const verifyLength = Object.keys(entrants);
   if (verifyLength.length === 0) return 0;
   let total = 0;
-  const {Adult = 0, Child = 0, Senior = 0} = entrants;
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   total += Adult * prices.Adult;
   total += Child * prices.Child;
   total += Senior * prices.Senior;
