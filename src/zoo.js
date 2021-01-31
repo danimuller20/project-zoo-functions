@@ -107,21 +107,21 @@ function entryCalculator(entrants) {
     return 0;
   }
   let totalValue = 0;
-  if (Object.keys(entrants).some(element => element === 'Adult')) {
+  let objectKeys = Object.keys(entrants)
+  if (objectKeys.some(element => element === 'Adult')) {
     const adultValue = entrants.Adult * 49.99;
     totalValue += adultValue;
   }
-  if (Object.keys(entrants).some(element => element === 'Child')) {
+  if (objectKeys.some(element => element === 'Child')) {
     const childValue = entrants.Child * 20.99;
     totalValue += childValue;
   }
-  if (Object.keys(entrants).some(element => element === 'Senior')) {
+  if (objectKeys.some(element => element === 'Senior')) {
     const seniorValue = entrants.Senior * 24.99;
     totalValue += seniorValue;
   }
   return totalValue;
 }
-entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })
 
 function animalMap(options) {
   // seu código aqui
