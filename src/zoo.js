@@ -53,18 +53,10 @@ function animalMap(options) {
   const { includeNames = false, sex, sorted = false } = options || {};
   const locations = ['NE', 'NW', 'SE', 'SW'];
   const animalsObj = {};
-
   const animalsByLocation = position => animals
   .filter(({ location }) => location === position);
 
   locations.forEach((location) => {
-    // if (!includeNames) {
-    //   animalsObj[location] = animalsByLocation(location).map(({ name }) => name);
-    // }
-    // if (includeNames) {
-
-    // }
-
     includeNames ? animalsObj[location] = animalsByLocation(location)
     .map(({ name, residents }) => ({ [name]: sorted ? residents
       .filter(animal => animal.sex === sex || !sex)
