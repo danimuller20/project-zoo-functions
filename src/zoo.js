@@ -112,14 +112,14 @@ function entryCalculator(entrants) {
     const adultValue = entrants.Adult * 49.99;
     totalValue += adultValue;
   }
-  let checkChild = objectKeys.some(element => element === 'Child')
+  const checkChild = objectKeys.some(element => element === 'Child')
     ? entrants.Child * 20.99
     : 0;
-    totalValue += checkChild;
-  let checkSenior = objectKeys.some(element => element === 'Senior')
+  totalValue += checkChild;
+  const checkSenior = objectKeys.some(element => element === 'Senior')
     ? entrants.Senior * 24.99
     : 0;
-    totalValue += checkSenior;
+  totalValue += checkSenior;
   return totalValue;
 }
 
