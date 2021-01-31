@@ -146,13 +146,13 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   const getPrices = data.prices;
-  const perValue = ((percentage + 100)/100);
+  const perValue = ((percentage + 100) / 100);
   const timesAdult = getPrices.Adult * 100;
   const timesChild = getPrices.Child * 100;
   const timesSenior = getPrices.Senior * 100;
-  getPrices.Adult = Math.round(perValue * timesAdult)/100;
-  getPrices.Child = Math.round(perValue * timesChild)/100;
-  getPrices.Senior = Math.round(perValue * timesSenior)/100;
+  getPrices.Adult = Math.round(perValue * timesAdult) / 100;
+  getPrices.Child = Math.round(perValue * timesChild) / 100;
+  getPrices.Senior = Math.round(perValue * timesSenior) / 100;
   return getPrices;
 }
 
