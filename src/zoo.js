@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -92,12 +92,12 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  let horarios = {};
-  if(!dayName) {
-    hours.map(day =>{
-      horarios[day.key] = 'Open from 8am until 6pm',
-    return horarios
-  }
+  // let horarios = {};
+  // if(!dayName) {
+  //   hours.map(day =>{
+  //     horarios[day.key] = 'Open from 8am until 6pm',
+  //   return horarios
+  // }
 }
 
 function oldestFromFirstSpecies(id) {
@@ -111,44 +111,48 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  prices.Adult = Math.round((prices.Adult + ((percentage / 100) * prices.Adult) * 100)) / 100;
-  prices.Child = Math.round((prices.Child + ((percentage / 100) * prices.Child) * 100)) / 100;
-  prices.Senior = Math.round((prices.Senior + ((percentage / 100) * prices.Senior) * 100)) / 100;
+
+  function getSomaComPercentage(value) {
+    return Math.round((value + ((percentage / 100) * value) * 100)) / 100;
+  }
+  prices.Adult = getSomaComPercentage(prices.Adult);
+  prices.Child = getSomaComPercentage(prices.Child);
+  prices.Senior = getSomaComPercentage(prices.Senior);
+}
+
+function getFuncionarioESpecie(employee) {
+  const name = `${employee.firstName} ${employee.lastName}`;
+  const specie = employee.responsibleFor.map(idAnimal =>
+    (animals.find(animal => animal.id === idAnimal).name));
+  return { name, specie };
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-  const funcionario = {};
+  const funcionarios = {};
   if (!idOrName) {
     employees.map((employee) => {
-      const name = `${employee.firstName} ${employee.lastName}`;
-      const specie = employee.responsibleFor.map(idAnimal => (animals.find(animal => animal.id === idAnimal).name))
-      funcionario[name] = specie;
-    })
+      const { name, specie } = getFuncionarioESpecie(employee);
+      funcionarios[name] = specie;
+    });
   }
   const achaFuncionarioId = employees.find(funcionario => funcionario.id === idOrName);
-  if (!!achaFuncionarioId) {
-    const name = `${achaFuncionarioId.firstName} ${achaFuncionarioId.lastName}`;
-    const specie = achaFuncionarioId.responsibleFor.map(idAnimal => 
-      (animals.find(animal => animal.id === idAnimal).name));
-    funcionario[name] = specie;
+  if (achaFuncionarioId) {
+    const { name, specie } = getFuncionarioESpecie(achaFuncionarioId);
+    funcionarios[name] = specie;
   }
   const achaFuncionarioName = employees.find(funcionario => funcionario.firstName === idOrName);
-  if (!!achaFuncionarioName) {
-    const name = `${achaFuncionarioName.firstName} ${achaFuncionarioName.lastName}`
-    const specie = achaFuncionarioName.responsibleFor.map(idAnimal => 
-      (animals.find(animal => animal.id === idAnimal).name));
-    funcionario[name] = specie;
+  if (achaFuncionarioName) {
+    const { name, specie } = getFuncionarioESpecie(achaFuncionarioName);
+    funcionarios[name] = specie;
   }
   const achaFuncionarioLast = employees.find(funcionario => funcionario.lastName === idOrName)
-  if (!!achaFuncionarioLast) {
-    const name = `${achaFuncionarioLast.firstName} ${achaFuncionarioLast.lastName}`
-    const specie = achaFuncionarioLast.responsibleFor.map(idAnimal => 
-      (animals.find(animal => animal.id === idAnimal).name));
-    funcionario[name] = specie;
+  if (achaFuncionarioLast) {
+    const { name, specie } = getFuncionarioESpecie(achaFuncionarioLast);
+    funcionarios[name] = specie;
   }
 
-  return funcionario
+  return funcionarios;
 }
 
 module.exports = {
