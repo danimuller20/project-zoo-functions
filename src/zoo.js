@@ -34,7 +34,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const employeeById = employees.find(employee => employee.id === id);
-  return employeeById.managers.length === 1 ? true : false;
+  return employeeById.managers.length === 1;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
