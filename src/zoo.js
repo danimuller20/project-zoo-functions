@@ -84,10 +84,11 @@ function schedule(dayName) {
 
   const hours = data.hours;
   const days = Object.keys(hours);
-  const newSchedule = {};
+  let newSchedule = {};
 
   days.forEach((day) => {
     const { open, close } = hours[day];
+
 
     if (open === 0 && close === 0) {
       newSchedule[day] = 'CLOSED';
