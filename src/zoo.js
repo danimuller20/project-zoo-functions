@@ -62,9 +62,25 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
-}
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  let adultPrice = 0;
+  let childPrice = 0;
+  let seniorPrice = 0;
+  
+  adultPrice = entrants.Adult * prices.Adult;
+  childPrice = entrants.Child * prices.Child;
+  seniorPrice = entrants.Senior * prices.Senior;
 
+  if (Number.isNaN(childPrice)) childPrice = 0;
+  if (Number.isNaN(seniorPrice)) seniorPrice = 0;
+  if (Number.isNaN(adultPrice)) adultPrice = 0;
+
+  return (adultPrice + childPrice +seniorPrice);
+
+}
+entryCalculator({ 'Adult': 1 });
 function animalMap(options) {
   // seu código aqui
 }
@@ -74,18 +90,18 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const funcRequerido = employees.find(employee => employee.id === id);
-  const idPrimAnimal = funcRequerido.responsibleFor[0];
-  const especAnimal = animals.find(animal => animal.id === idPrimAnimal);
-  const arrayAnimais = especAnimal.residents;
-  let idade = 0;
-  for (let index = 0; index < Object.keys(arrayAnimais).length; index += 1) {
-    if (arrayAnimais[index].age > idade) {
-      idade = arrayAnimais[index].age;
+  const requestEmployee = employees.find(employee => employee.id === id);
+  const firstIdAnimal = requestEmployee.responsibleFor[0];
+  const speciesList = animals.find(animal => animal.id === firstIdAnimal);
+  const arrayResidents = speciesList.residents;
+  let maxAge = 0;
+  for (let index = 0; index < Object.keys(arrayResidents).length; index += 1) {
+    if (arrayResidents[index].age > maxAge) {
+      maxAge = arrayResidents[index].age;
     }
   }
-  const founderAnimal = animals.find(animalZIN => animalZIN.name === especAnimal.name).residents;
-  const fim = founderAnimal.find(creature => creature.age === idade);
+  const founderAnimal = animals.find(elementAnimal => elementAnimal.name === speciesList.name).residents;
+  const fim = founderAnimal.find(creature => creature.age === maxAge);
   return [fim.name, fim.sex, fim.age];
 }
 
