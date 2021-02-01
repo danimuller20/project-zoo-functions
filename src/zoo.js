@@ -73,10 +73,10 @@ function animalMap() {
 //-------------------------------------------------------------------------------------------------
 
   // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
-  function change24HourFormatTo12Format(hour) {
-    const formattedHour = hour - 12;
-    return formattedHour < 0 ? hour : formattedHour;
-  }
+function change24HourFormatTo12Format(hour) {
+  const formattedHour = hour - 12;
+  return formattedHour < 0 ? hour : formattedHour;
+}
 
 function schedule(dayName) {
   // PSEUDO CÓDIGO
