@@ -18,8 +18,8 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.some(species => (animal === species.name) ?
-  (species.residents.every(resident => resident.age >= age)) : false);
+  return animals.some(species => ((animal === species.name) ?
+  (species.residents.every(resident => resident.age >= age)) : false));
 }
 
 function employeeByName(employeeName) {
