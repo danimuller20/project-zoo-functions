@@ -84,14 +84,18 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
+function getAnimalListFromEmployee(employee) {
+  return employee.responsibleFor
+    .map(animalId => animals.find(animal => animalId === animal.id).name);
+}
+
 function employeeCoverage(idOrName) {
 // Sem parametros, retorna uma lista de funcionários e os animais pelos quais eles são responsaveis
   if (!idOrName) {
     // firstName, lastName de employees, responsibleFor
     return employees.reduce((acc, employee) => {
       // ['id1', 'id2'] => ['lions', 'tiger'] a cada iteração do .reduce
-      const animalList = employee.responsibleFor
-        .map(animalId => animals.find(animal => animalId === animal.id).name);
+      const animalList = getAnimalListFromEmployee(employee);
         // constroi chave do objeto
       const key = `${employee.firstName} ${employee.lastName}`;
       acc[key] = animalList;
@@ -104,10 +108,9 @@ function employeeCoverage(idOrName) {
   const findEmployee = employees
     .find(employee => employee.id === idOrName
     || employee.firstName === idOrName || employee.lastName === idOrName);
-  const otherAnimalList = findEmployee.responsibleFor
-    .map(animalId => animals.find(animal => animalId === animal.id).name);
+  const animalList = getAnimalListFromEmployee(findEmployee);
   const key = `${findEmployee.firstName} ${findEmployee.lastName}`;
-  return { [key]: otherAnimalList };
+  return { [key]: animalList };
 // Se passarmos o nome ou o último nome, retorna uma lista com os animais pelos quais
 // o funcionário é responsável
 }
