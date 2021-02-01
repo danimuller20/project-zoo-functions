@@ -15,7 +15,7 @@ const data = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
 
-  return animals.filter((animal) =>
+  return animals.filter(animal =>
     ids.find(element => element === animal.id)
   );
 }
@@ -31,8 +31,7 @@ function employeeByName(employeeName) {
   if (!employeeName) return {};
 
   const findEmployees = employees.find(
-    employee => employee.fisrtName === employeeName || employee.lastName
-  );
+    employee => employee.fisrtName === employeeName || employee.lastName);
 
   return findEmployees;
 }
@@ -45,13 +44,12 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // seu código aqui
   const managers = employees.some(employee =>
-    employee.managers.some(manager => manager === id)
-  );
+    employee.managers.some(manager => manager === id));
 
   return managers;
 }
 
-function addEmployee(id,firstName,lastName,managers = [], responsibleFor = []) {
+function addEmployee(id,firstName,lastName,managers = [], responsibleFor = [],) {
   // seu código aqui
   const NewEmployees = {
     id,
@@ -69,8 +67,7 @@ function animalCount(species) {
   const listAminals = {};
 
   animals.forEach(animal => {
-    listAminals[animal.name] = animal.residents.length;
-  });
+    listAminals[animal.name] = animal.residents.length});
 
   if (!species) {
     return listAminals;
