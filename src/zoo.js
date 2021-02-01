@@ -17,12 +17,11 @@ function animalsByIds(...args) {
 
   const array = [];
 
-  data.animals.map(item => item).forEach(item => args.forEach(cadaElemento => {
-      if (item.id === cadaElemento) {
-        array.push(item);
-      }
-    })
-  );
+  data.animals.map(item => item).forEach(item => args.forEach((cadaElemento) => {
+    if (item.id === cadaElemento) {
+      array.push(item);
+    }
+  }));
 
   return array;
 }
