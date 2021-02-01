@@ -73,6 +73,10 @@ function animalMap() {
 //-------------------------------------------------------------------------------------------------
 
   // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+  function change24HourFormatTo12Format(hour) {
+    const formattedHour = hour - 12;
+    return formattedHour < 0 ? hour : formattedHour;
+  }
 
 function schedule(dayName) {
   // PSEUDO CÓDIGO
@@ -86,7 +90,7 @@ function schedule(dayName) {
   const days = Object.keys(hours);
   const newSchedule = {};
 
-  days.forEach((day) => {
+ const getDays = days.forEach((day) => {
     const { open, close } = hours[day];
 
     if (open === 0 && close === 0) {
@@ -100,14 +104,8 @@ function schedule(dayName) {
     return newSchedule;
   }
 
-  const finalSchedule = { [dayName]: newSchedule[dayName] };
+  return  { [dayName]: newSchedule[dayName] };
 
-  return finalSchedule
-}
-
-function change24HourFormatTo12Format(hour) {
-  const formattedHour = hour - 12;
-  return formattedHour < 0 ? hour : formattedHour;
 }
 
 // -------------------------------------------------------------------------
