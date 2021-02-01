@@ -102,9 +102,9 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   if (!idOrName) {
     const outputList = {};
-    employees.forEach((currentEmployee) => {
+    data.employees.forEach((currentEmployee) => {
       outputList[`${currentEmployee.firstName} ${currentEmployee.lastName}`] = currentEmployee.responsibleFor.map((currentId) => {
-        currentId = animals.find(currentAnimal => currentAnimal.id === currentId).name;
+        currentId = data.animals.find(currentAnimal => data.currentAnimal.id === currentId).name;
         return currentId;
       });
     });
@@ -112,13 +112,13 @@ function employeeCoverage(idOrName) {
     return outputList;
   }
 
-  const selectedEmployee = employees.find(currentEmployee =>
+  const selectedEmployee = data.employees.find(currentEmployee =>
     currentEmployee.id === idOrName
     || currentEmployee.firstName === idOrName
     || currentEmployee.lastName === idOrName);
 
   const animalOutput = selectedEmployee.responsibleFor.map(currentId =>
-    animals.find(currentAnimal => currentAnimal.id === currentId).name);
+    data.animals.find(currentAnimal => currentAnimal.id === currentId).name);
 
   return { [`${selectedEmployee.firstName} ${selectedEmployee.lastName}`]: animalOutput };
 }
