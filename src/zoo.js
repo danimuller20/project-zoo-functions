@@ -33,8 +33,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const empSearch = emp => employeeName.includes(emp.firstName) || employeeName.includes(emp.lastName);
-  const test = employees.filter(empSearch);
+  const test = employees.filter(employee => employeeName.includes(employee.firstName) 
+  || employeeName.includes(employee.lastName));
   return test[0];
 }
 
