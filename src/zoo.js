@@ -68,19 +68,15 @@ function entryCalculator(entrants) {
   let adultPrice = 0;
   let childPrice = 0;
   let seniorPrice = 0;
-  
   adultPrice = entrants.Adult * prices.Adult;
   childPrice = entrants.Child * prices.Child;
   seniorPrice = entrants.Senior * prices.Senior;
-
   if (Number.isNaN(childPrice)) childPrice = 0;
   if (Number.isNaN(seniorPrice)) seniorPrice = 0;
   if (Number.isNaN(adultPrice)) adultPrice = 0;
-
-  return (adultPrice + childPrice +seniorPrice);
-
+  return (adultPrice + childPrice + seniorPrice);
 }
-entryCalculator({ 'Adult': 1 });
+
 function animalMap(options) {
   // seu código aqui
 }
@@ -100,7 +96,7 @@ function oldestFromFirstSpecies(id) {
       maxAge = arrayResidents[index].age;
     }
   }
-  const founderAnimal = animals.find(elementAnimal => elementAnimal.name === speciesList.name).residents;
+  const founderAnimal = animals.find(element => element.name === speciesList.name).residents;
   const fim = founderAnimal.find(creature => creature.age === maxAge);
   return [fim.name, fim.sex, fim.age];
 }
