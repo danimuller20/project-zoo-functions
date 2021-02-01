@@ -71,6 +71,41 @@ function entryCalculator(entrants) {
   return finalPrice;
 }
 
+function retrieveLocations() {
+  return ['NE', 'NW', 'SE', 'SW'];
+}
+function retrieveAnimalsByLocation(locations) {
+  const animalsByLocation = {};
+  locations.forEach((location) => {
+    const filteredAnimals = animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    // filter retona um array de objetos, map retorna um novo array de strings
+    animalsByLocation[location] = filteredAnimals;
+  });
+  return animalsByLocation;
+}
+function retrieveAnimalsByLocationWithName(locations, sorted, sex) {
+  const animalsByLocation = {};
+  locations.forEach((location) => {
+    const filteredAnimals = animals
+      .filter(animal => animal.location === location)
+      .map((animal) => {
+        const nameKey = animal.name;
+        const nameValue = animal.residents
+          .filter((resident) => {
+            const filtered = sex !== undefined;
+            return filtered ? resident.sex === sex : true;
+          })
+          .map(resident => resident.name);
+        if (sorted) nameValue.sort();
+        return { [nameKey]: nameValue };
+      });
+    animalsByLocation[location] = filteredAnimals;
+  });
+  return animalsByLocation;
+}
+
 function animalMap(options) {
 // A função recebe um objeto como parâmetro
 // A função retorna um objeto
