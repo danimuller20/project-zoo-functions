@@ -89,7 +89,6 @@ function schedule(dayName) {
   days.forEach((day) => {
     const { open, close } = hours[day];
 
-
     if (open === 0 && close === 0) {
       newSchedule[day] = 'CLOSED';
     } else {
@@ -101,10 +100,10 @@ function schedule(dayName) {
     return newSchedule;
   }
 
-  return { [dayName]: newSchedule[dayName] };
+  const finalSchedule = { [dayName]: newSchedule[dayName] };
+
+  return finalSchedule
 }
-
-
 
 function change24HourFormatTo12Format(hour) {
   const formattedHour = hour - 12;
