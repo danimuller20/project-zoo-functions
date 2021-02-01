@@ -20,7 +20,7 @@ function animalsByIds(...ids) {
     return [];
   }
   const foundAnimals = ids.map((id) => {
-    const foundAnimal = data.animals.find((animal) => id === animal.id);
+    const foundAnimal = data.animals.find(animal => id === animal.id);
     return foundAnimal;
   });
   return foundAnimals;
@@ -32,9 +32,9 @@ function animalsOlderThan(animal, age) {
   // Testa se todos animais desta espécie possuem a idade mínima especificada
   // Retorna um valor booleano
 
-  const species = data.animals.find((species) => species.name === animal)
-  return species.residents.every((animalAge) => animalAge.age > age);
-  
+  const speciesOlder = data.animals.find(species => species.name === animal);
+
+  return speciesOlder.residents.every(animalAge => animalAge.age > age);
 }
 // console.log(animalsOlderThan('otters', 7));
 
@@ -130,7 +130,8 @@ function animalMap(options) {
   // objetos com as especies e o nome delas ORDENADA
   // 6. Se a opção sex estiver habilitada, retorna um array de
   // objetos com as especies e nome delas FILTRADA POR SEXO
-  // 7. Se a opção sex e sorted estiver habilitada retorna um array de objetos com as especies e o nome delas ORDENADA e FILTRADA POR SEXO
+  // 7. Se a opção sex e sorted estiver habilitada retorna um array de
+  // objetos com as especies e o nome delas ORDENADA e FILTRADA POR SEXO
   // 8. Se não tiver a opção includeNames: retorna array de string com as especies
 
   // CODIGO
