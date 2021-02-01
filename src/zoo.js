@@ -13,7 +13,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(id => id === animal.id));
@@ -92,7 +92,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const source = {
+    'Adult': (Math.round((prices.Adult + (prices.Adult * percentage / 100) + Number.EPSILON) * 100) / 100),
+    'Senior': (Math.round((prices.Senior + (prices.Senior * percentage / 100) + Number.EPSILON) * 100) / 100),
+    'Child': (Math.round((prices.Child + (prices.Child * percentage / 100) + Number.EPSILON) * 100) / 100)
+  }
+  Object.assign(prices, source);
 }
 
 function employeeCoverage(idOrName) {
