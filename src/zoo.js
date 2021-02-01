@@ -94,10 +94,10 @@ function schedule(dayName) {
     const { open, close } = hours[day];
 
     if (open === 0 && close === 0) {
-     newSchedule[day] = 'CLOSED';
-   } else {
-     newSchedule[day] = `Open from ${open}am until ${change24HourFormatTo12Format(close)}pm`;
-   }
+      newSchedule[day] = 'CLOSED';
+    } else {
+      newSchedule[day] = `Open from ${open}am until ${change24HourFormatTo12Format(close)}pm`;
+    }
   });
 
   if (!dayName) {
