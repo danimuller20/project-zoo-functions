@@ -65,13 +65,15 @@ function entryCalculator(entrants) {
   Object.keys(entrants).forEach(key => (acc += (entrants[key] * prices[key])));
   return acc;
 }
+//-------------------------------------------------------------------------------------------------
+function animalMap() {
 
-function animalMap(options) {
-  // seu código aqui
 }
 
+//-------------------------------------------------------------------------------------------------
 function schedule(dayName) {
   // seu código aqui
+
 }
 
 function oldestFromFirstSpecies(id) {
@@ -83,7 +85,30 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+// Sem parametros, retorna uma lista de funcionários e os animais pelos quais eles são responsaveis
+  if (!idOrName) {
+    // firstName, lastName de employees, responsibleFor
+    return employees.reduce((acc, employee) => {
+      // ['id1', 'id2'] => ['lions', 'tiger'] a cada iteração do .reduce
+      const animalList = employee.responsibleFor
+        .map((animalId) => animals.find((animal) => animalId === animal.id).name);
+        // constroi chave do objeto
+      const key = `${employee.firstName} ${employee.lastName}`;
+      acc[key] = animalList;
+      return acc;
+    }, {});
+  }
+
+// Se passarmos o ID, retorna uma lista com os animais pelos quais o funcionário é responsavel
+const findEmployee = employees
+  .find((employee) => employee.id === idOrName
+    ||employee.firstName === idOrName || employee.lastName === idOrName);
+const animalList = findEmployee.responsibleFor
+  .map((animalId) => animals.find((animal) => animalId === animal.id).name);
+const key = `${findEmployee.firstName} ${findEmployee.lastName}`;
+return {[key]: animalList};
+// Se passarmos o nome ou o último nome, retorna uma lista com os animais pelos quais o funcionário é responsável
+
 }
 
 module.exports = {
