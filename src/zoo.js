@@ -71,16 +71,8 @@ function animalMap() {
 }
 
 //-------------------------------------------------------------------------------------------------
- // Sem parâmetros, retorna um cronograma legível para humanos
- /*
-  1° Verificar se há parâmetros;
-  2° Sem parâmetros, retornar o cronograma inteiro (objeto);
-  3° Formatar o cronograma;
 
- */
-
-
- // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+  // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
 
 function schedule(dayName) {
   // PSEUDO CÓDIGO
@@ -92,27 +84,23 @@ function schedule(dayName) {
 
   const hours = data.hours;
   const days = Object.keys(hours);
-  const schedule = {};
+  const newSchedule = {};
 
-  days.forEach(day => {
+  days.forEach((day) => {
     const { open, close } = hours[day];
 
     if (open === 0 && close === 0) {
-      schedule[day] = 'CLOSED';
+      newSchedule[day] = 'CLOSED';
     } else {
-      schedule[day] = `Open from ${open}am until ${change24HourFormatTo12Format(close)}pm`;
+      newSchedule[day] = `Open from ${open}am until ${change24HourFormatTo12Format(close)}pm`;
     }
-  })
+  });
 
   if (!dayName) {
-    return schedule;
+    return newSchedule;
   }
 
-  return { [dayName]: schedule[dayName] };
-}
-
-function getAllDays() {
-
+  return { [dayName]: newSchedule[dayName] };
 }
 
 function change24HourFormatTo12Format(hour) {
