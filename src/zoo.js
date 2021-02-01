@@ -100,11 +100,11 @@ function getAllEmployeesAndAnimals() {
     // firstName, lastName de employees, responsibleFor
   return employees.reduce((acc, employee) => {
     // ['id1', 'id2'] => ['lions', 'tiger'] a cada iteração do .reduce
-      const animalList = getAnimalListFromEmployee(employee);
+    const animalList = getAnimalListFromEmployee(employee);
       // constroi chave do objeto
-      acc[getFullName(employee)] = animalList;
-      return acc;
-    }, {});
+    acc[getFullName(employee)] = animalList;
+    return acc;
+  }, {});
 }
 
 function getEmployeeBynameOrId(idOrName) {
