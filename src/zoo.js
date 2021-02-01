@@ -86,7 +86,7 @@ function schedule(dayName) {
   if (!dayName) {
     return dayObj;
   }
-  return `${[dayName]}: ${dayObj[dayName]}`;
+  return {[dayName]: dayObj[dayName]};
 }
 
 
