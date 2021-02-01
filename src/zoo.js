@@ -123,8 +123,9 @@ function employeeCoverage(idOrName) {
       .map(animalId => animals
       .find(animal => animal.id === animalId).name));
     employees
-      .forEach(({ firstName, lastName }, index) =>
-      coverageList[`${firstName} ${lastName}`] = employeeRespectiveAnimals[index]);
+      .forEach(({ firstName, lastName }, index) => {
+      coverageList[`${firstName} ${lastName}`] = employeeRespectiveAnimals[index];
+      });
     return coverageList;
   }
 
