@@ -62,7 +62,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (entrants) {
-    return Object.keys(entrants).reduce((soma, key) => (soma += prices[key] * entrants[key], 0));
+    return Object.keys(entrants).reduce((soma, key) => (soma += prices[key] * entrants[key]), 0);
   }
   return 0;
 }
