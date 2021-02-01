@@ -36,10 +36,22 @@ function animalsOlderThan(animal, age) {
 
   return speciesOlder.residents.every(animalAge => animalAge.age > age);
 }
-// console.log(animalsOlderThan('otters', 7));
 
 function employeeByName(employeeName) {
   // seu código aqui
+  // Sem parâmetros retorna {}
+  // Recebe o primeiro ou último nome como parametro string
+  // Retorna sempre o objeto do funcionário que é elemento de uma array
+  // PSEUDO CODIGO
+  // 1. Sem parâmetros retorna {}
+  // 2. Recuperar o array do funcionário
+  // 3. Retornar o objeto do funcionário
+
+  if(!employeeName) {
+    return {};
+  }
+
+  return employees.find((worker) => worker.firstName === employeeName || worker.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
