@@ -97,7 +97,7 @@ function increasePrices(percentage) {
     data.prices[category] = Math.round(data.prices[category] * 100) / 100;
   });
 }
-//function employeeCoverage
+// function employeeCoverage
 function listEmployees() {
   return data.employees.reduce((acc, employ) => {
     acc.push(employ.id);
