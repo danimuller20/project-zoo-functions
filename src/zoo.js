@@ -88,8 +88,8 @@ function schedule(dayName) {
       dailySchedule[day] = 'CLOSED';
     } else {
       dailySchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
-    };
-  }
+    }
+  };
 
   if (dayName) {
     selectedDay(dayName);
