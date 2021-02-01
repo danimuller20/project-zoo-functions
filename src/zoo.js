@@ -90,21 +90,21 @@ function schedule(dayName) {
   // seu código aqui
   const legibleSchedule = {};
   const days = Object.keys(hours);
-  days.forEach(day => {
+  days.forEach((day) => {
     const { open, close } = hours[day];
     if (day === 'Monday') {
       legibleSchedule[day] = 'CLOSED';
     } else {
-     legibleSchedule[day] = `Open from ${open}am until ${close - 12}pm`;
+      legibleSchedule[day] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
   if (!dayName) {
     return legibleSchedule;
   }
-  return {[dayName]: legibleSchedule[dayName]};
+  return { [dayName]: legibleSchedule[dayName] };
 }
 
-console.log(schedule('Friday'))
+console.log(schedule('Friday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
