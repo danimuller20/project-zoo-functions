@@ -33,7 +33,7 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const test = employees.filter(employee => employeeName.includes(employee.firstName) 
+  const test = employees.filter(employee => employeeName.includes(employee.firstName)
   || employeeName.includes(employee.lastName));
   return test[0];
 }
