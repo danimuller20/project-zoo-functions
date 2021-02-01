@@ -47,11 +47,12 @@ function employeeByName(employeeName) {
   // 2. Recuperar o array do funcionário
   // 3. Retornar o objeto do funcionário
 
-  if(!employeeName) {
+  if (!employeeName) {
     return {};
   }
 
-  return employees.find((worker) => worker.firstName === employeeName || worker.lastName === employeeName);
+  return employees
+    .find(worker => worker.firstName === employeeName || worker.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
