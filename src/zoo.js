@@ -83,22 +83,21 @@ function animalMap(options) {
 function schedule(dayName) {
   const dailySchedule = {};
 
-  if (dayName) {
-    if (dayName === 'Monday') {
-      selectedDay(dayName);
-  } else {
-    const newObject = Object.keys(hours).forEach((key) => {
-      selectedDay(key);
-    });
-    Object.assign(dailySchedule, newObject);
-  }
-
-  const selectedDay = day => {
+  const selectedDay = (day) => {
     if (day === 'Monday') {
       dailySchedule[day] = 'CLOSED';
     } else {
       dailySchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
     };
+  }
+
+  if (dayName) {
+    selectedDay(dayName);
+  } else {
+    const newObject = Object.keys(hours).forEach((key) => {
+      selectedDay(key);
+    });
+    Object.assign(dailySchedule, newObject);
   }
   return dailySchedule;
 }
