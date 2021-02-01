@@ -71,10 +71,56 @@ function animalMap() {
 }
 
 //-------------------------------------------------------------------------------------------------
+ // Sem parâmetros, retorna um cronograma legível para humanos
+ /*
+  1° Verificar se há parâmetros;
+  2° Sem parâmetros, retornar o cronograma inteiro (objeto);
+  3° Formatar o cronograma;
+
+ */
+
+
+ // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+
 function schedule(dayName) {
-  // seu código aqui
+  // PSEUDO CÓDIGO
+  // 1. pegar o local onde esta meus dias [X]
+  // 2. passar por cada entrada do obj para pegar as infos do dia [x]
+  // 3. pegar as infos do zoo [x]
+  // 4. montar o cronograma [x]
+  // 5. retornar o cronograma [x]
+
+  const hours = data.hours;
+  const days = Object.keys(hours);
+  const schedule = {};
+
+  days.forEach(day => {
+    const { open, close } = hours[day];
+
+    if (open === 0 && close === 0) {
+      schedule[day] = 'CLOSED';
+    } else {
+      schedule[day] = `Open from ${open}am until ${change24HourFormatTo12Format(close)}pm`;
+    }
+  })
+
+  if (!dayName) {
+    return schedule;
+  }
+
+  return { [dayName]: schedule[dayName] };
+}
+
+function getAllDays() {
 
 }
+
+function change24HourFormatTo12Format(hour) {
+  const formattedHour = hour - 12;
+  return formattedHour < 0 ? hour : formattedHour;
+}
+
+// -------------------------------------------------------------------------
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
