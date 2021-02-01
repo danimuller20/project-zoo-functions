@@ -210,9 +210,9 @@ function employeeCoverage(idOrName) {
   } const employeeInfo = employees.find(employee => employee.id === idOrName ||
       employee.firstName === idOrName ||
       employee.lastName === idOrName);
-    const responsableForAnimalNames = employeeInfo.responsibleFor
-      .map(animalId => animals.find(animal => animal.id === animalId).name);
-    return { [`${employeeInfo.firstName} ${employeeInfo.lastName}`]: responsableForAnimalNames };
+  const responsableForAnimalNames = employeeInfo.responsibleFor
+    .map(animalId => animals.find(animal => animal.id === animalId).name);
+  return { [`${employeeInfo.firstName} ${employeeInfo.lastName}`]: responsableForAnimalNames };
 }
 
 module.exports = {
