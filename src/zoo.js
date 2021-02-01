@@ -92,8 +92,8 @@ function schedule(dayName) {
     });
     Object.assign(dailySchedule, newObject);
   }
-  
-  const selectedDay = (day) => {
+
+  const selectedDay = day => {
     if (day === 'Monday') {
       dailySchedule[day] = 'CLOSED';
     } else {
