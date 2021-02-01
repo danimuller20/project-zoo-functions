@@ -113,6 +113,7 @@ function getAllEmployeesAndAnimals() {
     accumulator[getEmployeeFullName(employee)] = animalList;
     return accumulator;
   }, {});
+}
 
   function getEmployeedByNameOrId(idOrName) {
     return employees.find(
