@@ -83,7 +83,6 @@ function oldestFromFirstSpecies(id) {
   const animalVelho = animais.residents.sort((a, b) => b.age - a.age);
   return Object.values(animalVelho[0]);
   // requisito feito com o apoio e colaboração do colega Layo Kaminski
-
 }
 
 function increasePrices(percentage) {
