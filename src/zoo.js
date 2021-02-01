@@ -101,7 +101,6 @@ function employeeCoverage(idOrName) {
       // ['id1', 'id2'] => ['lions', 'tiger'] a cada iteração do .reduce
       const animalList = getAnimalListFromEmployee(employee);
         // constroi chave do objeto
-      const key = `${employee.firstName} ${employee.lastName}`;
       acc[getFullName(employee)] = animalList;
       return acc;
     }, {});
