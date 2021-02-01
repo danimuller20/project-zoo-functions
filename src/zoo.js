@@ -77,7 +77,7 @@ function entryCalculator(entrants = 0) {
 }
 
 function animalMap(options) {
-  
+  // seu código aqui
 }
 
 function schedule(dayName) {
@@ -85,16 +85,10 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  let returnedArray = [];
   const firstSpecie = employees.find(empl => empl.id === id).responsibleFor[0];
   const animalsFromThatSpecie = animals.find(animal => animal.id === firstSpecie).residents;
   const oldestAnimal = animalsFromThatSpecie.sort((a, b) => b.age - a.age)[0];
-  for (const key in oldestAnimal) {
-    if (Object.hasOwnProperty.call(oldestAnimal, key)) {
-      returnedArray.push(oldestAnimal[key]);
-    }
-  }
-  return returnedArray;
+  return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {
