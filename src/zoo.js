@@ -73,6 +73,11 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  if (!options || !options.includeNames) {
+    return createDefaultObject();
+  }
+  return (options.sorted ? sortNames(createObjectWithNames(options.sex))
+  : createObjectWithNames(options.sex));
 }
 
 function schedule(dayName) {
