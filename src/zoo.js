@@ -77,7 +77,6 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  
 }
 
 function oldestFromFirstSpecies(id) {
