@@ -69,15 +69,16 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  let fullPrice = 0;
+  if (entrants === undefined) {
+    return 0;
+  }
+  Object.keys(entrants).forEach((key) => { fullPrice += data.prices[key] * entrants[key]; });
+  return fullPrice;
 }
 
 function animalMap(options) {
   // seu código aqui
-  if (!options || !options.includeNames) {
-    return createDefaultObject();
-  }
-  return (options.sorted ? sortNames(createObjectWithNames(options.sex))
-  : createObjectWithNames(options.sex));
 }
 
 function schedule(dayName) {
