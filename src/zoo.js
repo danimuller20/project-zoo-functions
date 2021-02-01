@@ -73,6 +73,11 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  const answer = {};
+  if (!options) return animalsPerRegion(regions, answer);
+  if (!options.includeNames) return animalsPerRegion(regions, answer);
+  return animalsPerRegionWithNames(regions, answer, options);
 }
 
 function schedule(dayName) {
