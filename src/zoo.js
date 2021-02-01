@@ -91,7 +91,7 @@ function employeeCoverage(idOrName) {
     return employees.reduce((acc, employee) => {
       // ['id1', 'id2'] => ['lions', 'tiger'] a cada iteração do .reduce
       const animalList = employee.responsibleFor
-        .map((animalId) => animals.find((animal) => animalId === animal.id).name);
+        .map((animalId) => animals.find(animal => animalId === animal.id).name);
         // constroi chave do objeto
       const key = `${employee.firstName} ${employee.lastName}`;
       acc[key] = animalList;
@@ -99,16 +99,17 @@ function employeeCoverage(idOrName) {
     }, {});
   }
 
-// Se passarmos o ID, retorna uma lista com os animais pelos quais o funcionário é responsavel
-const findEmployee = employees
-  .find((employee) => employee.id === idOrName
-    ||employee.firstName === idOrName || employee.lastName === idOrName);
-const animalList = findEmployee.responsibleFor
-  .map((animalId) => animals.find((animal) => animalId === animal.id).name);
-const key = `${findEmployee.firstName} ${findEmployee.lastName}`;
-return {[key]: animalList};
-// Se passarmos o nome ou o último nome, retorna uma lista com os animais pelos quais o funcionário é responsável
-
+// Se passarmos o ID, retorna uma lista com os animais pelos
+//quais o funcionário é responsavel
+  const findEmployee = employees
+    .find((employee) => employee.id === idOrName
+    || employee.firstName === idOrName || employee.lastName === idOrName);
+  const animalList = findEmployee.responsibleFor
+    .map(animalId => animals.find(animal => animalId === animal.id).name);
+  const key = `${findEmployee.firstName} ${findEmployee.lastName}`;
+  return { [key]: animalList };
+// Se passarmos o nome ou o último nome, retorna uma lista com os animais pelos quais
+//o funcionário é responsável
 }
 
 module.exports = {
