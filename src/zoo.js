@@ -90,22 +90,21 @@ function schedule(dayName) {
   const days = Object.keys(hours);
   const newSchedule = {};
 
- const getDays = days.forEach((day) => {
-    const { open, close } = hours[day];
+  days.forEach((day) => {
+   const { open, close } = hours[day];
 
-    if (open === 0 && close === 0) {
+   if (open === 0 && close === 0) {
       newSchedule[day] = 'CLOSED';
     } else {
       newSchedule[day] = `Open from ${open}am until ${change24HourFormatTo12Format(close)}pm`;
     }
-  });
+ });
 
   if (!dayName) {
     return newSchedule;
   }
 
-  return  { [dayName]: newSchedule[dayName] };
-
+  return { [dayName]: newSchedule[dayName] };
 }
 
 // -------------------------------------------------------------------------
