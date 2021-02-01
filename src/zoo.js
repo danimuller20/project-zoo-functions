@@ -12,19 +12,19 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 // FALHA
-function animalsByIds(args) {
-  // if (args.length === 0) return [];
+function animalsByIds(...args) {
+  if (args.length === 0) return [];
 
-  // const array = [];
+  const array = [];
 
-  // args.forEach((cadaElemento) => {
-  //   return animals.map((item) => {
-  //     if (item.id === cadaElemento) {
-  //       array.push(item);
-  //     }
-  //   })});
+  args.forEach((cadaElemento) => {
+    return data.animals.map((item) => {
+      if (item.id === cadaElemento) {
+        array.push(item);
+      }
+    })});
 
-  // return array;
+  return array;
 }
 
 // OK
@@ -69,7 +69,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-// DESENVOLVIMENTO
+// OK
 function animalCount(...species) {
   const populacao = {};
   let animais = 0;
