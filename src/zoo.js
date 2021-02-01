@@ -19,8 +19,8 @@ function animalsByIds(ids) {
 function animalsOlderThan(animal, age) {
   return animals.some(
     objectAnimal => objectAnimal.residents.every(
-      arrayResidents => (objectAnimal.name === animal && arrayResidents.age >= age)
-    )
+      arrayResidents => objectAnimal.name === animal && arrayResidents.age >= age,
+    ),
   );
 }
 
