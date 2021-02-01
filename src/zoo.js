@@ -9,26 +9,21 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require("./data");
-const data = require("./data");
+const { animals, employees } = require('./data');
+const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
 
-  /*const filterIdAnimals = animals.filter((animal) =>
-    ids.some((id) => id === animal.id)
-  );
-  */
-
   return animals.filter((animal) =>
-    ids.find((element) => element === animal.id)
+    ids.find(element => element === animal.id)
   );
 }
 
 function animalsOlderThan(animal, age) {
-  const findAnimals = animals.find((animalFind) => animalFind.name === animal)
+  const findAnimals = animals.find(animalFind => animalFind.name === animal)
     .findAnimals;
-  return findAnimals.every((animalsAge) => animalsAge.age > age);
+  return findAnimals.every(animalsAge => animalsAge.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -36,7 +31,7 @@ function employeeByName(employeeName) {
   if (!employeeName) return {};
 
   const findEmployees = employees.find(
-    (employee) => employee.fisrtName === employeeName || employee.lastName
+    employee => employee.fisrtName === employeeName || employee.lastName
   );
 
   return findEmployees;
@@ -49,7 +44,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  const managers = employees.some((employee) =>
+  const managers = employees.some(employee =>
     employee.managers.some((manager) => manager === id)
   );
 
@@ -62,7 +57,7 @@ function addEmployee(
   lastName,
   managers = [],
   responsibleFor = []
-) {
+); {
   // seu código aqui
   const NewEmployees = {
     id,
@@ -79,7 +74,7 @@ function animalCount(species) {
   // seu código aqui
   const listAminals = {};
 
-  animals.forEach((animal) => {
+  animals.forEach(animal => {
     listAminals[animal.name] = animal.residents.length;
   });
 
