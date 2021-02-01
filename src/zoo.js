@@ -73,7 +73,7 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
- }
+}
 
 function schedule(dayName) {
   // seu código aqui
