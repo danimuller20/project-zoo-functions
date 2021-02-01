@@ -77,18 +77,7 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  const objDay = {};
-  Object.keys(hours).forEach((day) => {
-    if (day !== 'Monday') {
-      objDay[day] = `Open from ${hours[day].open}am until ${(hours[day].close) - 12}pm`;
-    } else {
-      objDay[day] = 'CLOSED';
-    }
-  });
-  if (!dayName) {
-    return objDay;
-  }
-  return { [dayName]: objDay[dayName] };
+  
 }
 
 function oldestFromFirstSpecies(id) {
@@ -108,6 +97,11 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  const priceChange = 1 + (percentage / 100);
+  const objPricenew = Object.keys(data.prices);
+  objPricenew.forEach((price) => {
+    data.prices[price] = Math.round((data.prices[price] * priceChange) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
