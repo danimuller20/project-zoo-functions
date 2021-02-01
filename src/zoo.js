@@ -85,21 +85,21 @@ function schedule(dayName) {
 
   if (dayName) {
     if (dayName === 'Monday') {
-      dailySchedule[dayName] = 'CLOSED';
-    } else {
-      dailySchedule[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
-    }
+      selectedDay(dayName);
   } else {
     const newObject = Object.keys(hours).forEach((key) => {
-      if (key === 'Monday') {
-        dailySchedule[key] = 'CLOSED';
-      } else {
-        dailySchedule[key] = `Open from ${hours[key].open}am until ${hours[key].close - 12}pm`;
-      }
+      selectedDay(key);
     });
     Object.assign(dailySchedule, newObject);
   }
   return dailySchedule;
+}
+const selectedDay = (day) => {
+  if (day === 'Monday') {
+    dailySchedule[day] = 'CLOSED';
+  } else {
+    dailySchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+  }
 }
 
 function oldestFromFirstSpecies(id) {
