@@ -92,13 +92,77 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce(reducer, 0);
 }
 
+const sarchAnimalPerLocation = (location) => {
+  return animals.filter(animal => animal.location === location)
+    .map(animal => animal.name);
+};
+
+const filterAnimalsByLocation = () => {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  const animalPerLocation = {};
+  locations.forEach((location) => {
+    animalPerLocation[location] = sarchAnimalPerLocation(location);
+  });
+  return animalPerLocation;
+};
+
+const getAnimalsPerSpecies = (residents) => {
+  return residents.map((species) => species.name);
+}
+
+/* console.log(getAnimalsPerSpecies([{
+  name: 'Zena',
+  sex: 'female',
+  age: 12
+},
+{
+  name: 'Maxwell',
+  sex: 'male',
+  age: 15
+}])); */
+
+const filterAnimalsByLocationWithName = (animalLocations) => {
+  const animalPerLocation = {};
+  
+  Object.keys(animalLocations).forEach((location) => {
+    animalPerLocation[location] = animalLocations[location].map((species) => {
+      const animalPerSpecie = {};
+      animals.forEach((animal) => {
+        if(animal.name === species) {
+          animalPerSpecie[species] = getAnimalsPerSpecies(animal.residents);
+        }
+      });
+      return animalPerSpecie;
+    });
+  });
+  console.log(animalPerLocation);
+  return animalPerLocation
+};
+
+const sortsAnimalNames = (animalPerLocation) => {
+  const orderedAnimalNames = {};
+  
+}
+
 function animalMap(options) {
-  // retorna um objeto
-  // recebe o objeto como parametro
-  // esse obj possui as seguintes entradas
-  // chave: string, sendo ela a localizacao
-  // valor sem parametros: array de string com as especies
-  // valor com parametro includeNames: true, o valor do objeto e um array de objetos
+  const animalPerLocation = filterAnimalsByLocation();
+  //console.log(animalPerLocation);
+  if (!options) {
+    return animalPerLocation;
+  }
+  if (options.includeNames === true) {
+    const animalsByLocationWithName =filterAnimalsByLocationWithName(animalPerLocation);
+    if (options.sorted) {
+      sortsAnimalNames(animalsByLocationWithName);
+    }
+    return animalsByLocationWithName;
+
+  }
+
+  //console.log(animalLocations);
+  /* const searchResultByLocation = filterAnimalsByLocation();
+  console.log(searchResultByLocation);
+  const animalLocations = {}; */
 }
 
 const createBusinessHoursMessage = (day, operation) => {
@@ -119,7 +183,7 @@ function schedule(dayName) {
   }
   businessHours[dayName] = createBusinessHoursMessage(dayName, hours[dayName]);
   return businessHours;
-}
+} // concluido
 
 function oldestFromFirstSpecies(id) {
   let species;
@@ -161,7 +225,7 @@ function employeeCoverage(idOrName) {
     }
   });
   return !idOrName ? queryAll : querySingle;
-}
+} // concluido
 
 module.exports = {
   entryCalculator,
