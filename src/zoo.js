@@ -19,16 +19,17 @@ function animalsByIds(...ids) {
   return animals.filter(animal => ids.some(id => id === animal.id));
 }
 
-function animalsOlderThan(animal, age) {
-  const procurar = animals
-    .find(bicho => bicho.name === animal).residents
-    .every(residente => residente.age >= age);
-  return procurar;
+function animalsOlderThan(animal, minAge) {
+  return animals
+    .find(({name}) => name === animal).residents
+    .every(({age})=> age >= minAge);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  return employees
+    .find(({ firstName, lastName}) => employeeName === firstName || lastName);
 }
+
 
 function createEmployee(personalInfo, associatedWith) {
   //seu código aqui
