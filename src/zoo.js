@@ -10,121 +10,40 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');  //recuperando o arquivo data para usar aqui nesse arquivo!
-//const { animals } = data;        //Desestruturando o data para pegar o Objeto 'animals' diretamente sem precisar usar: data.animals   para acessa-lo.  
-
-//Iniciando:
-
-//1 IMPLEMENTE A FUNÇÃO animalsByIds
-//Esta função é responsável pela busca das espécies de animais por id. Ela retorna um array contendo as espécies referentes aos ids passados como parâmetro, podendo receber um ou mais ids.
+//const { animals } = data;        //Posso desestruturar o data para pegar o Objeto 'animals' diretamente sem precisar usar: data.animals   para acessa-lo.  
 
 function animalsByIds(...ids) {
-  // seu código aqui
-
-
-//Se não tiver parametro, Retorna Array vazio.   [ok]
-
- if (!ids) return [];
-
- return data.animals.filter(animal => ids.includes(animal.id));
-
-}   //fim da função animalByIds
-
-
-//*********************************************************
-//2 IMPLEMENTE A FUNÇÃO animalsOlderThan [OOOKKK]
-//Esta função, a partir do nome de uma espécie e uma idade mínima, verifica se todos os animais daquela espécie possuem a idade mínima especificada
-//-------- pq com chaves nao function nao rola??? sem simplificar ArrowFct
-//npm test test/animalsOlderThan.test.js
-
-function animalsOlderThan(animal, age) {
-
-  const animalBySpecie = data.animals.find(({ name }) => name === animal);
- 
-
- return animalBySpecie.residents.every((value) => value.age >= age);
+  if (!ids) return [];
+  return data.animals.filter(animal => ids.includes(animal.id));
 }
 
-//console.log(animalsOlderThan('otters', 7));     --> okkkk
-
-//*********************************************************
-//*********************************************************
-//3 IMPLEMENTE A FUNÇÃO employeeByName [OOOKKK]
-//Esta função é responsável pela busca das pessoas colaboradoras através do primeiro ou do último nome delas
-//*********************************************************
-//*********************************************************
+function animalsOlderThan(animal, age) {
+  const animalBySpecie = data.animals.find(({ name }) => name === animal);
+  return animalBySpecie.residents.every((value) => value.age >= age);
+}
 
 function employeeByName(employeeName) {
-   //Encontrar (? find) pelo nome ou sobrenome
-   //Me retornar um elemento, Se o valor passado com parâmetro for igual ao firstName e lastName desse elemento
-   //Se n receber parametros retornar objeto vazio.
+  if (employeeName === undefined) {
+    return {};
+  }
+  return data.employees.find( value => value.firstName === employeeName || value.lastName === employeeName);
+};
+  
 
-   const targetEmployee = employees.find((objValue) => {
-     if ( employeeName === objValue.employess.firstName || employeeName === objValue.employess.lastName ) {
-      return objValue;
-     }
-     return undefined;
-   })
-
-    if ( employeeName === 'undefined') {
-      return {};
-    }
-
-}  //fim da função 3
-
-
-//*********************************************************
-//*********************************************************
-//4. IMPLEMENTE A FUNÇÃO createEmployee  [OOOOKKK]
-//A função, a partir de informações recebidas nos parâmetros, é capaz de criar um objeto equivalente ao de uma pessoa colaboradora, retornando-o
-//*********************************************************
-//*********************************************************
-//Como o exercicio deve receber parametros que são iguais elementos (objetos) do meu data.employees 
-//Eu passo eles (os Arrays) como parametro e retorno eles mesmos no .spread
-
+//
+/* data.employees.find(({ firstName, lastName }) => firstName === employeeName
+      || lastName === employeeName); */
+      
 function createEmployee(personalInfo, associatedWith) {
   return {
     ...personalInfo ,
     ...associatedWith ,
   };
-}
-
-
-//*********************************************************
-//*********************************************************
-//5. IMPLEMENTE A FUNÇÃO isManager  [falta terminarr [OOOKKK]
-//Verifica se uma pessoa colaboradora, a partir de seu id, ocupa cargo de gerência.
-//*********************************************************
-//*********************************************************
-// Ver se inputID é = ID do gerente. 
-
-function isManager(id) {
-  
-  const validation = data.employees.some(objValue => objValue.managers.find(value => value === id));
-
-  return validation;
-
 };
-  
-
-//console.log(data.employees);
-console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-
-// ----> ---> aSSIM DA PRA DEIXAR NUMA LINHA SOH
-// --> --> return employees.some(employee => employee.managers.includes(id));
-
-//*********************************************************
-//*********************************************************
-//6. IMPLEMENTE A FUNÇÃO addEmployee
-//A função irá adicionar uma nova pessoa colaboradora ao array `employees`, presente no arquivo `data.js`.
-//*********************************************************
-//*********************************************************
-
-//Add uma nova pessoa (objeto)
-
-
-
-
+function isManager(id) {
+  const validation = data.employees.some(objValue => objValue.managers.find(value => value === id));
+  return validation;
+};
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployye = {
     id,
@@ -133,38 +52,20 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     managers,
     responsibleFor,
   };
-
   const admittedEmployee = data.employees.push(newEmployye);
-
   return admittedEmployee;
-  
-}
-console.log(addEmployee());
-
-//*********************************************************
-//*********************************************************
-//7. IMPLEMENTE A FUNÇÃO animalCount: [OOOKKK]
-//Esta função é responsável por contabilizar a quantidade de animais.
-//*********************************************************
-//*********************************************************
+};
 function animalCount(species) {
-  const allAnimals = animals.reduce((previousAnimal, currentAnimal) => {
+  const allAnimals = data.animals.reduce((previousAnimal, currentAnimal) => {
     previousAnimal[currentAnimal.name] = currentAnimal.residents.length;
     return previousAnimal
   } , {});
-  
     return species ? allAnimals[species] : allAnimals;
-  }
-
-//*********************************************************
-//*********************************************************
-//8. IMPLEMENTE A FUNÇÃO entryCalculator
-//A partir da quantidade de visitantes e a faixa etária de cada um, esta função é responsável por retornar o preço total a ser cobrado
-//*********************************************************
-//*********************************************************
+  };
 function entryCalculator(entrants) {
-  // seu código aqui
-}
+  if (!entrants || Object.entries(entrants).length === 0) return 0;
+  return Object.keys(entrants).reduce((ac, cur) => ac + (entrants[cur] * data.prices[cur]), 0);
+};
 
 //*********************************************************
 //*********************************************************
