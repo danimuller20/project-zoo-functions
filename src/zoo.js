@@ -86,7 +86,7 @@ function schedule(dayName) {
   if (!dayName) {
     return dayObj;
   }
-  return {[dayName]: dayObj[dayName]};
+  return { [dayName]: dayObj[dayName] };
 }
 
 
@@ -107,7 +107,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
 }
 
 
