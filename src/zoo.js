@@ -110,14 +110,14 @@ function increasePrices(percentage) {
     .forEach((key) => {
       prices[key] = parseFloat(Math
     .fround(prices[key] * ((percentage / 100) + 1))
-    .toFixed(2))
+    .toFixed(2));
     });
 }
 
 function employeeCoverage(idOrName) {
   // seu codigo aqui
-  let coverageList = {};
-  if(!idOrName) {
+  const coverageList = {};
+  if (!idOrName) {
     const employeeRespectiveAnimals = employees
       .map(employee => employee.responsibleFor
       .map(animalId => animals
@@ -134,10 +134,10 @@ function employeeCoverage(idOrName) {
       employee.lastName === idOrName ||
       employee.id === idOrName);
 
-  return { [`${firstName} ${lastName}`]: responsibleFor.map(animalId => animals.find(animal => animal.id === animalId).name) };
+  return { [`${firstName} ${lastName}`]: responsibleFor
+    .map(animalId => animals
+    .find(animal => animal.id === animalId).name) };
 }
-
-console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
