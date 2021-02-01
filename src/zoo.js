@@ -38,10 +38,8 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  let newEmployee = {};
-  newEmployee = personalInfo;
-  newEmployee.managers = associatedWith.managers;
-  newEmployee.responsibleFor = associatedWith.responsibleFor;
+  const newEmployee = {};
+  Object.assign(newEmployee, personalInfo, associatedWith);
   return newEmployee;
 }
 
