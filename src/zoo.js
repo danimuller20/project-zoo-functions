@@ -65,8 +65,7 @@ function animalCount(species) {
   // seu código aqui
   const listAminals = {};
 
-  animals.forEach(animal => {
-    listAminals[animal.name] = animal.residents.length});
+  animals.forEach(animal => (listAminals[animal.name] = animal.residents.length));
 
   if (!species) {
     return listAminals;
