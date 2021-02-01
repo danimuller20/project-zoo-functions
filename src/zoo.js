@@ -106,22 +106,15 @@ const filterAnimalsByLocation = () => {
   return animalPerLocation;
 };
 
-const getAnimalsPerSpecies = (residents) => {
-  return residents.map((species) => species.name);
+const getAnimalsPerSpecies = (residents, options) => {
+  const speciesNames = residents.map(species => species.name);
+  if (options.sorted === true) {
+    return speciesNames.sort();
+  }
+  return speciesNames;
 }
 
-/* console.log(getAnimalsPerSpecies([{
-  name: 'Zena',
-  sex: 'female',
-  age: 12
-},
-{
-  name: 'Maxwell',
-  sex: 'male',
-  age: 15
-}])); */
-
-const filterAnimalsByLocationWithName = (animalLocations) => {
+const filterAnimalsByLocationWithName = (animalLocations, options) => {
   const animalPerLocation = {};
   
   Object.keys(animalLocations).forEach((location) => {
@@ -129,7 +122,7 @@ const filterAnimalsByLocationWithName = (animalLocations) => {
       const animalPerSpecie = {};
       animals.forEach((animal) => {
         if(animal.name === species) {
-          animalPerSpecie[species] = getAnimalsPerSpecies(animal.residents);
+          animalPerSpecie[species] = getAnimalsPerSpecies(animal.residents, options);
         }
       });
       return animalPerSpecie;
@@ -139,11 +132,6 @@ const filterAnimalsByLocationWithName = (animalLocations) => {
   return animalPerLocation
 };
 
-const sortsAnimalNames = (animalPerLocation) => {
-  const orderedAnimalNames = {};
-  
-}
-
 function animalMap(options) {
   const animalPerLocation = filterAnimalsByLocation();
   //console.log(animalPerLocation);
@@ -151,10 +139,10 @@ function animalMap(options) {
     return animalPerLocation;
   }
   if (options.includeNames === true) {
-    const animalsByLocationWithName =filterAnimalsByLocationWithName(animalPerLocation);
-    if (options.sorted) {
+    const animalsByLocationWithName =filterAnimalsByLocationWithName(animalPerLocation, options);
+    /* if (options.sorted) {
       sortsAnimalNames(animalsByLocationWithName);
-    }
+    } */
     return animalsByLocationWithName;
 
   }
