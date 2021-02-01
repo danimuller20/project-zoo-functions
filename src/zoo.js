@@ -73,25 +73,7 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const locations = getLocations();
-  const animalsAtEachLocation = getAnimalsByLocation(locations);
-  let animalsWithResidentNames = getAnimalsLocationPlusResidentsNames(animalsAtEachLocation);
-
-  switch (true) {
-    case (!options || !options.includeNames):
-      return animalsAtEachLocation;
-    case (options.includeNames && Object.keys(options).length === 1):
-      return animalsWithResidentNames;
-    case (options.sex === 'female' || options.sex === 'male'):
-      animalsWithResidentNames = getAnimalsLocationBySex(options.sex, locations);
-      break;
-    default:
-      break;
-  }
-  if (options.sorted === true) {
-    sortResidentNames(animalsWithResidentNames);
-  }
-  return animalsWithResidentNames;}
+ }
 
 function schedule(dayName) {
   // seu código aqui
@@ -99,6 +81,17 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const specieId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const specie = animals.find(animal => animal.id === specieId);
+  let oldestAge = 0;
+  let oldestResident = [];
+  specie.residents.forEach((resident) => {
+    if (resident.age > oldestAge) {
+      oldestAge = resident.age;
+      oldestResident = [resident.name, resident.sex, resident.age];
+    }
+  });
+  return oldestResident;
 }
 
 function increasePrices(percentage) {
