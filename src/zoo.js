@@ -85,9 +85,8 @@ function animalCount(...species) {
   data.animals.map(value => value).forEach((value) => {
     if (value.name === species[0]) {
       animais = value.residents.length;
-    };
-  }
- );
+    }
+  });
 
   return animais;
 }
