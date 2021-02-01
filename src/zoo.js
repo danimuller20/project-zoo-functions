@@ -11,18 +11,18 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-// FALHA
+// DESENVOLVIMENTO
 function animalsByIds(...args) {
   if (args.length === 0) return [];
 
   const array = [];
 
-  args.forEach((cadaElemento) => {
-    return data.animals.map((item) => {
+  data.animals.map(item => item).forEach(item => args.forEach(cadaElemento => {
       if (item.id === cadaElemento) {
         array.push(item);
       }
-    })});
+    })
+  );
 
   return array;
 }
