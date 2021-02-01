@@ -84,6 +84,9 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
+// ------------------------------------------------------------------------
+// Início do exercício employeeCoverage
+
 function getAnimalListFromEmployee(employee) {
   return employee.responsibleFor
     .map(animalId => animals.find(animal => animalId === animal.id).name);
@@ -93,24 +96,32 @@ function getFullName(employee) {
   return `${employee.firstName} ${employee.lastName}`;
 }
 
+function getAllEmployeesAndAnimals() {
+   // firstName, lastName de employees, responsibleFor
+   return employees.reduce((acc, employee) => {
+    // ['id1', 'id2'] => ['lions', 'tiger'] a cada iteração do .reduce
+    const animalList = getAnimalListFromEmployee(employee);
+      // constroi chave do objeto
+    acc[getFullName(employee)] = animalList;
+    return acc;
+  }, {});
+}
+
+function getEmployeeBynameOrId(idOrName) {
+  return employees
+  .find(employee => employee.id === idOrName
+  || employee.firstName === idOrName || employee.lastName === idOrName);
+}
+
 function employeeCoverage(idOrName) {
 // Sem parametros, retorna uma lista de funcionários e os animais pelos quais eles são responsaveis
   if (!idOrName) {
-    // firstName, lastName de employees, responsibleFor
-    return employees.reduce((acc, employee) => {
-      // ['id1', 'id2'] => ['lions', 'tiger'] a cada iteração do .reduce
-      const animalList = getAnimalListFromEmployee(employee);
-        // constroi chave do objeto
-      acc[getFullName(employee)] = animalList;
-      return acc;
-    }, {});
+    return getAllEmployeesAndAnimals();
   }
 
 // Se passarmos o ID, retorna uma lista com os animais pelos
 // quais o funcionário é responsavel
-  const findEmployee = employees
-    .find(employee => employee.id === idOrName
-    || employee.firstName === idOrName || employee.lastName === idOrName);
+  const findEmployee = getEmployeeBynameOrId(idOrName);
   const animalList = getAnimalListFromEmployee(findEmployee);
   const key = getFullName(findEmployee);
   return { [key]: animalList };
