@@ -73,12 +73,25 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const regions = ['NE', 'NW', 'SE', 'SW'];
-  const answer = {};
-  if (!options) return animalsPerRegion(regions, answer);
-  if (!options.includeNames) return animalsPerRegion(regions, answer);
-  return animalsPerRegionWithNames(regions, answer, options);
-}
+  const locations = getLocations();
+  const animalsAtEachLocation = getAnimalsByLocation(locations);
+  let animalsWithResidentNames = getAnimalsLocationPlusResidentsNames(animalsAtEachLocation);
+
+  switch (true) {
+    case (!options || !options.includeNames):
+      return animalsAtEachLocation;
+    case (options.includeNames && Object.keys(options).length === 1):
+      return animalsWithResidentNames;
+    case (options.sex === 'female' || options.sex === 'male'):
+      animalsWithResidentNames = getAnimalsLocationBySex(options.sex, locations);
+      break;
+    default:
+      break;
+  }
+  if (options.sorted === true) {
+    sortResidentNames(animalsWithResidentNames);
+  }
+  return animalsWithResidentNames;}
 
 function schedule(dayName) {
   // seu código aqui
