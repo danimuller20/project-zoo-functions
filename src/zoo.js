@@ -23,8 +23,8 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return data.employees.find((value) => {
-    return value.firstName === employeeName || value.lastName === employeeName
+  return data.employees.find(value => {
+    return value.firstName === employeeName || value.lastName === employeeName;
   });
 }
 function createEmployee(personalInfo, associatedWith) {
