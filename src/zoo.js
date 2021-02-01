@@ -95,8 +95,12 @@ function increasePrices(percentage) {
   const source = {};
 
   Object.keys(prices).forEach((key) => {
-    const bigNumber = (Math.round((prices[key] + (prices[key] * percentage / 100) + Number.EPSILON) * 100));
-    source[key] = bigNumber / 100;
+    const operation1 = prices[key] + (prices[key] * percentage / 100);
+    const operation2 = operation1 + Number.EPSILON;
+    const operation3 = operation2 * 100;
+    const rounded = Math.round(operation3);
+    // const bigNumber = (Math.round((prices[key] + (prices[key] * percentage / 100) + Number.EPSILON) * 100));
+    source[key] = rounded / 100;
   });
 
   Object.assign(prices, source);
