@@ -21,17 +21,17 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, minAge) {
   return animals
-    .find(({name}) => name === animal).residents
-    .every(({age})=> age >= minAge);
+    .find(({ name }) => name === animal).residents
+    .every(({ age }) => age >= minAge);
 }
 
 function employeeByName(employeeName) {
   return employees
-    .find(({ firstName, lastName}) => employeeName === firstName || lastName);
+    .find(({ firstName, lastName }) => employeeName === firstName || lastName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith} ;
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
