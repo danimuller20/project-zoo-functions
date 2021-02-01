@@ -23,7 +23,7 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return data.employees.find(value => {
+  return data.employees.find((value) => {
     return value.firstName === employeeName || value.lastName === employeeName;
   });
 }
@@ -68,8 +68,13 @@ function schedule(dayName) {
 
 }
 function oldestFromFirstSpecies(id) {
+  const firstAnimal = data.employees.find(emp => emp.id === id).responsibleFor[0];
+  const animals = data.animals.find(animal => animal.id === firstAnimal).residents;
+  const oldest = animals.reduce((acc, curr) => (acc.age > curr.age ? acc : curr), []);
 
+  return Object.values(oldest);
 }
+
 function increasePrices(percentage) {
 
 }
