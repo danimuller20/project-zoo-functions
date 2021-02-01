@@ -86,8 +86,7 @@ function schedule(dayName) {
     daySchedule = { [dayName]: data.hours[dayName] };
   }
   const displaySchedule = Object.entries(daySchedule).reduce(
-    (schedule, currentDay) => Object.assign(
-      schedule, { [currentDay[0]]: (currentDay[1].open !== 0) ?
+    (schedule, currentDay) => Object.assign(schedule, { [currentDay[0]]: (currentDay[1].open !== 0) ?
       `Open from ${currentDay[1].open}am until ${currentDay[1].close - 12}pm` : 'CLOSED' },
       ), {});
   return displaySchedule;
