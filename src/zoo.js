@@ -99,7 +99,7 @@ const selectedDay = (day) => {
     dailySchedule[day] = 'CLOSED';
   } else {
     dailySchedule[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
-  }
+  };
 }
 
 function oldestFromFirstSpecies(id) {
