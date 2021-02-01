@@ -74,6 +74,19 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
+  const funcRequerido = employees.find(employee => employee.id === id);
+  const idPrimAnimal = funcRequerido.responsibleFor[0];
+  const especAnimal = animals.find(animal => animal.id === idPrimAnimal);
+  const arrayAnimais = especAnimal.residents;
+  let idade = 0;
+  for (let index = 0; index < Object.keys(arrayAnimais).length; index += 1) {
+    if (arrayAnimais[index].age > idade) {
+      idade = arrayAnimais[index].age;
+    }
+  }
+  const founderAnimal = animals.find(animalZIN => animalZIN.name === especAnimal.name).residents;
+  const fim = founderAnimal.find(creature => creature.age === idade);
+  return [fim.name, fim.sex, fim.age];
 }
 
 function increasePrices(percentage) {
