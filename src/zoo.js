@@ -97,6 +97,28 @@ function increasePrices(percentage) {
     data.prices[category] = Math.round(data.prices[category] * 100) / 100;
   });
 }
+//function employeeCoverage
+function listEmployees() {
+  return data.employees.reduce((acc, employ) => {
+    acc.push(employ.id);
+    return acc;
+  }, []);
+}
+
+function createObject(ids) {
+  const obj = {};
+  ids.reduce((acc, id) => {
+    const employ = employeeByName(id);
+    const listEmploy = employ.responsibleFor;
+    const animals = listEmploy.reduce((arr, animal) => {
+      arr.push(animalsByIds(animal)[0].name);
+      return arr;
+    }, []);
+    obj[`${employ.firstName} ${employ.lastName}`] = animals;
+    return acc;
+  }, {});
+  return obj;
+}
 
 function employeeCoverage(idOrName = false) {
   // seu código aqui
