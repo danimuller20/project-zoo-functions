@@ -23,8 +23,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-  
+  // seu código aqui  
   return animals.find(nome => nome.name === animal).residents.every(idade => idade.age >= age);
 }
 
@@ -98,6 +97,30 @@ function increasePrices(percentage) {
   // seu código aqui
 
 }
+// Plantão com Murilo e Bernardo
+function getAnimalListFromEmplyee(employee) {
+  return employee.responsibleFor.map(
+    animalId => animals.find(animal => animalId === animal.id).name);
+}
+
+function getEmployeeFullName(employee) {
+  return `${employee.firstName} ${employee.lastName}`;
+}
+
+function getAllEmployeesAndAnimals() {
+  return employees.reduce((accumulator, employee) => {
+    const animalList = getAnimalListFromEmplyee(employee);
+    accumulator[getEmployeeFullName(employee)] = animalList;
+    return accumulator;
+  }, {});
+
+  function getEmployeedByNameOrId(idOrName) {
+    return employees.find(
+      employee =>
+        employee.id === idOrName ||
+        employee.firstName === idOrName ||
+        employee.lastName === idOrName);
+  }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
