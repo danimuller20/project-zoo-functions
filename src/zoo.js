@@ -74,16 +74,33 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+/*  //funcionario
+  let funcRequerido = employees.find(employee => employee.id === id) 
+  //console.log(funcRequerido)
+  // primeiro animal
+  let idPrimAnimal = funcRequerido.responsibleFor[0]
+  //console.log(idPrimAnimal)
+  // que animal é esse?
+  let especAnimal = animals.find(animal => animal.id === idPrimAnimal);
+  console.log(especAnimal)
+  // qual residente?
+  let arrayAnimais = especAnimal.residents
+  //console.log(arrayAnimais)
+  // qual o mais residente mais velho?
+  let idade = 0
+  for (let index = 0; index < Object.keys(arrayAnimais).length; index +=1) {
+    if(arrayAnimais[index].age > idade) {
+     idade = arrayAnimais[index].age;
+    }
+    console.log( [arrayAnimais[index].name, arrayAnimais[index].sex, arrayAnimais[index].age] )  
+    } */
 }
+oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1')
 
 function increasePrices(percentage) {
-  const objPrinces = prices;
-  for (let index = 0; index < Object.keys(objPrinces).length; index += 1) {
-    const oldPrince = objPrinces[index];
-    const newPrice = (Math.round((((percentage / 100) + 1) * oldPrince) * 100)) / 100;
-    objPrinces[index] = newPrice;
-  }
+  prices.Adult = (Math.round((((percentage / 100) + 1) * prices.Adult) * 100)) / 100;
+  prices.Child = (Math.round((((percentage / 100) + 1) * prices.Child) * 100)) / 100
+  prices.Senior = (Math.round((((percentage / 100) + 1) * prices.Senior) * 100)) / 100
 }
 
 function employeeCoverage(idOrName) {
