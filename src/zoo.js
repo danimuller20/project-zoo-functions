@@ -89,6 +89,10 @@ function getAnimalListFromEmployee(employee) {
     .map(animalId => animals.find(animal => animalId === animal.id).name);
 }
 
+function getFullName(employee) {
+  return `${employee.firstName} ${employee.lastName}`;
+}
+
 function employeeCoverage(idOrName) {
 // Sem parametros, retorna uma lista de funcionários e os animais pelos quais eles são responsaveis
   if (!idOrName) {
@@ -98,7 +102,7 @@ function employeeCoverage(idOrName) {
       const animalList = getAnimalListFromEmployee(employee);
         // constroi chave do objeto
       const key = `${employee.firstName} ${employee.lastName}`;
-      acc[key] = animalList;
+      acc[getFullName(employee)] = animalList;
       return acc;
     }, {});
   }
@@ -109,7 +113,7 @@ function employeeCoverage(idOrName) {
     .find(employee => employee.id === idOrName
     || employee.firstName === idOrName || employee.lastName === idOrName);
   const animalList = getAnimalListFromEmployee(findEmployee);
-  const key = `${findEmployee.firstName} ${findEmployee.lastName}`;
+  const key = getFullName(findEmployee);
   return { [key]: animalList };
 // Se passarmos o nome ou o último nome, retorna uma lista com os animais pelos quais
 // o funcionário é responsável
