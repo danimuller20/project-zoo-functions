@@ -18,13 +18,14 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.some(species => (animal === species.name) ? 
-  (species.residents.every((resident) => resident.age >= age)) : false);
+  return animals.some(species => (animal === species.name) ?
+  (species.residents.every(resident => resident.age >= age)) : false);
 }
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  return employees.find((employee) => employeeName === employee.firstName || employeeName === employee.lastName);
+  return employees.find(employee => employeeName === employee.firstName
+  || employeeName === employee.lastName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
