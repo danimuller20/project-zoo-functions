@@ -45,19 +45,13 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // seu código aqui
   const managers = employees.some(employee =>
-    employee.managers.some((manager) => manager === id)
+    employee.managers.some(manager => manager === id)
   );
 
   return managers;
 }
 
-function addEmployee(
-  id,
-  firstName,
-  lastName,
-  managers = [],
-  responsibleFor = []
-) {
+function addEmployee(id,firstName,lastName,managers = [], responsibleFor = []) {
   // seu código aqui
   const NewEmployees = {
     id,
