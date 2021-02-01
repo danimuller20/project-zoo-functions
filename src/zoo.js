@@ -71,13 +71,13 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  // se nao for passado parametro 
+  // se nao for passado parametro
   if (!entrants) return 0;
   let entrantTotal = 0;
-  // para cada faixa etária em prices, 
+  // para cada faixa etária em prices,
   // verifica se a mesma exite dentro de prices
   // caso exista, entrantotal recebe o valor de
-  // prices[faixaEtaria] vezes o parametro entrants na chave [faixaEtaria] 
+  // prices[faixaEtaria] vezes o parametro entrants na chave [faixaEtaria]
   Object.keys(prices)
     .forEach((key) => {
       if (key in entrants) {
@@ -125,8 +125,6 @@ function retrieveAnimalsByLocationWithName(locations, sorted, sex) {
 }
 
 function animalMap(options) {
-    // seu código
-    // seu código aqui
   // A função recebe um objeto como parâmetro
   // A função retorna um objeto
   // Modelo do objeto:
@@ -136,23 +134,23 @@ function animalMap(options) {
   // valor com parâmetro sorted === array de objetos com as espécies e o nome delas ordenadas
   // valor com parâmetro sex === array de objetos com as espécies e o nome delas filtradas por sexo
   // valor com os parâmetros sorted e sex ===
-      // array de objetos com as espécies e o nome delas ordenadas e filtradas por sexo
+  // array de objetos com as espécies e o nome delas ordenadas e filtradas por sexo
   // valor sem includeNames === array de strings com as espécies
 
   // 1. Recuperar as regiões que quero categorizar
   // 2. Quando tenho as regiões, filtro os animais dessa região
   // 3. Se não houver parâmetro de opções,
-        // retorna um array de strings com as espécies
+  // retorna um array de strings com as espécies
   // 4. Se a opção includeNames estiver habilitada,
-        // retona um array de objetos com as espécies e os nomes delas
+  // retona um array de objetos com as espécies e os nomes delas
   // 5. Se a opção sorted estiver habilitada,
-        // retorna um array de objetos com as espécies e os nomes delas ordenados
+  // retorna um array de objetos com as espécies e os nomes delas ordenados
   // 6. Se a opção sex estiver habilitada,
-        // retorna um array de objetos com as espécies e os nomes delas filtrados por sexo
+  // retorna um array de objetos com as espécies e os nomes delas filtrados por sexo
   // 7. Se as opções sex e sorted estiverem habilitadas,
-        // retorna um array de objetos com as espécies e os nomes delas ordenados e filtrados por sexo
+  // retorna um array de objetos com as espécies e os nomes delas ordenados e filtrados por sexo
   // 8. Se não houver a opção includeNames,
-        // retorna um array de strings com as espécies
+  // retorna um array de strings com as espécies
 
   const locations = retrieveLocations();
   if (!options) {
@@ -164,8 +162,6 @@ function animalMap(options) {
   }
   return retrieveAnimalsByLocationWithName(locations, sorted, sex);
 }
-  
-
 
 function schedule(dayName) {
   // seu código aqui
