@@ -114,13 +114,13 @@ function getAllEmployeesAndAnimals() {
     return accumulator;
   }, {});
 
-  // function getEmployeedByNameOrId(idOrName) {
-  //   return employees.find(
-  //     employee =>
-  //       employee.id === idOrName ||
-  //       employee.firstName === idOrName ||
-  //       employee.lastName === idOrName);
-//   }
+  function getEmployeedByNameOrId(idOrName) {
+    return employees.find(
+      employee =>
+        employee.id === idOrName ||
+        employee.firstName === idOrName ||
+        employee.lastName === idOrName);
+  }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
