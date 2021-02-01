@@ -72,7 +72,40 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+// A função recebe um objeto como parâmetro
+// A função retorna um objeto
+// Modelo do objeto:
+// chave === string com a localização
+// valor sem parâmetro === array de strings com as espécies
+// valor com parâmetro includeNames === array de objetos
+// valor com parâmetro sorted === array de objetos com as espécies e o nome delas ordenadas
+// valor com parâmetro sex === array de objetos com as espécies e o nome delas filtradas por sexo
+// valor com os parâmetros sorted e sex ===
+// array de objetos com as espécies e o nome delas ordenadas e filtradas por sexo
+// valor sem includeNames === array de strings com as espécies
+// 1. Recuperar as regiões que quero categorizar
+// 2. Quando tenho as regiões, filtro os animais dessa região
+// 3. Se não houver parâmetro de opções,
+// retorna um array de strings com as espécies
+// 4. Se a opção includeNames estiver habilitada,
+// retona um array de objetos com as espécies e os nomes delas
+// 5. Se a opção sorted estiver habilitada,
+// retorna um array de objetos com as espécies e os nomes delas ordenados
+// 6. Se a opção sex estiver habilitada,
+// retorna um array de objetos com as espécies e os nomes delas filtrados por sexo
+// 7. Se as opções sex e sorted estiverem habilitadas,
+// retorna um array de objetos com as espécies e os nomes delas ordenados e filtrados por sexo
+// 8. Se não houver a opção includeNames,
+// retorna um array de strings com as espécies
+  const locations = retrieveLocations();
+  if (!options) {
+    return retrieveAnimalsByLocation(locations);
+  }
+  const { includeNames, sex, sorted } = options;
+  if (!includeNames) {
+    return retrieveAnimalsByLocation(locations);
+  }
+  return retrieveAnimalsByLocationWithName(locations, sorted, sex);
 }
 
 function schedule(dayName) {
@@ -142,32 +175,10 @@ function employeeCoverage(idOrName) {
   } const employeeInfo = employees.find(employee => employee.id === idOrName ||
       employee.firstName === idOrName ||
       employee.lastName === idOrName);
-  const responsableForAnimalNames = employeeInfo.responsibleFor
-    .map(animalId => animals.find(animal => animal.id === animalId).name);
-  return { [`${employeeInfo.firstName} ${employeeInfo.lastName}`]: responsableForAnimalNames };
+    const responsableForAnimalNames = employeeInfo.responsibleFor
+      .map(animalId => animals.find(animal => animal.id === animalId).name);
+    return { [`${employeeInfo.firstName} ${employeeInfo.lastName}`]: responsableForAnimalNames };
 }
-console.log(employeeCoverage());
-//   const data = require('./data');
-// const { animals, employees } = data;
-// const teste = employees
-// .map(employee => employee.responsibleFor
-// .map(animalId => animals
-// .find(animal => animalId === animal.id).name));
-// OUTRA PARTE
-// let key = (`${curr.firstName} ${curr.lastName}`);
-// let animalsName = curr.responsibleFor
-//   .map(animalId => animals
-//   .find(animal => animalId === animal.id).name);
-// acc[key] = animalsName;
-// console.log(acc);
-// // console.log(curr.responsibleFor);
-// // console.log(key);
-// }, {});
-//   .find(employee => employee.id === idOrName ||
-//   employee.firstName === idOrName ||
-//   employee.lastName === idOrName);
-//   const employeeFullName = `${employeeInfo.firstName} ${employeeInfo.lastName}`;
-// mainObject.find(value => employeeFullName === value.keys);
 
 module.exports = {
   entryCalculator,
