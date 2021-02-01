@@ -129,23 +129,18 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const info = {};
-  const animalsId = [];
-  
   const employeeFirst = employees.find(employee => employee.id === idOrName ||
-    employee.firstName === idOrName || employee.lastName === idOrName).firstName;
+  employee.firstName === idOrName || employee.lastName === idOrName).firstName;
   const employeeLast = employees.find(employee => employee.id === idOrName ||
-    employee.firstName === idOrName || employee.lastName === idOrName).lastName;
+  employee.firstName === idOrName || employee.lastName === idOrName).lastName;
   const animalsKind = employees.find(employee => employee.id === idOrName ||
   employee.firstName === idOrName || employee.lastName === idOrName).responsibleFor
-  .map(animalsEmployee => animals.find(animal =>animal.id === animalsEmployee).name);
-  //animalsId.push(animalsEmployee);
- //const animalKind = animals.map(animalsEmployee => animals.find(animal =>animal.id === animalsEmployee).name);
-  info[employeeFirst, employeeLast] = animalsKind;
-  
+  .map(animalsEmployee => animals.find(animal => animal.id === animalsEmployee).name);
+  info[`${employeeFirst} ${employeeLast}`] = animalsKind;
   console.log(info);
- 
 }
 employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
+
 module.exports = {
   entryCalculator,
   schedule,
