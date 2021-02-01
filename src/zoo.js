@@ -98,13 +98,6 @@ function increasePrices(percentage) {
   });
 }
 // function employeeCoverage
-function listEmployees() {
-  return data.employees.reduce((acc, employ) => {
-    acc.push(employ.id);
-    return acc;
-  }, []);
-}
-
 function createObject(ids) {
   const obj = {};
   ids.reduce((acc, id) => {
