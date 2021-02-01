@@ -52,6 +52,7 @@ function animalCount(species) {
     return animalsObj[species];
   }
   return animalsObj;
+  // feito com ajuda/explicação e colaboração dos colegas : Rafa Reis, Bruna Ferreira e Henrique Moura
 }
 
 function entryCalculator(entrants) {
@@ -75,10 +76,14 @@ function schedule() {
   // seu código aqui
 }
 
-function oldestFromFirstspecies() {
-  // id
-  // seu código aqui
+function oldestFromFirstSpecies(id) {
+  const collaborator = employees.find(colaborador => id === colaborador.id);
+  const animais = animals.find(animal => collaborator.responsibleFor[0] === animal.id);
+  const animalVelho = animais.residents.sort((a, b) => b.age - a.age);
+  return Object.values(animalVelho[0]);
+ // requisito feito com o apoio e colaboração do colega Layo Kaminski
 }
+oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992')
 
 function increasePrices(percentage) {
   Object.keys(prices).forEach((item) => {
@@ -102,7 +107,7 @@ module.exports = {
   addEmployee,
   isManager,
   animalsOlderThan,
-  oldestFromFirstspecies,
+  oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
 };
