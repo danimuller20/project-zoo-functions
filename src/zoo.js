@@ -82,11 +82,12 @@ function animalCount(...species) {
     return populacao;
   }
 
-  data.animals.map((value) => {
+  data.animals.map(value => value).forEach((value) => {
     if (value.name === species[0]) {
-      return animais = value.residents.length;
-    }
-  });
+      animais = value.residents.length;
+    };
+  }
+ );
 
   return animais;
 }
