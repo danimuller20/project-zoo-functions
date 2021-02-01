@@ -14,7 +14,7 @@ const data = require('./data');
 function animalsByIds(ids) {
   // seu código aqui
   const chosenAnimal = ids.map((theId) => {
-    const typeAnimal = data.animals.find(data => theId === data.id);
+    const typeAnimal = data.animals.find(actualAnimal => theId === actualAnimal.id);
     return typeAnimal;
   });
   return chosenAnimal;
