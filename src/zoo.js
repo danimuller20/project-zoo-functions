@@ -98,29 +98,29 @@ function increasePrices(percentage) {
 
 }
 // Plantão com Murilo e Bernardo
-function getAnimalListFromEmplyee(employee) {
-  return employee.responsibleFor.map(
-    animalId => animals.find(animal => animalId === animal.id).name);
-}
+// function getAnimalListFromEmplyee(employee) {
+//   return employee.responsibleFor.map(
+//     animalId => animals.find(animal => animalId === animal.id).name);
+// }
 
-function getEmployeeFullName(employee) {
-  return `${employee.firstName} ${employee.lastName}`;
-}
+// function getEmployeeFullName(employee) {
+//   return `${employee.firstName} ${employee.lastName}`;
+// }
 
-function getAllEmployeesAndAnimals() {
-  return employees.reduce((accumulator, employee) => {
-    const animalList = getAnimalListFromEmplyee(employee);
-    accumulator[getEmployeeFullName(employee)] = animalList;
-    return accumulator;
-  }, {});
+// function getAllEmployeesAndAnimals() {
+//   return employees.reduce((accumulator, employee) => {
+//     const animalList = getAnimalListFromEmplyee(employee);
+//     accumulator[getEmployeeFullName(employee)] = animalList;
+//     return accumulator;
+//   }, {});
 
-  function getEmployeedByNameOrId(idOrName) {
-    return employees.find(
-      employee =>
-        employee.id === idOrName ||
-        employee.firstName === idOrName ||
-        employee.lastName === idOrName);
-  }
+//   function getEmployeedByNameOrId(idOrName) {
+//     return employees.find(
+//       employee =>
+//         employee.id === idOrName ||
+//         employee.firstName === idOrName ||
+//         employee.lastName === idOrName);
+//   }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
