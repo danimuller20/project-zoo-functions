@@ -70,10 +70,10 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants = 0) {
-  if(entrants === 0) 0;
-  const {Adult = 0, Child = 0, Senior = 0 } = entrants;
+  if (entrants === 0) return 0;
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
 
-  return (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99)
+  return (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
 }
 
 function animalMap(options) {
