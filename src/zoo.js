@@ -222,7 +222,7 @@ function increasePrices(percentage) {
 // **************************************
 function getAnimalListFromEmployee(employee) {
   return employee.responsibleFor
-    .map(animalId => animals.find((animal) => animalId === animal.id).name);
+    .map(animalId => animals.find(animal => animalId === animal.id).name);
 // //   // ['id1', 'id2'] => ['lion', 'tiger']
 }
 
@@ -239,7 +239,7 @@ function getAllEmployeesAndAnimals() {
 }
 
 function getEmployeeByNameOrId(idOrName) {
-  return employees.find((employee) => employee.id === idOrName || 
+  return employees.find(employee => employee.id === idOrName ||
   employee.firstName === idOrName || employee.lastName === idOrName);
 }
 // **************************************
@@ -268,7 +268,7 @@ function employeeCoverage(idOrName) {
   //   }, {});
   // }
 
-  // const targetEmployee = employees.find((employee) => employee.id === idOrName || 
+  // const targetEmployee = employees.find((employee) => employee.id === idOrName ||
   // employee.firstName === idOrName || employee.lastName === idOrName);
   // const animalList = targetEmployee.responsibleFor.map((animalId) => animals
   // .find((animal) => animalId === animal.id).name);
