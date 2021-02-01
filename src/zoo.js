@@ -84,7 +84,7 @@ function schedule(dayName) {
 
   const hours = data.hours;
   const days = Object.keys(hours);
-  let newSchedule = {};
+
 
   days.forEach((day) => {
     const { open, close } = hours[day];
@@ -103,6 +103,8 @@ function schedule(dayName) {
 
   return { [dayName]: newSchedule[dayName] };
 }
+
+  const newSchedule = {};
 
 function change24HourFormatTo12Format(hour) {
   const formattedHour = hour - 12;
