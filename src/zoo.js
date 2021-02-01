@@ -94,7 +94,7 @@ function oldestFromFirstSpecies(id) {
         return oldestAnimal;
       }
       return currentAnimal;
-    }
+    },
   );
   const oldestAnimalValues = Object.values(oldestAnimalId);
   return oldestAnimalValues;
