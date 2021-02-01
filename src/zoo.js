@@ -40,7 +40,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(
+    arrayEmployees => arrayEmployees.managers.some(
+      stringManagers => stringManagers === id,
+    ),
+  );
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
