@@ -137,8 +137,8 @@ function animalMap(options) {
   // CODIGO
   const locations = retrieveAvailableLocations();
 
-  const { includeNames = false, sex, sorted = false } = options;
-
+  const { includeNames = false } = options;
+  // Adicionar depois false na chave acima: , sex, sorted = false
   if (includeNames) {
     return retrieveAnimalsPerLocationWithName(locations);
   }
@@ -188,25 +188,25 @@ function schedule(dayName) {
   // CODIGO
   const hours = data.hours;
   const allDays = Object.keys(hours);
-  const schedule = {};
+  const objectSchedule = {};
 
   allDays.forEach((day) => {
     // chave === day
     // valor === hours[day]
-    const { open, close } = hours[day]
+    const { open, close } = hours[day];
 
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';
+      objectSchedule[day] = 'CLOSED';
     } else {
-      schedule[day] = `Open from ${open}am until ${change24HourFormatTo12Format(close)}pm`;
+      objectSchedule[day] = `Open from ${open}am until ${change24HourFormatTo12Format(close)}pm`;
     }
   });
 
   if (dayName === undefined) {
-    return schedule;
+    return objectSchedule;
   }
 
-  return { [dayName]: schedule[dayName] };
+  return { [dayName]: objectSchedule[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
@@ -221,7 +221,8 @@ function increasePrices(percentage) {
 // **************************************
 // **************************************
 function getAnimalListFromEmployee(employee) {
-  return employee.responsibleFor.map((animalId) => animals.find((animal) => animalId === animal.id).name);
+  return employee.responsibleFor
+    .map(animalId => animals.find((animal) => animalId === animal.id).name);
 // //   // ['id1', 'id2'] => ['lion', 'tiger']
 }
 
@@ -238,7 +239,8 @@ function getAllEmployeesAndAnimals() {
 }
 
 function getEmployeeByNameOrId(idOrName) {
-  return employees.find((employee) => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
+  return employees.find((employee) => employee.id === idOrName || 
+  employee.firstName === idOrName || employee.lastName === idOrName);
 }
 // **************************************
 // **************************************
@@ -266,8 +268,10 @@ function employeeCoverage(idOrName) {
   //   }, {});
   // }
 
-  // const targetEmployee = employees.find((employee) => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
-  // const animalList = targetEmployee.responsibleFor.map((animalId) => animals.find((animal) => animalId === animal.id).name);
+  // const targetEmployee = employees.find((employee) => employee.id === idOrName || 
+  // employee.firstName === idOrName || employee.lastName === idOrName);
+  // const animalList = targetEmployee.responsibleFor.map((animalId) => animals
+  // .find((animal) => animalId === animal.id).name);
   // const key = `${targetEmployee.firstName} ${targetEmployee.lastName}`;
   // return { [key]: animalList };
 }
