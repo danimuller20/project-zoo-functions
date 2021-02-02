@@ -133,7 +133,7 @@ function oldestFromFirstSpecies(id) {
 
   const firstOldestAnimal = findAnimalCopy.sort((a, b) => b.age - a.age)[0];
 
-  return Object.values(firstOldestAnimal)
+  return Object.values(firstOldestAnimal);
 
 
 
