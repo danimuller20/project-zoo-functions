@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-//Todos os exercícios abaixo foram realizados com imensa ajuda dos Plantões gravados.
+// Todos os exercícios abaixo foram realizados com imensa ajuda dos Plantões gravados.
 
 function animalsByIds(...ids) {
   if (!ids) return [];
