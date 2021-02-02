@@ -99,7 +99,7 @@ function schedule(dayName) {
   eachDay.forEach((day) => {
     const { open, close } = hours[day];
     if (day === 'Monday') {
-        valSchedule[day] = 'CLOSED';
+      valSchedule[day] = 'CLOSED';
     } else {
       valSchedule[day] = `Open from ${open}AM until ${close % 12}PM`;
     }
@@ -126,7 +126,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   const withPercent = {};
-  Object.keys(data.prices).forEach((key) => {
+  Object.keys(prices).forEach((key) => {
     const eachPrice = prices[key];
     const percentageCalc = eachPrice + (eschPrice * (percentage / 100));
     prices[key] = parseFloat(Math.fround(percentageCalc).toFixed(2));
