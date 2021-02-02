@@ -77,15 +77,35 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const dayOb = {};
+  Object.keys(data.hours).forEach((valor) => {
+    if (valor !== 'Monday') {
+      dayOb[valor] = `Open from ${data.hours[valor].open}am until ${(data.hours[valor].close) - 12}pm`;
+    } else {
+      dayOb[valor] = 'CLOSED';
+    }
+  });
+  if (!dayName) {
+    return dayOb;
+  }
+  return { [dayName]: dayOb[dayName] };
 }
 
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstSpecie = data.employees.find(obj =>
+    obj.id === id).responsibleFor[0];
+  const animalsResidents = animals.find(obj =>
+    obj.id === firstSpecie).residents;
+  const oldAnimal = animalsResidents.reduce((acc, { name, sex, age }) =>
+    (age > acc.age ? [name, sex, age] : acc));
+  return oldAnimal;
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(data.prices).forEach((valor) => {
+    data.prices[valor] = Math.round(((1 + (percentage / 100)) * data.prices[valor]) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
