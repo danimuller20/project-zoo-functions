@@ -83,9 +83,9 @@ function entryCalculator(entrants) {
   if (!entrants){
     return 0;
   };
-  const entrants = { Adult:adulstQuantity= 0, Child: childremQuantity= 0, Senior: seniorsQuantity= 0 };
+  const { Adult:adultsQuantity = 0, Child: childremQuantity= 0, Senior: seniorsQuantity= 0 } = entrants;
   const { Adult, Senior, Child } = data.prices;
-  return (Adult * adulstQuantity) + (Child * childremQuantity) + (Senior * seniorsQuantity);
+  return (Adult * adultsQuantity) + (Child * childremQuantity) + (Senior * seniorsQuantity);
 }
 
 function animalMap(options) {
@@ -97,11 +97,12 @@ function schedule(dayName) {
   const eachDay = Object.keys(hours);
   const valSchedule = {};
   eachDay.forEach((day) => {
-      const {open, close} = hours[day];
-
-  if (day === "Monday") {
-  valSchedule[day]= "CLOSED";
-  } valSchedule[day] =  `Open from ${open}AM until ${close % 12}PM`
+      const { open, close } = hours[day];
+      if (day === "Monday") {
+        valSchedule[day]= "CLOSED";
+      } else {
+        valSchedule[day] =  `Open from ${open}AM until ${close % 12}PM`;
+      }
   });
   if (!dayName) {
     return eachDay;
@@ -112,7 +113,14 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  //const oldest = Object.values(animals.find(currAnimal => currAnimal.id === employees);
+  const oldest = Object.values(animals
+    .find(currAnimalId => currAnimalId.id === employees
+    .find)(currEmployeesId => currEmployeesId == id ).responsibleFor[0]).residents
+    .reduce((acumulAge, curAge) => {
+      if (acumulAge.age < curAge) return curAge;
+      return acumulAge;
+    });
+    return oldest;
 }
 
 // Auxilio de Cleber Texeira Turma-9
@@ -124,7 +132,6 @@ function increasePrices(percentage) {
   const percentageCalc = eachPrice + (eschPrice * (percentage / 100));
   prices[key] = parseFloat(Math.fround(percentageCalc).toFixed(2));
   withPercent[key] = prices[key];
-
 }); 
 
 }
