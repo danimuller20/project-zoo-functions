@@ -91,8 +91,12 @@ function animalCount(...species) {
 }
 
 function entryCalculator(...entrants) {
-  let quantAdulto = 0, quantSenior = 0, quantFilho = 0;
-  let precoAdulto = 0, precoSenior = 0, precoFilho = 0;
+  let quantAdulto = 0;
+  let quantSenior = 0;
+  let quantFilho = 0;
+  let precoAdulto = 0;
+  let precoSenior = 0;
+  let precoFilho = 0;
   let valores = [];
   let valorTotal = 0;
 
@@ -108,30 +112,21 @@ function entryCalculator(...entrants) {
   });
 
   valores.forEach((item) => {
-    if(item[0] === 'Adult') precoAdulto = item[1];
-    if(item[0] === 'Senior') precoSenior = item[1];
-    if(item[0] === 'Child') precoFilho = item[1];
+    if (item[0] === 'Adult') precoAdulto = item[1];
+    if (item[0] === 'Senior') precoSenior = item[1];
+    if (item[0] === 'Child') precoFilho = item[1];
   });
 
   if (quantAdulto === undefined || precoAdulto === undefined) {quantAdulto = 0; precoAdulto = 0;}
   if (quantSenior === undefined || precoSenior === undefined) {quantSenior = 0; precoSenior = 0;}
   if (quantFilho === undefined || precoFilho === undefined) {quantFilho = 0; precoFilho = 0;}
 
-  valorTotal = ((quantAdulto * precoAdulto) + (quantFilho * precoFilho) + (quantSenior * precoSenior));
+  valorTotal += (quantAdulto * precoAdulto);
+  valorTotal += (quantFilho * precoFilho);
+  valorTotal += (quantSenior * precoSenior);
 
   return valorTotal;
-
-
-  // console.log('Array: ', array.map(item => item))
-  
-  
-  // if (typeof entrants[0] === 'object') return 0;
 }
-
-entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })
-entryCalculator({ 'Adult': 1 })
-entryCalculator({})
-entryCalculator({ 'Senior': 1 })
 
 function animalMap(options) {
   // seu código aqui
