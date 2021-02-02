@@ -60,9 +60,8 @@ function animalCount(species) {
   }, {});
   if (!species) {
     return allAnimalsAndQuantities;
-  } else {
-    return animals.find((animal) => animal.name === species).residents.length;
   }
+  return animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
