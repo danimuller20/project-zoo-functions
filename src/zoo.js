@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { residents } = data;
 
 
 function animalsByIds(...ids) {
@@ -45,7 +46,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const population = {};
+  if (!species) {
+    animals.forEach(({ name, residents }) => {
+    population[name] = residents.length;
+    });
+    return population;
+  }
+  return animals.find(value => value.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
