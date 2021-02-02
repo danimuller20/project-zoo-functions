@@ -90,31 +90,13 @@ function animalCount(...species) {
   return animais;
 }
 
-function entryCalculator(...entrants) {
-  // let qntAdulto = 0;
-  // let qntSenior = 0;
-  // let qntFilho = 0;
-  // let prcAdulto = 0;
-  // let prcSenior = 0;
-  // let prcFilho;
-
-  // if (entrants.length === 0 || entrants[0] === {}) return 0;
-
-  // Object.entries(data.prices).forEach((elemento) => {
-  //   if (elemento[0] === 'Adult') entrants.forEach(item => prcAdulto = elemento[1] * item.Adult);
-  // if (elemento[0] === 'Senior') entrants.forEach(item => prcSenior = elemento[1] * item.Senior);
-  //   if (elemento[0] === 'Child') entrants.forEach(item => prcFilho = elemento[1] * item.Child);
-  // });
-
-  // console.log(prcSenior, prcAdulto, prcFilho)
-
-  // if (prcAdulto === NaN) prcAdulto = 0;
-  // if (prcSenior === NaN) prcSenior = 0;
-  // if (prcFilho === NaN) prcFilho = 0;
-
-  // let valorTotal = prcAdulto + prcFilho + prcSenior;
-
-  // return valorTotal;
+function entryCalculator(entrants) {
+  let soma = 0;
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  Object.keys(entrants).forEach((index) => { soma += entrants[index] * prices[index]; });
+  return soma;
 }
 
 // entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })
