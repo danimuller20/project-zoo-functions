@@ -99,9 +99,12 @@ function schedule(dayName) {
   const result = { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
   return result;
 }
-
+//oldestFrom - solução obtida atraves da MarinaAlane
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employee = employees.find(employ => employ.id === id); //recupera o colaborador
+  const animal = animals.find(animalZoo => animalZoo.id === employee.responsibleFor[0]);//recupera o animal do cuidador
+  const old_Animal = animal.residents.sort((a, b) => b.age - a.age);//organizada em ordem de age do maior para o menor
+  return Object.values(old_Animal[0]);//recupera o indice 0 que no caso é o objeto que contem o maior idade. 
 }
 
 function increasePrices(percentage) {
