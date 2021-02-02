@@ -22,8 +22,6 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-/*Lembrar de usar sempre o codeclimate analyze 
- npm test test/ nomedoteste.test.js */
   const specieName = animals.find(obj => obj.name === animal);
   return specieName.residents.every(obj => obj.age > age);
 }
