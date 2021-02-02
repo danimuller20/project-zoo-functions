@@ -91,37 +91,34 @@ function animalCount(...species) {
 }
 
 function entryCalculator(...entrants) {
-  let quantAdulto = 0;
-  let quantSenior = 0;
-  let quantFilho = 0;
-  let precoAdulto = 0;
-  let precoSenior = 0;
-  let precoFilho = 0;
+  let qntAdulto = 0;
+  let qntSenior = 0;
+  let qntFilho = 0;
+  let prcAdulto = 0;
+  let prcSenior = 0;
+  let prcFilho;
 
   if (entrants.length === 0 || entrants[0] === {}) return 0;
 
-  entrants.forEach((item) => {
-    quantAdulto = item.Adult;
-    quantSenior = item.Senior;
-    quantFilho = item.Child;
+  Object.entries(data.prices).forEach((elemento) => {
+    if (elemento[0] === 'Adult') entrants.forEach(item => prcAdulto = elemento[1] * item.Adult);
+    if (elemento[0] === 'Senior') entrants.forEach(item => prcSenior = elemento[1] * item.Senior);
+    if (elemento[0] === 'Child') entrants.forEach(item => prcFilho = elemento[1] * item.Child);
   });
 
-  Object.entries(data.prices).forEach((item) => {
-    if (item[0] === 'Adult') precoAdulto = item[1];
-    if (item[0] === 'Senior') precoSenior = item[1];
-    if (item[0] === 'Child') precoFilho = item[1];
-  });
+  console.log(prcSenior, prcAdulto, prcFilho)
 
-  if (quantAdulto === undefined || precoAdulto === undefined) { quantAdulto = 0; precoAdulto = 0; }
-  if (quantSenior === undefined || precoSenior === undefined) { quantSenior = 0; precoSenior = 0; }
-  if (quantFilho === undefined || precoFilho === undefined) { quantFilho = 0; precoFilho = 0; }
+  if (prcAdulto === NaN) prcAdulto = 0;
+  if (prcSenior === NaN) prcSenior = 0;
+  if (prcFilho === NaN) prcFilho = 0;
 
-  let valorTotal = (quantAdulto * precoAdulto);
-  valorTotal += (quantFilho * precoFilho);
-  valorTotal += (quantSenior * precoSenior);
+  let valorTotal = prcAdulto + prcFilho + prcSenior;
 
   return valorTotal;
 }
+
+entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })
+entryCalculator({ 'Adult': 1})
 
 function animalMap(options) {
   // seu código aqui
@@ -132,7 +129,11 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const codigoAnimal = data.employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalMaisVelho = data.animals.find(animal => animal.id === codigoAnimal)
+  .residents.sort((age1, age2) => age2.age - age1.age)[0];
+  const { name, sex, age } = animalMaisVelho;
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
