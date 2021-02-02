@@ -85,7 +85,7 @@ function entryCalculator(entrants) {
   if (entrants === {}) {
     return 0;
   }
-  const tickets = prices;;
+  const tickets = prices;
   const cost = Object.entries(entrants).reduce((acc, [age, amount]) =>
   acc + (tickets[age] * amount), 0);
   return cost;
