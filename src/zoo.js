@@ -97,7 +97,6 @@ function entryCalculator(...entrants) {
   let precoAdulto = 0;
   let precoSenior = 0;
   let precoFilho = 0;
-  let valorTotal = 0;
 
   if (entrants.length === 0 || entrants[0] === {}) return 0;
 
@@ -117,7 +116,7 @@ function entryCalculator(...entrants) {
   if (quantSenior === undefined || precoSenior === undefined) { quantSenior = 0; precoSenior = 0; }
   if (quantFilho === undefined || precoFilho === undefined) { quantFilho = 0; precoFilho = 0; }
 
-  valorTotal += (quantAdulto * precoAdulto);
+  let valorTotal = (quantAdulto * precoAdulto);
   valorTotal += (quantFilho * precoFilho);
   valorTotal += (quantSenior * precoSenior);
 
