@@ -80,12 +80,12 @@ function animalCount(species) {
 // Resolvido com o axilio de Cleber Texeira Turma-9
 function entryCalculator(entrants) {
   // seu código aqui
-  if (!entrants){
+  if (!entrants) {
     return 0;
-  };
-  const { Adult:adultsQuantity = 0, Child: childremQuantity= 0, Senior: seniorsQuantity= 0 } = entrants;
+  }
+  const { Adult: adQuantity = 0, Child: chQuantity = 0, Senior: sQuantity = 0 } = entrants;
   const { Adult, Senior, Child } = data.prices;
-  return (Adult * adultsQuantity) + (Child * childremQuantity) + (Senior * seniorsQuantity);
+  return (Adult * adQuantity) + (Child * chQuantity) + (Senior * sQuantity);
 }
 
 function animalMap(options) {
@@ -97,30 +97,29 @@ function schedule(dayName) {
   const eachDay = Object.keys(hours);
   const valSchedule = {};
   eachDay.forEach((day) => {
-      const { open, close } = hours[day];
-      if (day === "Monday") {
-        valSchedule[day]= "CLOSED";
+    const { open, close } = hours[day];
+    if (day === `Monday`) {
+        valSchedule[day] = `CLOSED`;
       } else {
-        valSchedule[day] =  `Open from ${open}AM until ${close % 12}PM`;
+        valSchedule[day] = `Open from ${open}AM until ${close % 12}PM`;
       }
   });
   if (!dayName) {
     return eachDay;
   }
-  return { [dayName]: eachDay[dayName]};
-
+  return { [dayName]: eachDay[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const oldest = Object.values(animals
     .find(currAnimalId => currAnimalId.id === employees
-    .find)(currEmployeesId => currEmployeesId == id ).responsibleFor[0]).residents
-    .reduce((acumulAge, curAge) => {
+    .find) (currEmployeesId => currEmployeesId === id ).responsibleFor[0]).residents
+    .reduce(( acumulAge, curAge ) => {
       if (acumulAge.age < curAge) return curAge;
       return acumulAge;
     });
-    return oldest;
+  return oldest;
 }
 
 // Auxilio de Cleber Texeira Turma-9
@@ -129,11 +128,10 @@ function increasePrices(percentage) {
   const withPercent = {};
   Object.keys(data.prices).forEach((key) => {
   const eachPrice = prices[key];
-  const percentageCalc = eachPrice + (eschPrice * (percentage / 100));
-  prices[key] = parseFloat(Math.fround(percentageCalc).toFixed(2));
-  withPercent[key] = prices[key];
-}); 
-
+    const percentageCalc = eachPrice + (eschPrice * (percentage / 100));
+    prices[key] = parseFloat(Math.fround(percentageCalc).toFixed(2));
+    withPercent[key] = prices[key];
+});
 }
 
 function employeeCoverage(idOrName) {
