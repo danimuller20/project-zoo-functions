@@ -102,7 +102,7 @@ function entryCalculator(...entrants) {
 
   // Object.entries(data.prices).forEach((elemento) => {
   //   if (elemento[0] === 'Adult') entrants.forEach(item => prcAdulto = elemento[1] * item.Adult);
-  //   if (elemento[0] === 'Senior') entrants.forEach(item => prcSenior = elemento[1] * item.Senior);
+  // if (elemento[0] === 'Senior') entrants.forEach(item => prcSenior = elemento[1] * item.Senior);
   //   if (elemento[0] === 'Child') entrants.forEach(item => prcFilho = elemento[1] * item.Child);
   // });
 
