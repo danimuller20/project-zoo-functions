@@ -91,7 +91,7 @@ function schedule(dayName) {
   if (dayName === undefined) {
     return schedules;
   }
-  return {[dayName] : schedules[dayName]};
+  return { [dayName]: schedules[dayName] };
 }
 
 
