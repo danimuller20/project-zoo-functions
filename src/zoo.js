@@ -94,8 +94,8 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const typeOfEntry = Object.keys(prices);
   typeOfEntry.forEach((person) => {
-    prices[person] = Number(((prices[person] + prices[person] * percentage / 100) + 0.001).toFixed(2));
-  })
+    prices[person] = Number(((prices[person] + (prices[person] * percentage / 100)) + 0.001).toFixed(2));
+  });
 }
 
 function employeeCoverage(idOrName) {
