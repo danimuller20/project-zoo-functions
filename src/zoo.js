@@ -83,7 +83,8 @@ function isManager(id) {
   // 1. Acessar o array employees e em cada elemento verificar em managers o id
   // 2. Retornar booleano
 
-  // return data.employees.map((elementManagers) => elementManagers).find((elementeId) => elementeId === id);
+  // return data.employees.map((elementManagers) => elementManagers)
+  // .find((elementeId) => elementeId === id);
 
   return employees.some((elementeId, index) => elementeId.managers[index] === id);
 }
@@ -107,18 +108,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     managers,
     responsibleFor,
   };
-  
+
   // newContributor[id] = id;
   // newContributor[firstName] = firstName;
   // newContributor[lastName] = lastName;
   // newContributor[managers] = managers;
   // newContributor[responsibleFor] = responsibleFor;
-  
+
   // return newContributor;
 
   return employees.push(newContributor);
 }
-// console.log('39800c14-4b76-454a-858d-2f8d168146a7', 'Jane', 'Doe', ['546fe3d4-2d81-4bb4-83a7-92d5b7048d17', 'a67a36ee-3765-4c74-8e0f-13f881f6588a'], ['ee6139bf-b526-4653-9e1e-1ca128d0ad2e', '210fcd23-aa7b-4975-91b7-0230ebb27b99']);
 
 function animalCount(species) {
   // seu código aqui
@@ -140,7 +140,7 @@ function animalCount(species) {
     return quantitiesOfAnimals;
   }
 
-  return quantitiesOfAnimals[species]
+  return quantitiesOfAnimals[species];
 
   // const countingAnimals = animals.find((element) => {
   //   if (element.name === species) {
