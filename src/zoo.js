@@ -11,6 +11,8 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+//Todos os exercícios abaixo foram realizados com imensa ajuda dos Plantões gravados.
+
 function animalsByIds(...ids) {
   if (!ids) return [];
   return data.animals.filter(animal => ids.includes(animal.id));
@@ -59,8 +61,6 @@ function entryCalculator(entrants) {
   if (!entrants || Object.entries(entrants).length === 0) return 0;
   return Object.keys(entrants).reduce((ac, cur) => ac + (entrants[cur] * data.prices[cur]), 0);
 }
-
-
 function animalMap(options) {
 
 }
@@ -86,12 +86,15 @@ function oldestFromFirstSpecies(id) {
 
   return Object.values(oldest);
 }
-
 function increasePrices(percentage) {
-
+  const calculator = ((percentage / 100) + 1);
+  const result = Object.entries(data.prices).reduce((acc, [curr]) => {
+    data.prices[curr] = Math.round(data.prices[curr] * 100 * calculator) / 100;
+    return data.prices;
+  }, {});
+  return result;
 }
 function employeeCoverage(idOrName) {
-
 }
 
 module.exports = {
