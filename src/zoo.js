@@ -138,15 +138,10 @@ function employeeCoverage(idOrName) {
     });
     return allEmployees;
   }
-  const animalsKind = employees.find(employee => employee.id === idOrName ||
-  employee.firstName === idOrName ||
-  employee.lastName === idOrName).responsibleFor
-  .map(animalsEmployee => animals
-  .find(animal => animal.id === animalsEmployee).name);
-  const { firstName, lastName } = employees
-  .find(employee => employee.id === idOrName || employee.firstName === idOrName ||
+  employees.find(employee => employee.id === idOrName || employee.firstName === idOrName ||
   employee.lastName === idOrName);
-  return { [`${firstName} ${lastName}`]: animalsKind };
+  return { [`${employees.firstName} ${employees.lastName}`]: employees.responsibleFor.map(animalsEmployee => animals
+    .find(animal => animal.id === animalsEmployee).name) };
 }
 employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
 
