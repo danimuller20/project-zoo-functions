@@ -101,7 +101,7 @@ function schedule(dayName) {
     if (day === 'Monday') {
       valSchedule[day] = 'CLOSED';
     } else {
-      valSchedule[day] = `Open from ${open}AM until ${close % 12}PM`;
+      valSchedule[day] = `Open from ${open}am until ${close % 12}pm`;
     }
   });
   if (!dayName) {
