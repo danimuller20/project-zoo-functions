@@ -114,11 +114,11 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
   const oldest = Object.values(animals
     .find(currAnimalId => currAnimalId.id === employees
-    .find)(currEmployeesId => currEmployeesId === id).responsibleFor[0]).residents
+    .find(currEmployeesId => currEmployeesId === id).responsibleFor[0]).residents
     .reduce((acumulAge, curAge) => {
       if (acumulAge.age < curAge) return curAge;
       return acumulAge;
-    });
+    }));
   return oldest;
 }
 
