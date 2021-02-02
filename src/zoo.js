@@ -31,15 +31,19 @@ function employeeByName(employeeName) {
     return {};
   }
   return data.employees.find(obj =>
-obj.firstName === employeeName || obj.lastName === employeeName);
+    obj.firstName === employeeName || obj.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return {
+    ...personalInfo,
+    ...associatedWith,
+  };
 }
 
 function isManager(id) {
-  // seu código aqui
+  const cargoManager = data.employees.some(obj => obj.managers.includes(id));
+  return cargoManager;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
