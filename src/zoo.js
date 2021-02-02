@@ -95,7 +95,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || entrants === {}) {
     return 0;
   }
-  Object.keys(entrants).forEach((index) => { soma += entrants[index] * prices[index]; });
+  Object.keys(entrants).forEach((index) => { soma += entrants[index] * data.prices[index]; });
   return soma;
 }
 
