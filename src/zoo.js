@@ -94,9 +94,8 @@ function oldestFromFirstSpecies(id) {
   const oldestAge = residentsAnimals.reduce((acc, current) => {
     if (current.age > acc) {
       return current.age;
-    } else {
-      return acc;
     }
+    return acc;
   }, 0);
   const matchedAge = residentsAnimals.find(eachResident => eachResident.age === oldestAge);
   const arrayAnimal = Object.values(matchedAge);
