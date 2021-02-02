@@ -105,10 +105,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  const prices = data.prices;
+  const currentPrices = data.prices;
   const increase = percentage / 100;
-  Object.entries(prices).forEach(([ticketType, price]) => {
-    const updatedPrice = price * (increase + 1);
+  Object.entries(currentPrices).forEach(([ticketType, currentPrices]) => {
+    const updatedPrice = currentPrices * (increase + 1);
     data.prices[ticketType] = Math.round(updatedPrice * 100) / 100;
   });
 }
