@@ -65,20 +65,20 @@ function animalMap(options) {
 function schedule(dayName) {
   const returnableObj = {};
   Object.keys(hours).forEach((day) => {
-    if (day != 'Monday'){
-    returnableObj[day] =
-    `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`
-    } else { returnableObj['Monday'] = 'CLOSED'};
+    if (day !== 'Monday') {
+      returnableObj[day] =
+      `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    } else { returnableObj[day] = 'CLOSED'; }
   });
-  return dayName ? { [dayName] : returnableObj[dayName] } : returnableObj;
+  return dayName ? { [dayName]: returnableObj[dayName] } : returnableObj;
 }
 
 console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(identity) {
-  const findEmployee = employees.find(({id}) => identity ===id);
+  const findEmployee = employees.find(({ id }) => identity === id);
   const findSpecie = findEmployee.responsibleFor[0];
-  const findInListAnimals = animals.find(({id}) => findSpecie === id);
+  const findInListAnimals = animals.find(({ id }) => findSpecie === id);
   const findOldestAnimal = findInListAnimals.residents
     .reduce((older, newprobablyOlder) =>
     (older.age <= newprobablyOlder.age ?
