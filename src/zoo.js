@@ -57,6 +57,21 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  // Parâmetro personalInfo é um objeto com key id, firstName e lastName
+  // Parâmetro associatedWith é um objeto com duas Key managers e responsibleFor com um array cada
+  // Retorna um objeto de pessoa colaboradora
+  // O objeto retornado contem informações pessoais, gerentes e animais gerenciados
+  // PSEUDO CODIGO
+  // 1. Criar um objeto
+  // 2. Adicionar as chaves com os valores de personalInfo: id, firstName e lastName
+  // 3. Adicionar as chaves com os valores de associatedWith: managers e responsibleFor
+
+  const collaboratingPerson = {};
+
+  Object.assign(collaboratingPerson, personalInfo);
+  Object.assign(collaboratingPerson, associatedWith);
+
+  return collaboratingPerson;
 }
 
 function isManager(id) {
