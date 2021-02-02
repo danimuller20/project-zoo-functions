@@ -52,6 +52,8 @@ function entryCalculator(entrants) {
   // seu código aqui
 }
 
+
+
 function animalMap(options) {
   // seu código aqui
 }
@@ -66,6 +68,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  Object.keys(data.prices).forEach((price) => {
+    const newPrice = Math.round((data.prices[price] * (1 + (percentage / 100))) * 100) / 100;
+    data.prices[price] = newPrice;
+  });
 }
 
 function employeeCoverage(idOrName) {
