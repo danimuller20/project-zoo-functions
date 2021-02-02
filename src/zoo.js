@@ -1,4 +1,4 @@
-const { employees, animals, prices } = require('./data');
+const { employees, animals, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -71,10 +71,27 @@ function animalMap() {
   // options
   // seu código aqui
 }
+// Ao chamar a função sem parâmeros = retorna um obj c o cronograma inteiro
+// Ao chamar a função com 1 parâmetro ( o dia da semana) = retorna um obj com o cronograma apenas do dia
+// formato do objeto de retorno
+// chave === dia da semana
+// valor === cronograma legível para humanos
+// cronograma legível para humanos
+// cronograma legível para humanos qnd o zoo não abre == "closed"
 
-function schedule() {
-  // dayName
-  // seu código aqui
+function schedule(dayName) {
+  let daysObj = {};
+  if (!dayName){
+    Object.entries(hours).forEach(pair => { daysObj[pair[0]] = `Open from ${pair[1].open}am until ${pair[1].close - 12 }pm` });
+    daysObj['Monday'] = 'CLOSED';
+  } else if (dayName === 'Monday'){
+    daysObj['Monday'] = 'CLOSED';
+    return daysObj;
+  } else {
+    daysObj[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close -12 }pm`;
+    return daysObj;
+  }
+  return daysObj;
 }
 
 function oldestFromFirstSpecies(id) {
