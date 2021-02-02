@@ -16,13 +16,16 @@ function animalsByIds(...ids) {
   if (!ids) {
     return [];
   } else if (ids.length === 1) {
-    return animals.filter(valor => valor.id === ids[0]);
+    return animals.filter(obj => obj.id === ids[0]);
   }
-  return animals.filter(valor => ids.includes(valor.id));
+  return animals.filter(obj => ids.includes(obj.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+/*Lembrar de usar sempre o codeclimate analyze 
+ npm test test/ nomedoteste.test.js */
+  const specieName = animals.find(obj => obj.name === animal);
+  return specieName.residents.every(obj => obj.age > age);
 }
 
 function employeeByName(employeeName) {
