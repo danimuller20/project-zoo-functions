@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-// DESENVOLVIMENTO
+// OK
 function animalsByIds(...args) {
   if (args.length === 0) return [];
 
@@ -90,9 +90,48 @@ function animalCount(...species) {
   return animais;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(...entrants) {
+  let quantAdulto = 0, quantSenior = 0, quantFilho = 0;
+  let precoAdulto = 0, precoSenior = 0, precoFilho = 0;
+  let valores = [];
+  let valorTotal = 0;
+
+  if (entrants.length === 0) return 0;
+  if (entrants[0] === {}) return 0;
+
+  valores = Object.entries(data.prices);
+
+  entrants.forEach((item) => {
+    quantAdulto = item.Adult;
+    quantSenior = item.Senior;
+    quantFilho = item.Child;
+  });
+
+  valores.forEach((item) => {
+    if(item[0] === 'Adult') precoAdulto = item[1];
+    if(item[0] === 'Senior') precoSenior = item[1];
+    if(item[0] === 'Child') precoFilho = item[1];
+  });
+
+  if (quantAdulto === undefined || precoAdulto === undefined) {quantAdulto = 0; precoAdulto = 0;}
+  if (quantSenior === undefined || precoSenior === undefined) {quantSenior = 0; precoSenior = 0;}
+  if (quantFilho === undefined || precoFilho === undefined) {quantFilho = 0; precoFilho = 0;}
+
+  valorTotal = ((quantAdulto * precoAdulto) + (quantFilho * precoFilho) + (quantSenior * precoSenior));
+
+  return valorTotal;
+
+
+  // console.log('Array: ', array.map(item => item))
+  
+  
+  // if (typeof entrants[0] === 'object') return 0;
 }
+
+entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })
+entryCalculator({ 'Adult': 1 })
+entryCalculator({})
+entryCalculator({ 'Senior': 1 })
 
 function animalMap(options) {
   // seu código aqui
