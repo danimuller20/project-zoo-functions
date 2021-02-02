@@ -231,10 +231,10 @@ function animalMap(options) {
   // CODIGO
   const locations = retrieveAvailableLocations();
 
-  const { includeNames = false } = options;
+  const { includeNames = false, sex, sorted = false } = options;
   // Adicionar depois false na chave acima: , sex, sorted = false
   if (includeNames) {
-    return retrieveAnimalsPerLocationWithName(locations);
+    return retrieveAnimalsPerLocationWithName(locations, sorted, sex);
   }
 
   return retrieveAnimalsPerLocation(locations);
@@ -315,7 +315,7 @@ function oldestFromFirstSpecies(id) {
 
   const animal = employees.find(person => person.id === id).responsibleFor[0];
 
-  const animalFound = animals.find((wantedAnimal) => wantedAnimal.id === animal);
+  const animalFound = animals.find(wantedAnimal => wantedAnimal.id === animal);
 
   const oldAnimal = animalFound.residents.reduce((accumulator, currentValue) => {
     if (accumulator.age > currentValue.age) {
