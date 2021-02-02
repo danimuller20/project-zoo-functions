@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 // const { residents } = data;
 
 
@@ -57,7 +58,16 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let result = 0;
+  Object.keys(prices).forEach((paidOut) => {
+    if (!entrants) {
+      return 0;
+    }
+    if (entrants[paidOut]) {
+      result += entrants[paidOut] * prices[paidOut];
+    }
+  });
+  return result;
 }
 
 function animalMap(options) {
