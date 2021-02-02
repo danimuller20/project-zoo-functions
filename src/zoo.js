@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+const { prices, employees, animals } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -70,6 +71,11 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (!entrants || Object.entries(entrants).length === 0) {
+    return 0;
+  }
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
 
 function animalMap(options) {
@@ -78,14 +84,31 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  let openDay;
+  if (dayName) openDay = { [dayName]: data.hours[dayName] };
+  else openDay = data.hours;
+  return Object.entries(openDay).reduce((note, day) => Object.assign(note, { [day[0]]:
+  (day[1].open !== 0) ?
+  `Open from ${day[1].open}am until ${day[1].close - 12}pm` : 'CLOSED' }), {});
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const helpGuy = employees.find(ids => ids.id === id).responsibleFor[0];
+  const residentsAnimals = animals.find(value => value.id === helpGuy).residents;
+  return Object.values(residentsAnimals.reduce((counter, actualCount) => {
+    if (actualCount.age > counter.age) {
+      counter = actualCount;
+    }
+    return counter;
+  }));
 }
 
 function increasePrices(percentage) {
   // seu código aqui
+  return Object.keys(prices).forEach((value) => {
+    prices[value] = Math.round((prices[value] * percentage) + (prices[value] * 100)) /100;
+  })
 }
 
 function employeeCoverage(idOrName) {
