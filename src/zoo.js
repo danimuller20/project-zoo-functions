@@ -80,7 +80,7 @@ function schedule(dayName) {
     daysObj.Monday = 'CLOSED';
     return daysObj;
   } else {
-    daysObj.dayName = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+    daysObj[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
     return daysObj;
   }
   return daysObj;
