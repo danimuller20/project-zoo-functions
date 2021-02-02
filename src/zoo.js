@@ -52,8 +52,6 @@ function entryCalculator(entrants) {
   // seu código aqui
 }
 
-
-
 function animalMap(options) {
   // seu código aqui
 }
