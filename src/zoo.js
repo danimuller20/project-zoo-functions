@@ -100,16 +100,16 @@ function schedule(dayName) {
   return result;
 }
 
-//oldestFrom - solução obtida atraves da MarinaAlane
+//oldestFrom - solução obtida atraves da MarinaAlane//
 function oldestFromFirstSpecies(id) {
-  //recupera o colaborador
+  //recupera o colaborador//
   const employee = employees.find(employ => employ.id === id);
-  //recupera o animal do cuidador
+  //recupera o animal do cuidador//
   const animal = animals.find(animalZoo => animalZoo.id === employee.responsibleFor[0]);
-  //organizada em ordem de age do maior para o menor
-  const old_animal = animal.residents.sort((a, b) => b.age - a.age);
-  //recupera o indice 0 que no caso é o objeto que contem o maior idade. 
-  return Object.values(old_animal[0]);
+  //organizada em ordem de age do maior para o menor//
+  const oldAnimal = animal.residents.sort((a, b) => b.age - a.age);
+  //recupera o indice 0 que no caso é o objeto que contem o maior idade.//
+  return Object.values(oldAnimal[0]);
 }
 
 function increasePrices(percentage) {
