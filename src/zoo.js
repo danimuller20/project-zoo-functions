@@ -9,6 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
+const { TestScheduler } = require('jest');
 const data = require('./data');
 
 const { animals } = data;
@@ -20,17 +21,15 @@ function animalsByIds(...ids) {
   return ids.map(info => animals.find(id => info === id.id));
 }
 
-const findAnimals = animal => animals.find(name => name.name === animal);
-
 function animalsOlderThan(animal, age) {
-  return findAnimals(animal).residents.every(ages => ages.age > age);
+  return animals.find(name => name.name === animal).residents.every(ages => ages.age > age);
 }
 
 const employerName = first => employees.find(firstName => firstName.firstName === first);
 const employerLastName = last => employees.find(lastName => lastName.lastName === last);
 
 function employeeByName(employeeName) {
-  if (employeeName === undefined) {
+  if (!employeeName) {
     return {};
   }
   return employerName(employeeName) || employerLastName(employeeName);
@@ -67,7 +66,6 @@ function entryCalculator(entrants = 0) {
 }
 
 function animalMap(options) {
-  // seu código aqui
 }
 
 function schedule(dayName) {
@@ -100,16 +98,8 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // const responsable = employees.find(info => info.id === percentage).responsibleFor;
-  // const array =  responsable.map(code => animals.find((info) => info.id === code).name);
-  // const arr = animals.map(info => info.name);
-  // return arr
-  // // return employees.reduce((acc, curr) => {
-  // //   const fullName = `${curr.firstName} ${curr.lastName}`
-  // //   acc[fullName] = array;
-  // //   return acc;
-  // // }, { });
 }
+
 
 module.exports = {
   entryCalculator,
