@@ -2,14 +2,13 @@
 eslint no-unused-vars: [
   "error",
   {
-    "args": "none",
+    "args": "none",\
     "vars": "local",
     "varsIgnorePattern": "data"
   }
 ]
 */
 
-const { TestScheduler } = require('jest');
 const data = require('./data');
 
 const { animals } = data;
