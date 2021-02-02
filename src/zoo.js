@@ -80,8 +80,8 @@ function schedule(dayName) {
   const openClosed = {};
   Object.keys(hours).forEach((hour) => {
     const { open, close } = hours[hour];
-    if (hour === `Monday`) {
-      openClosed[hour] = `CLOSED`;
+    if (hour === 'Monday') {
+      openClosed[hour] = 'CLOSED';
     } else {
       openClosed[hour] = `Open from ${open}am until ${close - 12}pm`;
     }
