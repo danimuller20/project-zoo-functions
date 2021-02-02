@@ -97,22 +97,22 @@ function schedule(dayName) {
   const eachDay = Object.keys(hours);
   const valSchedule = {};
   eachDay.forEach((day) => {
-     const {open, close} = hours[day];
+      const {open, close} = hours[day];
 
   if (day === "Monday") {
   valSchedule[day]= "CLOSED";
-  } valSchedule[day] =  `Open from ${open}AM until ${close % 12}PM` 
+  } valSchedule[day] =  `Open from ${open}AM until ${close % 12}PM`
   });
   if (!dayName) {
     return eachDay;
-  } 
-return { [dayName]: eachDay[dayName]};
+  }
+  return { [dayName]: eachDay[dayName]};
 
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const oldest = Object.values(animals.find(currAnimal => currAnimal.id === employees);
+  //const oldest = Object.values(animals.find(currAnimal => currAnimal.id === employees);
 }
 
 // Auxilio de Cleber Texeira Turma-9
