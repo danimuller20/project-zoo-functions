@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices, hours } = data;
+const { animals, employees, hours } = data;
 
 function animalsByIds(...ids) {
 
@@ -60,7 +60,7 @@ function animalMap(options) {
   // seu código aqui
 }
 
-const convertHourFrom24to12 = (hour) => (hour - 12) < 0 ? hour : hour - 12;
+const convertHourFrom24to12 = hour => ((hour - 12) < 0 ? hour : hour - 12);
 
 function schedule(dayName) {
   const daysOfWeek = Object.keys(hours);
@@ -73,8 +73,9 @@ function schedule(dayName) {
       schedule[eachDay] = 'CLOSED';
     } else {
       schedule[eachDay] = `Open from ${open}am until ${convertHourFrom24to12(close)}pm`;
-      }
-  })
+    }
+  });
+
   if (!dayName) return schedule;
   return { [dayName]: schedule[dayName] };
 }
