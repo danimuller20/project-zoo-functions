@@ -51,14 +51,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     managers,
     responsibleFor };
   data.employees.push(newEmployee);
-  console.log(newEmployee);
 }
 
 function getResidentNumber(animalName) {
   let numbersOfResidents = 0;
   const animalData = data.animals.find(animalDatas => animalName === animalDatas.name);
   numbersOfResidents = animalData.residents.length;
-  console.log(numbersOfResidents);
   return numbersOfResidents;
 }
 
@@ -68,7 +66,6 @@ function getNumbersOfEachAnimal() {
     const numberOfResidents = animalData.residents.length;
     residentNumbersOfEachAnimal[animalData.name] = numberOfResidents;
   });
-  console.log(residentNumbersOfEachAnimal);
   return residentNumbersOfEachAnimal;
 }
 
@@ -87,14 +84,106 @@ function entryCalculator(entrants = 0) {
     const priceToPay = accumulator + priceToAdd;
     return priceToPay;
   }, 0);
-  console.log(...pricesCategories);
-  console.log(totalPrice);
   return totalPrice;
 }
 
 //  Desafio animalMap
+function createObjectKeysAsDirections() {
+  const animalLocationData = {};
+  data.animals.forEach((animal) => {
+    if (!(animalLocationData[animal.location])) {
+      animalLocationData[animal.location] = [];
+    }
+  });
+  return animalLocationData;
+}
+
+function insertAnimalsNamesInLocation(animalLocationData) {
+  data.animals.forEach((animal) => {
+    const animalLocation = animal.location;
+    const animalName = animal.name;
+    animalLocationData[animalLocation].push(animalName);
+  });
+}
+
+function getSpecieDataByName(specieName) {
+  return data.animals.find(animal => animal.name === specieName);
+}
+
+function putAnimalNames(animalLocationData) {
+  const locations = Object.keys(animalLocationData);
+  locations.forEach((location) => {
+    animalLocationData[location].forEach((specieName, index) => {
+      const specieData = getSpecieDataByName(specieName);
+      const specieResidentsNames = specieData.residents.map(resident => resident.name);
+      const newObjectSpecieNames = {};
+      newObjectSpecieNames[specieName] = specieResidentsNames;
+      animalLocationData[location][index] = newObjectSpecieNames;
+    });
+  });
+}
+
+
+function filterResidentBySex(animalLocationData, sex) {
+  const locations = Object.keys(animalLocationData);
+  locations.forEach((location) => {
+    const specieResidents = animalLocationData[location];
+
+    specieResidents.forEach((specie, index) => {
+      const specieName = (Object.keys(specie))[0];
+      const specieData = getSpecieDataByName(specieName);
+
+      const residentBySex = specieData.residents.filter(resident => resident.sex === sex);
+
+      const namesOfResidentBySex = residentBySex.map(resident => resident.name);
+      animalLocationData[location][index][specieName] = namesOfResidentBySex;
+    });
+  });
+}
+
+function sortAnimalsNames(animalLocationData) {
+  const locations = Object.keys(animalLocationData);
+  locations.forEach((location) => {
+    animalLocationData[location].forEach((specie, index) => {
+      const specieName = (Object.keys(specie))[0];
+      const residentsNames = specie[specieName];
+      residentsNames.sort();
+      animalLocationData[location][index][specieName] = residentsNames;
+    });
+  });
+}
+
 function animalMap(options = {}) {
   //  Codigo aqui
+  //  1 - Sem parametros, retorna animais categorizados por localização
+  //  2 - Com a opção sorted, retorna anomes de animais ordenados
+  //  3 - Com a pḉão sex:'female' ou 'male' especificada, retorna somente nomes de animais filtrado
+  //  4 - Retorna informações ordenadas e com sexo de includeNames for true
+
+  //  1º passo - Cria as chaves do objeto com as direções, {Objeto com chaves sem valores}
+  //  2º passo - Insere os animais em array e string em cada chave(direção)
+
+  //  3º passo - Se a opção includesNames não for true, retorna este objeto
+  //  3º passo - Se a opção includesNames for true, vai fazer os seguintes passos
+
+  //  3.1º passo - Com a opção includesNames, substitui a string do nome do animal, por um objeto
+  //  do animal, onde a unica chave dele é o nome da especie, e o valor é um array com os nomes
+  //  dos animais desta especie.
+  //  3.2º passo - Com a opção female: Filtra o objeto do animal pelo sexo
+  const { includeNames, sex, sorted } = options;
+  const animalLocationData = createObjectKeysAsDirections();
+  insertAnimalsNamesInLocation(animalLocationData);
+  if (includeNames) {
+    putAnimalNames(animalLocationData);
+    if (sex) {
+      filterResidentBySex(animalLocationData, sex);
+      console.log(sex);
+    }
+    if (sorted) {
+      sortAnimalsNames(animalLocationData);
+    }
+  }
+  return animalLocationData;
 }
 
 //  Desafio schedule
@@ -140,7 +229,6 @@ function increasePrices(percentage) {
   pricesOptions.forEach(priceOption =>
   (data.prices[priceOption] =
     (Math.round((data.prices[priceOption] * priceRateToChange) * 100)) / 100));
-  console.log(data.prices);
 }
 
 function getEmployeesNames() {
@@ -177,14 +265,11 @@ function employeeCoverage(idOrName) {
     const employee = {};
     const employeeFullName = employeesNames.find(employeName =>
       employeName.includes(idOrName)) || getEmployeeNameById(idOrName);
-    console.log(employeeFullName);
     employee[employeeFullName] = employeesVsAnimalsResposables[employeeFullName];
     return employee;
   }
   return idOrName ? getSpeficicEmployee() : employeesVsAnimalsResposables;
 }
-
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
