@@ -116,7 +116,7 @@ function oldestFromFirstSpecies(id) {
     .find(currAnimalId => currAnimalId.id === employees
     .find(currEmployeesId => currEmployeesId === id).responsibleFor[0]).residents
     .reduce((acumulAge, curAge) => {
-      if (acumulAge.age < curAge) return curAge;
+      if (acumulAge.age < curAge.age) return curAge;
       return acumulAge;
     }));
   return oldest;
