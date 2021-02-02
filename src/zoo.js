@@ -62,12 +62,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  const allAnimals = animals.reduce((previouAnimal, currentAnimal) => {
-  return previouAnimal[currentAnimal.name] = currentAnimal.residents.length;
-  }, {});
   if (!species) {
-    allAnimals(species);
-  }
+    return animals.reduce((previouAnimal, currentAnimal) => {
+    previouAnimal[currentAnimal.name] = currentAnimal.residents.length;
+    return previouAnimal;
+  }, {});
+ }
   let speciesQuantity;
   animals.forEach((currentSpecies) => {
     if (currentSpecies.name === species) {
