@@ -75,7 +75,7 @@ function animalCount(species) {
       speciesQuantity = (currentSpecies.residents.length);
     }
   });
-    return speciesQuantity;
+  return speciesQuantity;
 }
 
 function entryCalculator(entrants) {
