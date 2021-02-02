@@ -8,6 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
+const { prices } = require('./data');
 const data = require('./data');
 
 const { animals, employees } = data;
@@ -76,9 +77,15 @@ function animalCount(species) {
   });
   return speciesQuantity;
 }
-
+// Resolvido com o axilio de Cleber Texeira Turma-9
 function entryCalculator(entrants) {
   // seu código aqui
+  if (!entrants){
+    return 0;
+  };
+  const entrants = { Adult:adulstQuantity= 0, Child: childremQuantity= 0, Senior: seniorsQuantity= 0 };
+  const { Adult, Senior, Child } = data.prices;
+  return (Adult * adulstQuantity) + (Child * childremQuantity) + (Senior * seniorsQuantity);
 }
 
 function animalMap(options) {
@@ -91,10 +98,21 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const oldest = Object.values(animals.find(currAnimal => currAnimal.id === employees);
 }
 
+// Auxilio de Cleber Texeira Turma-9
 function increasePrices(percentage) {
   // seu código aqui
+  const withPercent = {};
+  Object.keys(data.prices).forEach((key) => {
+  const eachPrice = prices[key];
+  const percentageCalc = eachPrice + (eschPrice * (percentage / 100));
+  prices[key] = parseFloat(Math.fround(percentageCalc).toFixed(2));
+  withPercent[key] = prices[key];
+
+}); 
+
 }
 
 function employeeCoverage(idOrName) {
