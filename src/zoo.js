@@ -105,9 +105,9 @@ function schedule(dayName) {
     }
   });
   if (!dayName) {
-    return eachDay;
+    return valSchedule;
   }
-  return { [dayName]: eachDay[dayName] };
+  return { [dayName]: valSchedule[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
