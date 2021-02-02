@@ -75,24 +75,23 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const hours = data.hours;
   const allDays = Object.keys(hours);
-  const schedule = { };
+  const schedules = { };
 
   allDays.forEach((day) => {
     const { open, close } = hours[day];
 
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';
+      schedules[day] = 'CLOSED';
     } else {
-      schedule[day] = `Open from ${open}am until ${close - 12}pm`;
+      schedules[day] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
 
   if (dayName === undefined) {
-    return schedule;
-  };
-  return { [dayName] : schedule[dayName] };
+    return schedules;
+  }
+  return {[dayName] : schedules[dayName]};
 }
 
 
