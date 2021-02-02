@@ -76,15 +76,81 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-}
+  // Recebe um id de valor string
+  // Verifica se id no array em data.employees.managers
+  // Retorna um valor booleano
+  // PSEUDO CODIGO
+  // 1. Acessar o array employees e em cada elemento verificar em managers o id
+  // 2. Retornar booleano
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  // return data.employees.map((elementManagers) => elementManagers).find((elementeId) => elementeId === id);
+
+  return employees.some((elementeId, index) => elementeId.managers[index] === id);
 }
+// console.log('0e7b460e-acf4-4e17-bcb3-ee472265db83');
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // seu código aqui
+  // Cria um objeto que representa um funcionário
+  // Adiciona um elemento objeto no final do array
+  // PSEUDO CODIGO
+  // 1. Cria um novo objeto
+  // 2. Inserir as informaçõe de entrada
+  // 3. Adicionar o novo objeto no final do array employees
+
+  // const newContributor = new Object();
+
+  const newContributor = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  
+  // newContributor[id] = id;
+  // newContributor[firstName] = firstName;
+  // newContributor[lastName] = lastName;
+  // newContributor[managers] = managers;
+  // newContributor[responsibleFor] = responsibleFor;
+  
+  // return newContributor;
+
+  return employees.push(newContributor);
+}
+// console.log('39800c14-4b76-454a-858d-2f8d168146a7', 'Jane', 'Doe', ['546fe3d4-2d81-4bb4-83a7-92d5b7048d17', 'a67a36ee-3765-4c74-8e0f-13f881f6588a'], ['ee6139bf-b526-4653-9e1e-1ca128d0ad2e', '210fcd23-aa7b-4975-91b7-0230ebb27b99']);
 
 function animalCount(species) {
   // seu código aqui
+  // Sem parâmetros retorna um objeto animais e suas quantidades
+  // Entrada string species retorna a quantidade de animais number
+  // PSEUDO CODIGO
+  // 1. Criar um ojeto
+  // 2. Popular o objetos com entradas animais e quantidades
+  // 3. Retornar o objeto criado quando a função for chamada sem parâmetros
+  // 4. Buscar a espécie e contar quantos existem retornar o valor number referente
+
+  const quantitiesOfAnimals = {};
+
+  animals.forEach((element) => {
+    quantitiesOfAnimals[element.name] = element.residents.length;
+  });
+
+  if (!species) {
+    return quantitiesOfAnimals;
+  }
+
+  return quantitiesOfAnimals[species]
+
+  // const countingAnimals = animals.find((element) => {
+  //   if (element.name === species) {
+  //     return element.residents.length;
+  //   }
+  // });
+
+  // return countingAnimals;
 }
+// console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
