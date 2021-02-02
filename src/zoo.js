@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 const { animals } = data;
-// const { employees } = data;
+const { employees } = data;
 
 
 function animalsByIds(...ids) {
@@ -40,7 +40,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(({ managers }) => managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
