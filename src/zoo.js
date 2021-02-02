@@ -100,8 +100,7 @@ function entryCalculator(...entrants) {
   let valores = [];
   let valorTotal = 0;
 
-  if (entrants.length === 0) return 0;
-  if (entrants[0] === {}) return 0;
+  if (entrants.length === 0) return 0; if (entrants[0] === {}) return 0;
 
   entrants.forEach((item) => {
     quantAdulto = item.Adult;
@@ -109,16 +108,15 @@ function entryCalculator(...entrants) {
     quantFilho = item.Child;
   });
 
-  valores = Object.entries(data.prices);
-  valores.forEach((item) => {
+  valores = Object.entries(data.prices).forEach((item) => {
     if (item[0] === 'Adult') precoAdulto = item[1];
     if (item[0] === 'Senior') precoSenior = item[1];
     if (item[0] === 'Child') precoFilho = item[1];
   });
 
-  if (quantAdulto === undefined || precoAdulto === undefined) { quantAdulto = 0; precoAdulto = 0;}
-  if (quantSenior === undefined || precoSenior === undefined) { quantSenior = 0; precoSenior = 0;}
-  if (quantFilho === undefined || precoFilho === undefined) { quantFilho = 0; precoFilho = 0;}
+  if (quantAdulto === undefined || precoAdulto === undefined) { quantAdulto = 0; precoAdulto = 0; }
+  if (quantSenior === undefined || precoSenior === undefined) { quantSenior = 0; precoSenior = 0; }
+  if (quantFilho === undefined || precoFilho === undefined) { quantFilho = 0; precoFilho = 0; }
 
   valorTotal += (quantAdulto * precoAdulto);
   valorTotal += (quantFilho * precoFilho);
