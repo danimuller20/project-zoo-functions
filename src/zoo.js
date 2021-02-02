@@ -64,20 +64,20 @@ const convertHourFrom24to12 = hour => ((hour - 12) < 0 ? hour : hour - 12);
 
 function schedule(dayName) {
   const daysOfWeek = Object.keys(hours);
-  const schedule = {};
+  const resultSchedule = {};
 
   daysOfWeek.forEach((eachDay) => {
     const { open, close } = hours[eachDay];
 
     if (eachDay === 'Monday') {
-      schedule[eachDay] = 'CLOSED';
+      resultSchedule[eachDay] = 'CLOSED';
     } else {
-      schedule[eachDay] = `Open from ${open}am until ${convertHourFrom24to12(close)}pm`;
+      resultSchedule[eachDay] = `Open from ${open}am until ${convertHourFrom24to12(close)}pm`;
     }
   });
 
-  if (!dayName) return schedule;
-  return { [dayName]: schedule[dayName] };
+  if (!dayName) return resultSchedule;
+  return { [dayName]: resultSchedule[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
