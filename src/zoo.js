@@ -97,10 +97,9 @@ function entryCalculator(...entrants) {
   let precoAdulto = 0;
   let precoSenior = 0;
   let precoFilho = 0;
-  let valores = [];
   let valorTotal = 0;
 
-  if (entrants.length === 0) return 0; if (entrants[0] === {}) return 0;
+  if (entrants.length === 0 || entrants[0] === {}) return 0;
 
   entrants.forEach((item) => {
     quantAdulto = item.Adult;
@@ -108,7 +107,7 @@ function entryCalculator(...entrants) {
     quantFilho = item.Child;
   });
 
-  valores = Object.entries(data.prices).forEach((item) => {
+  Object.entries(data.prices).forEach((item) => {
     if (item[0] === 'Adult') precoAdulto = item[1];
     if (item[0] === 'Senior') precoSenior = item[1];
     if (item[0] === 'Child') precoFilho = item[1];
