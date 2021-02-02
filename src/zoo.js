@@ -58,17 +58,18 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
+  if (!entrants) {
+    return 0;
+  }
   let result = 0;
   Object.keys(prices).forEach((paidOut) => {
-    if (!entrants) {
-      return 0;
-    }
     if (entrants[paidOut]) {
       result += entrants[paidOut] * prices[paidOut];
     }
   });
   return result;
 }
+
 
 function animalMap(options) {
   // seu código aqui
