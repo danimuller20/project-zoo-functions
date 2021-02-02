@@ -104,9 +104,7 @@ function schedule(dayName) {
       valSchedule[day] = `Open from ${open}am until ${close % 12}pm`;
     }
   });
-  if (!dayName) {
-    return valSchedule;
-  }
+  if (!dayName) return valSchedule;
   return { [dayName]: valSchedule[dayName] };
 }
 
