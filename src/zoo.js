@@ -12,8 +12,6 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
-const { hours } = require('./data');
-const { prices } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -40,6 +38,7 @@ function employeeByName(employeeName) {
     if (element.firstName === employeeName || element.lastName === employeeName) {
       return element;
     }
+    return false;
   });
   return findName;
 }
