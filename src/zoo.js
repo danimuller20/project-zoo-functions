@@ -115,29 +115,19 @@ gerenciada pela pessoa colaboradora do parâmetro;
 
 Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário,
 e retorna um array com nome, sexo e idade do animal mais velho dessa espécie;
-
-PSEUDO CÓDIGO
-
-
-
-3° Retornar um array;
-4° No array ter nome, sexo e idade do animal mais velho da espécie;
 */
 function oldestFromFirstSpecies(id) {
   // 1° Encontrar o empregado passado no parâmetro;
-  const findEmployeeObj = employees.find((employee) => id === employee.id);
+  const findEmployeeObj = employees.find(employee => id === employee.id);
   // 2° Encontrar o animal gerenciado pelo funcionário;
   const animalId = findEmployeeObj.responsibleFor[0];
-  const findAnimalObj = animals.find((id) => id.id === animalId).residents;
+  const findAnimalObj = animals.find(id => id.id === animalId).residents;
   const findAnimalCopy = findAnimalObj.slice();
 
   const firstOldestAnimal = findAnimalCopy.sort((a, b) => b.age - a.age)[0];
-
+  // 3° Retornar um array;
+  // 4° No array ter nome, sexo e idade do animal mais velho da espécie;
   return Object.values(firstOldestAnimal);
-
-
-
-
 }
 
 function increasePrices(percentage) {
