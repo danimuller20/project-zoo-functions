@@ -46,16 +46,30 @@ function isManager(id) {
   return cargoManager;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    return animals.reduce((acc, obj) => (
+      { ...acc, [obj.name]: obj.residents.length }), {});
+  }
+  return animals.filter(obj => obj.name === species)[0].residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  return Object.keys(entrants).reduce((acc, cv) =>
+    acc + (entrants[cv] * data.prices[cv]), 0);
 }
 
 function animalMap(options) {
