@@ -14,8 +14,15 @@ const data = require('./data');
 const { animals, employees, hours } = data;
 
 function animalsByIds(...ids) {
-
+  if (!ids) return [];
+  const arrayWithAnimalsFound = [];
+  ids.forEach((id) => {
+    arrayWithAnimalsFound.push(animals.find((animal) => animal.id === id));
+  })
+  return arrayWithAnimalsFound;
 }
+
+console.log(animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
   return animals.some(species => ((animal === species.name) ?
