@@ -64,10 +64,10 @@ function animalCount(species) {
   // seu código aqui
   if (!species) {
     return animals.reduce((previouAnimal, currentAnimal) => {
-    previouAnimal[currentAnimal.name] = currentAnimal.residents.length;
-    return previouAnimal;
-  }, {});
- }
+      previouAnimal[currentAnimal.name] = currentAnimal.residents.length;
+      return previouAnimal;
+    }, {});
+  }
   let speciesQuantity;
   animals.forEach((currentSpecies) => {
     if (currentSpecies.name === species) {
