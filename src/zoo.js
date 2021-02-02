@@ -63,8 +63,6 @@ function animalCount(species) {
   return amount;
 }
 
-
-
 function entryCalculator(entrants) {
   if (!entrants || Object.entries(entrants).length === 0) {
     return 0;
@@ -120,7 +118,7 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
 
 }
-
+// source reduce https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
 module.exports = {
   entryCalculator,
   schedule,
