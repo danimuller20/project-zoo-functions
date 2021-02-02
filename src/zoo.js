@@ -22,8 +22,6 @@ function animalsByIds(...ids) {
   return arrayWithAnimalsFound;
 }
 
-console.log(animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46'));
-
 function animalsOlderThan(animal, age) {
   return animals.some(species => ((animal === species.name) ?
   (species.residents.every(resident => resident.age >= age)) : false));
@@ -56,7 +54,15 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-
+  const allAnimalsAndQuantities = animals.reduce((accumulator, currentValue) => {
+    accumulator[currentValue.name] = currentValue.residents.length;
+    return accumulator;
+  }, {});
+  if (!species) {
+    return allAnimalsAndQuantities;
+  } else {
+    return animals.find((animal) => animal.name === species).residents.length;
+  }
 }
 
 function entryCalculator(entrants) {
