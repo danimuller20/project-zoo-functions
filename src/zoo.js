@@ -360,6 +360,27 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  // Entrada é um numero que representa porcentagem
+  // Altera os valores do objeto prices em data.js de acordo o percentual de aumento
+  // Os valores finais devem ter 2 casas decimais
+  // PSEUDO CODIGO
+  // 1. Criar fator de aumento
+  // 2. Calcular os novos preços
+  // 3. Atribuir ao objeto price os novos valores
+
+  let increaseFactor = percentage/100 + 1;
+
+  // let newPriceAdult = parseFloat((data.prices.Adult * increaseFactor).toFixed(2));
+  // let newPriceSenior = parseFloat((data.prices.Senior * increaseFactor).toFixed(2));
+  // let newPriceChild = parseFloat((data.prices.Child * increaseFactor).toFixed(2));
+
+  let newPriceAdult = Math.round((data.prices.Adult * increaseFactor) * 100) / 100;
+  let newPriceSenior = Math.round((data.prices.Senior * increaseFactor) * 100) / 100;
+  let newPriceChild = Math.round((data.prices.Child * increaseFactor) * 100) / 100;
+
+  data.prices.Adult = newPriceAdult;
+  data.prices.Senior = newPriceSenior;
+  data.prices.Child = newPriceChild;
 }
 
 // Funções auxiliares da employeeCoverage
@@ -392,7 +413,6 @@ function getEmployeeByNameOrId(idOrName) {
 function employeeCoverage(idOrName) {
   // seu código aqui
 
-
   if (!idOrName) {
     return getAllEmployeesAndAnimals();
   }
@@ -400,7 +420,6 @@ function employeeCoverage(idOrName) {
   const animalList = getAnimalListFromEmployee(targetEmployee);
   const key = getEmployeeFullName(targetEmployee);
   return { [key]: animalList };
-
 
   // if (!idOrName) {
   //   return employees.reduce((accumulator, employee) => {
