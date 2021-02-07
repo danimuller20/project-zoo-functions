@@ -173,7 +173,7 @@ function entryCalculator(entrants) {
   let totalPayable = 0;
 
   if (entrants.Adult > 0) {
-    totalPayable +=  entrants.Adult * data.prices.Adult;
+    totalPayable += entrants.Adult * data.prices.Adult;
   }
   if (entrants.Child > 0) {
     totalPayable += entrants.Child * data.prices.Child;
