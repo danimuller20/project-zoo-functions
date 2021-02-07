@@ -154,7 +154,38 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  // Sem parâmetros retorna 0
+  // Objeto vazio {} como parâmetro retorna 0
+  // Recebe um objeto como parâmetro com as chaves Adult, Child e Senior com suas respectivas
+  // quantidades de pessoas
+  // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos.
+  // PSEUDO CODIGO
+  // 1. Verificar a entra vazia ou com objeto vazio
+  // 2. Ler objeto recebido coletar dados
+  // 3. Pegar os dados e acrescentar os preços que estão no
+  // objeto prices { 'Adult': 49.99, 'Senior': 24.99, 'Child': 20.99 }
+  // 4. Calcular o preço total com duas casas decimais e retornar
+
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+
+  let totalPayable = 0;
+
+  if (entrants.Adult > 0) {
+    totalPayable +=  entrants.Adult * data.prices.Adult;
+  }
+  if (entrants.Child > 0) {
+    totalPayable += entrants.Child * data.prices.Child;
+  }
+  if (entrants.Senior > 0) {
+    totalPayable += entrants.Senior * data.prices.Senior;
+  }
+
+  return totalPayable;
 }
+// let entrants = { 'Adult': 2, 'Child': 3, 'Senior': 1 };
+// console.log(entryCalculator({entrants}));
 
 // Funções auxiliares da animalMap
 // **************************************
