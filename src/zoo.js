@@ -368,15 +368,15 @@ function increasePrices(percentage) {
   // 2. Calcular os novos preços
   // 3. Atribuir ao objeto price os novos valores
 
-  let increaseFactor = percentage/100 + 1;
+  const increaseFactor = (percentage / 100) + 1;
 
   // let newPriceAdult = parseFloat((data.prices.Adult * increaseFactor).toFixed(2));
   // let newPriceSenior = parseFloat((data.prices.Senior * increaseFactor).toFixed(2));
   // let newPriceChild = parseFloat((data.prices.Child * increaseFactor).toFixed(2));
 
-  let newPriceAdult = Math.round((data.prices.Adult * increaseFactor) * 100) / 100;
-  let newPriceSenior = Math.round((data.prices.Senior * increaseFactor) * 100) / 100;
-  let newPriceChild = Math.round((data.prices.Child * increaseFactor) * 100) / 100;
+  const newPriceAdult = Math.round((data.prices.Adult * increaseFactor) * 100) / 100;
+  const newPriceSenior = Math.round((data.prices.Senior * increaseFactor) * 100) / 100;
+  const newPriceChild = Math.round((data.prices.Child * increaseFactor) * 100) / 100;
 
   data.prices.Adult = newPriceAdult;
   data.prices.Senior = newPriceSenior;
