@@ -102,7 +102,11 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-
+  const pricesOptions = Object.keys(data.prices);
+  const priceRateToChange = 1 + (percentage / 100);
+  pricesOptions.forEach(priceOption =>
+  (data.prices[priceOption] =
+    (Math.round((data.prices[priceOption] * priceRateToChange) * 100)) / 100));
 }
 // Plantão com Murilo e Bernardo
 function getAnimalListFromEmplyee(employee) {
