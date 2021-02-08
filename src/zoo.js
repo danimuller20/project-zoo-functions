@@ -33,8 +33,8 @@ function employeeByName(employeeName) {
   // if (employeeName === undefined) {
   //   return {};
   // }
-  return data.employees.find(nome => nome.firstName === employeeName ||
-    nome.lastName === employeeName);
+  if (!employeeName) { return {}; }
+  return employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
