@@ -1,17 +1,17 @@
 /*
 eslint no-unused-vars: [
-    "error",
-    {
-        "args": "none",
-        "vars": "local",
-        "varsIgnorePattern": "data"
-    }
+  "error",
+  {
+    "args": "none",
+    "vars": "local",
+    "varsIgnorePattern": "data"
+  }
 ]
 */
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 
 function animalsByIds(...ids) {
@@ -81,7 +81,6 @@ function animalCount(species) {
   return animals.find(animal => animal.name === species).residents.length;
 }
 
-
 function entryCalculator(entrants = {}) {
   const emptyObj = Object.keys(entrants).length;
   if (emptyObj === 0) return 0;
@@ -96,42 +95,71 @@ function entryCalculator(entrants = {}) {
   return precoTotal;
 }
 
-
 function animalMap(options) {
-  /* if (!options) {
-    const NE = animals.filter(animal => animal.location === 'NE')
-    return NE
-  }*/
 }
 
 function schedule(dayName) {
-  // seu código aqui
-}
+  const fullSchedule = {};
+  const oneSchedule = {};
+  const hoursArray = Object.entries(hours);
+    hoursArray.forEach((weekDay) => {
+      switch (weekDay[1].close) {
+        case 18:
+          weekDay[1].close = 6;
+          break;
+        case 20:
+          weekDay[1].close = 8;
+          break;
+        case 22:
+          weekDay[1].close = 10;
+          break;
+      }
+      if(dayName === weekDay[0]) {
+        oneSchedule[`${weekDay[0]}`] = `Open from ${weekDay[1].open}am until ${weekDay[1].close}pm`
+        if (weekDay[0] === 'Monday') {
+          oneSchedule[`${weekDay[0]}`] = `CLOSED`;
+        }
+        return oneSchedule
+      }
+      else {
+      fullSchedule[`${weekDay[0]}`] = `Open from ${weekDay[1].open}am until ${weekDay[1].close}pm`;
+      if (weekDay[0] === 'Monday') {
+        fullSchedule[`${weekDay[0]}`] = `CLOSED`;
+      }
+    }
+  });
+    if(!dayName) {
+      return fullSchedule}
+    else {
+      return oneSchedule
+    }
+  }
+  console.log(schedule('Tuesday'));
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+  function oldestFromFirstSpecies(id) {
+    // seu código aqui
+  }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+  function increasePrices(percentage) {
+    // seu código aqui
+  }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+  function employeeCoverage(idOrName) {
+    // seu código aqui
+  }
 
-module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
-  animalsByIds,
-  employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
-};
+  module.exports = {
+    entryCalculator,
+    schedule,
+    animalCount,
+    animalMap,
+    animalsByIds,
+    employeeByName,
+    employeeCoverage,
+    addEmployee,
+    isManager,
+    animalsOlderThan,
+    oldestFromFirstSpecies,
+    increasePrices,
+    createEmployee,
+  };
