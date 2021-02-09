@@ -92,65 +92,48 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce(reducer, 0);
 }
 
-const sarchAnimalPerLocation = (location) => {
+const filtersSpeciesOfAnimals = (location) => {
+  return animals.filter(animal => animal.location === location);
+};
+
+const sarchAnimalSpecies = (location) => {
   return animals.filter(animal => animal.location === location)
     .map(animal => animal.name);
 };
 
-const filterAnimalsByLocation = () => {
-  const locations = ['NE', 'NW', 'SE', 'SW'];
-  const animalPerLocation = {};
-  locations.forEach((location) => {
-    animalPerLocation[location] = sarchAnimalPerLocation(location);
-  });
-  return animalPerLocation;
-};
+const getAnimalsBySpecies = (animalsPerLocation) => {
+  const animalsObj = {};
 
-const getAnimalsPerSpecies = (residents, options) => {
-  const speciesNames = residents.map(species => species.name);
-  if (options.sorted === true) {
-    return speciesNames.sort();
-  }
-  return speciesNames;
-}
-
-const filterAnimalsByLocationWithName = (animalLocations, options) => {
-  const animalPerLocation = {};
-  
-  Object.keys(animalLocations).forEach((location) => {
-    animalPerLocation[location] = animalLocations[location].map((species) => {
-      const animalPerSpecie = {};
-      animals.forEach((animal) => {
-        if(animal.name === species) {
-          animalPerSpecie[species] = getAnimalsPerSpecies(animal.residents, options);
-        }
-      });
-      return animalPerSpecie;
+  Object.keys(animalsPerLocation).forEach((location) => {
+    const speciesNames = animalsPerLocation[location].map(species => {
+      const animalsNames = species.residents.map((animal) => animal.name);
+      return { [species.name]: animalsNames };
+      // console.log(species);
     });
+    animalsObj[location] = speciesNames;
+    // console.log('location', animalsPerLocation[location]);
   });
-  console.log(animalPerLocation);
-  return animalPerLocation
+  // console.log('animalsObj', animalsObj);
+  return animalsObj;
 };
 
 function animalMap(options) {
-  const animalPerLocation = filterAnimalsByLocation();
-  //console.log(animalPerLocation);
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  const animalPerLocation = {};
+  // const speciesOfAnimalsByLocation = {};
   if (!options) {
+    locations.forEach((location) => {
+      animalPerLocation[location] = sarchAnimalSpecies(location);
+    });
     return animalPerLocation;
   }
   if (options.includeNames === true) {
-    const animalsByLocationWithName =filterAnimalsByLocationWithName(animalPerLocation, options);
-    /* if (options.sorted) {
-      sortsAnimalNames(animalsByLocationWithName);
-    } */
-    return animalsByLocationWithName;
-
+    locations.forEach((location) => {
+      animalPerLocation[location] = filtersSpeciesOfAnimals(location);
+    });
+    return getAnimalsBySpecies(animalPerLocation);
+    // console.log(filteredAnimals);
   }
-
-  //console.log(animalLocations);
-  /* const searchResultByLocation = filterAnimalsByLocation();
-  console.log(searchResultByLocation);
-  const animalLocations = {}; */
 }
 
 const createBusinessHoursMessage = (day, operation) => {
