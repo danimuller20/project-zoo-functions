@@ -103,9 +103,8 @@ const sarchAnimalSpecies = (location) => {
   return animalsSpecies;
 };
 
-const filterAnimalsBySex = (array, sex) => {
-  return array.filter(animal => animal.sex === sex).map(item => item.name);
-};
+const filterAnimalsBySex = (array, sex) => array.filter(animal => animal.sex === sex)
+                                                .map(item => item.name);
 
 const getAnimalsBySpecies = (animalsPerLocation, { sex, sorted }) => {
   const animalsObj = {};
