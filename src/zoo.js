@@ -101,26 +101,34 @@ const sarchAnimalSpecies = (location) => {
     .map(animal => animal.name);
 };
 
-const getAnimalsBySpecies = (animalsPerLocation) => {
+const getAnimalsBySpecies = (animalsPerLocation, { sex, sorted }) => {
   const animalsObj = {};
-
   Object.keys(animalsPerLocation).forEach((location) => {
     const speciesNames = animalsPerLocation[location].map(species => {
-      const animalsNames = species.residents.map((animal) => animal.name);
+      let animalsNames;
+      if (sex === 'female') {
+        animalsNames = species.residents.filter((animal) => animal.sex === 'female')
+                                        .map(item => item.name);
+      } else if (sex === 'male'){
+        animalsNames = species.residents.filter((animal) => animal.sex === 'male')
+                                        .map(item => item.name);
+      } else {
+        animalsNames = species.residents.filter((animal) => animal.name)
+                                        .map(item => item.name);
+      }
+      if (sorted) {
+        return { [species.name]: animalsNames.sort() };
+      }
       return { [species.name]: animalsNames };
-      // console.log(species);
     });
     animalsObj[location] = speciesNames;
-    // console.log('location', animalsPerLocation[location]);
   });
-  // console.log('animalsObj', animalsObj);
   return animalsObj;
 };
 
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   const animalPerLocation = {};
-  // const speciesOfAnimalsByLocation = {};
   if (!options) {
     locations.forEach((location) => {
       animalPerLocation[location] = sarchAnimalSpecies(location);
@@ -131,9 +139,12 @@ function animalMap(options) {
     locations.forEach((location) => {
       animalPerLocation[location] = filtersSpeciesOfAnimals(location);
     });
-    return getAnimalsBySpecies(animalPerLocation);
-    // console.log(filteredAnimals);
+    return getAnimalsBySpecies(animalPerLocation, options);
   }
+  locations.forEach((location) => {
+    animalPerLocation[location] = sarchAnimalSpecies(location);
+  });
+  return animalPerLocation;
 }
 
 const createBusinessHoursMessage = (day, operation) => {
