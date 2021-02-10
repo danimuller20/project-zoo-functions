@@ -93,27 +93,29 @@ function entryCalculator(entrants) {
 }
 
 const filtersSpeciesOfAnimals = (location) => {
-  return animals.filter(animal => animal.location === location);
+  const speciesOfAnimals = animals.filter(animal => animal.location === location);
+  return speciesOfAnimals;
 };
 
 const sarchAnimalSpecies = (location) => {
-  return animals.filter(animal => animal.location === location)
+  const animalsSpecies = animals.filter(animal => animal.location === location)
     .map(animal => animal.name);
+  return animalsSpecies;
 };
 
 const getAnimalsBySpecies = (animalsPerLocation, { sex, sorted }) => {
   const animalsObj = {};
   Object.keys(animalsPerLocation).forEach((location) => {
-    const speciesNames = animalsPerLocation[location].map(species => {
+    const speciesNames = animalsPerLocation[location].map((species) => {
       let animalsNames;
       if (sex === 'female') {
-        animalsNames = species.residents.filter((animal) => animal.sex === 'female')
+        animalsNames = species.residents.filter(animal => animal.sex === 'female')
                                         .map(item => item.name);
-      } else if (sex === 'male'){
-        animalsNames = species.residents.filter((animal) => animal.sex === 'male')
+      } else if (sex === 'male') {
+        animalsNames = species.residents.filter(animal => animal.sex === 'male')
                                         .map(item => item.name);
       } else {
-        animalsNames = species.residents.filter((animal) => animal.name)
+        animalsNames = species.residents.filter(animal => animal.name)
                                         .map(item => item.name);
       }
       if (sorted) {
