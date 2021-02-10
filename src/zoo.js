@@ -103,17 +103,17 @@ const sarchAnimalSpecies = (location) => {
   return animalsSpecies;
 };
 
+const filterAnimalsBySex = (array, sex) => {
+  return array.filter(animal => animal.sex === sex).map(item => item.name);
+};
+
 const getAnimalsBySpecies = (animalsPerLocation, { sex, sorted }) => {
   const animalsObj = {};
   Object.keys(animalsPerLocation).forEach((location) => {
     const speciesNames = animalsPerLocation[location].map((species) => {
       let animalsNames;
-      if (sex === 'female') {
-        animalsNames = species.residents.filter(animal => animal.sex === 'female')
-                                        .map(item => item.name);
-      } else if (sex === 'male') {
-        animalsNames = species.residents.filter(animal => animal.sex === 'male')
-                                        .map(item => item.name);
+      if (sex) {
+        animalsNames = filterAnimalsBySex(species.residents, sex);
       } else {
         animalsNames = species.residents.filter(animal => animal.name)
                                         .map(item => item.name);
