@@ -9,10 +9,16 @@ eslint no-unused-vars: [
 ]
 */
 
+const {animals} = require ('./data');
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  const emptyArray = [];
+  ids.forEach(newID => emptyArray.push(animals.find(parametro => parametro.id === newID)));
+  return emptyArray;
+  //Caso receba nenhum parâmetro, necessário retornar um array vazio
+  //o receber como parâmetro um único id, retorna um array com a espécie referente à esse id
+  //Ao receber mais de um id, retorna um array com as espécies referentes aos ids
 }
 
 function animalsOlderThan(animal, age) {
