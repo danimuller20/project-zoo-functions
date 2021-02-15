@@ -9,33 +9,33 @@ eslint no-unused-vars: [
 ]
 */
 
-const {animals, employees} = require ('./data');
+const { animals, employees } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
   const emptyArray = [];
   ids.forEach(newID => emptyArray.push(animals.find(parametro => parametro.id === newID)));
   return emptyArray;
-  //Caso receba nenhum parâmetro, necessário retornar um array vazio
-  //o receber como parâmetro um único id, retorna um array com a espécie referente à esse id
-  //Ao receber mais de um id, retorna um array com as espécies referentes aos ids
 }
 
 function animalsOlderThan(animal, age) {
-  const especies = animals.find(especie => especie.name === animal).residents.every(resident => resident.age >= age);
-  return especies
+  const especies = animals.find(especie =>
+    especie.name === animal).residents.every(resident
+    => resident.age >= age);
+  return especies;
 }
-  //every retorna boolean 
+
 function employeeByName(employeeName = false) {
   let name = {};
   if (!employeeName) return name;
-  name = employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
-  return name
+  name = employees.find(employee => 
+    employee.firstName === employeeName || employee.lastName === employeeName);
+  return name;
 }
 
 function createEmployee(personalInfo, associatedWith) {
   return {
-    ...personalInfo, 
+    ...personalInfo,
     ...associatedWith,
   };
 }
