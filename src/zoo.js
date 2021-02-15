@@ -21,14 +21,14 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   const especies = animals.find(especie =>
     especie.name === animal).residents.every(resident
-    => resident.age >= age);
+  => resident.age >= age);
   return especies;
 }
 
 function employeeByName(employeeName = false) {
   let name = {};
   if (!employeeName) return name;
-  name = employees.find(employee => 
+  name = employees.find(employee =>
     employee.firstName === employeeName || employee.lastName === employeeName);
   return name;
 }
