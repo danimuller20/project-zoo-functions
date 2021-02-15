@@ -23,8 +23,9 @@ const animalsByIds = (...ids) => ids.map(id => animals.find(animal => id === ani
   // .map trata cada elemento do array ids[]
   // .find compara, e devolve o o objeto cuja propriedade id (animal.id)
   // seja igual ao parametro fornecido (id)
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(specie, age) {
+  return animals.find(animal => animal.name === specie).residents
+    .every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
