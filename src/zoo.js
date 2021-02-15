@@ -82,55 +82,56 @@ function entryCalculator(entrants) {
   return sum;
 }
 
-const withOutParameters = (locations, animalLocation) => {
-  locations.forEach(function (location) {
-    const animalTemp = animals.filter(animal => animal.location === location);
-    animalTemp.forEach(({ name }) => animalLocation[location].push(name));
-    // animalTemp.forEach(animal => animalLocation[location].push(animal.name));
+const listRegions = () => {
+  const locations = [];
+  animals.forEach((animal) => {
+    if (!locations.includes(animal.location)) locations.push(animal.location);
   });
+  return locations;
 };
 
-function includeNamesTrue(locations, animalLocation, options) {
-  locations.forEach(function (location) {
-    const animalTemp = animals.filter(animal => (animal.location === location));
-    animalTemp.forEach(function (animal) {
-      const animalArrayTemp = {};
-      const animalsResidentTemp = [];
-      animal.residents.forEach(function (resident) {
-        if ((options.sex) && (resident.sex === options.sex)) {
-          animalsResidentTemp.push(resident.name);
-        } else if (!options.sex) {
-          animalsResidentTemp.push(resident.name);
-        }
-      });
-      if (options.sorted) {
-        animalArrayTemp[animal.name] = animalsResidentTemp.sort();
-      } else {
-        animalArrayTemp[animal.name] = animalsResidentTemp;
-      }
-      animalLocation[location].push(animalArrayTemp);
-    });
+const locations = listRegions();
+
+const withOutParameters = (regions) => {
+  const withOutParametersObject = {};
+  regions.forEach((location) => {
+    const animalsPerLocation = animals
+      .filter(animal => location === animal.location)
+      .map(filteredAnimal => filteredAnimal.name);
+    withOutParametersObject[location] = animalsPerLocation;
   });
-}
+  return withOutParametersObject;
+};
+
+const returnsAnimalsNamesByLocation = (regions, options) => {
+  const withOutParametersObject = {};
+
+  regions.forEach((location) => {
+    const animalsPerLocation = animals
+      .filter(animal => location === animal.location)
+      .map((filteredAnimal) => {
+        const key = filteredAnimal.name;
+        let value = filteredAnimal.residents.map(animal => animal.name);
+        if (options.sex) {
+          value = filteredAnimal.residents
+            .filter(animal => animal.sex === options.sex)
+            .map(animal => animal.name);
+        }
+        if (options.sorted) {
+          value.sort();
+        }
+        return { [key]: value };
+      });
+    withOutParametersObject[location] = animalsPerLocation;
+  });
+  return withOutParametersObject;
+};
 
 function animalMap(options) {
-  // seu código aqui
-  const locations = [];
-  const animalLocation = {};
-  animals.forEach(function (animal) {
-    if (!locations.includes(animal.location)) {
-      locations.push(animal.location);
-      animalLocation[animal.location] = [];
-    }
-  });
-
   if (!options || !options.includeNames) {
-    withOutParameters(locations, animalLocation);
+    return withOutParameters(locations);
   }
-  if (options && options.includeNames) {
-    includeNamesTrue(locations, animalLocation, options);
-  }
-  return animalLocation;
+  return returnsAnimalsNamesByLocation(locations, options);
 }
 
 function schedule(dayName) {
