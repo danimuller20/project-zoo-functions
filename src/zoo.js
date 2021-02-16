@@ -110,7 +110,7 @@ function employeeCoverage(idOrName) {
   const result = employees.reduce((acc, employee) => {
     acc[fullName(employee)] = employee.responsibleFor
       .map(animalsIds => animalsByIds(animalsIds)[0])
-      .map(({name}) => name );
+      .map(({ name }) => name);
     return acc;
   }, {});
   if (idOrName !== undefined) {
