@@ -40,9 +40,14 @@ function employeeByName(employeeName) {
 //console.log(employeeByName('Nigel'))
 
 function createEmployee(personalInfo, associatedWith) {
-  const employeedId = ({ ...personalInfo, ...associatedWith });
-  return employeedId;
+  const newEmployee = ({ ...personalInfo, ...associatedWith});
+  return newEmployee;
+  // Spread sendo aplicado para "espalhar" as informações dadas por parâmtro
 }
+// console.log(createEmployee((['Kamila'])))
+
+
+
 
 function isManager(id) {
   return employees.some(employee => employee.managers
