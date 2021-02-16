@@ -90,12 +90,15 @@ function oldestFromFirstSpecies(id) {
   const employee = employeeID(id);
   const [specie] = animalsByIds(employee.responsibleFor[0]);
   const oldest = specie.residents.reduce((acc, cur) =>
-    acc.age > cur.age ? acc : cur)
-    return Object.values(oldest)  
+    acc.age > cur.age ? acc : cur);
+  return Object.values(oldest);
 }
 
 function increasePrices(percentage) {
-
+  Object.entries(prices).forEach(([category, price]) => {
+    const newPrice = price * (1 + percentage / 100);
+    prices[category] = Math.round(newPrice * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
