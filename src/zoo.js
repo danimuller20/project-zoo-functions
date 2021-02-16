@@ -46,13 +46,17 @@ function createEmployee(personalInfo, associatedWith) {
 }
 // console.log(createEmployee((['Kamila'])))
 
-
-
-
 function isManager(id) {
-  return employees.some(employee => employee.managers
-  .some(managerId => managerId === id));
+  return employees.some(employeeId => employeeId.managers
+    .some(idManagers => idManagers === id));
+    // Recupera o id do gerente, depois compara com o que foi passado por
+    // parâmetro.
 }
+// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
+
+
+
+
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
