@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
@@ -64,7 +64,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
   return Object.keys(entrants)
     .reduce((acc, cur) => {
-    return acc + prices[cur] * entrants[cur];
+      return acc + prices[cur] * entrants[cur]
     }, 0);
 }
 
