@@ -68,7 +68,7 @@ function entryCalculator(entrants) {
   //     }, 0);
 }
 
-function animalMap(options) {
+function animalMap(options = {}) {
 
 }
 
@@ -87,18 +87,19 @@ function employeeID(id) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const employee = employeeID(id);
-  const [specie] = animalsByIds(employee.responsibleFor[0]);
-  const oldest = specie.residents.reduce((acc, cur) =>
-    acc.age > cur.age ? acc : cur);
-  return Object.values(oldest);
+  return Object.values(animals.find(specie => specie.id === employees
+    .filter(numberId => numberId.id === id)[0].responsibleFor[0]).residents
+    .reduce((accumulater, currentAge) => (
+      accumulater.age > currentAge.age ? accumulater : currentAge
+    )));
 }
 
 function increasePrices(percentage) {
-  Object.entries(prices).forEach(([category, price]) => {
-    const newPrice = price * (1 + percentage / 100);
-    prices[category] = Math.round(newPrice * 100) / 100;
+  Object.keys(prices).forEach((ageRange) => {
+    prices[ageRange] =
+      Math.round((prices[ageRange] * 100) * ((percentage / 100) + 1)) / 100;
   });
+  return prices;
 }
 
 function fullName({ firstName, lastName }) {
@@ -109,7 +110,7 @@ function employeeCoverage(idOrName) {
   const result = employees.reduce((acc, employee) => {
     acc[fullName(employee)] = employee.responsibleFor
       .map(animalsIds => animalsByIds(animalsIds)[0])
-      .map(({ name }) => name );
+      .map(({name}) => name );
     return acc;
   }, {});
   if (idOrName !== undefined) {
