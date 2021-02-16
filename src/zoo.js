@@ -8,24 +8,23 @@ eslint no-unused-vars: [
   }
 ]
 */
-const { animals } = require('./data');
-const { employees } = require('./data');
-const { prices } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
-function animalsByIds(...ids) {
+// Projeto refeito após revisão realizada pelo Márcio Daniel e Paulo Simões da
+// T-8 em 15/02.
+function animalsByIds(ids) {
   // verifica se o array está vazio
-  if (!ids) {
-    return [];
+  if(!ids) {
+    return []
   }
-  return animals.filter(animal => ids.includes(animal.id));
+  return animals.filter(animal => animal.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // find: busca por animal / every: analisa a idade e compara se for maior dar falso.
-  return animals
-    .find(buscAnimal => buscAnimal.name === animal)
-    .residents.every(idade => idade.age >= age);
+  // find: busca por animal / every: analisa a idade e compara se for maior dar
+  // falso.
+
 }
 
 function employeeByName(employeeName) {
