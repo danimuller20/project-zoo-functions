@@ -24,17 +24,20 @@ function animalsByIds(ids) {
 function animalsOlderThan(animal, age) {
   // find: busca por animal / every: analisa a idade e compara se for maior dar
   // falso.
+  return animals.find(SearchAnimal => SearchAnimal.name === animal)
+  .residents.every(AgeAnimal => AgeAnimal.age >= age);
 
 }
 
 function employeeByName(employeeName) {
-  if (!employeeName) {
-    return {};
+  if(!employeeName) {
+    return {}
   }
-  return employees
-  .find(names => names.firstName === employeeName
-  || names.lastName === employeeName);
+  return employees.find(employeesId => (employeesId.firstName === employeeName)
+  || (employeesId.lastName === employeeName));
 }
+
+//console.log(employeeByName('Nigel'))
 
 function createEmployee(personalInfo, associatedWith) {
   const employeedId = ({ ...personalInfo, ...associatedWith });
