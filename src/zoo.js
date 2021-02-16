@@ -54,10 +54,6 @@ function isManager(id) {
 }
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
 
-
-
-
-
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
@@ -82,55 +78,36 @@ function entryCalculator(entrants) {
     accPrices + (prices[ticketPersonKey] * pricesVal)
   ), 0);
 }
-// exercicios abaixos feitos assistindo os plantões do Oliva
-function animalMap(options) {
-//   const locations = retrieveAvailableLocations();
 
-//   const {includeNames = false, sex, sorted = false } = options;
-
-//   if (includeNames) {
-//     return retrieveAnimalsPerLocationWithName(locations);
-//   }
-
-//   return retrieveAnimalPerLocation(locations)
-
-// }
-
-// function retrieveAnimalsPerLocationWithName(locations, sorted, sex) {
-//   const animalsPerLocation = {};
-
-//   locations.forEach(location => {
-//     const filteredAnimals = animals
-//     .filter(animal => animal.location === location)
-//     .map(animal => {
-//       const nameKey = animal.name;
-//       const nameValue = animal.residents
-//       .map( resident => resident.name);
-//       if (sorted) {
-//         nameValue.sort()
-//       }
-//       return { [nameKey]: nameValue }
-//     });
-//     animalsPerLocation[location] = filteredAnimals;
-//   });
-//   return animalsPerLocation;
-// }
-
-// function retrieveAnimalPerLocation(locations) {
-//   const animalsPerLocation = {};
-
-//   locations.forEach(location => {
-//     const filteredAnimals = animals
-//     .filter(animal => animal.location === location)
-//     .map(animal => animal.name);
-//     animalsPerLocation[location] = filteredAnimals;
-//   });
-//   return animalsPerLocation;
-// }
-// function retrieveAvailableLocations() {
-//   return ['NE', 'NW', 'SE', 'SW'];
+function getSpecieByName(specieName) {
+  return animals.find(specie => specie.name === specieName);
 }
 
+function getSpecieResidentsName(specieName, sorted, sex) {
+  let residents = getSpecieByName(specieName).residents;
+  if (sex) residents = residents.filter(resident => resident.sex === sex);
+  const names = residents.map(resident => resident.name);
+  if (sorted) names.sort();
+  return { [specieName]: names };
+}
+
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex } = options;
+  const results = animals.reduce((acc, { name, location }) => {
+    if (!acc[location]) acc[location] = [];
+    acc[location].push(name);
+    return acc;
+  }, {});
+  if (includeNames) {
+    return Object.entries(results).reduce((acc, [key, animalNames]) => {
+      acc[key] = animalNames.map((animalName) => getSpecieResidentsName(animalName, sorted, sex));
+      return acc;
+    }, {});
+  }
+  return results;
+}
+
+// Realizado através do plantão com o Oliva
 function schedule(dayName) {
   const hours = data.hours;
   const allDays = Object.keys(hours);
@@ -169,10 +146,13 @@ function oldestFromFirstSpecies(id) {
 
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.entries(prices).forEach(([category, price]) => {
+    const newPrice = price * (1 + percentage / 100);
+    prices[category] = Math.round(newPrice * 100) / 100;
+  })
 }
 // Questões resolvidas no plantão com Murilo e Bernardo
-function getAnimalListFromEmplyee(employee) {
+function getAnimalListFromEmployee(employee) {
   return employee.responsibleFor.map(
     animalId => animals.find(animal => animalId === animal.id).name);
   // ['id1', 'id2'] => ['lion', 'tinger']
@@ -183,7 +163,7 @@ function getEmployeeFullName(employee) {
 
 function getAllEmployeesAndAnimals() {
   return employees.reduce((accumulator, employee) => {
-    const animalList = getAnimalListFromEmplyee(employee);
+    const animalList = getAnimalListFromEmployee(employee);
     accumulator[getEmployeeFullName(employee)] = animalList;
     return accumulator;
   }, {});
