@@ -144,12 +144,11 @@ function increasePrices(percentage) {
 }
 
 function whatIf(idOrName, text) {
-  const selectedEmployee;
   const condition = employee =>
     employee.id === idOrName ||
     employee.firstName === idOrName ||
     employee.lastName === idOrName;
-  selectedEmployee = employees.filter(condition);
+  const selectedEmployee = employees.filter(condition);
   selectedEmployee.forEach((emp1) => {
     const responsible = emp1.responsibleFor.map(
       (id) => animals.find((animal) => animal.id === id).name
