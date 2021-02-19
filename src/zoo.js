@@ -79,37 +79,37 @@ function animalMap(options) {
   // }
 }
 
-function getAnimalsbyLocationWithNames(locations, sorted, sex) {
-  const animalsByLocation = {};
-  locations.forEach((location) => {
-    const filteredAnimals = animals
-      .filter(animal => animal.location === location)
-      .map((animal) => {
-        const nameKey = animal.name;
-        const nameValue = animal.residents
-          .filter(resident => resident.sex === sex)
-          .map(resident => resident.name);
-        if (sorted) nameValue.sort();
-        return { [nameKey]: nameValue };
-      });
-    animalsByLocation[location] = filteredAnimals;
-  });
-  return animalsByLocation;
-}
+// function getAnimalsbyLocationWithNames(locations, sorted, sex) {
+//   const animalsByLocation = {};
+//   locations.forEach((location) => {
+//     const filteredAnimals = animals
+//       .filter(animal => animal.location === location)
+//       .map((animal) => {
+//         const nameKey = animal.name;
+//         const nameValue = animal.residents
+//           .filter(resident => resident.sex === sex)
+//           .map(resident => resident.name);
+//         if (sorted) nameValue.sort();
+//         return { [nameKey]: nameValue };
+//       });
+//     animalsByLocation[location] = filteredAnimals;
+//   });
+//   return animalsByLocation;
+// }
 
-function getAnimalByLocation(locations) {
-  const animalsByLocation = {};
-  locations.forEach((location) => {
-    const filteredAnimalsObj = animals.filter(animal => animal.location === location);
-    const filteredAnimalsString = filteredAnimalsObj.map(animal => animal.name);
-    animalsByLocation[location] = filteredAnimalsString;
-  });
-  return animalsByLocation;
-}
+// function getAnimalByLocation(locations) {
+//   const animalsByLocation = {};
+//   locations.forEach((location) => {
+//     const filteredAnimalsObj = animals.filter(animal => animal.location === location);
+//     const filteredAnimalsString = filteredAnimalsObj.map(animal => animal.name);
+//     animalsByLocation[location] = filteredAnimalsString;
+//   });
+//   return animalsByLocation;
+// }
 
-function getLocations() {
-  return ['NE', 'NW', 'SE', 'SW'];
-}
+// function getLocations() {
+//   return ['NE', 'NW', 'SE', 'SW'];
+// }
 
 function schedule(dayName) {
   const dayObj = {};
@@ -143,6 +143,13 @@ function increasePrices(percentage) {
   });
 }
 
+function findRespAnimals(emp) {
+  const responsible = emp.responsibleFor.map(
+    id => animals.find(animal => animal.id === id).name,
+  );
+  return responsible;
+}
+
 function whatIf(idOrName, text) {
   const condition = employee =>
     employee.id === idOrName ||
@@ -150,19 +157,15 @@ function whatIf(idOrName, text) {
     employee.lastName === idOrName;
   const selectedEmployee = employees.filter(condition);
   selectedEmployee.forEach((emp1) => {
-    const responsible = emp1.responsibleFor.map(
-      (id) => animals.find((animal) => animal.id === id).name
-    );
-    text = { [`${emp1.firstName} ${emp1.lastName}`] : responsible };
+    const responsible1 = findRespAnimals(emp1);
+    text = { [`${emp1.firstName} ${emp1.lastName}`]: responsible1 };
   });
   return text;
 }
 
 function whatElse(text) {
   employees.forEach((emp2) => {
-    const responsible2 = emp2.responsibleFor.map(
-      (id) => animals.find((animal) => animal.id === id).name
-    );
+    const responsible2 = findRespAnimals(emp2);
     text[`${emp2.firstName} ${emp2.lastName}`] = responsible2;
   });
 }
