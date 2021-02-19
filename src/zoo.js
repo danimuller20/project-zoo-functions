@@ -71,12 +71,12 @@ function entryCalculator(entrants) {
 
 
 function animalMap(options) {
-  const locations = getLocations();
-  if (!options) {return getAnimalByLocation(locations)}
-  const { includeNames = false, sex, sorted = false } = options;
-  if (includeNames) {
-    return getAnimalsbyLocationWithNames(locations, sorted, sex);
-  }
+  // const locations = getLocations();
+  // if (!options) {return getAnimalByLocation(locations)}
+  // const { includeNames = false, sex, sorted = false } = options;
+  // if (includeNames) {
+  //   return getAnimalsbyLocationWithNames(locations, sorted, sex);
+  // }
 }
 
 function getAnimalsbyLocationWithNames(locations, sorted, sex) {
@@ -89,11 +89,11 @@ function getAnimalsbyLocationWithNames(locations, sorted, sex) {
         const nameValue = animal.residents
           .filter(resident => resident.sex === sex)
           .map(resident => resident.name);
-        if (sorted) {nameValue.sort()};
+        if (sorted) nameValue.sort();
         return { [nameKey]: nameValue };
-    });
+      });
     animalsByLocation[location] = filteredAnimals;
-  })
+  });
   return animalsByLocation;
 }
 
@@ -103,7 +103,7 @@ function getAnimalByLocation(locations) {
     const filteredAnimalsObj = animals.filter(animal => animal.location === location);
     const filteredAnimalsString = filteredAnimalsObj.map(animal => animal.name);
     animalsByLocation[location] = filteredAnimalsString;
-  })
+  });
   return animalsByLocation;
 }
 
@@ -144,33 +144,38 @@ function increasePrices(percentage) {
 }
 
 function whatIf(idOrName, text) {
-  let selectedEmployee;
-  condition = (employee) => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName
-    selectedEmployee = employees.filter(condition);
-      selectedEmployee.forEach(emp1 => {
-        const responsible = emp1.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
-        text[`${emp1.firstName} ${emp1.lastName}`] = responsible;
-      });
-}
-
-function whatElse(text) {
-  employees.forEach(emp2 => {
-    const responsible2 = emp2.responsibleFor.map(id => animals.find(animal => animal.id === id).name);
-    text[`${emp2.firstName} ${emp2.lastName}`] = responsible2;
+  const selectedEmployee;
+  const condition = employee =>
+    employee.id === idOrName ||
+    employee.firstName === idOrName ||
+    employee.lastName === idOrName;
+  selectedEmployee = employees.filter(condition);
+  selectedEmployee.forEach((emp1) => {
+    const responsible = emp1.responsibleFor.map(
+      (id) => animals.find((animal) => animal.id === id).name
+    );
+    text = { [`${emp1.firstName} ${emp1.lastName}`] : responsible };
   });
   return text;
 }
 
+function whatElse(text) {
+  employees.forEach((emp2) => {
+    const responsible2 = emp2.responsibleFor.map(
+      (id) => animals.find((animal) => animal.id === id).name
+    );
+    text[`${emp2.firstName} ${emp2.lastName}`] = responsible2;
+  });
+}
+
 function employeeCoverage(idOrName) {
   let text = {};
-  const obj = {};
   if (idOrName) {
-      whatIf(idOrName, text);
+    text = whatIf(idOrName, text);
   } else {
-      whatElse(text);
+    whatElse(text);
   }
-  Object.assign(obj, text);
-  return obj;
+  return text;
 }
 
 module.exports = {
