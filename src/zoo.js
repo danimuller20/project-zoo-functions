@@ -14,7 +14,9 @@ const data = require('./data');
 const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
-  if (!ids) [];
+  if (!ids) {
+    return []
+  };
   const idAnimal = ids.map(id => animals.find(animal => id === animal.id));
   return idAnimal;
   // return animals.filter(animal => ids.includes(animal.id))
@@ -114,48 +116,20 @@ function animalMap(options = {}) {
   }, {});
   if (includeNames) {
     return Object.entries(results).reduce((acc, [key, animalNames]) => {
-      acc[key] = animalNames.map((animalName) => getSpecieResidentsName(animalName, sorted, sex));
+      acc[key] = animalNames.map(animalName => getSpecieResidentsName(animalName, sorted, sex));
       return acc;
     }, {});
   }
   return results;
 }
 function schedule(dayName) {
-  const fullSchedule = {};
-  const oneSchedule = {};
-  const hoursArray = Object.entries(hours);
-  hoursArray.forEach((weekDay) => {
-    switch (weekDay[1].close) {
-      case 18:
-        weekDay[1].close = 6;
-        break;
-      case 20:
-        weekDay[1].close = 8;
-        break;
-      case 22:
-        weekDay[1].close = 10;
-        break;
-    }
-    if (dayName === weekDay[0]) {
-      oneSchedule[`${weekDay[0]}`] = `Open from ${weekDay[1].open}am until ${weekDay[1].close}pm`
-      if (weekDay[0] === 'Monday') {
-        oneSchedule[`${weekDay[0]}`] = `CLOSED`;
-      }
-      return oneSchedule
-    }
-    else {
-      fullSchedule[`${weekDay[0]}`] = `Open from ${weekDay[1].open}am until ${weekDay[1].close}pm`;
-      if (weekDay[0] === 'Monday') {
-        fullSchedule[`${weekDay[0]}`] = `CLOSED`;
-      }
-    }
-  });
-  if (!dayName) {
-    return fullSchedule
-  }
-  else {
-    return oneSchedule
-  }
+  const result = Object.entries(hours).reduce((acc, [key, val]) => {
+    const { open, close } = val;
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close - 12}pm` : 'CLOSED';
+    return acc;
+  }, {});
+  if (dayName !== undefined) return { [dayName]: result[dayName] };
+  return result;
 }
 function employeeById(id) {
   return employees.find(employee => employee.id === id);
