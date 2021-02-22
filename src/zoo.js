@@ -15,8 +15,8 @@ const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   if (!ids) {
-    return []
-  };
+    return [];
+  }
   const idAnimal = ids.map(id => animals.find(animal => id === animal.id));
   return idAnimal;
   // return animals.filter(animal => ids.includes(animal.id))
@@ -136,30 +136,30 @@ function employeeById(id) {
 }
 
 function oldestFromFirstSpecies(id) {
-  let askedEmployee = employees.find((employee) => employee.id === id);
-  let targetAnimal = animals.find((animal) => animal.id === askedEmployee.responsibleFor[0]);
+  const askedEmployee = employees.find(employee => employee.id === id);
+  const targetAnimal = animals.find(animal => animal.id === askedEmployee.responsibleFor[0]);
   let higherAnimalAge = targetAnimal.residents[0].age;
   targetAnimal.residents.forEach((animal) => {
     if (higherAnimalAge < animal.age) {
-      higherAnimalAge = animal.age
+      higherAnimalAge = animal.age;
     }
-  })
-  let animalInfo = [];
+  });
+  const animalInfo = [];
   targetAnimal.residents.forEach((animal) => {
     if (animal.age >= higherAnimalAge) {
       animalInfo.push(animal.name);
       animalInfo.push(animal.sex);
-      animalInfo.push(animal.age)
+      animalInfo.push(animal.age);
     }
-  })
-  return animalInfo
+  });
+  return animalInfo;
 }
 
 function increasePrices(percentage) {
   Object.entries(prices).forEach(([category, price]) => {
-    const newPrice = price * (1 + percentage / 100);
+    const newPrice = price * (1 + (percentage / 100));
     prices[category] = Math.round(newPrice * 100) / 100;
-  })
+  });
 }
 
 function getEmployeeFullName({ firstName, lastName }) {
