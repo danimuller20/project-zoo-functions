@@ -54,8 +54,10 @@ function isManager(id) {
   return employees.some(manager => manager.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aquii
+  const newEmployee = {id, firstName, lastName, managers, responsibleFor };
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {
