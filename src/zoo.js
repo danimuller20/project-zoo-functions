@@ -130,7 +130,7 @@ function oldestFromFirstSpecies(id) {
       return acc;
     } else {
       return value;
-  }});
+    } });
   return Object.values(oldest);
 }
 
