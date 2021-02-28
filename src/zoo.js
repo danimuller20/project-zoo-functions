@@ -109,12 +109,12 @@ function animalMap(options = {}) {
 function schedule(dayName) {
   // seu código aqui
   const result = Object.entries(hours).reduce((acc, [key, val]) => {
-  const { open, close } = val;
-  acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
-  return acc;
+    const { open, close } = val;
+    acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
+    return acc;
 }, {});
-if (dayName !== undefined) return { [dayName]: result[dayName] };
-return result;
+  if (dayName !== undefined) return { [dayName]: result[dayName] };
+    return result;
 }
 
 function oldestFromFirstSpecies(id) {
