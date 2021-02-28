@@ -129,7 +129,7 @@ function oldestFromFirstSpecies(id) {
     if (acc.age > value.age) {
       return acc;
     }
-      return value;
+    return value;
   });
   return Object.values(oldest);
 }
