@@ -99,9 +99,9 @@ function animalMap(options = {}) {
   }, {});
   if (includeNames) {
     return Object.entries(results).reduce((acc, [key, animalNames]) => {
-      acc[key] = animalNames.map((animalName) => getSpecieResidentsName(animalName, sorted, sex)); 
+      acc[key] = animalNames.map(animalName => getSpecieResidentsName(animalName, sorted, sex));
       return acc;
-    }, {})
+    }, {});
   }
   return results;
 }
