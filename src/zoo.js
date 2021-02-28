@@ -125,7 +125,9 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
   const employee = employeeById(id);
   const [specie] = animalsByIds(employee.responsibleFor[0]);
-  const oldest = specie.residents.reduce((acc, value) => { return acc.age > value.age ? acc : value});
+  const oldest = specie.residents.reduce((acc, value) => { 
+    return acc.age > value.age ? acc : value
+  });
   return Object.values(oldest);
 }
 
