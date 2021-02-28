@@ -128,9 +128,9 @@ function oldestFromFirstSpecies(id) {
   const oldest = specie.residents.reduce((acc, value) => {
     if (acc.age > value.age) {
       return acc;
-    } else {
+    }
       return value;
-    } });
+  });
   return Object.values(oldest);
 }
 
