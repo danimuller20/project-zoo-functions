@@ -112,9 +112,9 @@ function schedule(dayName) {
     const { open, close } = val;
     acc[key] = close - open > 0 ? `Open from ${open}am until ${close % 12}pm` : 'CLOSED';
     return acc;
-}, {});
+  }, {});
   if (dayName !== undefined) return { [dayName]: result[dayName] };
-    return result;
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
