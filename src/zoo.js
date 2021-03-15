@@ -91,7 +91,10 @@ function animalFind(idOrName) {
 
 function findName(idOrName) {
   const employeesList =
-    (employees.find(employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName));
+    (employees.find(
+      employee => employee.id === idOrName
+      || employee.firstName === idOrName
+      || employee.lastName === idOrName));
   return `${employeesList.firstName} ${employeesList.lastName}`;
 }
 
@@ -99,7 +102,8 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   const employee = employees.map(employeeMaped => `${employeeMaped.firstName} ${employeeMaped.lastName}`);
   const animalsByEmployee = employees.map(employeeMaped => employeeMaped.responsibleFor);
-  const mapingAMap = animalsByEmployee.map(animalMaped => animalMaped.map(animal => animalFind(animal)));
+  const mapingAMap = animalsByEmployee.map(
+    animalMaped => animalMaped.map(animal => animalFind(animal)));
 
   const object = {};
   const newObject = {};
