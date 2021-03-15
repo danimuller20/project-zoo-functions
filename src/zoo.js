@@ -99,7 +99,6 @@ function findName(idOrName) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
   const employee = employees.map(employeeMaped => `${employeeMaped.firstName} ${employeeMaped.lastName}`);
   const animalsByEmployee = employees.map(employeeMaped => employeeMaped.responsibleFor);
   const mapingAMap = animalsByEmployee.map(
