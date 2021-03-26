@@ -65,7 +65,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   const { Adult: adultEntrant = 0, Senior: seniorEntrant = 0, Child: childEntrant = 0 } = entrants;
-  return (adultEntrant*Adult) + (seniorEntrant*Senior) + (childEntrant*Child)
+  return (adultEntrant * Adult) + (seniorEntrant * Senior) + (childEntrant * Child);
 }
 
 function animalMap(options) {
