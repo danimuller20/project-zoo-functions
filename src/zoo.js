@@ -97,15 +97,13 @@ function employeeCoverage(idOrName) {
   data.employees.forEach((employee) => {
     const name = `${employee.firstName} ${employee.lastName}`;
     const animalsFound = employee.responsibleFor.map(
-      animalSearch => data.animals.find(animal => animal.id === animalSearch).name
-    );
+      animalSearch => data.animals.find(animal => animal.id === animalSearch).name);
     employeesList[name] = animalsFound;
   });
   if (!idOrName) return employeesList;
   const { firstName, lastName } = data.employees.find(
     employee =>
-      employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName
-  );
+      employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName);
   const name = `${firstName} ${lastName}`;
   return { [name]: employeesList[name] };
 }
