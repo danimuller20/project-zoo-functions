@@ -102,8 +102,8 @@ function employeeCoverage(idOrName) {
   });
   if (!idOrName) return employeesList;
   const { firstName, lastName } = data.employees.find(
-    employee =>
-      employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName);
+    emplo =>
+      emplo.firstName === idOrName || emplo.lastName === idOrName || emplo.id === idOrName);
   const name = `${firstName} ${lastName}`;
   return { [name]: employeesList[name] };
 }
