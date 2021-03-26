@@ -68,8 +68,48 @@ function entryCalculator(entrants) {
   return (adultEntrant * Adult) + (seniorEntrant * Senior) + (childEntrant * Child);
 }
 
+function animalsByRegion(regions) {
+  const animalsByLocation = {};
+  regions.forEach((location) => {
+    const sortedAnimals = animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    animalsByLocation[location] = sortedAnimals;
+  });
+  return animalsByLocation;
+}
+
+function AnimalsByRegionDetails(regions, sorted, sex) {
+  const animalsByLocation = {};
+  regions.forEach((location) => {
+    const sortedAnimals = animals
+      .filter(animal => animal.location === location)
+      .map((animal) => {
+        const nameKey = animal.name;
+        const nameValue = animal.residents
+          .filter((resident) => {
+            const filtered = sex !== undefined;
+            return filtered ? resident.sex === sex : true;
+          })
+          .map(resident => resident.name);
+        if (sorted) nameValue.sort();
+        return { [nameKey]: nameValue };
+      });
+    animalsByLocation[location] = sortedAnimals;
+  });
+  return animalsByLocation;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) {
+    return animalsByRegion(regions);
+  }
+  const { includeNames, sex, sorted } = options;
+  if (!includeNames) {
+    return animalsByRegion(regions);
+  }
+  return AnimalsByRegionDetails(regions, sorted, sex);
 }
 
 function schedule(dayName) {
