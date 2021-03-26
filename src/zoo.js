@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices, hours } = data;
 
 const animalsByIds = (...ids) => ids.map(id => animals.find(animal => id === animal.id));
   // verificacao de parametro vazio => if (!ids) { return [] }
@@ -51,16 +51,21 @@ function addEmployee(id = '', firstName = '', lastName = '', managers = [], resp
 }
 
 function animalCount(species) {
-  const result = animals.reduce((acc, { name, residents }) => {
+  const openHours = animals.reduce((acc, { name, residents }) => {
     acc[name] = residents.length;
     return acc;
   }, {});
-  if (species) return result[species];
-  return result;
+  if (species) return openHours[species];
+  return openHours;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  const { Adult, Senior, Child } = prices;
+  if (entrants === undefined || entrants.length === 0) {
+    return 0;
+  }
+  const { Adult: adultEntrant = 0, Senior: seniorEntrant = 0, Child: childEntrant = 0 } = entrants;
+  return (adultEntrant*Adult) + (seniorEntrant*Senior) + (childEntrant*Child)
 }
 
 function animalMap(options) {
@@ -68,19 +73,57 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const days = Object.keys(hours);
+  const openHours = {};
+
+  days.forEach((day) => {
+    const { open, close } = hours[day];
+    if (day === 'Monday') {
+      openHours[day] = 'CLOSED';
+    } else {
+      openHours[day] = `Open from ${open}am until ${close - 12}pm`;
+    }
+  });
+  return (!dayName) ? openHours : { [dayName]: openHours[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const oldestAnimal = animals
+  .find(animal => animal.id === employees
+    .find(employee => employee.id === id).responsibleFor[0]).residents
+    .sort((a, b) => b.age - a.age);
+  return Object.values(oldestAnimal[0]);
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(prices).forEach((key) => {
+    prices[key] = Math.round((prices[key] * 100) * ((percentage / 100) + 1)) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const result = {};
+  if (!idOrName) {
+    const coveredAnimals = employees
+      .map(employee => employee.responsibleFor
+      .map(animalId => animals
+      .find(animal => animal.id === animalId).name));
+    employees
+      .forEach(({ firstName, lastName }, index) => {
+        result[`${firstName} ${lastName}`] = coveredAnimals[index];
+      });
+    return result;
+  }
+
+  const { firstName, lastName, responsibleFor } = employees
+    .find(employee =>
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName ||
+      employee.id === idOrName);
+
+  return { [`${firstName} ${lastName}`]: responsibleFor
+    .map(animalId => animals
+    .find(animal => animal.id === animalId).name) };
 }
 
 module.exports = {
