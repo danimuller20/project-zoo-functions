@@ -67,9 +67,9 @@ function animalMap(options) {
 function schedule(dayName) {
   const week = Object.assign({}, hours);
   const days = {};
-  Object.keys(week).forEach((day) => {
+  Object.keys(week).forEach(day => {
     week[day] = `Open from ${week[day].open}am until ${week[day].close - 12}pm`;
-    if (day === 'Monday') return week[day] = 'CLOSED'
+    if (day === 'Monday') return week[day] = 'CLOSED';
   });
   if (!dayName) return week;
   days[dayName] = week[dayName];
