@@ -37,7 +37,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-    return employees.some(employee => employee.managers.find((boss) => boss === id));
+  return employees.some(employee => employee.managers.find(boss => boss === id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -51,7 +51,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const animalResult = {};
+  animals.forEach(animal => animalResult[animal.name] = animal.residents.length);
+  if (species === undefined) {
+    return animalResult;
+  }
+  return animalResult[species];
 }
 
 function entryCalculator(entrants) {
