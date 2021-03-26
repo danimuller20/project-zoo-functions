@@ -93,15 +93,13 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
- 
-
   const employeesList = {};
-  data.employees.forEach(employee => {
+  data.employees.forEach((employee) => {
     const name = `${employee.firstName} ${employee.lastName}`;
-    const animals = employee.responsibleFor.map(
+    const animalsFound = employee.responsibleFor.map(
       animalSearch => data.animals.find(animal => animal.id === animalSearch).name
     );
-    employeesList[name] = animals;
+    employeesList[name] = animalsFound;
   });
   if (!idOrName) return employeesList;
   const { firstName, lastName } = data.employees.find(
